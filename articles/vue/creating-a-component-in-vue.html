@@ -4,8 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vue 3 Component Creation Guide</title>
+          <link rel="stylesheet" href="../../assets/tailwind.css">
     <link rel="stylesheet" href="../../assets/style.css">
     <link rel="stylesheet" href="../../assets/article.css">
+
 </head>
 <body>
         <!-- Navigation -->
@@ -17,13 +19,15 @@
                 </div>
             </div>
         </nav>
-    <h1>Steps for Creating a Component in Vue 3</h1>
+          <div class="max-w-5xl mx-auto px-4 py-10">
+
+    <h1 class="text-4xl font-bold text-gray-900 mb-2">Steps for Creating a Component in Vue 3</h1>
 
     <div class="note">
         <strong>Note:</strong> This guide walks through the complete process of creating reusable Vue 3 components with variants, props, events, and slots.
     </div>
 
-    <h2>1. Analyze the UI/UX Design</h2>
+    <h2 class="text-2xl font-semibold text-gray-900 mb-2">1. Analyze the UI/UX Design</h2>
     <p>Before writing any code, carefully examine the design (e.g., Figma, Adobe XD, or mockups) to understand:</p>
     <ul>
         <li>The <strong>structure</strong> of the component (buttons, cards, modals)</li>
@@ -32,14 +36,14 @@
     </ul>
     <p>This analysis helps in breaking down the component into smaller, reusable pieces.</p>
 
-    <h2>2. Identify Component Variants</h2>
+    <h2 class="text-2xl font-semibold text-gray-900 mb-2">2. Identify Component Variants</h2>
     <p>Components often have different variations (colors, sizes, states) that can be controlled via props.</p>
 
     <h3>Example: Button Component Variants</h3>
 
     <h4>Color Variants</h4>
     <p>Different background and text colors (primary, secondary, success, danger, etc.)</p>
-    <p><strong>Props to Add:</strong></p>
+    <p class="my-2"><strong>Props to Add:</strong></p>
     <pre><code>props: {
     color: {
         type: String,
@@ -47,13 +51,13 @@
         validator: (value) => ['primary', 'secondary', 'success', 'danger'].includes(value),
     }
 }</code></pre>
-    <p><strong>Usage:</strong></p>
+    <p class="my-2"><strong>Usage:</strong></p>
     <pre><code>&lt;Button color="primary"&gt;Submit&lt;/Button&gt;
 &lt;Button color="danger"&gt;Delete&lt;/Button&gt;</code></pre>
 
     <h4>Size Variants</h4>
     <p>Different sizes (small, medium, large)</p>
-    <p><strong>Props to Add:</strong></p>
+    <p class="my-2"><strong>Props to Add:</strong></p>
     <pre><code>props: {
     size: {
         type: String,
@@ -61,13 +65,13 @@
         validator: (value) => ['small', 'medium', 'large'].includes(value),
     }
 }</code></pre>
-    <p><strong>Usage:</strong></p>
+    <p class="my-2"><strong>Usage:</strong></p>
     <pre><code>&lt;Button size="small"&gt;Small Button&lt;/Button&gt;
 &lt;Button size="large"&gt;Large Button&lt;/Button&gt;</code></pre>
 
     <h4>State Variations</h4>
     <p>Different states (disabled, loading, active)</p>
-    <p><strong>Props to Add:</strong></p>
+    <p class="my-2"><strong>Props to Add:</strong></p>
     <pre><code>props: {
     disabled: {
         type: Boolean,
@@ -78,23 +82,23 @@
         default: false,
     }
 }</code></pre>
-    <p><strong>Usage:</strong></p>
+    <p class="my-2"><strong>Usage:</strong></p>
     <pre><code>&lt;Button disabled&gt;Disabled Button&lt;/Button&gt;
 &lt;Button :loading="true"&gt;Loading...&lt;/Button&gt;</code></pre>
 
-    <h2>3. Define Events (Emits)</h2>
+    <h2 class="text-2xl font-semibold text-gray-900 mb-2">3. Define Events (Emits)</h2>
     <p>Components often need to communicate with parent components via custom events.</p>
 
     <h3>Example: Button Click Event</h3>
     <p>When a button is clicked, it should notify the parent component.</p>
-    <p><strong>Define Emits:</strong></p>
+    <p class="my-2"><strong>Define Emits:</strong></p>
     <pre><code>emits: ['button-click'], // Declare custom events
 methods: {
     handleClick() {
         this.$emit('button-click'); // Emit event
     }
 }</code></pre>
-    <p><strong>Parent Component Usage:</strong></p>
+    <p class="my-2"><strong>Parent Component Usage:</strong></p>
     <pre><code>&lt;Button @button-click="handleButtonClick" /&gt;</code></pre>
     <pre><code>methods: {
     handleButtonClick() {
@@ -106,10 +110,10 @@ methods: {
     <p>If a card has a button that triggers an action, emit an event:</p>
     <pre><code>&lt;!-- Inside Card Component --&gt;
 &lt;button @click="$emit('action-button-click')"&gt;Go Somewhere&lt;/button&gt;</code></pre>
-    <p><strong>Parent Usage:</strong></p>
+    <p class="my-2"><strong>Parent Usage:</strong></p>
     <pre><code>&lt;Card @action-button-click="navigateToPage" /&gt;</code></pre>
 
-    <h2>4. Slots for Dynamic Content</h2>
+    <h2 class="text-2xl font-semibold text-gray-900 mb-2">4. Slots for Dynamic Content</h2>
     <p>If a component needs flexible content (e.g., a card with variable text), use slots.</p>
 
     <h3>Example: Card with Default and Named Slots</h3>
@@ -119,7 +123,7 @@ methods: {
     &lt;slot&gt;&lt;/slot&gt; &lt;!-- Default slot --&gt;
     &lt;slot name="footer"&gt;&lt;/slot&gt;
 &lt;/div&gt;</code></pre>
-    <p><strong>Usage:</strong></p>
+    <p class="my-2"><strong>Usage:</strong></p>
     <pre><code>&lt;Card&gt;
     &lt;template #header&gt;
         &lt;h3&gt;Card Title&lt;/h3&gt;
@@ -130,7 +134,7 @@ methods: {
     &lt;/template&gt;
 &lt;/Card&gt;</code></pre>
 
-    <h2>5. Styling (Scoped CSS or CSS-in-JS)</h2>
+    <h2 class="text-2xl font-semibold text-gray-900 mb-2">5. Styling (Scoped CSS or CSS-in-JS)</h2>
     <ul>
         <li>Use <strong>scoped styles</strong> (<code>&lt;style scoped&gt;</code>) to avoid CSS conflicts</li>
         <li>Alternatively, use <strong>CSS Modules</strong> or libraries like <strong>TailwindCSS</strong></li>
@@ -156,7 +160,7 @@ methods: {
 .btn-large { font-size: 18px; }
 &lt;/style&gt;</code></pre>
 
-    <h2>Final Example: Complete Button Component</h2>
+    <h2 class="text-2xl font-semibold text-gray-900 mb-2">Final Example: Complete Button Component</h2>
     <pre><code>&lt;template&gt;
     &lt;button
         :class="[`btn-${color}`, `btn-${size}`]"
@@ -225,6 +229,7 @@ button:disabled {
             <li><strong>Apply Scoped Styles</strong> → Avoid CSS conflicts</li>
         </ol>
         <p>This approach ensures <strong>reusable</strong>, <strong>maintainable</strong>, and <strong>scalable</strong> Vue components. 🚀</p>
+    </div>
     </div>
 </body>
 </html>

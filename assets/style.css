@@ -106,6 +106,10 @@ body {
     transform: translateY(-5px);
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
+.article-card:hover .article-link{
+    background-color: var(--primary-color);
+    color: var(--white);
+}
 
 .article-content {
     padding: 1.5rem;
@@ -130,6 +134,9 @@ body {
     text-decoration: none;
     font-weight: 500;
     transition: color 0.3s;
+    padding:0.5rem 1rem;
+    border-radius: 0.25rem;
+    transition: all ease-in-out 0.3s;
 }
 
 .article-link:hover {
