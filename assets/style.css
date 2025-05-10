@@ -94,6 +94,7 @@ body {
 }
 
 .article-card {
+    display: block;
     background: var(--white);
     border-radius: 8px;
     box-shadow: var(--card-shadow);
@@ -135,6 +136,11 @@ body {
     color: var(--secondary-color);
 }
 
+.article-img{
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+}
+
 /* Footer */
 .footer {
     background-color: var(--secondary-color);
@@ -157,4 +163,11 @@ body {
     .articles-grid {
         grid-template-columns: 1fr;
     }
+}
+
+.flex {
+    display: flex;
+}
+.justify-center {
+    justify-content: center;
 }
