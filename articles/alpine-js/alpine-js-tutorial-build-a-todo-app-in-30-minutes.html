@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Learn how to build a todo app with Alpine.js - the minimal framework for JavaScript behavior in your markup. Step-by-step tutorial for beginners.">
+    <meta name="keywords" content="Alpine.js, JavaScript framework, todo app, beginner tutorial, web development">
+    <title>Alpine.js Tutorial: Build a Todo App in 30 Minutes | YourDevBlog</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <style>
+        :root {
+            --primary-color: #42b983;
+            --secondary-color: #f9fafb;
+            --accent-color: #10b981;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: #1f2937;
+            background-color: #f9fafb;
+        }
+        
+        .header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 3rem 0;
+            margin-bottom: 2rem;
+        }
+        
+        .article-content {
+            background-color: white;
+            border-radius: 0.5rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            padding: 2rem;
+        }
+        
+        pre {
+            background-color: #f3f4f6;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            overflow-x: auto;
+        }
+        
+        code {
+            background-color: #f3f4f6;
+            padding: 0.2rem 0.4rem;
+            border-radius: 0.25rem;
+            font-size: 0.9em;
+        }
+        
+        .step {
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        
+        .step-number {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            width: 30px;
+            height: 30px;
+            text-align: center;
+            line-height: 30px;
+            border-radius: 50%;
+            margin-right: 0.5rem;
+        }
+        
+        .app-container {
+            max-width: 600px;
+            margin: 2rem auto;
+            padding: 1.5rem;
+            background-color: white;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .todo-item {
+            transition: all 0.2s ease;
+        }
+        
+        .todo-item:hover {
+            transform: translateY(-2px);
+        }
+        
+        .completed {
+            text-decoration: line-through;
+            color: #9ca3af;
+        }
+        
+        .footer {
+            background-color: #1f2937;
+            color: white;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="header text-center">
+        <div class="container">
+            <h1 class="display-4 fw-bold">Alpine.js Tutorial: Build a Todo App</h1>
+            <p class="lead">Learn how to use Alpine.js to create interactive web applications with minimal JavaScript</p>
+            <div class="mt-3">
+                <span class="badge bg-light text-dark me-2">Beginner</span>
+                <span class="badge bg-light text-dark me-2">JavaScript</span>
+                <span class="badge bg-light text-dark">Frontend</span>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Main Content -->
+    <div class="container my-5">
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+                <article class="article-content">
+                    <p class="lead">Alpine.js is a rugged, minimal framework for composing JavaScript behavior in your markup. It offers the reactive and declarative nature of big frameworks like Vue or React at a much lower cost.</p>
+                    
+                    <h2 class="h4 mt-4">Why Choose Alpine.js?</h2>
+                    <ul>
+                        <li><strong>Lightweight:</strong> Only ~7kB minified</li>
+                        <li><strong>No build step:</strong> Just include the script and start coding</li>
+                        <li><strong>Simple syntax:</strong> Easy to learn if you know HTML</li>
+                        <li><strong>Reactive:</strong> Automatically updates the DOM when data changes</li>
+                    </ul>
+                    
+                    <div class="alert alert-info mt-4">
+                        <strong>Prerequisites:</strong> Basic knowledge of HTML and JavaScript will help you follow along better.
+                    </div>
+                    
+                    <h2 class="mt-5 mb-4">Step-by-Step Alpine.js Tutorial</h2>
+                    
+                    <!-- Step 1 -->
+                    <div class="step">
+                        <h3 class="h5"><span class="step-number">1</span> Install Alpine.js</h3>
+                        <p>There are several ways to include Alpine.js in your project:</p>
+                        
+                        <h4 class="h6 mt-3">CDN (Simplest Method)</h4>
+                        <pre><code class="language-html">&lt;script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"&gt;&lt;/script&gt;</code></pre>
+                        
+                        <h4 class="h6 mt-3">NPM</h4>
+                        <pre><code class="language-bash">npm install alpinejs</code></pre>
+                        <p>Then import it in your JavaScript file:</p>
+                        <pre><code class="language-js">import Alpine from 'alpinejs'
+window.Alpine = Alpine
+Alpine.start()</code></pre>
+                    </div>
+                    
+                    <!-- Step 2 -->
+                    <div class="step">
+                        <h3 class="h5"><span class="step-number">2</span> Basic Alpine.js Structure</h3>
+                        <p>Alpine.js uses directives (special HTML attributes) to add functionality. The basic structure looks like this:</p>
+                        
+                        <pre><code class="language-html">&lt;div x-data="{ count: 0 }"&gt;
+    &lt;button @click="count++"&gt;Increment&lt;/button&gt;
+    &lt;span x-text="count"&gt;&lt;/span&gt;
+&lt;/div&gt;</code></pre>
+                        
+                        <p>Key directives:</p>
+                        <ul>
+                            <li><code>x-data</code>: Declares a component and its data</li>
+                            <li><code>x-text</code>: Sets the text content of an element</li>
+                            <li><code>@click</code>: Handles click events</li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Step 3 -->
+                    <div class="step">
+                        <h3 class="h5"><span class="step-number">3</span> Building a Todo App</h3>
+                        <p>Let's create a complete todo application with Alpine.js. We'll implement:</p>
+                        <ul>
+                            <li>Adding new todos</li>
+                            <li>Marking todos as complete</li>
+                            <li>Deleting todos</li>
+                            <li>Filtering todos</li>
+                        </ul>
+                        
+                        <h4 class="h6 mt-3">HTML Structure</h4>
+                        <p>Create a new HTML file and include Alpine.js:</p>
+                        <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Alpine.js Todo App&lt;/title&gt;
+    &lt;script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"&gt;&lt;/script&gt;
+    &lt;link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div class="container mt-5"&gt;
+        &lt;h1 class="text-center mb-4"&gt;Alpine.js Todo App&lt;/h1&gt;
+        &lt;div x-data="todoApp()"&gt;
+            &lt;!-- Todo form will go here --&gt;
+            &lt;!-- Todo list will go here --&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                    </div>
+                    
+                    <!-- Step 4 -->
+                    <div class="step">
+                        <h3 class="h5"><span class="step-number">4</span> Implementing the Todo App Logic</h3>
+                        <p>Add the following JavaScript inside a <code>&lt;script&gt;</code> tag or in a separate file:</p>
+                        
+                        <pre><code class="language-html">&lt;script&gt;
+function todoApp() {
+    return {
+        newTodo: '',
+        todos: [],
+        filter: 'all',
+        
+        addTodo() {
+            if (this.newTodo.trim() === '') return;
+            this.todos.push({
+                id: Date.now(),
+                text: this.newTodo,
+                completed: false
+            });
+            this.newTodo = '';
+        },
+        
+        removeTodo(id) {
+            this.todos = this.todos.filter(todo => todo.id !== id);
+        },
+        
+        toggleTodo(id) {
+            const todo = this.todos.find(todo => todo.id === id);
+            if (todo) {
+                todo.completed = !todo.completed;
+            }
+        },
+        
+        get filteredTodos() {
+            if (this.filter === 'active') {
+                return this.todos.filter(todo => !todo.completed);
+            } else if (this.filter === 'completed') {
+                return this.todos.filter(todo => todo.completed);
+            }
+            return this.todos;
+        },
+        
+        clearCompleted() {
+            this.todos = this.todos.filter(todo => !todo.completed);
+        }
+    }
+}
+&lt;/script&gt;</code></pre>
+                    </div>
+                    
+                    <!-- Step 5 -->
+                    <div class="step">
+                        <h3 class="h5"><span class="step-number">5</span> Creating the Todo UI</h3>
+                        <p>Now let's add the HTML markup that uses our Alpine.js component:</p>
+                        
+                        <pre><code class="language-html">&lt;div class="app-container" x-data="todoApp()"&gt;
+    &lt;h2 class="text-center mb-4"&gt;My Todos&lt;/h2&gt;
+    
+    &lt;!-- Add Todo Form --&gt;
+    &lt;form @submit.prevent="addTodo" class="mb-4"&gt;
+        &lt;div class="input-group"&gt;
+            &lt;input 
+                type="text" 
+                class="form-control" 
+                placeholder="Add a new todo..." 
+                x-model="newTodo"
+                aria-label="Add a new todo"
+            &gt;
+            &lt;button class="btn btn-primary" type="submit"&gt;Add&lt;/button&gt;
+        &lt;/div&gt;
+    &lt;/form&gt;
+    
+    &lt;!-- Todo List --&gt;
+    &lt;ul class="list-group mb-4"&gt;
+        &lt;template x-for="todo in filteredTodos" :key="todo.id"&gt;
+            &lt;li class="list-group-item todo-item d-flex justify-content-between align-items-center"&gt;
+                &lt;div class="form-check"&gt;
+                    &lt;input 
+                        type="checkbox" 
+                        class="form-check-input" 
+                        :id="'todo-' + todo.id"
+                        @change="toggleTodo(todo.id)"
+                        :checked="todo.completed"
+                    &gt;
+                    &lt;label 
+                        class="form-check-label" 
+                        :for="'todo-' + todo.id"
+                        :class="{ completed: todo.completed }"
+                        x-text="todo.text"
+                    &gt;&lt;/label&gt;
+                &lt;/div&gt;
+                &lt;button @click="removeTodo(todo.id)" class="btn btn-sm btn-danger"&gt;×&lt;/button&gt;
+            &lt;/li&gt;
+        &lt;/template&gt;
+    &lt;/ul&gt;
+    
+    &lt;!-- Filters --&gt;
+    &lt;div class="d-flex justify-content-between align-items-center"&gt;
+        &lt;div x-text="`${todos.filter(t =&gt; !t.completed).length} items left`"&gt;&lt;/div&gt;
+        &lt;div class="btn-group"&gt;
+            &lt;button 
+                @click="filter = 'all'" 
+                class="btn btn-sm" 
+                :class="{ 'btn-primary': filter === 'all' }"
+            &gt;
+                All
+            &lt;/button&gt;
+            &lt;button 
+                @click="filter = 'active'" 
+                class="btn btn-sm" 
+                :class="{ 'btn-primary': filter === 'active' }"
+            &gt;
+                Active
+            &lt;/button&gt;
+            &lt;button 
+                @click="filter = 'completed'" 
+                class="btn btn-sm" 
+                :class="{ 'btn-primary': filter === 'completed' }"
+            &gt;
+                Completed
+            &lt;/button&gt;
+        &lt;/div&gt;
+        &lt;button @click="clearCompleted" class="btn btn-sm btn-link"&gt;Clear completed&lt;/button&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                    </div>
+                    
+                    <!-- Live Demo -->
+                    <div class="step">
+                        <h3 class="h5"><span class="step-number">6</span> Live Demo</h3>
+                        <p>Here's how your Alpine.js todo app should look and work:</p>
+                        
+                        <div class="app-container" x-data="todoApp()">
+                            <h2 class="text-center mb-4">My Todos</h2>
+                            
+                            <!-- Add Todo Form -->
+                            <form @submit.prevent="addTodo" class="mb-4">
+                                <div class="input-group">
+                                    <input 
+                                        type="text" 
+                                        class="form-control" 
+                                        placeholder="Add a new todo..." 
+                                        x-model="newTodo"
+                                        aria-label="Add a new todo"
+                                    >
+                                    <button class="btn btn-primary" type="submit">Add</button>
+                                </div>
+                            </form>
+                            
+                            <!-- Todo List -->
+                            <ul class="list-group mb-4">
+                                <template x-for="todo in filteredTodos" :key="todo.id">
+                                    <li class="list-group-item todo-item d-flex justify-content-between align-items-center">
+                                        <div class="form-check">
+                                            <input 
+                                                type="checkbox" 
+                                                class="form-check-input" 
+                                                :id="'todo-' + todo.id"
+                                                @change="toggleTodo(todo.id)"
+                                                :checked="todo.completed"
+                                            >
+                                            <label 
+                                                class="form-check-label" 
+                                                :for="'todo-' + todo.id"
+                                                :class="{ completed: todo.completed }"
+                                                x-text="todo.text"
+                                            ></label>
+                                        </div>
+                                        <button @click="removeTodo(todo.id)" class="btn btn-sm btn-danger">×</button>
+                                    </li>
+                                </template>
+                            </ul>
+                            
+                            <!-- Filters -->
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div x-text="`${todos.filter(t => !t.completed).length} items left`"></div>
+                                <div class="btn-group">
+                                    <button 
+                                        @click="filter = 'all'" 
+                                        class="btn btn-sm" 
+                                        :class="{ 'btn-primary': filter === 'all' }"
+                                    >
+                                        All
+                                    </button>
+                                    <button 
+                                        @click="filter = 'active'" 
+                                        class="btn btn-sm" 
+                                        :class="{ 'btn-primary': filter === 'active' }"
+                                    >
+                                        Active
+                                    </button>
+                                    <button 
+                                        @click="filter = 'completed'" 
+                                        class="btn btn-sm" 
+                                        :class="{ 'btn-primary': filter === 'completed' }"
+                                    >
+                                        Completed
+                                    </button>
+                                </div>
+                                <button @click="clearCompleted" class="btn btn-sm btn-link">Clear completed</button>
+                            </div>
+                        </div>
+                        
+                        <script>
+                        function todoApp() {
+                            return {
+                                newTodo: '',
+                                todos: [],
+                                filter: 'all',
+                                
+                                addTodo() {
+                                    if (this.newTodo.trim() === '') return;
+                                    this.todos.push({
+                                        id: Date.now(),
+                                        text: this.newTodo,
+                                        completed: false
+                                    });
+                                    this.newTodo = '';
+                                },
+                                
+                                removeTodo(id) {
+                                    this.todos = this.todos.filter(todo => todo.id !== id);
+                                },
+                                
+                                toggleTodo(id) {
+                                    const todo = this.todos.find(todo => todo.id === id);
+                                    if (todo) {
+                                        todo.completed = !todo.completed;
+                                    }
+                                },
+                                
+                                get filteredTodos() {
+                                    if (this.filter === 'active') {
+                                        return this.todos.filter(todo => !todo.completed);
+                                    } else if (this.filter === 'completed') {
+                                        return this.todos.filter(todo => todo.completed);
+                                    }
+                                    return this.todos;
+                                },
+                                
+                                clearCompleted() {
+                                    this.todos = this.todos.filter(todo => !todo.completed);
+                                }
+                            }
+                        }
+                        </script>
+                    </div>
+                    
+                    <!-- Learning Path -->
+                    <div class="step">
+                        <h2 class="h4 mt-5 mb-4">Alpine.js Learning Path</h2>
+                        <p>To master Alpine.js, follow this study plan:</p>
+                        
+                        <h3 class="h5 mt-4">Week 1: Fundamentals</h3>
+                        <ul>
+                            <li>Understand the core directives: <code>x-data</code>, <code>x-show</code>, <code>x-if</code>, <code>x-for</code></li>
+                            <li>Learn event handling with <code>@click</code>, <code>@input</code>, etc.</li>
+                            <li>Practice binding data with <code>x-model</code></li>
+                            <li>Build simple components like counters, toggles, and accordions</li>
+                        </ul>
+                        
+                        <h3 class="h5 mt-4">Week 2: Intermediate Concepts</h3>
+                        <ul>
+                            <li>Learn about <code>x-init</code> for initialization</li>
+                            <li>Understand <code>$el</code>, <code>$refs</code>, and <code>$event</code> magic properties</li>
+                            <li>Explore transitions with <code>x-transition</code></li>
+                            <li>Build more complex components like modals, tabs, and dropdowns</li>
+                        </ul>
+                        
+                        <h3 class="h5 mt-4">Week 3: Advanced Topics</h3>
+                        <ul>
+                            <li>Learn about Alpine.js stores for state management</li>
+                            <li>Understand how to use Alpine.js with other libraries</li>
+                            <li>Explore custom directives</li>
+                            <li>Build a complete SPA with Alpine.js</li>
+                        </ul>
+                        
+                        <h3 class="h5 mt-4">Week 4: Real-world Projects</h3>
+                        <ul>
+                            <li>Build a CRUD application</li>
+                            <li>Create a dashboard with multiple interactive components</li>
+                            <li>Integrate Alpine.js with a backend API</li>
+                            <li>Optimize performance for larger applications</li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Conclusion -->
+                    <div class="step">
+                        <h2 class="h4 mt-5 mb-4">Conclusion</h2>
+                        <p>Alpine.js is a fantastic choice when you need to sprinkle interactivity into your web pages without the overhead of larger frameworks. It's particularly useful for:</p>
+                        <ul>
+                            <li>Server-rendered applications that need some JavaScript enhancement</li>
+                            <li>Small to medium-sized projects where a full framework would be overkill</li>
+                            <li>Teams that want to move quickly without complex build setups</li>
+                            <li>Adding interactivity to static sites</li>
+                        </ul>
+                        
+                        <p>The todo app we built demonstrates Alpine.js's core concepts in action. From here, you can explore more advanced features like components, stores, and transitions.</p>
+                        
+                        <div class="alert alert-success mt-4">
+                            <strong>Next Steps:</strong> Try enhancing the todo app with features like due dates, categories, or persistence to localStorage.
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Footer -->
+    <footer class="footer text-center">
+        <div class="container">
+            <p>© 2025 UI Dev Docs. All rights reserved.</p>
+            <div class="mt-3">
+                <a href="#" class="text-white me-3">About</a>
+                <a href="#" class="text-white me-3">Tutorials</a>
+                <a href="#" class="text-white me-3">Contact</a>
+                <a href="#" class="text-white">Privacy Policy</a>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Alpine.js -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+</body>
+</html>

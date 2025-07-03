@@ -1,0 +1,965 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Primary Meta Tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Headless CMS Guide: Top 8 Platforms Compared (2025) | Web UI Dev Docs</title>
+    <meta name="description" content="Complete guide to headless CMS platforms. Compare 8 top solutions including Contentful, Strapi, Sanity, and more. Learn use cases, benefits, and how to choose the right one.">
+    <meta name="keywords" content="headless cms, contentful, strapi, sanity, prismic, storyblok, directus, payload cms, keystonejs, cms comparison, api-first cms">
+    <meta name="author" content="WebTech Insights">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <!-- <meta property="og:url" content="https://webtechinsights.com/headless-cms-guide/"> -->
+    <meta property="og:title" content="Headless CMS Guide: Top 8 Platforms Compared (2025)">
+    <meta property="og:description" content="Complete guide to headless CMS platforms. Compare 8 top solutions including Contentful, Strapi, Sanity, and more.">
+    <!-- <meta property="og:image" content="https://webtechinsights.com/images/headless-cms-comparison.jpg"> -->
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <!-- <meta name="twitter:url" content="https://webtechinsights.com/headless-cms-guide/"> -->
+    <meta name="twitter:title" content="Headless CMS Guide: Top 8 Platforms Compared (2025)">
+    <meta name="twitter:description" content="Complete guide to headless CMS platforms. Compare 8 top solutions including Contentful, Strapi, Sanity, and more.">
+    <!-- <meta name="twitter:image" content="https://webtechinsights.com/images/headless-cms-comparison.jpg"> -->
+    
+    <!-- Canonical -->
+    <link rel="canonical" href="https://webtechinsights.com/headless-cms-guide/">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    
+    <!-- CSS & Fonts -->
+    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+    <link rel="stylesheet" href="../../assets/tailwind.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .hero-gradient {
+            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+        }
+        .platform-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        .feature-icon {
+            background-color: #e0e7ff;
+            color: #4f46e5;
+        }
+        .comparison-table {
+            border-collapse: separate;
+            border-spacing: 0;
+        }
+        .comparison-table th {
+            background-color: #f8fafc;
+            position: sticky;
+            top: 0;
+        }
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.3s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .sticky-nav {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+    <!-- Header -->
+    <!-- Navigation -->
+        <!-- Header -->
+    <header class="sticky-nav bg-white shadow-sm">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="flex items-center">
+                <i class="fas fa-book text-indigo-600 text-2xl mr-2"></i>
+               <a href="/"><span class="text-xl font-bold text-gray-800">UI Dev Docs</span></a>
+            </div>
+            <!-- <nav class="hidden md:flex space-x-8">
+                <a href="#overview" class="text-gray-600 hover:text-indigo-600 transition">Overview</a>
+                <a href="#platforms" class="text-gray-600 hover:text-indigo-600 transition">Platforms</a>
+                <a href="#comparison" class="text-gray-600 hover:text-indigo-600 transition">Comparison</a>
+                <a href="#use-cases" class="text-gray-600 hover:text-indigo-600 transition">Use Cases</a>
+                <a href="#guide" class="text-gray-600 hover:text-indigo-600 transition">Selection Guide</a>
+            </nav> -->
+            <button class="md:hidden text-gray-600" id="mobile-menu-button">
+                <i class="fas fa-bars text-xl"></i>
+            </button>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div class="md:hidden hidden bg-white shadow-md" id="mobile-menu">
+            <div class="container mx-auto px-4 py-3 flex flex-col space-y-3">
+                <a href="#overview" class="text-gray-600 hover:text-indigo-600 transition py-2">Overview</a>
+                <a href="#platforms" class="text-gray-600 hover:text-indigo-600 transition py-2">Platforms</a>
+                <a href="#comparison" class="text-gray-600 hover:text-indigo-600 transition py-2">Comparison</a>
+                <a href="#use-cases" class="text-gray-600 hover:text-indigo-600 transition py-2">Use Cases</a>
+                <a href="#guide" class="text-gray-600 hover:text-indigo-600 transition py-2">Selection Guide</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-gradient text-white py-16 md:py-24">
+        <div class="container mx-auto px-4 text-center">
+            <div class="max-w-3xl mx-auto">
+                <span class="inline-block bg-white text-indigo-600 px-3 py-1 rounded-full text-sm font-semibold mb-4">Updated: July 2025</span>
+                <h1 class="text-4xl md:text-5xl font-bold mb-6">The Complete Headless CMS Guide (2025)</h1>
+                <p class="text-xl md:text-2xl mb-8">Compare 8 leading platforms, understand key use cases, and learn how to choose the right headless CMS for your project.</p>
+                <div class="flex flex-col sm:flex-row justify-center gap-4">
+                    <a href="#comparison" class="bg-white text-indigo-700 font-semibold px-6 py-3 rounded-lg hover:bg-gray-100 transition shadow-lg flex items-center justify-center gap-2">
+                        <i class="fas fa-table"></i> Compare Platforms
+                    </a>
+                    <a href="#guide" class="bg-indigo-800 border-2 border-indigo-800 font-semibold px-6 py-3 rounded-lg hover:bg-indigo-900 transition flex items-center justify-center gap-2">
+                        <i class="fas fa-question-circle"></i> Selection Guide
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Breadcrumb -->
+    <div class="container mx-auto px-4 py-4">
+        <nav class="text-sm text-gray-500">
+            <a href="/" class="text-indigo-600 hover:text-indigo-800">Home</a> &raquo;
+            <a href="/guides" class="text-indigo-600 hover:text-indigo-800">Guides</a> &raquo;
+            <span>Headless CMS Guide</span>
+        </nav>
+    </div>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8">
+        <!-- Overview Section -->
+        <section id="overview" class="mb-16 scroll-mt-20">
+            <div class="bg-white rounded-xl shadow-sm p-6 md:p-8">
+                <h2 class="text-3xl font-bold mb-6 text-gray-900">What is a Headless CMS?</h2>
+                
+                <div class="grid md:grid-cols-2 gap-8 mb-8">
+                    <div>
+                        <p class="text-lg text-gray-600 mb-6">A <strong class="text-indigo-600">headless CMS</strong> is a backend-only content management system that provides content via APIs for display on any device or channel. Unlike traditional CMS platforms that combine content creation and presentation, headless CMS separates these layers.</p>
+                        
+                        <!-- <div class="bg-indigo-50 border-l-4 border-indigo-500 p-4 mb-6">
+                            <p class="text-indigo-700 font-medium">"The headless CMS market is projected to grow at 22.6% CAGR from 2025 to 2030, reaching $5.5 billion by 2030." - <em>Grand View Research</em></p>
+                        </div> -->
+                    </div>
+                    <div>
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Headless CMS architecture diagram" class="w-full rounded-lg shadow">
+                    </div>
+                </div>
+                
+                <h3 class="text-2xl font-semibold mb-4 mt-8 text-gray-800">Key Benefits of Headless CMS</h3>
+                
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                    <div class="bg-white border border-gray-200 rounded-lg p-5 hover:border-indigo-300 transition">
+                        <div class="feature-icon w-12 h-12 rounded-full flex items-center justify-center mb-4">
+                            <i class="fas fa-sitemap text-xl"></i>
+                        </div>
+                        <h4 class="font-semibold text-lg mb-2">Omnichannel Delivery</h4>
+                        <p class="text-gray-600">Serve content to websites, apps, IoT devices, and digital displays from one source.</p>
+                    </div>
+                    <div class="bg-white border border-gray-200 rounded-lg p-5 hover:border-indigo-300 transition">
+                        <div class="feature-icon w-12 h-12 rounded-full flex items-center justify-center mb-4">
+                            <i class="fas fa-lock text-xl"></i>
+                        </div>
+                        <h4 class="font-semibold text-lg mb-2">Enhanced Security</h4>
+                        <p class="text-gray-600">Reduced attack surface with no public-facing admin interface.</p>
+                    </div>
+                    <div class="bg-white border border-gray-200 rounded-lg p-5 hover:border-indigo-300 transition">
+                        <div class="feature-icon w-12 h-12 rounded-full flex items-center justify-center mb-4">
+                            <i class="fas fa-tachometer-alt text-xl"></i>
+                        </div>
+                        <h4 class="font-semibold text-lg mb-2">Better Performance</h4>
+                        <p class="text-gray-600">Faster websites with modern JAMstack architecture.</p>
+                    </div>
+                    <div class="bg-white border border-gray-200 rounded-lg p-5 hover:border-indigo-300 transition">
+                        <div class="feature-icon w-12 h-12 rounded-full flex items-center justify-center mb-4">
+                            <i class="fas fa-code text-xl"></i>
+                        </div>
+                        <h4 class="font-semibold text-lg mb-2">Developer Freedom</h4>
+                        <p class="text-gray-600">Use any frontend framework without CMS constraints.</p>
+                    </div>
+                </div>
+                
+                <h3 class="text-2xl font-semibold mb-4 text-gray-800">Headless vs Traditional vs Hybrid CMS</h3>
+                
+                <div class="overflow-x-auto">
+                    <table class="w-full comparison-table rounded-lg overflow-hidden mb-8">
+                        <thead>
+                            <tr>
+                                <th class="text-left py-3 px-4 border border-gray-200">Feature</th>
+                                <th class="text-left py-3 px-4 border border-gray-200">Traditional CMS</th>
+                                <th class="text-left py-3 px-4 border border-gray-200">Headless CMS</th>
+                                <th class="text-left py-3 px-4 border border-gray-200">Hybrid CMS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="py-3 px-4 border border-gray-200 font-medium">Frontend Flexibility</td>
+                                <td class="py-3 px-4 border border-gray-200">Limited (theme-based)</td>
+                                <td class="py-3 px-4 border border-gray-200">Complete freedom</td>
+                                <td class="py-3 px-4 border border-gray-200">Optional flexibility</td>
+                            </tr>
+                            <tr>
+                                <td class="py-3 px-4 border border-gray-200 font-medium">Content Delivery</td>
+                                <td class="py-3 px-4 border border-gray-200">Web only</td>
+                                <td class="py-3 px-4 border border-gray-200">Any channel via API</td>
+                                <td class="py-3 px-4 border border-gray-200">Both web and API</td>
+                            </tr>
+                            <tr>
+                                <td class="py-3 px-4 border border-gray-200 font-medium">Performance</td>
+                                <td class="py-3 px-4 border border-gray-200">Slower (server-side)</td>
+                                <td class="py-3 px-4 border border-gray-200">Faster (static/CDN)</td>
+                                <td class="py-3 px-4 border border-gray-200">Depends on setup</td>
+                            </tr>
+                            <tr>
+                                <td class="py-3 px-4 border border-gray-200 font-medium">Examples</td>
+                                <td class="py-3 px-4 border border-gray-200">WordPress, Drupal</td>
+                                <td class="py-3 px-4 border border-gray-200">Contentful, Strapi</td>
+                                <td class="py-3 px-4 border border-gray-200">Sitecore, Magnolia</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- Platforms Section -->
+        <section id="platforms" class="mb-16 scroll-mt-20">
+            <div class="bg-white rounded-xl shadow-sm p-6 md:p-8">
+                <h2 class="text-3xl font-bold mb-6 text-gray-900">Top 8 Headless CMS Platforms</h2>
+                <p class="text-lg text-gray-600 mb-8">Here are the leading headless CMS solutions in 2025, each with unique strengths for different use cases.</p>
+                
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <!-- Contentful -->
+                    <div class="platform-card bg-white border border-gray-200 rounded-lg overflow-hidden hover:shadow-md transition">
+                        <div class="h-40 bg-blue-50 flex items-center justify-center">
+                            <img src="../../assets/images/tech-stacks/headless-cms/contentful.png" alt="Contentful logo" class="object-contain">
+                        </div>
+                        <div class="p-5">
+                            <h3 class="font-bold text-xl mb-2">Contentful</h3>
+                            <p class="text-gray-600 mb-4">Enterprise-grade SaaS solution with powerful content modeling.</p>
+                            <div class="flex justify-between items-center">
+                                <span class="text-sm bg-blue-100 text-blue-800 px-2 py-1 rounded">SaaS</span>
+                                <span class="text-sm text-gray-500">From $300/month</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Strapi -->
+                    <div class="platform-card bg-white border border-gray-200 rounded-lg overflow-hidden hover:shadow-md transition">
+                        <div class="h-40 bg-indigo-50 flex items-center justify-center">
+                            <img src="https://strapi.io/assets/strapi-logo-dark.svg" alt="Strapi logo" class="h-16 object-contain">
+                        </div>
+                        <div class="p-5">
+                            <h3 class="font-bold text-xl mb-2">Strapi</h3>
+                            <p class="text-gray-600 mb-4">Leading open-source option with self-hosting flexibility.</p>
+                            <div class="flex justify-between items-center">
+                                <span class="text-sm bg-indigo-100 text-indigo-800 px-2 py-1 rounded">Open Source</span>
+                                <span class="text-sm text-gray-500">Free + Paid Cloud</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Sanity -->
+                    <div class="platform-card bg-white border border-gray-200 rounded-lg overflow-hidden hover:shadow-md transition">
+                        <div class="h-40 bg-pink-50 flex items-center justify-center">
+                            <img src="../../assets/images/tech-stacks/headless-cms/sanity.png" alt="Sanity logo" class="h object-contain">
+                        </div>
+                        <div class="p-5">
+                            <h3 class="font-bold text-xl mb-2">Sanity</h3>
+                            <p class="text-gray-600 mb-4">Real-time structured content platform with custom studio.</p>
+                            <div class="flex justify-between items-center">
+                                <span class="text-sm bg-pink-100 text-pink-800 px-2 py-1 rounded">Hybrid</span>
+                                <span class="text-sm text-gray-500">Pay-as-you-go</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Storyblok -->
+                    <div class="platform-card bg-white border border-gray-200 rounded-lg overflow-hidden hover:shadow-md transition">
+                        <div class="h-40 bg-blue-50 flex items-center justify-center">
+                            <img src="../../assets/images/tech-stacks/headless-cms/storyblok.jpg" alt="Storyblok logo" class="object-contain">
+                        </div>
+                        <div class="p-5">
+                            <h3 class="font-bold text-xl mb-2">Storyblok</h3>
+                            <p class="text-gray-600 mb-4">Visual editor with headless architecture for marketers.</p>
+                            <div class="flex justify-between items-center">
+                                <span class="text-sm bg-blue-100 text-blue-800 px-2 py-1 rounded">SaaS</span>
+                                <span class="text-sm text-gray-500">From $90/month</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Prismic -->
+                    <div class="platform-card bg-white border border-gray-200 rounded-lg overflow-hidden hover:shadow-md transition">
+                        <div class="h-40 bg-green-50 flex items-center justify-center">
+                            <img src="../../assets/images/tech-stacks/headless-cms/prismic.png" alt="Prismic logo" class="object-contain">
+                        </div>
+                        <div class="p-5">
+                            <h3 class="font-bold text-xl mb-2">Prismic</h3>
+                            <p class="text-gray-600 mb-4">Developer-friendly with slices-based content modeling.</p>
+                            <div class="flex justify-between items-center">
+                                <span class="text-sm bg-green-100 text-green-800 px-2 py-1 rounded">SaaS</span>
+                                <span class="text-sm text-gray-500">From $15/month</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Directus -->
+                    <div class="platform-card bg-white border border-gray-200 rounded-lg overflow-hidden hover:shadow-md transition">
+                        <div class="h-40 bg-purple-50 flex items-center justify-center">
+                            <img src="../../assets/images/tech-stacks/headless-cms/directus.png" alt="Directus logo" class="object-contain">
+                        </div>
+                        <div class="p-5">
+                            <h3 class="font-bold text-xl mb-2">Directus</h3>
+                            <p class="text-gray-600 mb-4">Open-source data platform that turns SQL into APIs.</p>
+                            <div class="flex justify-between items-center">
+                                <span class="text-sm bg-purple-100 text-purple-800 px-2 py-1 rounded">Open Source</span>
+                                <span class="text-sm text-gray-500">Free + Paid Cloud</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Payload CMS -->
+                    <div class="platform-card bg-white border border-gray-200 rounded-lg overflow-hidden hover:shadow-md transition">
+                        <div class="h-40 bg-red-50 flex items-center justify-center">
+                            <img src="../../assets/images/tech-stacks/headless-cms/payload.jpg" alt="Payload CMS logo" class="object-contain">
+                        </div>
+                        <div class="p-5">
+                            <h3 class="font-bold text-xl mb-2">Payload CMS</h3>
+                            <p class="text-gray-600 mb-4">TypeScript-based with excellent developer experience.</p>
+                            <div class="flex justify-between items-center">
+                                <span class="text-sm bg-red-100 text-red-800 px-2 py-1 rounded">Open Source</span>
+                                <span class="text-sm text-gray-500">Free + Paid Hosting</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- KeystoneJS -->
+                    <div class="platform-card bg-white border border-gray-200 rounded-lg overflow-hidden hover:shadow-md transition">
+                        <div class="h-40 bg-yellow-50 flex items-center justify-center">
+                            <img src="../../assets/images/tech-stacks/headless-cms/keystonejs.jpg" alt="KeystoneJS logo" class=" object-contain">
+                        </div>
+                        <div class="p-5">
+                            <h3 class="font-bold text-xl mb-2">KeystoneJS</h3>
+                            <p class="text-gray-600 mb-4">Node.js CMS with GraphQL API and Admin UI.</p>
+                            <div class="flex justify-between items-center">
+                                <span class="text-sm bg-yellow-100 text-yellow-800 px-2 py-1 rounded">Open Source</span>
+                                <span class="text-sm text-gray-500">Free</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Comparison Section -->
+        <section id="comparison" class="mb-16 scroll-mt-20">
+            <div class="bg-white rounded-xl shadow-sm p-6 md:p-8">
+                <h2 class="text-3xl font-bold mb-6 text-gray-900">Headless CMS Platform Comparison</h2>
+                <p class="text-lg text-gray-600 mb-8">Detailed comparison of the top 8 headless CMS platforms across key criteria.</p>
+                
+                <div class="mb-6 flex overflow-x-auto">
+                    <button class="tab-button px-4 py-2 font-medium border-b-2 border-indigo-600 text-indigo-600" data-tab="features">Key Features</button>
+                    <button class="tab-button px-4 py-2 font-medium border-b-2 border-transparent text-gray-600 hover:text-indigo-600" data-tab="pricing">Pricing</button>
+                    <button class="tab-button px-4 py-2 font-medium border-b-2 border-transparent text-gray-600 hover:text-indigo-600" data-tab="apis">APIs</button>
+                    <button class="tab-button px-4 py-2 font-medium border-b-2 border-transparent text-gray-600 hover:text-indigo-600" data-tab="strengths">Strengths</button>
+                </div>
+                
+                <!-- Features Tab -->
+                <div id="features-tab" class="tab-content active">
+                    <div class="overflow-x-auto">
+                        <table class="w-full comparison-table">
+                            <thead>
+                                <tr>
+                                    <th class="text-left py-3 px-4">Platform</th>
+                                    <th class="text-left py-3 px-4">Type</th>
+                                    <th class="text-left py-3 px-4">Content Modeling</th>
+                                    <th class="text-left py-3 px-4">Localization</th>
+                                    <th class="text-left py-3 px-4">Media Handling</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="py-3 px-4 font-medium">Contentful</td>
+                                    <td class="py-3 px-4">SaaS</td>
+                                    <td class="py-3 px-4">Advanced</td>
+                                    <td class="py-3 px-4">Excellent</td>
+                                    <td class="py-3 px-4">Built-in CDN</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-3 px-4 font-medium">Strapi</td>
+                                    <td class="py-3 px-4">Open-source</td>
+                                    <td class="py-3 px-4">Flexible</td>
+                                    <td class="py-3 px-4">Good</td>
+                                    <td class="py-3 px-4">Plugins available</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-3 px-4 font-medium">Sanity</td>
+                                    <td class="py-3 px-4">Hybrid</td>
+                                    <td class="py-3 px-4">Custom schemas</td>
+                                    <td class="py-3 px-4">Excellent</td>
+                                    <td class="py-3 px-4">Powerful</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-3 px-4 font-medium">Storyblok</td>
+                                    <td class="py-3 px-4">SaaS</td>
+                                    <td class="py-3 px-4">Visual blocks</td>
+                                    <td class="py-3 px-4">Good</td>
+                                    <td class="py-3 px-4">Built-in</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-3 px-4 font-medium">Prismic</td>
+                                    <td class="py-3 px-4">SaaS</td>
+                                    <td class="py-3 px-4">Slices</td>
+                                    <td class="py-3 px-4">Good</td>
+                                    <td class="py-3 px-4">Built-in</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-3 px-4 font-medium">Directus</td>
+                                    <td class="py-3 px-4">Open-source</td>
+                                    <td class="py-3 px-4">Database-first</td>
+                                    <td class="py-3 px-4">Basic</td>
+                                    <td class="py-3 px-4">Extensions</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-3 px-4 font-medium">Payload CMS</td>
+                                    <td class="py-3 px-4">Open-source</td>
+                                    <td class="py-3 px-4">TypeScript</td>
+                                    <td class="py-3 px-4">Good</td>
+                                    <td class="py-3 px-4">Flexible</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-3 px-4 font-medium">KeystoneJS</td>
+                                    <td class="py-3 px-4">Open-source</td>
+                                    <td class="py-3 px-4">GraphQL-first</td>
+                                    <td class="py-3 px-4">Basic</td>
+                                    <td class="py-3 px-4">Basic</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <!-- Pricing Tab -->
+                <div id="pricing-tab" class="tab-content">
+                    <div class="overflow-x-auto">
+                        <table class="w-full comparison-table">
+                            <thead>
+                                <tr>
+                                    <th class="text-left py-3 px-4">Platform</th>
+                                    <th class="text-left py-3 px-4">Free Tier</th>
+                                    <th class="text-left py-3 px-4">Entry Plan</th>
+                                    <th class="text-left py-3 px-4">Mid Plan</th>
+                                    <th class="text-left py-3 px-4">Enterprise</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="py-3 px-4 font-medium">Contentful</td>
+                                    <td class="py-3 px-4">Limited</td>
+                                    <td class="py-3 px-4">$300/month</td>
+                                    <td class="py-3 px-4">Custom</td>
+                                    <td class="py-3 px-4">Custom</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-3 px-4 font-medium">Strapi</td>
+                                    <td class="py-3 px-4">Full features</td>
+                                    <td class="py-3 px-4">$9/user/month</td>
+                                    <td class="py-3 px-4">$29/user/month</td>
+                                    <td class="py-3 px-4">Custom</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-3 px-4 font-medium">Sanity</td>
+                                    <td class="py-3 px-4">Generous</td>
+                                    <td class="py-3 px-4">Pay-as-you-go</td>
+                                    <td class="py-3 px-4">Pay-as-you-go</td>
+                                    <td class="py-3 px-4">Custom</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-3 px-4 font-medium">Storyblok</td>
+                                    <td class="py-3 px-4">Limited</td>
+                                    <td class="py-3 px-4">$90/month</td>
+                                    <td class="py-3 px-4">$350/month</td>
+                                    <td class="py-3 px-4">Custom</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-3 px-4 font-medium">Prismic</td>
+                                    <td class="py-3 px-4">Generous</td>
+                                    <td class="py-3 px-4">$15/month</td>
+                                    <td class="py-3 px-4">$80/month</td>
+                                    <td class="py-3 px-4">Custom</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-3 px-4 font-medium">Directus</td>
+                                    <td class="py-3 px-4">Full features</td>
+                                    <td class="py-3 px-4">$25/month</td>
+                                    <td class="py-3 px-4">$100/month</td>
+                                    <td class="py-3 px-4">Custom</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-3 px-4 font-medium">Payload CMS</td>
+                                    <td class="py-3 px-4">Full features</td>
+                                    <td class="py-3 px-4">$29/month</td>
+                                    <td class="py-3 px-4">$99/month</td>
+                                    <td class="py-3 px-4">Custom</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-3 px-4 font-medium">KeystoneJS</td>
+                                    <td class="py-3 px-4">Full features</td>
+                                    <td class="py-3 px-4">Free</td>
+                                    <td class="py-3 px-4">Free</td>
+                                    <td class="py-3 px-4">Custom</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <!-- APIs Tab -->
+                <div id="apis-tab" class="tab-content">
+                    <div class="overflow-x-auto">
+                        <table class="w-full comparison-table">
+                            <thead>
+                                <tr>
+                                    <th class="text-left py-3 px-4">Platform</th>
+                                    <th class="text-left py-3 px-4">REST API</th>
+                                    <th class="text-left py-3 px-4">GraphQL</th>
+                                    <th class="text-left py-3 px-4">Webhooks</th>
+                                    <th class="text-left py-3 px-4">SDKs</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="py-3 px-4 font-medium">Contentful</td>
+                                    <td class="py-3 px-4">Yes</td>
+                                    <td class="py-3 px-4">Yes</td>
+                                    <td class="py-3 px-4">Yes</td>
+                                    <td class="py-3 px-4">Multiple</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-3 px-4 font-medium">Strapi</td>
+                                    <td class="py-3 px-4">Yes</td>
+                                    <td class="py-3 px-4">Plugin</td>
+                                    <td class="py-3 px-4">Yes</td>
+                                    <td class="py-3 px-4">JavaScript</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-3 px-4 font-medium">Sanity</td>
+                                    <td class="py-3 px-4">Custom</td>
+                                    <td class="py-3 px-4">Yes</td>
+                                    <td class="py-3 px-4">Yes</td>
+                                    <td class="py-3 px-4">Multiple</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-3 px-4 font-medium">Storyblok</td>
+                                    <td class="py-3 px-4">Yes</td>
+                                    <td class="py-3 px-4">Yes</td>
+                                    <td class="py-3 px-4">Yes</td>
+                                    <td class="py-3 px-4">Multiple</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-3 px-4 font-medium">Prismic</td>
+                                    <td class="py-3 px-4">Yes</td>
+                                    <td class="py-3 px-4">No</td>
+                                    <td class="py-3 px-4">Yes</td>
+                                    <td class="py-3 px-4">Multiple</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-3 px-4 font-medium">Directus</td>
+                                    <td class="py-3 px-4">Yes</td>
+                                    <td class="py-3 px-4">Yes</td>
+                                    <td class="py-3 px-4">Yes</td>
+                                    <td class="py-3 px-4">JavaScript</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-3 px-4 font-medium">Payload CMS</td>
+                                    <td class="py-3 px-4">Yes</td>
+                                    <td class="py-3 px-4">No</td>
+                                    <td class="py-3 px-4">Yes</td>
+                                    <td class="py-3 px-4">TypeScript</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-3 px-4 font-medium">KeystoneJS</td>
+                                    <td class="py-3 px-4">No</td>
+                                    <td class="py-3 px-4">Yes</td>
+                                    <td class="py-3 px-4">Yes</td>
+                                    <td class="py-3 px-4">JavaScript</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <!-- Strengths Tab -->
+                <div id="strengths-tab" class="tab-content">
+                    <div class="overflow-x-auto">
+                        <table class="w-full comparison-table">
+                            <thead>
+                                <tr>
+                                    <th class="text-left py-3 px-4">Platform</th>
+                                    <th class="text-left py-3 px-4">Best For</th>
+                                    <th class="text-left py-3 px-4">Strengths</th>
+                                    <th class="text-left py-3 px-4">Learning Curve</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="py-3 px-4 font-medium">Contentful</td>
+                                    <td class="py-3 px-4">Enterprises</td>
+                                    <td class="py-3 px-4">Scalability, ecosystem</td>
+                                    <td class="py-3 px-4">Moderate</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-3 px-4 font-medium">Strapi</td>
+                                    <td class="py-3 px-4">Developers</td>
+                                    <td class="py-3 px-4">Flexibility, open-source</td>
+                                    <td class="py-3 px-4">Moderate</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-3 px-4 font-medium">Sanity</td>
+                                    <td class="py-3 px-4">Structured content</td>
+                                    <td class="py-3 px-4">Real-time, custom studio</td>
+                                    <td class="py-3 px-4">Steep</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-3 px-4 font-medium">Storyblok</td>
+                                    <td class="py-3 px-4">Marketers</td>
+                                    <td class="py-3 px-4">Visual editor, blocks</td>
+                                    <td class="py-3 px-4">Easy</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-3 px-4 font-medium">Prismic</td>
+                                    <td class="py-3 px-4">Small businesses</td>
+                                    <td class="py-3 px-4">Simplicity, slices</td>
+                                    <td class="py-3 px-4">Easy</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-3 px-4 font-medium">Directus</td>
+                                    <td class="py-3 px-4">Database apps</td>
+                                    <td class="py-3 px-4">SQL database access</td>
+                                    <td class="py-3 px-4">Moderate</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-3 px-4 font-medium">Payload CMS</td>
+                                    <td class="py-3 px-4">TypeScript devs</td>
+                                    <td class="py-3 px-4">Developer experience</td>
+                                    <td class="py-3 px-4">Moderate</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-3 px-4 font-medium">KeystoneJS</td>
+                                    <td class="py-3 px-4">GraphQL apps</td>
+                                    <td class="py-3 px-4">GraphQL-first</td>
+                                    <td class="py-3 px-4">Steep</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Use Cases Section -->
+        <section id="use-cases" class="mb-16 scroll-mt-20">
+            <div class="bg-white rounded-xl shadow-sm p-6 md:p-8">
+                <h2 class="text-3xl font-bold mb-6 text-gray-900">Headless CMS Use Cases</h2>
+                <p class="text-lg text-gray-600 mb-8">Headless CMS solutions excel in these common scenarios:</p>
+                
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="bg-gray-50 p-6 rounded-lg border border-gray-200">
+                        <div class="flex items-center mb-4">
+                            <div class="feature-icon w-10 h-10 rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-mobile-alt"></i>
+                            </div>
+                            <h3 class="text-xl font-semibold">Multi-channel Content Delivery</h3>
+                        </div>
+                        <p class="text-gray-600">Serve content to websites, mobile apps, digital signage, kiosks, and IoT devices from a single source. Example: A retail brand using one CMS for e-commerce site, mobile app, and in-store displays.</p>
+                    </div>
+                    
+                    <div class="bg-gray-50 p-6 rounded-lg border border-gray-200">
+                        <div class="flex items-center mb-4">
+                            <div class="feature-icon w-10 h-10 rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-laptop-code"></i>
+                            </div>
+                            <h3 class="text-xl font-semibold">JAMstack Websites</h3>
+                        </div>
+                        <p class="text-gray-600">Modern static site generators like Next.js, Gatsby, and Nuxt.js pair perfectly with headless CMS backends for fast, secure websites with great developer experience.</p>
+                    </div>
+                    
+                    <div class="bg-gray-50 p-6 rounded-lg border border-gray-200">
+                        <div class="flex items-center mb-4">
+                            <div class="feature-icon w-10 h-10 rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-shopping-cart"></i>
+                            </div>
+                            <h3 class="text-xl font-semibold">E-commerce Content</h3>
+                        </div>
+                        <p class="text-gray-600">Manage product content, marketing materials, and editorial content separately from your e-commerce platform while maintaining seamless integration.</p>
+                    </div>
+                    
+                    <div class="bg-gray-50 p-6 rounded-lg border border-gray-200">
+                        <div class="flex items-center mb-4">
+                            <div class="feature-icon w-10 h-10 rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-building"></i>
+                            </div>
+                            <h3 class="text-xl font-semibold">Enterprise Content Hubs</h3>
+                        </div>
+                        <p class="text-gray-600">Large organizations can centralize content management while allowing different departments and teams to consume content through APIs as needed.</p>
+                    </div>
+                    
+                    <div class="bg-gray-50 p-6 rounded-lg border border-gray-200">
+                        <div class="flex items-center mb-4">
+                            <div class="feature-icon w-10 h-10 rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-globe"></i>
+                            </div>
+                            <h3 class="text-xl font-semibold">Multi-language Sites</h3>
+                        </div>
+                        <p class="text-gray-600">Many headless CMS platforms offer robust localization features for managing content in multiple languages with workflow controls.</p>
+                    </div>
+                    
+                    <div class="bg-gray-50 p-6 rounded-lg border border-gray-200">
+                        <div class="flex items-center mb-4">
+                            <div class="feature-icon w-10 h-10 rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-project-diagram"></i>
+                            </div>
+                            <h3 class="text-xl font-semibold">Composable Architectures</h3>
+                        </div>
+                        <p class="text-gray-600">Headless CMS serves as the content component in modern "composable" tech stacks where you combine best-of-breed solutions.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Selection Guide Section -->
+        <section id="guide" class="mb-16 scroll-mt-20">
+            <div class="bg-white rounded-xl shadow-sm p-6 md:p-8">
+                <h2 class="text-3xl font-bold mb-6 text-gray-900">How to Choose a Headless CMS</h2>
+                <p class="text-lg text-gray-600 mb-8">Follow this decision framework to select the right headless CMS for your needs:</p>
+                
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div>
+                        <h3 class="text-xl font-semibold mb-4 text-gray-800">1. Assess Your Requirements</h3>
+                        <ul class="list-disc pl-5 space-y-2 text-gray-600">
+                            <li>Number of content editors and their technical level</li>
+                            <li>Content types and relationships needed</li>
+                            <li>Localization and multi-language requirements</li>
+                            <li>Integration needs with other systems</li>
+                            <li>Performance and scalability expectations</li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-xl font-semibold mb-4 text-gray-800">2. Evaluate Technical Fit</h3>
+                        <ul class="list-disc pl-5 space-y-2 text-gray-600">
+                            <li>Developer skills and preferred tech stack</li>
+                            <li>Need for REST vs. GraphQL APIs</li>
+                            <li>Customization requirements</li>
+                            <li>Hosting preferences (cloud vs. self-hosted)</li>
+                            <li>DevOps capabilities for self-hosted options</li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-xl font-semibold mb-4 text-gray-800">3. Consider Budget</h3>
+                        <ul class="list-disc pl-5 space-y-2 text-gray-600">
+                            <li>Upfront implementation costs</li>
+                            <li>Ongoing licensing or subscription fees</li>
+                            <li>Hosting and infrastructure costs</li>
+                            <li>Development and maintenance resources</li>
+                            <li>Total cost of ownership over 3-5 years</li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-xl font-semibold mb-4 text-gray-800">4. Platform Recommendations</h3>
+                        <ul class="list-disc pl-5 space-y-2 text-gray-600">
+                            <li><strong>Enterprise:</strong> Contentful, Sanity</li>
+                            <li><strong>Developers:</strong> Strapi, Payload CMS</li>
+                            <li><strong>Marketers:</strong> Storyblok, Prismic</li>
+                            <li><strong>Database apps:</strong> Directus</li>
+                            <li><strong>GraphQL apps:</strong> KeystoneJS</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="mt-8 bg-indigo-50 border-l-4 border-indigo-500 p-4">
+                    <p class="text-indigo-700"><strong>Pro Tip:</strong> Most platforms offer free tiers or trials. Create test projects in 2-3 top candidates to evaluate the editor experience and developer workflow before committing.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="mb-16">
+            <div class="bg-white rounded-xl shadow-sm p-6 md:p-8">
+                <h2 class="text-3xl font-bold mb-6 text-gray-900">Headless CMS FAQs</h2>
+                
+                <div class="space-y-6">
+                    <div>
+                        <h3 class="text-xl font-semibold mb-2 text-gray-800">When should I not use a headless CMS?</h3>
+                        <p class="text-gray-600">Headless CMS might be overkill for simple blogs or small websites where a traditional CMS like WordPress would be easier to set up and maintain. Also consider hybrid CMS options if you need some frontend templates but want API flexibility.</p>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-xl font-semibold mb-2 text-gray-800">Is headless CMS more expensive?</h3>
+                        <p class="text-gray-600">While some SaaS headless CMS platforms have higher entry costs than traditional CMS, open-source options can be very cost-effective. Consider total cost including development, hosting, and maintenance when comparing solutions.</p>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-xl font-semibold mb-2 text-gray-800">How do content editors preview changes?</h3>
+                        <p class="text-gray-600">Most headless CMS platforms offer preview functionality through either: 1) Integration with your frontend preview environment, 2) Built-in preview servers, or 3) Visual editing interfaces that show approximate representations.</p>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-xl font-semibold mb-2 text-gray-800">Can I migrate from traditional to headless CMS?</h3>
+                        <p class="text-gray-600">Yes, many organizations successfully migrate. The process involves: 1) Content modeling in the new system, 2) Content export/import (often requiring transformation), 3) Frontend rebuild, and 4) Training for content editors.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- CTA Section -->
+    <!-- <section class="bg-indigo-700 text-white py-12">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-2xl md:text-3xl font-bold mb-4">Ready to Explore Headless CMS Options?</h2>
+            <p class="text-xl mb-8 max-w-2xl mx-auto">Get personalized recommendations based on your specific project requirements.</p>
+            <a href="/contact" class="inline-block bg-white text-indigo-700 font-semibold px-8 py-3 rounded-lg hover:bg-gray-100 transition shadow-lg">Get Free Consultation</a>
+        </div>
+    </section> -->
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-400 py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-white font-bold mb-4">UI Dev Docs</h3>
+                    <p class="mb-4">Learn how to build reusable UI components with best practices and other development tutorials.</p>
+                    <!-- <div class="flex space-x-4">
+                        <a href="#" class="hover:text-white"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="hover:text-white"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="hover:text-white"><i class="fab fa-github"></i></a>
+                    </div> -->
+                </div>
+                <!-- <div>
+                    <h4 class="text-white font-bold mb-4">Guides</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="hover:text-white">Headless CMS</a></li>
+                        <li><a href="#" class="hover:text-white">JAMstack</a></li>
+                        <li><a href="#" class="hover:text-white">Static Site Generators</a></li>
+                        <li><a href="#" class="hover:text-white">Web Performance</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">Comparisons</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="hover:text-white">CMS Platforms</a></li>
+                        <li><a href="#" class="hover:text-white">Frontend Frameworks</a></li>
+                        <li><a href="#" class="hover:text-white">Hosting Providers</a></li>
+                        <li><a href="#" class="hover:text-white">Database Solutions</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">Company</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="hover:text-white">About Us</a></li>
+                        <li><a href="#" class="hover:text-white">Services</a></li>
+                        <li><a href="#" class="hover:text-white">Contact</a></li>
+                        <li><a href="#" class="hover:text-white">Privacy Policy</a></li>
+                    </ul>
+                </div> -->
+            </div>
+            <div class="border-t border-gray-800 mt-8 pt-8 text-sm text-center">
+                <p>&copy; 2025 UI Dev Docs. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+        
+        // Tab functionality
+        const tabButtons = document.querySelectorAll('.tab-button');
+        tabButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                // Remove active class from all buttons and tabs
+                tabButtons.forEach(btn => {
+                    btn.classList.remove('border-indigo-600', 'text-indigo-600');
+                    btn.classList.add('border-transparent', 'text-gray-600');
+                });
+                
+                document.querySelectorAll('.tab-content').forEach(tab => {
+                    tab.classList.remove('active');
+                });
+                
+                // Add active class to clicked button and corresponding tab
+                this.classList.remove('border-transparent', 'text-gray-600');
+                this.classList.add('border-indigo-600', 'text-indigo-600');
+                
+                const tabId = this.getAttribute('data-tab') + '-tab';
+                document.getElementById(tabId).classList.add('active');
+            });
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Close mobile menu if open
+                document.getElementById('mobile-menu').classList.add('hidden');
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+    
+    <!-- Schema.org markup -->
+ <!-- Schema.org markup -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "Headless CMS Guide: Top 8 Platforms Compared (2025)",
+      "description": "Complete guide to headless CMS platforms. Compare 8 top solutions including Contentful, Strapi, Sanity, and more. Learn use cases, benefits, and how to choose the right one.",
+      "author": {
+        "@type": "Organization",
+        "name": "WebTech Insights",
+        "url": "https://ui-dev-tech-docs.xyz"
+      },
+      "datePublished": "2025-07-03",
+      "image": "https://webtechinsights.com/images/headless-cms-comparison.jpg",
+      "publisher": {
+        "@type": "Organization",
+        "name": "UI Dev Docs",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://webtechinsights.com/logo.png"
+        }
+      }
+    }
+    </script>
+</body>
+</html>

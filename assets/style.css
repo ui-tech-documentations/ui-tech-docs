@@ -178,3 +178,7 @@ body {
 .justify-center {
     justify-content: center;
 }
+.stack-img{
+    height: 3rem;
+
+}
