@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Complete guide to Nuxt.js deployment options with step-by-step instructions for Vercel, Netlify, AWS, Docker, and more. Learn how to deploy your Nuxt application in various environments.">
+    <meta name="keywords" content="Nuxt.js, Deployment, Vercel, Netlify, AWS, Docker, SSR, Static Hosting, Jamstack">
+    <meta name="author" content="Your Name">
+    <meta property="og:title" content="Nuxt.js Deployment Options: The Complete Guide">
+    <meta property="og:description" content="Step-by-step instructions for deploying Nuxt.js applications to all major platforms">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://ui-dev-tech-docs.xyz/articles/nuxt/nuxt-js-deployment-options-step-by-step-2025.html">
+    <meta property="og:image" content="https://yourwebsite.com/images/nuxt-deployment-options.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <title>Nuxt.js Deployment Options: Complete Step-by-Step Guide | Modern Web Development</title>
+    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+    <link rel="stylesheet" href="../../assets/tailwind.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <style>
+        .prose {
+            max-width: 65ch;
+        }
+        .prose :where(code):not(:where([class~="not-prose"] *)) {
+            background: #f3f4f6;
+            padding: 0.2em 0.4em;
+            border-radius: 0.25em;
+            font-size: 0.9em;
+        }
+        .prose :where(pre):not(:where([class~="not-prose"] *)) {
+            background: #1e293b;
+            color: #f8fafc;
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            overflow-x: auto;
+            margin: 1.5rem 0;
+        }
+        .step-number {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 2rem;
+            height: 2rem;
+            background-color: #3b82f6;
+            color: white;
+            font-weight: bold;
+            border-radius: 50%;
+            margin-right: 1rem;
+            flex-shrink: 0;
+        }
+        .sidebar {
+            position: sticky;
+            top: 2rem;
+        }
+        .deployment-card {
+            transition: all 0.2s ease;
+            border: 1px solid #e5e7eb;
+        }
+        .deployment-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+    <header class="bg-white shadow-sm">
+        <div class="container mx-auto px-4 py-8">
+            <h1 class="text-3xl md:text-4xl font-bold text-gray-900 mb-2">Nuxt.js Deployment Options</h1>
+            <p class="text-xl text-gray-600">Complete guide to deploying your Nuxt applications with step-by-step instructions</p>
+            <div class="mt-4 flex flex-wrap gap-2">
+                <span class="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded">Nuxt 3</span>
+                <span class="bg-green-100 text-green-800 text-xs font-semibold px-2.5 py-0.5 rounded">Deployment</span>
+                <span class="bg-purple-100 text-purple-800 text-xs font-semibold px-2.5 py-0.5 rounded">SSR</span>
+                <span class="bg-yellow-100 text-yellow-800 text-xs font-semibold px-2.5 py-0.5 rounded">Static</span>
+            </div>
+        </div>
+    </header>
+
+    <div class="container mx-auto px-4 py-8 flex flex-col md:flex-row gap-8">
+        <aside class="md:w-1/4">
+            <div class="sidebar bg-white p-6 rounded-lg shadow-sm">
+                <h2 class="text-xl font-semibold mb-4">Table of Contents</h2>
+                <nav>
+                    <ul class="space-y-2">
+                        <li><a href="#introduction" class="text-blue-600 hover:underline">Introduction</a></li>
+                        <li><a href="#static-hosting" class="text-blue-600 hover:underline">Static Hosting</a></li>
+                        <li><a href="#serverless" class="text-blue-600 hover:underline">Serverless Platforms</a></li>
+                        <li><a href="#ssr-hosting" class="text-blue-600 hover:underline">SSR Hosting</a></li>
+                        <li><a href="#containerization" class="text-blue-600 hover:underline">Containerization</a></li>
+                        <li><a href="#self-hosting" class="text-blue-600 hover:underline">Self-Hosting</a></li>
+                        <li><a href="#comparison" class="text-blue-600 hover:underline">Comparison</a></li>
+                        <li><a href="#conclusion" class="text-blue-600 hover:underline">Conclusion</a></li>
+                    </ul>
+                </nav>
+                
+                <div class="mt-8">
+                    <h3 class="font-semibold mb-2">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="https://nuxt.com/docs/getting-started/deployment" class="text-blue-600 hover:underline">Nuxt Deployment Docs</a></li>
+                        <li><a href="https://vercel.com/docs" class="text-blue-600 hover:underline">Vercel Docs</a></li>
+                        <li><a href="https://docs.netlify.com" class="text-blue-600 hover:underline">Netlify Docs</a></li>
+                    </ul>
+                </div>
+            </div>
+        </aside>
+
+        <main class="md:w-3/4">
+            <article id="introduction" class="bg-white p-6 rounded-lg shadow-sm mb-8">
+                <h2 class="text-2xl font-bold mb-4">Introduction to Nuxt Deployment</h2>
+                <div class="prose">
+                    <p>Nuxt.js offers multiple deployment options depending on your application's requirements. The deployment method you choose depends on:</p>
+                    
+                    <ul>
+                        <li><strong>Rendering Mode:</strong> Static Site Generation (SSG), Server-Side Rendering (SSR), or Hybrid</li>
+                        <li><strong>Scalability Needs:</strong> Expected traffic and growth</li>
+                        <li><strong>Budget:</strong> Free vs paid hosting options</li>
+                        <li><strong>Technical Expertise:</strong> Server management vs managed services</li>
+                    </ul>
+                    
+                    <p>This guide covers all major deployment options with detailed step-by-step instructions for each approach.</p>
+                </div>
+            </article>
+
+            <section id="static-hosting" class="mb-12">
+                <h2 class="text-2xl font-bold mb-6">Static Hosting Options</h2>
+                <p class="text-lg text-gray-600 mb-6">For Nuxt applications using static site generation (SSG)</p>
+                
+                <div class="grid md:grid-cols-1 grid-cols-1 grid-cols-1 gap-6">
+                    <article id="vercel-static" class="deployment-card bg-white p-6 rounded-lg shadow-sm">
+                        <div class="flex items-center mb-4">
+                            <img src="https://assets.vercel.com/image/upload/front/favicon/vercel/180x180.png" alt="Vercel" class="w-10 h-10 mr-3">
+                            <h3 class="text-xl font-bold">Vercel (Static)</h3>
+                        </div>
+                        
+                        <div class="prose">
+                            <h4>When to Choose:</h4>
+                            <ul>
+                                <li>Static generated Nuxt sites</li>
+                                <li>Automatic preview deployments</li>
+                                <li>Global CDN distribution</li>
+                            </ul>
+                            
+                            <h4 class="mt-4">Step-by-Step Deployment:</h4>
+                            <ol>
+                                <li>
+                                    <p><strong>Prepare your Nuxt project:</strong></p>
+                                    <pre><code class="language-bash"># Ensure your project is configured for SSG
+export default defineNuxtConfig({
+  ssr: true, // For static generation
+  nitro: {
+    prerender: {
+      routes: ['/sitemap.xml']
+    }
+  }
+})</code></pre>
+                                </li>
+                                <li>
+                                    <p><strong>Build your project:</strong></p>
+                                    <pre><code class="language-bash">npm run generate
+# Output will be in dist/ folder</code></pre>
+                                </li>
+                                <li>
+                                    <p><strong>Sign up for Vercel</strong> at <a href="https://vercel.com" class="text-blue-600">vercel.com</a></p>
+                                </li>
+                                <li>
+                                    <p><strong>Install Vercel CLI:</strong></p>
+                                    <pre><code class="language-bash">npm install -g vercel</code></pre>
+                                </li>
+                                <li>
+                                    <p><strong>Deploy from CLI:</strong></p>
+                                    <pre><code class="language-bash">cd dist
+vercel deploy --prod</code></pre>
+                                </li>
+                                <li>
+                                    <p><strong>Connect to GitHub (optional):</strong></p>
+                                    <p>Link your repo for automatic deployments on push</p>
+                                </li>
+                            </ol>
+                            
+                            <h4 class="mt-4">Configuration Tips:</h4>
+                            <ul>
+                                <li>Set <code>VERCEL_ENV=production</code> in environment variables</li>
+                                <li>Configure redirects in <code>vercel.json</code></li>
+                                <li>Enable Automatic Static Optimization</li>
+                            </ul>
+                        </div>
+                    </article>
+
+                    <article id="netlify-static" class="deployment-card bg-white p-6 rounded-lg shadow-sm">
+                        <div class="flex items-center mb-4">
+                            <img src="https://www.netlify.com/v3/img/components/full-logo-light.svg" alt="Netlify" class="h-8 mr-3">
+                            <h3 class="text-xl font-bold">Netlify (Static)</h3>
+                        </div>
+                        
+                        <div class="prose">
+                            <h4>When to Choose:</h4>
+                            <ul>
+                                <li>Simple static hosting</li>
+                                <li>Forms and serverless functions</li>
+                                <li>Git-triggered deployments</li>
+                            </ul>
+                            
+                            <h4 class="mt-4">Step-by-Step Deployment:</h4>
+                            <ol>
+                                <li>
+                                    <p><strong>Configure Nuxt for SSG:</strong></p>
+                                    <pre><code class="language-javascript">// nuxt.config.ts
+export default defineNuxtConfig({
+  ssr: true,
+  nitro: {
+    prerender: {
+      crawlLinks: true
+    }
+  }
+})</code></pre>
+                                </li>
+                                <li>
+                                    <p><strong>Build your project:</strong></p>
+                                    <pre><code class="language-bash">npm run generate</code></pre>
+                                </li>
+                                <li>
+                                    <p><strong>Sign up for Netlify</strong> at <a href="https://netlify.com" class="text-blue-600">netlify.com</a></p>
+                                </li>
+                                <li>
+                                    <p><strong>Install Netlify CLI:</strong></p>
+                                    <pre><code class="language-bash">npm install -g netlify-cli</code></pre>
+                                </li>
+                                <li>
+                                    <p><strong>Deploy from CLI:</strong></p>
+                                    <pre><code class="language-bash">cd dist
+netlify deploy --prod</code></pre>
+                                </li>
+                                <li>
+                                    <p><strong>Configure build settings:</strong></p>
+                                    <p>Set build command to <code>npm run generate</code> and publish directory to <code>dist</code></p>
+                                </li>
+                            </ol>
+                            
+                            <h4 class="mt-4">Configuration Tips:</h4>
+                            <ul>
+                                <li>Add <code>_redirects</code> file for SPA fallback</li>
+                                <li>Configure form handling in Netlify dashboard</li>
+                                <li>Set up deploy previews for PRs</li>
+                            </ul>
+                        </div>
+                    </article>
+                </div>
+            </section>
+
+            <section id="serverless" class="mb-12">
+                <h2 class="text-2xl font-bold mb-6">Serverless Platforms</h2>
+                <p class="text-lg text-gray-600 mb-6">For Nuxt applications with server-side rendering or API routes</p>
+                
+                <div class="grid md:grid-cols-1 grid-cols-1 gap-6">
+                    <article id="vercel-serverless" class="deployment-card bg-white p-6 rounded-lg shadow-sm">
+                        <div class="flex items-center mb-4">
+                            <img src="https://assets.vercel.com/image/upload/front/favicon/vercel/180x180.png" alt="Vercel" class="w-10 h-10 mr-3">
+                            <h3 class="text-xl font-bold">Vercel (Serverless)</h3>
+                        </div>
+                        
+                        <div class="prose">
+                            <h4>When to Choose:</h4>
+                            <ul>
+                                <li>SSR applications</li>
+                                <li>API routes</li>
+                                <li>Automatic serverless functions</li>
+                            </ul>
+                            
+                            <h4 class="mt-4">Step-by-Step Deployment:</h4>
+                            <ol>
+                                <li>
+                                    <p><strong>Configure Nuxt for SSR:</strong></p>
+                                    <pre><code class="language-javascript">// nuxt.config.ts
+export default defineNuxtConfig({
+  ssr: true,
+  nitro: {
+    // Serverless preset
+    preset: 'vercel'
+  }
+})</code></pre>
+                                </li>
+                                <li>
+                                    <p><strong>Create vercel.json:</strong></p>
+                                    <pre><code class="language-json">{
+  "version": 2,
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@vercel/static-build",
+      "config": { "distDir": ".output/public" }
+    }
+  ],
+  "routes": [
+    { "handle": "filesystem" },
+    { "src": "/.*", "dest": "/" }
+  ]
+}</code></pre>
+                                </li>
+                                <li>
+                                    <p><strong>Install Vercel CLI:</strong></p>
+                                    <pre><code class="language-bash">npm install -g vercel</code></pre>
+                                </li>
+                                <li>
+                                    <p><strong>Deploy:</strong></p>
+                                    <pre><code class="language-bash">vercel</code></pre>
+                                </li>
+                                <li>
+                                    <p><strong>Connect Git repository:</strong></p>
+                                    <p>Enable automatic deployments on push</p>
+                                </li>
+                            </ol>
+                            
+                            <h4 class="mt-4">Configuration Tips:</h4>
+                            <ul>
+                                <li>Use edge middleware for routes</li>
+                                <li>Configure ISR for dynamic routes</li>
+                                <li>Set proper cache headers</li>
+                            </ul>
+                        </div>
+                    </article>
+
+                    <article id="netlify-serverless" class="deployment-card bg-white p-6 rounded-lg shadow-sm">
+                        <div class="flex items-center mb-4">
+                            <img src="https://www.netlify.com/v3/img/components/full-logo-light.svg" alt="Netlify" class="h-8 mr-3">
+                            <h3 class="text-xl font-bold">Netlify (Serverless)</h3>
+                        </div>
+                        
+                        <div class="prose">
+                            <h4>When to Choose:</h4>
+                            <ul>
+                                <li>SSR with Netlify Functions</li>
+                                <li>Existing Netlify infrastructure</li>
+                                <li>Form handling needs</li>
+                            </ul>
+                            
+                            <h4 class="mt-4">Step-by-Step Deployment:</h4>
+                            <ol>
+                                <li>
+                                    <p><strong>Configure Nuxt:</strong></p>
+                                    <pre><code class="language-javascript">// nuxt.config.ts
+export default defineNuxtConfig({
+  ssr: true,
+  nitro: {
+    preset: 'netlify'
+  }
+})</code></pre>
+                                </li>
+                                <li>
+                                    <p><strong>Create netlify.toml:</strong></p>
+                                    <pre><code class="language-toml">[build]
+  command = "npm run build"
+  publish = ".output/public"
+  functions = ".output/server/functions"
+
+[[redirects]]
+  from = "/*"
+  to = "/.netlify/functions/server"
+  status = 200</code></pre>
+                                </li>
+                                <li>
+                                    <p><strong>Install Netlify CLI:</strong></p>
+                                    <pre><code class="language-bash">npm install -g netlify-cli</code></pre>
+                                </li>
+                                <li>
+                                    <p><strong>Deploy:</strong></p>
+                                    <pre><code class="language-bash">netlify deploy --prod</code></pre>
+                                </li>
+                                <li>
+                                    <p><strong>Configure build settings:</strong></p>
+                                    <p>Set build command to <code>npm run build</code></p>
+                                </li>
+                            </ol>
+                            
+                            <h4 class="mt-4">Configuration Tips:</h4>
+                            <ul>
+                                <li>Use Netlify Edge Functions for middleware</li>
+                                <li>Configure form handling in dashboard</li>
+                                <li>Set proper cache headers</li>
+                            </ul>
+                        </div>
+                    </article>
+                </div>
+            </section>
+
+            <section id="ssr-hosting" class="mb-12">
+                <h2 class="text-2xl font-bold mb-6">Traditional SSR Hosting</h2>
+                <p class="text-lg text-gray-600 mb-6">For Node.js server deployments</p>
+                
+                <div class="grid md:grid-cols-1 grid-cols-1 gap-6">
+                    <article id="node-hosting" class="deployment-card bg-white p-6 rounded-lg shadow-sm">
+                        <h3 class="text-xl font-bold mb-4">Node.js Server</h3>
+                        
+                        <div class="prose">
+                            <h4>When to Choose:</h4>
+                            <ul>
+                                <li>Full control over server</li>
+                                <li>Existing Node.js infrastructure</li>
+                                <li>Custom server middleware</li>
+                            </ul>
+                            
+                            <h4 class="mt-4">Step-by-Step Deployment:</h4>
+                            <ol>
+                                <li>
+                                    <p><strong>Configure Nuxt for SSR:</strong></p>
+                                    <pre><code class="language-javascript">// nuxt.config.ts
+export default defineNuxtConfig({
+  ssr: true,
+  nitro: {
+    // No preset needed for Node
+  }
+})</code></pre>
+                                </li>
+                                <li>
+                                    <p><strong>Build your project:</strong></p>
+                                    <pre><code class="language-bash">npm run build</code></pre>
+                                </li>
+                                <li>
+                                    <p><strong>Prepare server:</strong></p>
+                                    <p>Ensure Node.js is installed on your server</p>
+                                </li>
+                                <li>
+                                    <p><strong>Install dependencies:</strong></p>
+                                    <pre><code class="language-bash">npm install --production</code></pre>
+                                </li>
+                                <li>
+                                    <p><strong>Start server:</strong></p>
+                                    <pre><code class="language-bash">node .output/server/index.mjs</code></pre>
+                                </li>
+                                <li>
+                                    <p><strong>Configure process manager (PM2 recommended):</strong></p>
+                                    <pre><code class="language-bash">npm install -g pm2
+pm2 start .output/server/index.mjs --name "nuxt-app"</code></pre>
+                                </li>
+                            </ol>
+                            
+                            <h4 class="mt-4">Configuration Tips:</h4>
+                            <ul>
+                                <li>Use reverse proxy (Nginx/Apache)</li>
+                                <li>Configure logging and monitoring</li>
+                                <li>Set up proper caching headers</li>
+                            </ul>
+                        </div>
+                    </article>
+
+                    <article id="heroku" class="deployment-card bg-white p-6 rounded-lg shadow-sm">
+                        <div class="flex items-center mb-4">
+                            <img src="https://www.herokucdn.com/favicon.ico" alt="Heroku" class="w-8 h-8 mr-3">
+                            <h3 class="text-xl font-bold">Heroku</h3>
+                        </div>
+                        
+                        <div class="prose">
+                            <h4>When to Choose:</h4>
+                            <ul>
+                                <li>Easy Node.js hosting</li>
+                                <li>Git-based deployments</li>
+                                <li>Add-on ecosystem</li>
+                            </ul>
+                            
+                            <h4 class="mt-4">Step-by-Step Deployment:</h4>
+                            <ol>
+                                <li>
+                                    <p><strong>Configure Nuxt for SSR:</strong></p>
+                                    <pre><code class="language-javascript">// nuxt.config.ts
+export default defineNuxtConfig({
+  ssr: true,
+  nitro: {
+    // Heroku needs Node server
+    preset: 'node'
+  }
+})</code></pre>
+                                </li>
+                                <li>
+                                    <p><strong>Create Procfile:</strong></p>
+                                    <pre><code class="language-plaintext">web: node .output/server/index.mjs</code></pre>
+                                </li>
+                                <li>
+                                    <p><strong>Set engine in package.json:</strong></p>
+                                    <pre><code class="language-json">"engines": {
+  "node": "18.x"
+}</code></pre>
+                                </li>
+                                <li>
+                                    <p><strong>Install Heroku CLI:</strong></p>
+                                    <pre><code class="language-bash">npm install -g heroku</code></pre>
+                                </li>
+                                <li>
+                                    <p><strong>Create Heroku app:</strong></p>
+                                    <pre><code class="language-bash">heroku create
+git push heroku main</code></pre>
+                                </li>
+                                <li>
+                                    <p><strong>Open app:</strong></p>
+                                    <pre><code class="language-bash">heroku open</code></pre>
+                                </li>
+                            </ol>
+                            
+                            <h4 class="mt-4">Configuration Tips:</h4>
+                            <ul>
+                                <li>Configure buildpacks for Node.js</li>
+                                <li>Set up Heroku Redis for caching</li>
+                                <li>Use Heroku Postgres for database</li>
+                            </ul>
+                        </div>
+                    </article>
+                </div>
+            </section>
+
+            <section id="containerization" class="mb-12">
+                <h2 class="text-2xl font-bold mb-6">Containerization Options</h2>
+                <p class="text-lg text-gray-600 mb-6">For Docker-based deployments</p>
+                
+                <article id="docker" class="deployment-card bg-white p-6 rounded-lg shadow-sm">
+                    <div class="flex items-center mb-4">
+                        <img src="https://www.docker.com/wp-content/uploads/2022/03/vertical-logo-monochromatic.png" alt="Docker" class="h-8 mr-3">
+                        <h3 class="text-xl font-bold">Docker</h3>
+                    </div>
+                    
+                    <div class="prose">
+                        <h4>When to Choose:</h4>
+                        <ul>
+                            <li>Consistent environments</li>
+                            <li>Kubernetes deployments</li>
+                            <li>CI/CD pipelines</li>
+                        </ul>
+                        
+                        <h4 class="mt-4">Step-by-Step Deployment:</h4>
+                        <ol>
+                            <li>
+                                <p><strong>Create Dockerfile:</strong></p>
+                                <pre><code class="language-dockerfile text-black"># Use Node.js base image
+FROM node:18-alpine as builder
+
+# Set working directory
+WORKDIR /app
+
+# Copy package files
+COPY package*.json ./
+
+# Install dependencies
+RUN npm install
+
+# Copy source files
+COPY . .
+
+# Build application
+RUN npm run build
+
+# Use minimal base image
+FROM node:18-alpine
+
+# Set working directory
+WORKDIR /app
+
+# Copy built files
+COPY --from=builder /app/.output /app/.output
+
+# Expose port
+EXPOSE 3000
+
+# Start application
+CMD ["node", ".output/server/index.mjs"]</code></pre>
+                            </li>
+                            <li>
+                                <p><strong>Build Docker image:</strong></p>
+                                <pre><code class="language-bash">docker build -t nuxt-app .</code></pre>
+                            </li>
+                            <li>
+                                <p><strong>Run container:</strong></p>
+                                <pre><code class="language-bash">docker run -p 3000:3000 nuxt-app</code></pre>
+                            </li>
+                            <li>
+                                <p><strong>Push to registry (optional):</strong></p>
+                                <pre><code class="language-bash">docker tag nuxt-app yourusername/nuxt-app
+docker push yourusername/nuxt-app</code></pre>
+                            </li>
+                        </ol>
+                        
+                        <h4 class="mt-4">Configuration Tips:</h4>
+                        <ul>
+                            <li>Use multi-stage builds to reduce image size</li>
+                            <li>Configure health checks</li>
+                            <li>Set proper resource limits</li>
+                        </ul>
+                    </div>
+                </article>
+            </section>
+
+            <section id="self-hosting" class="mb-12">
+                <h2 class="text-2xl font-bold mb-6">Self-Hosting Options</h2>
+                <p class="text-lg text-gray-600 mb-6">For on-premise deployments</p>
+                
+                <div class="grid md:grid-cols-1 grid-cols-1 gap-6">
+                    <article id="nginx" class="deployment-card bg-white p-6 rounded-lg shadow-sm">
+                        <div class="flex items-center mb-4">
+                            <img src="https://www.nginx.com/wp-content/uploads/2020/05/NGINX-product-icon.svg" alt="Nginx" class="h-8 mr-3">
+                            <h3 class="text-xl font-bold">Nginx Reverse Proxy</h3>
+                        </div>
+                        
+                        <div class="prose">
+                            <h4>When to Choose:</h4>
+                            <ul>
+                                <li>On-premise deployments</li>
+                                <li>High traffic applications</li>
+                                <li>SSL termination</li>
+                            </ul>
+                            
+                            <h4 class="mt-4">Step-by-Step Deployment:</h4>
+                            <ol>
+                                <li>
+                                    <p><strong>Install Nginx:</strong></p>
+                                    <pre><code class="language-bash"># Ubuntu/Debian
+sudo apt install nginx
+
+# CentOS/RHEL
+sudo yum install nginx</code></pre>
+                                </li>
+                                <li>
+                                    <p><strong>Configure Nginx:</strong></p>
+                                    <pre><code class="language-nginx text-black">server {
+    listen 80;
+    server_name yourdomain.com;
+    
+    location / {
+        proxy_pass http://localhost:3000;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host $host;
+        proxy_cache_bypass $http_upgrade;
+    }
+}</code></pre>
+                                </li>
+                                <li>
+                                    <p><strong>Test configuration:</strong></p>
+                                    <pre><code class="language-bash">sudo nginx -t</code></pre>
+                                </li>
+                                <li>
+                                    <p><strong>Restart Nginx:</strong></p>
+                                    <pre><code class="language-bash">sudo systemctl restart nginx</code></pre>
+                                </li>
+                                <li>
+                                    <p><strong>Set up SSL (Let's Encrypt recommended):</strong></p>
+                                    <pre><code class="language-bash">sudo apt install certbot python3-certbot-nginx
+sudo certbot --nginx -d yourdomain.com</code></pre>
+                                </li>
+                            </ol>
+                            
+                            <h4 class="mt-4">Configuration Tips:</h4>
+                            <ul>
+                                <li>Enable gzip compression</li>
+                                <li>Configure caching headers</li>
+                                <li>Set up rate limiting</li>
+                            </ul>
+                        </div>
+                    </article>
+
+                    <article id="pm2" class="deployment-card bg-white p-6 rounded-lg shadow-sm">
+                        <div class="flex items-center mb-4">
+                            <img src="https://pm2.keymetrics.io/assets/logo.png" alt="PM2" class="h-8 mr-3">
+                            <h3 class="text-xl font-bold">PM2 Process Manager</h3>
+                        </div>
+                        
+                        <div class="prose">
+                            <h4>When to Choose:</h4>
+                            <ul>
+                                <li>Production Node.js process management</li>
+                                <li>Zero-downtime reloads</li>
+                                <li>Logging and monitoring</li>
+                            </ul>
+                            
+                            <h4 class="mt-4">Step-by-Step Deployment:</h4>
+                            <ol>
+                                <li>
+                                    <p><strong>Install PM2 globally:</strong></p>
+                                    <pre><code class="language-bash">npm install -g pm2</code></pre>
+                                </li>
+                                <li>
+                                    <p><strong>Start Nuxt application:</strong></p>
+                                    <pre><code class="language-bash">pm2 start .output/server/index.mjs --name "nuxt-app"</code></pre>
+                                </li>
+                                <li>
+                                    <p><strong>Save process list:</strong></p>
+                                    <pre><code class="language-bash">pm2 save</code></pre>
+                                </li>
+                                <li>
+                                    <p><strong>Generate startup script:</strong></p>
+                                    <pre><code class="language-bash">pm2 startup</code></pre>
+                                </li>
+                                <li>
+                                    <p><strong>Monitor application:</strong></p>
+                                    <pre><code class="language-bash">pm2 monit</code></pre>
+                                </li>
+                            </ol>
+                            
+                            <h4 class="mt-4">Configuration Tips:</h4>
+                            <ul>
+                                <li>Use ecosystem file for advanced configuration</li>
+                                <li>Set up log rotation</li>
+                                <li>Configure cluster mode for multi-core servers</li>
+                            </ul>
+                        </div>
+                    </article>
+                </div>
+            </section>
+
+            <section id="comparison" class="mb-12">
+                <h2 class="text-2xl font-bold mb-6">Deployment Option Comparison</h2>
+                
+                <div class="overflow-x-auto">
+                    <table class="min-w-full bg-white border border-gray-200">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Option</th>
+                                <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Best For</th>
+                                <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Pros</th>
+                                <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Cons</th>
+                                <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Difficulty</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200">
+                            <tr>
+                                <td class="px-4 py-4">Vercel Static</td>
+                                <td class="px-4 py-4">SSG sites, simple deployments</td>
+                                <td class="px-4 py-4">Easy setup, global CDN, previews</td>
+                                <td class="px-4 py-4">Limited SSR, vendor lock-in</td>
+                                <td class="px-4 py-4">Beginner</td>
+                            </tr>
+                            <tr class="bg-gray-50">
+                                <td class="px-4 py-4">Vercel Serverless</td>
+                                <td class="px-4 py-4">SSR apps, API routes</td>
+                                <td class="px-4 py-4">Automatic scaling, edge network</td>
+                                <td class="px-4 py-4">Cold starts, cost at scale</td>
+                                <td class="px-4 py-4">Intermediate</td>
+                            </tr>
+                            <tr>
+                                <td class="px-4 py-4">Netlify Static</td>
+                                <td class="px-4 py-4">Marketing sites, forms</td>
+                                <td class="px-4 py-4">Forms handling, easy CMS</td>
+                                <td class="px-4 py-4">Slower builds, less flexible</td>
+                                <td class="px-4 py-4">Beginner</td>
+                            </tr>
+                            <tr class="bg-gray-50">
+                                <td class="px-4 py-4">Netlify Serverless</td>
+                                <td class="px-4 py-4">SSR with functions</td>
+                                <td class="px-4 py-4">Edge functions, forms</td>
+                                <td class="px-4 py-4">Complex setup, cold starts</td>
+                                <td class="px-4 py-4">Intermediate</td>
+                            </tr>
+                            <tr>
+                                <td class="px-4 py-4">Node.js Server</td>
+                                <td class="px-4 py-4">Full control, custom needs</td>
+                                <td class="px-4 py-4">Complete control, flexible</td>
+                                <td class="px-4 py-4">Server management required</td>
+                                <td class="px-4 py-4">Advanced</td>
+                            </tr>
+                            <tr class="bg-gray-50">
+                                <td class="px-4 py-4">Docker</td>
+                                <td class="px-4 py-4">CI/CD, Kubernetes</td>
+                                <td class="px-4 py-4">Consistent environments</td>
+                                <td class="px-4 py-4">Complexity, orchestration</td>
+                                <td class="px-4 py-4">Advanced</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <article id="conclusion" class="bg-white p-6 rounded-lg shadow-sm mb-8">
+                <h2 class="text-2xl font-bold mb-4">Conclusion</h2>
+                <div class="prose">
+                    <p>Choosing the right deployment option for your Nuxt.js application depends on several factors:</p>
+                    
+                    <ul>
+                        <li><strong>For static sites:</strong> Vercel or Netlify provide the simplest and most effective solutions</li>
+                        <li><strong>For SSR applications:</strong> Vercel's serverless functions or traditional Node.js hosting</li>
+                        <li><strong>For maximum control:</strong> Docker containers or self-hosted Node.js with PM2</li>
+                        <li><strong>For enterprise needs:</strong> Kubernetes with Docker containers</li>
+                    </ul>
+                    
+                    <p>Remember that you can change deployment strategies as your application grows. Many teams start with simple static hosting and migrate to more complex solutions as their needs evolve.</p>
+                    
+                    <div class="bg-blue-50 border-l-4 border-blue-500 p-4 my-4">
+                        <p><strong>Final Tip:</strong> Always test your deployment pipeline thoroughly and consider implementing a staging environment before deploying to production.</p>
+                    </div>
+                </div>
+            </article>
+
+            <div class="bg-white p-6 rounded-lg shadow-sm">
+                <h2 class="text-2xl font-bold mb-4">Frequently Asked Questions</h2>
+                
+                <div class="space-y-4">
+                    <div class="border-b pb-4">
+                        <h3 class="text-lg font-semibold">Which deployment option is best for SEO?</h3>
+                        <p class="mt-2 text-gray-600">For best SEO results, use either static generation (for content that doesn't change frequently) or SSR (for dynamic content). Vercel and Netlify both offer excellent solutions for SEO-optimized deployments.</p>
+                    </div>
+                    
+                    <div class="border-b pb-4">
+                        <h3 class="text-lg font-semibold">How do I handle environment variables in different deployments?</h3>
+                        <p class="mt-2 text-gray-600">Most platforms provide ways to set environment variables. For Vercel/Netlify, use their dashboards. For Docker, use <code>.env</code> files or runtime arguments. For Node.js servers, use <code>process.env</code> with proper configuration management.</p>
+                    </div>
+                    
+                    <div class="border-b pb-4">
+                        <h3 class="text-lg font-semibold">Can I switch between deployment options later?</h3>
+                        <p class="mt-2 text-gray-600">Yes, but some changes may require code adjustments. Moving from static to SSR typically requires the most changes, while switching between similar platforms (like Vercel to Netlify) is usually straightforward.</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-3 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">About This Guide</h3>
+                    <p>This comprehensive guide covers all major Nuxt.js deployment options with detailed step-by-step instructions for each approach.</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Resources</h3>
+                    <ul class="space-y-2">
+                        <li><a href="https://nuxt.com/docs/getting-started/deployment" class="hover:underline">Nuxt Deployment Docs</a></li>
+                        <li><a href="https://vercel.com/docs" class="hover:underline">Vercel Documentation</a></li>
+                        <li><a href="https://docs.netlify.com" class="hover:underline">Netlify Documentation</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4">More Guides</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="hover:underline">Nuxt Performance Optimization</a></li>
+                        <li><a href="#" class="hover:underline">Advanced SSR Techniques</a></li>
+                        <li><a href="#" class="hover:underline">Nuxt 3 Migration Guide</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center">
+                <p>&copy; 2025 https://ui-dev-tech-docs.xyz All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize syntax highlighting
+        document.addEventListener('DOMContentLoaded', (event) => {
+            document.querySelectorAll('pre code').forEach((el) => {
+                hljs.highlightElement(el);
+            });
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
