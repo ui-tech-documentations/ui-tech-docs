@@ -1,24 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Comprehensive guide to Nuxt.js design patterns with examples for layouts, composables, state management, middleware, plugins and more">
-    <meta name="keywords" content="Nuxt.js, Design Patterns, Vue.js, Composition API, State Management, Middleware, Plugins, SEO">
-    <meta name="author" content="Your Name">
-    <meta property="og:title" content="Nuxt.js Design Patterns: The Complete Guide">
-    <meta property="og:description" content="Learn essential Nuxt.js design patterns to build scalable, maintainable applications">
-    <meta property="og:type" content="article">
-    <meta property="og:url" content="https://yourwebsite.com/nuxt-design-patterns">
-    <meta property="og:image" content="https://yourwebsite.com/images/nuxt-patterns.jpg">
-    <meta name="twitter:card" content="summary_large_image">
-    <title>Nuxt.js Design Patterns: Complete Guide with Examples | Modern Web Development</title>
-    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
-    <link rel="stylesheet" href="../../assets/tailwind.css">
-    <link rel="stylesheet" href="../../assets/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
-    <style>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description"
+            content="Comprehensive guide to Nuxt.js design patterns with examples for layouts, composables, state management, middleware, plugins and more">
+        <meta name="keywords"
+            content="Nuxt.js, Design Patterns, Vue.js, Composition API, State Management, Middleware, Plugins, SEO">
+        <meta name="author" content="Your Name">
+        <meta property="og:title"
+            content="Nuxt.js Design Patterns: The Complete Guide">
+        <meta property="og:description"
+            content="Learn essential Nuxt.js design patterns to build scalable, maintainable applications">
+        <meta property="og:type" content="article">
+        <meta property="og:url"
+            content="https://yourwebsite.com/nuxt-design-patterns">
+        <meta property="og:image"
+            content="https://yourwebsite.com/images/nuxt-patterns.jpg">
+        <meta name="twitter:card" content="summary_large_image">
+        <title>Nuxt.js Design Patterns: Complete Guide with Examples | Modern
+            Web Development</title>
+        <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+        <link rel="stylesheet" href="../../assets/tailwind.css">
+        <link rel="stylesheet" href="../../assets/style.css">
+        <link rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github.min.css">
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+        <style>
         .prose {
             max-width: 65ch;
         }
@@ -65,9 +74,21 @@
             width: 100%;
         }
     </style>
-</head>
-<body class="bg-gray-50 text-gray-800">
-    <nav class="navbar">
+
+        <!-- Google tag (gtag.js) -->
+        <script async
+            src="https://www.googletagmanager.com/gtag/js?id=G-1JM965KD2L"></script>
+        <script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-1JM965KD2L');
+</script>
+
+    </head>
+    <body class="bg-gray-50 text-gray-800">
+        <nav class="navbar">
             <div class="nav-container">
                 <a href="../../index.html" class="logo">UI Dev Docs</a>
                 <div class="nav-links">
@@ -75,80 +96,137 @@
                 </div>
             </div>
         </nav>
-    <header class="bg-white shadow-sm py-4">
-        <div class="container mx-auto px-4 py-8">
-            <h1 class="text-3xl md:text-4xl font-bold text-gray-900 mb-2">Nuxt.js Design Patterns</h1>
-            <p class="text-xl text-gray-600">Essential patterns for building scalable, maintainable Nuxt applications</p>
-            <div class="mt-4 flex flex-wrap gap-2">
-                <span class="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded">Nuxt 3</span>
-                <span class="bg-purple-100 text-purple-800 text-xs font-semibold px-2.5 py-0.5 rounded">Vue.js</span>
-                <span class="bg-green-100 text-green-800 text-xs font-semibold px-2.5 py-0.5 rounded">Best Practices</span>
-                <span class="bg-yellow-100 text-yellow-800 text-xs font-semibold px-2.5 py-0.5 rounded">Architecture</span>
-            </div>
-        </div>
-    </header>
-
-    <div class="container mx-auto px-4 py-8 flex flex-col md:flex-row gap-8">
-        <aside class="md:w-1/4">
-            <div class="sidebar bg-white p-6 rounded-lg shadow-sm">
-                <h2 class="text-xl font-semibold mb-4">Table of Contents</h2>
-                <nav>
-                    <ul class="space-y-2">
-                        <li><a href="#introduction" class="text-blue-600 nav-link">Introduction</a></li>
-                        <li><a href="#layout-pattern" class="text-blue-600 nav-link">Layout Pattern</a></li>
-                        <li><a href="#component-composition" class="text-blue-600 nav-link">Component Composition</a></li>
-                        <li><a href="#composables" class="text-blue-600 nav-link">Composables Pattern</a></li>
-                        <li><a href="#state-management" class="text-blue-600 nav-link">State Management</a></li>
-                        <li><a href="#middleware" class="text-blue-600 nav-link">Middleware Pattern</a></li>
-                        <li><a href="#plugins" class="text-blue-600 nav-link">Plugin Pattern</a></li>
-                        <li><a href="#dynamic-components" class="text-blue-600 nav-link">Dynamic Components</a></li>
-                        <li><a href="#server-api" class="text-blue-600 nav-link">Server API Pattern</a></li>
-                        <li><a href="#error-handling" class="text-blue-600 nav-link">Error Handling</a></li>
-                        <li><a href="#seo-pattern" class="text-blue-600 nav-link">SEO & Meta Pattern</a></li>
-                        <li><a href="#dependency-injection" class="text-blue-600 nav-link">Dependency Injection</a></li>
-                        <li><a href="#module-pattern" class="text-blue-600 nav-link">Module Pattern</a></li>
-                        <li><a href="#conclusion" class="text-blue-600 nav-link">Conclusion</a></li>
-                    </ul>
-                </nav>
-                
-                <div class="mt-8">
-                    <h3 class="font-semibold mb-2">Resources</h3>
-                    <ul class="space-y-2">
-                        <li><a href="https://nuxt.com/docs" class="text-blue-600 hover:underline">Nuxt Documentation</a></li>
-                        <li><a href="https://vuejs.org/guide/extras/render-function.html" class="text-blue-600 hover:underline">Vue Composition API</a></li>
-                        <li><a href="https://pinia.vuejs.org" class="text-blue-600 hover:underline">Pinia State Management</a></li>
-                    </ul>
+        <header class="bg-white shadow-sm py-4">
+            <div class="container mx-auto px-4 py-8">
+                <h1
+                    class="text-3xl md:text-4xl font-bold text-gray-900 mb-2">Nuxt.js
+                    Design Patterns</h1>
+                <p class="text-xl text-gray-600">Essential patterns for building
+                    scalable, maintainable Nuxt applications</p>
+                <div class="mt-4 flex flex-wrap gap-2">
+                    <span
+                        class="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded">Nuxt
+                        3</span>
+                    <span
+                        class="bg-purple-100 text-purple-800 text-xs font-semibold px-2.5 py-0.5 rounded">Vue.js</span>
+                    <span
+                        class="bg-green-100 text-green-800 text-xs font-semibold px-2.5 py-0.5 rounded">Best
+                        Practices</span>
+                    <span
+                        class="bg-yellow-100 text-yellow-800 text-xs font-semibold px-2.5 py-0.5 rounded">Architecture</span>
                 </div>
             </div>
-        </aside>
+        </header>
 
-        <main class="md:w-3/4">
-            <article id="introduction" class="bg-white p-6 rounded-lg shadow-sm mb-8">
-                <h2 class="text-2xl font-bold mb-4">Introduction to Nuxt Design Patterns</h2>
-                <div class="prose">
-                    <p>Design patterns in Nuxt.js provide proven solutions to common problems in web application development. They help create applications that are:</p>
-                    
-                    <ul>
-                        <li><strong>Maintainable:</strong> Easy to understand and modify</li>
-                        <li><strong>Scalable:</strong> Can grow with your application</li>
-                        <li><strong>Performant:</strong> Optimized for speed and efficiency</li>
-                        <li><strong>Consistent:</strong> Follow standardized approaches</li>
-                    </ul>
-                    
-                    <p>This guide covers the most essential Nuxt.js design patterns with practical examples you can use in your projects today.</p>
+        <div
+            class="container mx-auto px-4 py-8 flex flex-col md:flex-row gap-8">
+            <aside class="md:w-1/4">
+                <div class="sidebar bg-white p-6 rounded-lg shadow-sm">
+                    <h2 class="text-xl font-semibold mb-4">Table of
+                        Contents</h2>
+                    <nav>
+                        <ul class="space-y-2">
+                            <li><a href="#introduction"
+                                    class="text-blue-600 nav-link">Introduction</a></li>
+                            <li><a href="#layout-pattern"
+                                    class="text-blue-600 nav-link">Layout
+                                    Pattern</a></li>
+                            <li><a href="#component-composition"
+                                    class="text-blue-600 nav-link">Component
+                                    Composition</a></li>
+                            <li><a href="#composables"
+                                    class="text-blue-600 nav-link">Composables
+                                    Pattern</a></li>
+                            <li><a href="#state-management"
+                                    class="text-blue-600 nav-link">State
+                                    Management</a></li>
+                            <li><a href="#middleware"
+                                    class="text-blue-600 nav-link">Middleware
+                                    Pattern</a></li>
+                            <li><a href="#plugins"
+                                    class="text-blue-600 nav-link">Plugin
+                                    Pattern</a></li>
+                            <li><a href="#dynamic-components"
+                                    class="text-blue-600 nav-link">Dynamic
+                                    Components</a></li>
+                            <li><a href="#server-api"
+                                    class="text-blue-600 nav-link">Server API
+                                    Pattern</a></li>
+                            <li><a href="#error-handling"
+                                    class="text-blue-600 nav-link">Error
+                                    Handling</a></li>
+                            <li><a href="#seo-pattern"
+                                    class="text-blue-600 nav-link">SEO & Meta
+                                    Pattern</a></li>
+                            <li><a href="#dependency-injection"
+                                    class="text-blue-600 nav-link">Dependency
+                                    Injection</a></li>
+                            <li><a href="#module-pattern"
+                                    class="text-blue-600 nav-link">Module
+                                    Pattern</a></li>
+                            <li><a href="#conclusion"
+                                    class="text-blue-600 nav-link">Conclusion</a></li>
+                        </ul>
+                    </nav>
+
+                    <div class="mt-8">
+                        <h3 class="font-semibold mb-2">Resources</h3>
+                        <ul class="space-y-2">
+                            <li><a href="https://nuxt.com/docs"
+                                    class="text-blue-600 hover:underline">Nuxt
+                                    Documentation</a></li>
+                            <li><a
+                                    href="https://vuejs.org/guide/extras/render-function.html"
+                                    class="text-blue-600 hover:underline">Vue
+                                    Composition API</a></li>
+                            <li><a href="https://pinia.vuejs.org"
+                                    class="text-blue-600 hover:underline">Pinia
+                                    State Management</a></li>
+                        </ul>
+                    </div>
                 </div>
-            </article>
+            </aside>
 
-            <section id="layout-pattern" class="mb-12">
-                <h2 class="text-2xl font-bold mb-6">1. Layout Pattern</h2>
-                
-                <div class="pattern-card bg-white p-6 rounded-lg shadow-sm mb-8">
+            <main class="md:w-3/4">
+                <article id="introduction"
+                    class="bg-white p-6 rounded-lg shadow-sm mb-8">
+                    <h2 class="text-2xl font-bold mb-4">Introduction to Nuxt
+                        Design Patterns</h2>
                     <div class="prose">
-                        <h3 class="text-lg font-semibold">Purpose</h3>
-                        <p>Create consistent page layouts with reusable templates</p>
-                        
-                        <h3 class="text-lg font-semibold mt-4">Implementation</h3>
-                        <pre><code class="language-html">&lt;!-- layouts/default.vue --&gt;
+                        <p>Design patterns in Nuxt.js provide proven solutions
+                            to common problems in web application development.
+                            They help create applications that are:</p>
+
+                        <ul>
+                            <li><strong>Maintainable:</strong> Easy to
+                                understand and modify</li>
+                            <li><strong>Scalable:</strong> Can grow with your
+                                application</li>
+                            <li><strong>Performant:</strong> Optimized for speed
+                                and efficiency</li>
+                            <li><strong>Consistent:</strong> Follow standardized
+                                approaches</li>
+                        </ul>
+
+                        <p>This guide covers the most essential Nuxt.js design
+                            patterns with practical examples you can use in your
+                            projects today.</p>
+                    </div>
+                </article>
+
+                <section id="layout-pattern" class="mb-12">
+                    <h2 class="text-2xl font-bold mb-6">1. Layout Pattern</h2>
+
+                    <div
+                        class="pattern-card bg-white p-6 rounded-lg shadow-sm mb-8">
+                        <div class="prose">
+                            <h3 class="text-lg font-semibold">Purpose</h3>
+                            <p>Create consistent page layouts with reusable
+                                templates</p>
+
+                            <h3
+                                class="text-lg font-semibold mt-4">Implementation</h3>
+                            <pre><code class="language-html">&lt;!-- layouts/default.vue --&gt;
 &lt;template&gt;
   &lt;div&gt;
     &lt;AppHeader /&gt;
@@ -163,27 +241,33 @@ definePageMeta({
   layout: 'default'
 })
 &lt;/script&gt;</code></pre>
-                        
-                        <h3 class="text-lg font-semibold mt-4">Variations</h3>
-                        <ul>
-                            <li>Authentication layouts (different for logged-in/logged-out users)</li>
-                            <li>Admin vs public layouts</li>
-                            <li>Error page layouts</li>
-                        </ul>
-                    </div>
-                </div>
-            </section>
 
-            <section id="component-composition" class="mb-12">
-                <h2 class="text-2xl font-bold mb-6">2. Component Composition Pattern</h2>
-                
-                <div class="pattern-card bg-white p-6 rounded-lg shadow-sm mb-8">
-                    <div class="prose">
-                        <h3 class="text-lg font-semibold">Purpose</h3>
-                        <p>Build complex UIs from small, reusable components</p>
-                        
-                        <h3 class="text-lg font-semibold mt-4">Implementation</h3>
-                        <pre><code class="language-html">&lt;!-- components/FeatureCard.vue --&gt;
+                            <h3
+                                class="text-lg font-semibold mt-4">Variations</h3>
+                            <ul>
+                                <li>Authentication layouts (different for
+                                    logged-in/logged-out users)</li>
+                                <li>Admin vs public layouts</li>
+                                <li>Error page layouts</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="component-composition" class="mb-12">
+                    <h2 class="text-2xl font-bold mb-6">2. Component Composition
+                        Pattern</h2>
+
+                    <div
+                        class="pattern-card bg-white p-6 rounded-lg shadow-sm mb-8">
+                        <div class="prose">
+                            <h3 class="text-lg font-semibold">Purpose</h3>
+                            <p>Build complex UIs from small, reusable
+                                components</p>
+
+                            <h3
+                                class="text-lg font-semibold mt-4">Implementation</h3>
+                            <pre><code class="language-html">&lt;!-- components/FeatureCard.vue --&gt;
 &lt;template&gt;
   &lt;div class="feature-card"&gt;
     &lt;Icon :name="icon" /&gt;
@@ -202,27 +286,30 @@ definePageMeta({
     /&gt;
   &lt;/div&gt;
 &lt;/template&gt;</code></pre>
-                        
-                        <h3 class="text-lg font-semibold mt-4">Benefits</h3>
-                        <ul>
-                            <li>Reusable UI elements</li>
-                            <li>Better code organization</li>
-                            <li>Easier maintenance</li>
-                        </ul>
-                    </div>
-                </div>
-            </section>
 
-            <section id="composables" class="mb-12">
-                <h2 class="text-2xl font-bold mb-6">3. Composables Pattern (Hooks)</h2>
-                
-                <div class="pattern-card bg-white p-6 rounded-lg shadow-sm mb-8">
-                    <div class="prose">
-                        <h3 class="text-lg font-semibold">Purpose</h3>
-                        <p>Reuse stateful logic across components</p>
-                        
-                        <h3 class="text-lg font-semibold mt-4">Implementation</h3>
-                        <pre><code class="language-typescript">// composables/useCounter.ts
+                            <h3 class="text-lg font-semibold mt-4">Benefits</h3>
+                            <ul>
+                                <li>Reusable UI elements</li>
+                                <li>Better code organization</li>
+                                <li>Easier maintenance</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="composables" class="mb-12">
+                    <h2 class="text-2xl font-bold mb-6">3. Composables Pattern
+                        (Hooks)</h2>
+
+                    <div
+                        class="pattern-card bg-white p-6 rounded-lg shadow-sm mb-8">
+                        <div class="prose">
+                            <h3 class="text-lg font-semibold">Purpose</h3>
+                            <p>Reuse stateful logic across components</p>
+
+                            <h3
+                                class="text-lg font-semibold mt-4">Implementation</h3>
+                            <pre><code class="language-typescript">// composables/useCounter.ts
 export const useCounter = () => {
   const count = ref(0)
   
@@ -236,26 +323,30 @@ export const useCounter = () => {
 &lt;script setup&gt;
 const { count, increment } = useCounter()
 &lt;/script&gt;</code></pre>
-                        
-                        <h3 class="text-lg font-semibold mt-4">Common Use Cases</h3>
-                        <ul>
-                            <li>API fetching</li>
-                            <li>Form handling</li>
-                            <li>Authentication</li>
-                            <li>Animations</li>
-                        </ul>
-                    </div>
-                </div>
-            </section>
 
-            <section id="state-management" class="mb-12">
-                <h2 class="text-2xl font-bold mb-6">4. State Management Patterns</h2>
-                
-                <div class="grid md:grid-cols-2 gap-6">
-                    <div class="pattern-card bg-white p-6 rounded-lg shadow-sm">
-                        <h3 class="text-lg font-semibold mb-3">Pinia (Recommended)</h3>
-                        <div class="prose">
-                            <pre><code class="language-typescript">// stores/counter.ts
+                            <h3 class="text-lg font-semibold mt-4">Common Use
+                                Cases</h3>
+                            <ul>
+                                <li>API fetching</li>
+                                <li>Form handling</li>
+                                <li>Authentication</li>
+                                <li>Animations</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="state-management" class="mb-12">
+                    <h2 class="text-2xl font-bold mb-6">4. State Management
+                        Patterns</h2>
+
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div
+                            class="pattern-card bg-white p-6 rounded-lg shadow-sm">
+                            <h3 class="text-lg font-semibold mb-3">Pinia
+                                (Recommended)</h3>
+                            <div class="prose">
+                                <pre><code class="language-typescript">// stores/counter.ts
 export const useCounterStore = defineStore('counter', {
   state: () => ({ count: 0 }),
   actions: {
@@ -269,33 +360,39 @@ export const useCounterStore = defineStore('counter', {
 &lt;script setup&gt;
 const counter = useCounterStore()
 &lt;/script&gt;</code></pre>
+                            </div>
                         </div>
-                    </div>
-                    
-                    <div class="pattern-card bg-white p-6 rounded-lg shadow-sm">
-                        <h3 class="text-lg font-semibold mb-3">Provide/Inject (For Component Trees)</h3>
-                        <div class="prose">
-                            <pre><code class="language-typescript">// parent component
+
+                        <div
+                            class="pattern-card bg-white p-6 rounded-lg shadow-sm">
+                            <h3
+                                class="text-lg font-semibold mb-3">Provide/Inject
+                                (For Component Trees)</h3>
+                            <div class="prose">
+                                <pre><code class="language-typescript">// parent component
 const user = ref({ name: 'John' })
 provide('user', user)
 
 // child component
 const user = inject('user')</code></pre>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </section>
+                </section>
 
-            <section id="middleware" class="mb-12">
-                <h2 class="text-2xl font-bold mb-6">5. Route Middleware Pattern</h2>
-                
-                <div class="pattern-card bg-white p-6 rounded-lg shadow-sm mb-8">
-                    <div class="prose">
-                        <h3 class="text-lg font-semibold">Purpose</h3>
-                        <p>Handle navigation guards and route protection</p>
-                        
-                        <h3 class="text-lg font-semibold mt-4">Implementation</h3>
-                        <pre><code class="language-typescript">// middleware/auth.ts
+                <section id="middleware" class="mb-12">
+                    <h2 class="text-2xl font-bold mb-6">5. Route Middleware
+                        Pattern</h2>
+
+                    <div
+                        class="pattern-card bg-white p-6 rounded-lg shadow-sm mb-8">
+                        <div class="prose">
+                            <h3 class="text-lg font-semibold">Purpose</h3>
+                            <p>Handle navigation guards and route protection</p>
+
+                            <h3
+                                class="text-lg font-semibold mt-4">Implementation</h3>
+                            <pre><code class="language-typescript">// middleware/auth.ts
 export default defineNuxtRouteMiddleware((to) => {
   const { isAuthenticated } = useAuth()
   
@@ -308,27 +405,31 @@ export default defineNuxtRouteMiddleware((to) => {
 definePageMeta({
   middleware: 'auth'
 })</code></pre>
-                        
-                        <h3 class="text-lg font-semibold mt-4">Types</h3>
-                        <ul>
-                            <li>Global middleware (runs on every route)</li>
-                            <li>Named middleware (specific to pages)</li>
-                            <li>Inline middleware (defined in page components)</li>
-                        </ul>
-                    </div>
-                </div>
-            </section>
 
-            <section id="plugins" class="mb-12">
-                <h2 class="text-2xl font-bold mb-6">6. Plugin Pattern</h2>
-                
-                <div class="pattern-card bg-white p-6 rounded-lg shadow-sm mb-8">
-                    <div class="prose">
-                        <h3 class="text-lg font-semibold">Purpose</h3>
-                        <p>Extend Nuxt functionality or add global features</p>
-                        
-                        <h3 class="text-lg font-semibold mt-4">Implementation</h3>
-                        <pre><code class="language-typescript">// plugins/hello.ts
+                            <h3 class="text-lg font-semibold mt-4">Types</h3>
+                            <ul>
+                                <li>Global middleware (runs on every route)</li>
+                                <li>Named middleware (specific to pages)</li>
+                                <li>Inline middleware (defined in page
+                                    components)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="plugins" class="mb-12">
+                    <h2 class="text-2xl font-bold mb-6">6. Plugin Pattern</h2>
+
+                    <div
+                        class="pattern-card bg-white p-6 rounded-lg shadow-sm mb-8">
+                        <div class="prose">
+                            <h3 class="text-lg font-semibold">Purpose</h3>
+                            <p>Extend Nuxt functionality or add global
+                                features</p>
+
+                            <h3
+                                class="text-lg font-semibold mt-4">Implementation</h3>
+                            <pre><code class="language-typescript">// plugins/hello.ts
 export default defineNuxtPlugin((nuxtApp) => {
   nuxtApp.provide('hello', (name: string) => `Hello ${name}!`)
 })
@@ -338,28 +439,33 @@ export default defineNuxtPlugin((nuxtApp) => {
 const { $hello } = useNuxtApp()
 console.log($hello('World')) // "Hello World!"
 &lt;/script&gt;</code></pre>
-                        
-                        <h3 class="text-lg font-semibold mt-4">Common Plugin Uses</h3>
-                        <ul>
-                            <li>Adding global components</li>
-                            <li>Integrating third-party libraries</li>
-                            <li>Setting up analytics</li>
-                            <li>Custom directives</li>
-                        </ul>
-                    </div>
-                </div>
-            </section>
 
-            <section id="dynamic-components" class="mb-12">
-                <h2 class="text-2xl font-bold mb-6">7. Dynamic Component Loading</h2>
-                
-                <div class="pattern-card bg-white p-6 rounded-lg shadow-sm mb-8">
-                    <div class="prose">
-                        <h3 class="text-lg font-semibold">Purpose</h3>
-                        <p>Improve performance by lazy loading components</p>
-                        
-                        <h3 class="text-lg font-semibold mt-4">Implementation</h3>
-                        <pre><code class="language-html">&lt;script setup&gt;
+                            <h3 class="text-lg font-semibold mt-4">Common Plugin
+                                Uses</h3>
+                            <ul>
+                                <li>Adding global components</li>
+                                <li>Integrating third-party libraries</li>
+                                <li>Setting up analytics</li>
+                                <li>Custom directives</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="dynamic-components" class="mb-12">
+                    <h2 class="text-2xl font-bold mb-6">7. Dynamic Component
+                        Loading</h2>
+
+                    <div
+                        class="pattern-card bg-white p-6 rounded-lg shadow-sm mb-8">
+                        <div class="prose">
+                            <h3 class="text-lg font-semibold">Purpose</h3>
+                            <p>Improve performance by lazy loading
+                                components</p>
+
+                            <h3
+                                class="text-lg font-semibold mt-4">Implementation</h3>
+                            <pre><code class="language-html">&lt;script setup&gt;
 const MyComponent = defineAsyncComponent(() =&gt;
   import('./MyComponent.vue')
 )
@@ -373,48 +479,55 @@ const MyComponent = defineAsyncComponent(() =&gt;
     &lt;/template&gt;
   &lt;/Suspense&gt;
 &lt;/template&gt;</code></pre>
+                        </div>
                     </div>
-                </div>
-            </section>
+                </section>
 
-            <section id="server-api" class="mb-12">
-                <h2 class="text-2xl font-bold mb-6">8. Server API Pattern</h2>
-                
-                <div class="pattern-card bg-white p-6 rounded-lg shadow-sm mb-8">
-                    <div class="prose">
-                        <h3 class="text-lg font-semibold">Purpose</h3>
-                        <p>Create server-side API endpoints</p>
-                        
-                        <h3 class="text-lg font-semibold mt-4">Implementation</h3>
-                        <pre><code class="language-typescript">// server/api/hello.ts
+                <section id="server-api" class="mb-12">
+                    <h2 class="text-2xl font-bold mb-6">8. Server API
+                        Pattern</h2>
+
+                    <div
+                        class="pattern-card bg-white p-6 rounded-lg shadow-sm mb-8">
+                        <div class="prose">
+                            <h3 class="text-lg font-semibold">Purpose</h3>
+                            <p>Create server-side API endpoints</p>
+
+                            <h3
+                                class="text-lg font-semibold mt-4">Implementation</h3>
+                            <pre><code class="language-typescript">// server/api/hello.ts
 export default defineEventHandler((event) => {
   return { message: 'Hello World' }
 })
 
 // Client-side usage
 const { data } = await useFetch('/api/hello')</code></pre>
-                        
-                        <h3 class="text-lg font-semibold mt-4">Advanced Features</h3>
-                        <ul>
-                            <li>Route parameters</li>
-                            <li>Middleware</li>
-                            <li>Request validation</li>
-                            <li>Caching</li>
-                        </ul>
-                    </div>
-                </div>
-            </section>
 
-            <section id="error-handling" class="mb-12">
-                <h2 class="text-2xl font-bold mb-6">9. Error Handling Pattern</h2>
-                
-                <div class="pattern-card bg-white p-6 rounded-lg shadow-sm mb-8">
-                    <div class="prose">
-                        <h3 class="text-lg font-semibold">Purpose</h3>
-                        <p>Centralize error handling</p>
-                        
-                        <h3 class="text-lg font-semibold mt-4">Implementation</h3>
-                        <pre><code class="language-typescript">// plugins/error-handler.ts
+                            <h3 class="text-lg font-semibold mt-4">Advanced
+                                Features</h3>
+                            <ul>
+                                <li>Route parameters</li>
+                                <li>Middleware</li>
+                                <li>Request validation</li>
+                                <li>Caching</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="error-handling" class="mb-12">
+                    <h2 class="text-2xl font-bold mb-6">9. Error Handling
+                        Pattern</h2>
+
+                    <div
+                        class="pattern-card bg-white p-6 rounded-lg shadow-sm mb-8">
+                        <div class="prose">
+                            <h3 class="text-lg font-semibold">Purpose</h3>
+                            <p>Centralize error handling</p>
+
+                            <h3
+                                class="text-lg font-semibold mt-4">Implementation</h3>
+                            <pre><code class="language-typescript">// plugins/error-handler.ts
 export default defineNuxtPlugin((nuxtApp) => {
   nuxtApp.hook('vue:error', (error) => {
     // Send to error tracking service
@@ -426,20 +539,23 @@ export default defineNuxtPlugin((nuxtApp) => {
     console.error('App error:', error)
   })
 })</code></pre>
+                        </div>
                     </div>
-                </div>
-            </section>
+                </section>
 
-            <section id="seo-pattern" class="mb-12">
-                <h2 class="text-2xl font-bold mb-6">10. SEO & Meta Pattern</h2>
-                
-                <div class="pattern-card bg-white p-6 rounded-lg shadow-sm mb-8">
-                    <div class="prose">
-                        <h3 class="text-lg font-semibold">Purpose</h3>
-                        <p>Manage head tags and SEO metadata</p>
-                        
-                        <h3 class="text-lg font-semibold mt-4">Implementation</h3>
-                        <pre><code class="language-typescript">// composables/useSeo.ts
+                <section id="seo-pattern" class="mb-12">
+                    <h2 class="text-2xl font-bold mb-6">10. SEO & Meta
+                        Pattern</h2>
+
+                    <div
+                        class="pattern-card bg-white p-6 rounded-lg shadow-sm mb-8">
+                        <div class="prose">
+                            <h3 class="text-lg font-semibold">Purpose</h3>
+                            <p>Manage head tags and SEO metadata</p>
+
+                            <h3
+                                class="text-lg font-semibold mt-4">Implementation</h3>
+                            <pre><code class="language-typescript">// composables/useSeo.ts
 export const useSeo = (title, description) => {
   useHead({
     title,
@@ -454,20 +570,23 @@ export const useSeo = (title, description) => {
 &lt;script setup&gt;
 useSeo('Home Page', 'Welcome to our website')
 &lt;/script&gt;</code></pre>
+                        </div>
                     </div>
-                </div>
-            </section>
+                </section>
 
-            <section id="dependency-injection" class="mb-12">
-                <h2 class="text-2xl font-bold mb-6">11. Dependency Injection Pattern</h2>
-                
-                <div class="pattern-card bg-white p-6 rounded-lg shadow-sm mb-8">
-                    <div class="prose">
-                        <h3 class="text-lg font-semibold">Purpose</h3>
-                        <p>Share services across components</p>
-                        
-                        <h3 class="text-lg font-semibold mt-4">Implementation</h3>
-                        <pre><code class="language-typescript">// plugins/api.ts
+                <section id="dependency-injection" class="mb-12">
+                    <h2 class="text-2xl font-bold mb-6">11. Dependency Injection
+                        Pattern</h2>
+
+                    <div
+                        class="pattern-card bg-white p-6 rounded-lg shadow-sm mb-8">
+                        <div class="prose">
+                            <h3 class="text-lg font-semibold">Purpose</h3>
+                            <p>Share services across components</p>
+
+                            <h3
+                                class="text-lg font-semibold mt-4">Implementation</h3>
+                            <pre><code class="language-typescript">// plugins/api.ts
 export default defineNuxtPlugin(() => {
   const api = {
     fetchPosts: () => $fetch('/api/posts')
@@ -483,20 +602,22 @@ export default defineNuxtPlugin(() => {
 const { $api } = useNuxtApp()
 const posts = await $api.fetchPosts()
 &lt;/script&gt;</code></pre>
+                        </div>
                     </div>
-                </div>
-            </section>
+                </section>
 
-            <section id="module-pattern" class="mb-12">
-                <h2 class="text-2xl font-bold mb-6">12. Module Pattern</h2>
-                
-                <div class="pattern-card bg-white p-6 rounded-lg shadow-sm mb-8">
-                    <div class="prose">
-                        <h3 class="text-lg font-semibold">Purpose</h3>
-                        <p>Extend Nuxt core functionality</p>
-                        
-                        <h3 class="text-lg font-semibold mt-4">Implementation</h3>
-                        <pre><code class="language-typescript">// modules/my-module.ts
+                <section id="module-pattern" class="mb-12">
+                    <h2 class="text-2xl font-bold mb-6">12. Module Pattern</h2>
+
+                    <div
+                        class="pattern-card bg-white p-6 rounded-lg shadow-sm mb-8">
+                        <div class="prose">
+                            <h3 class="text-lg font-semibold">Purpose</h3>
+                            <p>Extend Nuxt core functionality</p>
+
+                            <h3
+                                class="text-lg font-semibold mt-4">Implementation</h3>
+                            <pre><code class="language-typescript">// modules/my-module.ts
 export default defineNuxtModule({
   meta: {
     name: 'my-module'
@@ -505,108 +626,136 @@ export default defineNuxtModule({
     // Add custom logic here
   }
 })</code></pre>
-                        
-                        <h3 class="text-lg font-semibold mt-4">Common Module Uses</h3>
+
+                            <h3 class="text-lg font-semibold mt-4">Common Module
+                                Uses</h3>
+                            <ul>
+                                <li>Adding UI libraries</li>
+                                <li>Integrating databases</li>
+                                <li>Setting up authentication</li>
+                                <li>Custom build optimizations</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <article id="conclusion"
+                    class="bg-white p-6 rounded-lg shadow-sm mb-8">
+                    <h2 class="text-2xl font-bold mb-4">Conclusion</h2>
+                    <div class="prose">
+                        <p>Nuxt.js design patterns provide structured approaches
+                            to solving common problems in web application
+                            development. By applying these patterns, you can
+                            create applications that are:</p>
+
                         <ul>
-                            <li>Adding UI libraries</li>
-                            <li>Integrating databases</li>
-                            <li>Setting up authentication</li>
-                            <li>Custom build optimizations</li>
+                            <li><strong>More maintainable:</strong> Clear
+                                structure makes code easier to understand</li>
+                            <li><strong>Easier to scale:</strong> Patterns
+                                accommodate growth</li>
+                            <li><strong>More performant:</strong> Optimized
+                                approaches improve speed</li>
+                            <li><strong>More consistent:</strong> Standardized
+                                solutions across your codebase</li>
                         </ul>
-                    </div>
-                </div>
-            </section>
 
-            <article id="conclusion" class="bg-white p-6 rounded-lg shadow-sm mb-8">
-                <h2 class="text-2xl font-bold mb-4">Conclusion</h2>
-                <div class="prose">
-                    <p>Nuxt.js design patterns provide structured approaches to solving common problems in web application development. By applying these patterns, you can create applications that are:</p>
-                    
-                    <ul>
-                        <li><strong>More maintainable:</strong> Clear structure makes code easier to understand</li>
-                        <li><strong>Easier to scale:</strong> Patterns accommodate growth</li>
-                        <li><strong>More performant:</strong> Optimized approaches improve speed</li>
-                        <li><strong>More consistent:</strong> Standardized solutions across your codebase</li>
-                    </ul>
-                    
-                    <div class="bg-blue-50 border-l-4 border-blue-500 p-4 my-4">
-                        <p><strong>Pro Tip:</strong> Start with the patterns that address your immediate needs, then gradually incorporate others as your application grows in complexity.</p>
-                    </div>
-                    
-                    <h3 class="text-lg font-semibold mt-4">Pattern Cheat Sheet</h3>
-                    
-                    <div class="overflow-x-auto">
-                        <table class="min-w-full bg-white border border-gray-200">
-                            <thead class="bg-gray-50">
-                                <tr>
-                                    <th class="px-4 py-2 text-left text-sm font-medium text-gray-500 uppercase">Pattern</th>
-                                    <th class="px-4 py-2 text-left text-sm font-medium text-gray-500 uppercase">Best For</th>
-                                    <th class="px-4 py-2 text-left text-sm font-medium text-gray-500 uppercase">Complexity</th>
-                                </tr>
-                            </thead>
-                            <tbody class="divide-y divide-gray-200">
-                                <tr>
-                                    <td class="px-4 py-2">Layout</td>
-                                    <td class="px-4 py-2">Page structure</td>
-                                    <td class="px-4 py-2">Low</td>
-                                </tr>
-                                <tr class="bg-gray-50">
-                                    <td class="px-4 py-2">Composables</td>
-                                    <td class="px-4 py-2">Reusable logic</td>
-                                    <td class="px-4 py-2">Medium</td>
-                                </tr>
-                                <tr>
-                                    <td class="px-4 py-2">Pinia</td>
-                                    <td class="px-4 py-2">Global state</td>
-                                    <td class="px-4 py-2">Medium</td>
-                                </tr>
-                                <tr class="bg-gray-50">
-                                    <td class="px-4 py-2">Middleware</td>
-                                    <td class="px-4 py-2">Route protection</td>
-                                    <td class="px-4 py-2">Low</td>
-                                </tr>
-                                <tr>
-                                    <td class="px-4 py-2">Plugins</td>
-                                    <td class="px-4 py-2">Global features</td>
-                                    <td class="px-4 py-2">Medium</td>
-                                </tr>
-                                <tr class="bg-gray-50">
-                                    <td class="px-4 py-2">Dynamic Import</td>
-                                    <td class="px-4 py-2">Performance</td>
-                                    <td class="px-4 py-2">Medium</td>
-                                </tr>
-                                <tr>
-                                    <td class="px-4 py-2">Server API</td>
-                                    <td class="px-4 py-2">Backend logic</td>
-                                    <td class="px-4 py-2">High</td>
-                                </tr>
-                                <tr class="bg-gray-50">
-                                    <td class="px-4 py-2">Error Handling</td>
-                                    <td class="px-4 py-2">Debugging</td>
-                                    <td class="px-4 py-2">Medium</td>
-                                </tr>
-                                <tr>
-                                    <td class="px-4 py-2">SEO</td>
-                                    <td class="px-4 py-2">Search optimization</td>
-                                    <td class="px-4 py-2">Low</td>
-                                </tr>
-                                <tr class="bg-gray-50">
-                                    <td class="px-4 py-2">DI</td>
-                                    <td class="px-4 py-2">Service sharing</td>
-                                    <td class="px-4 py-2">High</td>
-                                </tr>
-                                <tr>
-                                    <td class="px-4 py-2">Modules</td>
-                                    <td class="px-4 py-2">Nuxt extensions</td>
-                                    <td class="px-4 py-2">High</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </article>
+                        <div
+                            class="bg-blue-50 border-l-4 border-blue-500 p-4 my-4">
+                            <p><strong>Pro Tip:</strong> Start with the patterns
+                                that address your immediate needs, then
+                                gradually incorporate others as your application
+                                grows in complexity.</p>
+                        </div>
 
-            <!-- <div class="bg-white p-6 rounded-lg shadow-sm">
+                        <h3 class="text-lg font-semibold mt-4">Pattern Cheat
+                            Sheet</h3>
+
+                        <div class="overflow-x-auto">
+                            <table
+                                class="min-w-full bg-white border border-gray-200">
+                                <thead class="bg-gray-50">
+                                    <tr>
+                                        <th
+                                            class="px-4 py-2 text-left text-sm font-medium text-gray-500 uppercase">Pattern</th>
+                                        <th
+                                            class="px-4 py-2 text-left text-sm font-medium text-gray-500 uppercase">Best
+                                            For</th>
+                                        <th
+                                            class="px-4 py-2 text-left text-sm font-medium text-gray-500 uppercase">Complexity</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-gray-200">
+                                    <tr>
+                                        <td class="px-4 py-2">Layout</td>
+                                        <td class="px-4 py-2">Page
+                                            structure</td>
+                                        <td class="px-4 py-2">Low</td>
+                                    </tr>
+                                    <tr class="bg-gray-50">
+                                        <td class="px-4 py-2">Composables</td>
+                                        <td class="px-4 py-2">Reusable
+                                            logic</td>
+                                        <td class="px-4 py-2">Medium</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-4 py-2">Pinia</td>
+                                        <td class="px-4 py-2">Global state</td>
+                                        <td class="px-4 py-2">Medium</td>
+                                    </tr>
+                                    <tr class="bg-gray-50">
+                                        <td class="px-4 py-2">Middleware</td>
+                                        <td class="px-4 py-2">Route
+                                            protection</td>
+                                        <td class="px-4 py-2">Low</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-4 py-2">Plugins</td>
+                                        <td class="px-4 py-2">Global
+                                            features</td>
+                                        <td class="px-4 py-2">Medium</td>
+                                    </tr>
+                                    <tr class="bg-gray-50">
+                                        <td class="px-4 py-2">Dynamic
+                                            Import</td>
+                                        <td class="px-4 py-2">Performance</td>
+                                        <td class="px-4 py-2">Medium</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-4 py-2">Server API</td>
+                                        <td class="px-4 py-2">Backend logic</td>
+                                        <td class="px-4 py-2">High</td>
+                                    </tr>
+                                    <tr class="bg-gray-50">
+                                        <td class="px-4 py-2">Error
+                                            Handling</td>
+                                        <td class="px-4 py-2">Debugging</td>
+                                        <td class="px-4 py-2">Medium</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-4 py-2">SEO</td>
+                                        <td class="px-4 py-2">Search
+                                            optimization</td>
+                                        <td class="px-4 py-2">Low</td>
+                                    </tr>
+                                    <tr class="bg-gray-50">
+                                        <td class="px-4 py-2">DI</td>
+                                        <td class="px-4 py-2">Service
+                                            sharing</td>
+                                        <td class="px-4 py-2">High</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-4 py-2">Modules</td>
+                                        <td class="px-4 py-2">Nuxt
+                                            extensions</td>
+                                        <td class="px-4 py-2">High</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- <div class="bg-white p-6 rounded-lg shadow-sm">
                 <h2 class="text-2xl font-bold mb-4">Comments & Discussion</h2>
                 <div class="mb-6">
                     <textarea class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" rows="3" placeholder="Have questions or suggestions? Leave a comment..."></textarea>
@@ -635,17 +784,19 @@ export default defineNuxtModule({
                     </div>
                 </div>
             </div> -->
-        </main>
-    </div>
+            </main>
+        </div>
 
-    <footer class="bg-gray-800 text-white py-12">
-        <div class="container mx-auto px-4">
-            <div class="grid md:grid-cols-3 gap-8">
-                <div>
-                    <h3 class="text-xl font-bold mb-4">About This Guide</h3>
-                    <p>This comprehensive tutorial covers essential Nuxt.js design patterns with practical examples and implementation advice.</p>
-                </div>
-                <!-- <div>
+        <footer class="bg-gray-800 text-white py-12">
+            <div class="container mx-auto px-4">
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div>
+                        <h3 class="text-xl font-bold mb-4">About This Guide</h3>
+                        <p>This comprehensive tutorial covers essential Nuxt.js
+                            design patterns with practical examples and
+                            implementation advice.</p>
+                    </div>
+                    <!-- <div>
                     <h3 class="text-xl font-bold mb-4">Resources</h3>
                     <ul class="space-y-2">
                         <li><a href="https://nuxt.com/docs" class="hover:underline">Nuxt Documentation</a></li>
@@ -661,14 +812,15 @@ export default defineNuxtModule({
                         <li><a href="#" class="hover:underline">Nuxt 3 Migration Guide</a></li>
                     </ul>
                 </div> -->
+                </div>
+                <div class="border-t border-gray-700 mt-8 pt-8 text-center">
+                    <p>&copy; 2025 ui-dev-tech-docs.xyz. All rights
+                        reserved.</p>
+                </div>
             </div>
-            <div class="border-t border-gray-700 mt-8 pt-8 text-center">
-                <p>&copy; 2025 ui-dev-tech-docs.xyz. All rights reserved.</p>
-            </div>
-        </div>
-    </footer>
+        </footer>
 
-    <script>
+        <script>
         // Initialize syntax highlighting
         document.addEventListener('DOMContentLoaded', (event) => {
             document.querySelectorAll('pre code').forEach((el) => {
@@ -703,5 +855,5 @@ export default defineNuxtModule({
             }
         });
     </script>
-</body>
+    </body>
 </html>
