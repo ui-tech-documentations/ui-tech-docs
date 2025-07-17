@@ -1,0 +1,1766 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Comprehensive guide to Vue 3 components covering templates, styling, Composition API, optimization techniques and more for modern web development">
+    <meta name="keywords" content="Vue 3, Vue Components, Composition API, Options API, Vue Templates, Vue Styling, Vue Optimization">
+    <meta name="author" content="Your Name">
+    <meta property="og:title" content="Vue 3 Components: The Complete Guide">
+    <meta property="og:description" content="Learn everything about Vue 3 components including templates, styling, APIs and optimization techniques">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://ui-dev-tech-docs.xyz/articles/vue/vue-3-components-a-complete-guide-2025.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <title>Vue 3 Components: The Complete Guide | Modern Web Development</title>
+    <link rel="stylesheet" href="../../assets/tailwind.css">
+    <link rel="stylesheet" href="../../assets/style.css">
+    <!-- <link rel="stylesheet" href="../../assets/article.css"> -->
+    <style>
+        .code-block {
+            background-color: #1e293b;
+            color: #f8fafc;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+        }
+        .sidebar {
+            position: sticky;
+            top: 2rem;
+        }
+        .highlight {
+            position: relative;
+        }
+        .highlight::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -2px;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s ease;
+        }
+        .highlight:hover::after {
+            transform: scaleX(1);
+        }
+
+                /* Neomorphic Styles */
+        .neo-card {
+            background: #e0e5ec;
+            border-radius: 20px;
+            box-shadow: 
+                9px 9px 16px rgba(163, 177, 198, 0.6),
+                -9px -9px 16px rgba(255, 255, 255, 0.5);
+        }
+        
+        .neo-btn {
+            background: #e0e5ec;
+            border-radius: 10px;
+            box-shadow: 
+                5px 5px 10px rgba(163, 177, 198, 0.6),
+                -5px -5px 10px rgba(255, 255, 255, 0.5);
+            transition: all 0.2s ease;
+        }
+        
+        .neo-btn:active {
+            box-shadow: 
+                inset 3px 3px 5px rgba(163, 177, 198, 0.6),
+                inset -3px -3px 5px rgba(255, 255, 255, 0.5);
+        }
+        
+        /* Glassmorphism Styles */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+        }
+        
+        .section-heading {
+            scroll-margin-top: 1rem;
+        }
+    </style>
+    
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-1JM965KD2L"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-1JM965KD2L');
+    </script>
+
+</head>
+<body class="bg-gray-50 text-gray-800">
+    <!-- Navigation -->
+        <nav class="navbar">
+            <div class="nav-container">
+                <a href="../../index.html" class="logo">UI Dev Docs</a>
+                <div class="nav-links">
+                    <a href="../../index.html" class="nav-link">Home</a>
+                </div>
+            </div>
+        </nav>
+    <header class="bg-white shadow-sm py-4">
+        <div class="container mx-auto px-4 py-7 py-10">
+            <h1 class="text-3xl md:text-4xl font-bold text-gray-900">Top UI/UX Design Trends to Watch in 2025, With Implementation Guides</h1>
+            <p class="mt-2 text-lg text-gray-600">As technology evolves, so do user expectations. Designers must stay ahead by adopting emerging UI/UX trends that enhance usability, aesthetics, and engagement. Here are the key UI/UX trends shaping 2025: <span class="text-green-500 text-base">AI-Powered Personalization, Voice & Conversational UI, Neomorphic & Glassmorphism 2.0, AR/VR & Spatial Design, Dark Mode & Eye-Friendly Designs, Micro-Interactions & Haptic Feedback, Scrollytelling & Immersive Storytelling, Ethical & Inclusive Design, Super Apps & Modular Interfaces, Biometric Authentication & Security UX</span></p>
+            <div class="mt-4 flex items-center">
+                <span class="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded">UI/UX Trends </span>
+                <span class="ml-2 text-sm text-gray-500">Last updated: <time datetime="2025-07-05">July 5, 2025</time></span>
+            </div>
+        </div>
+    </header>
+
+    <div class="container mx-auto px-4 py-8 flex flex-col md:flex-row gap-8">
+        <aside class="md:w-1/4">
+            <div class="sidebar bg-white p-6 rounded-lg shadow-sm">
+                <h2 class="text-xl font-semibold mb-4">Table of Contents</h2>
+                <nav>
+                    <ul class="space-y-2">
+                        <li class="my-2"><a href="#introduction" class="text-blue-600 hover:underline highlight">Introduction</a></li>
+                        <li class="my-2"><a href="#templates" class="text-blue-600 hover:underline highlight">Component Templates</a></li>
+                        <li class="my-2"><a href="#styling" class="text-blue-600 hover:underline highlight">Styling Components</a></li>
+                        <li class="my-2"><a href="#data-management" class="text-blue-600 hover:underline highlight">Data Management</a></li>
+                        <li class="my-2"><a href="#lifecycle-hooks" class="text-blue-600 hover:underline highlight">Lifecycle Hooks</a></li>
+                        <li class="my-2"><a href="#dynamic-rendering" class="text-blue-600 hover:underline highlight">Dynamic Rendering</a></li>
+                        <li class="my-2"><a href="#optimization" class="text-blue-600 hover:underline highlight">Optimization</a></li>
+                        <li class="my-2"><a href="#composition-api" class="text-blue-600 hover:underline highlight">Composition API</a></li>
+                        <li class="my-2"><a href="#options-api" class="text-blue-600 hover:underline highlight">Options API</a></li>
+                        <li class="my-2"><a href="#conclusion" class="text-blue-600 hover:underline highlight">Conclusion</a></li>
+                    </ul>
+                </nav>
+                <!-- <div class="mt-8">
+                    <h3 class="font-semibold mb-2">Share this guide</h3>
+                    <div class="flex space-x-2">
+                        <button class="bg-blue-600 text-white p-2 rounded hover:bg-blue-700 transition">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/></svg>
+                        </button>
+                        <button class="bg-blue-800 text-white p-2 rounded hover:bg-blue-900 transition">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24"><path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"/></svg>
+                        </button>
+                        <button class="bg-gray-800 text-white p-2 rounded hover:bg-gray-900 transition">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                        </button>
+                    </div>
+                </div> -->
+            </div>
+        </aside>
+
+        <main class="md:w-3/4 space-y-12">
+            <article id="introduction" class="bg-white p-6 rounded-lg shadow-sm">
+                <h2 class="text-2xl font-bold mb-4">Why These Trends Matter?</h2>
+                <p class="mb-4"></p>
+                <ul>
+                    <li class="my-2"> Better user engagement (through personalization & interactivity).</li>
+                    <li class="my-2">Faster, more intuitive navigation (voice, gestures, AI assistance).</li>
+                    <li class="my-2"> Enhanced accessibility & inclusivity (designing for all users).</li>
+                    <li class="my-2"> Future-proofing brands (staying ahead in a competitive digital landscape).</li>
+                </ul>  
+                <h2 class="text-2xl font-bold mb-1 mt-4">1. AI-Powered Personalization: Implementation Guide</h2>
+                <h3 class="text-xl font-bold mb-4">Understanding AI-Powered Personalization</h3>
+                <p>AI-powered personalization uses machine learning algorithms to tailor content, products, and experiences to individual users based on their behavior, preferences, and characteristics. This approach goes beyond basic rule-based personalization by continuously learning and adapting to user interactions.</p>
+                <h3 class="text-xl font-bold mb-4 mt-4">Key Implementation Approaches</h3>
+                <div class="max-w-6xl mx-auto p-6 bg-gray-50 rounded-xl shadow-sm">
+                <!-- Data Collection Layer -->
+                <div class="mb-8 p-6 bg-white rounded-lg border border-gray-200">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">1. Data Collection Layer</h3>
+                    <p class="mb-3">
+                        The Data Collection Layer serves as the critical foundation for any personalization system, capturing the essential inputs that power recommendation engines and adaptive interfaces. This multi-dimensional data framework gathers:
+                    </p>
+                    <ul class="space-y-3 text-gray-600">
+                    <li class="flex items-start">
+                        <svg class="h-5 w-5 text-blue-500 mt-0.5 mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        <span>User behavior tracking: clicks, views, time spent, search queries</span>
+                    </li>
+                    <li class="flex items-start">
+                        <svg class="h-5 w-5 text-blue-500 mt-0.5 mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        <span>Demographic data: age, location, gender (when available)</span>
+                    </li>
+                    <li class="flex items-start">
+                        <svg class="h-5 w-5 text-blue-500 mt-0.5 mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        <span>Contextual data: device type, time of day, referral source</span>
+                    </li>
+                    <li class="flex items-start">
+                        <svg class="h-5 w-5 text-blue-500 mt-0.5 mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        <span>Explicit preferences: ratings, feedback, surveys</span>
+                    </li>
+                    </ul>
+                </div>
+
+                
+
+  <!-- Recommendation Systems -->
+  <div class="mb-8 p-6 bg-white rounded-lg border border-gray-200">
+    <h3 class="text-xl font-semibold text-gray-800 mb-4">2. Recommendation Systems</h3>
+    <p>The Recommendation Systems layer transforms raw data into personalized experiences through sophisticated algorithmic approaches:</p>
+    <h3 class="text-green-500 font-bold mt-4 mb-2">1. Collaborative Filtering</h3>
+  <ul class="ml-5 list-disc">
+    <li class="my-2"><span class="text-green-500">User-Item Matrix Analysis:</span> Identifies patterns in user behavior by mapping interactions between users and items</li>
+
+    <li class="my-2"><span class="text-green-500">Neighborhood-Based:</span> "Users like you" recommendations based on similarity clusters</li>
+    <li class="my-2"><span class="text-green-500">Matrix Factorization:</span> Advanced techniques like SVD/ALS to uncover latent relationships</li>
+    <li class="my-2"><span class="text-green-500">Strengths:</span> Effective with sufficient interaction data, discovers unexpected connections</li>
+  </ul>
+
+  <h3 class="mt-4 text-green-500 font-bold mt-4 mb-2">2. Content-Based Filtering</h3>
+  <ul class="ml-5 list-disc">
+    <li class="my-2"><span class="text-green-500">Feature Matching:</span> Recommends items with similar characteristics to those a user has preferred</li>
+    <li class="my-2"><span class="text-green-500">Profile Building:</span> Creates detailed user preference models from past interactions</li>
+    <li class="my-2"><span class="text-green-500">Natural Language Processing:</span> Analyzes text content (descriptions, reviews) for semantic matching</li>
+    <li class="my-2"><span class="text-green-500">Strengths:</span> Works well for new/niche items, transparent recommendation logic</li>
+  </ul>
+
+  <h3 class="text-green-500 font-bold mt-4 mb-2">3. Hybrid Approaches</h3>
+  <ul class="list-disc ml-5">
+    <li class="my-2"><span class="text-green-500">Weighted Combination</span>: Merges collaborative and content-based scores</li>
+    <li class="my-2"><span class="text-green-500">Feature Augmentation</span>: Uses content features to enhance collaborative models</li>
+    <li class="my-2"><span class="text-green-500">Cascade Architecture</span>: Applies different techniques sequentially</li>
+    <li class="my-2"><span class="text-green-500">Strengths</span>: Mitigates weaknesses of individual methods, improves coverage</li>
+  </ul>
+
+  <h3 class="text-green-500 font-bold mt-4 mb-2">4. Deep Learning Models</h3>
+  <ul class="ml-5 list-disc">
+    <li class="my-2"><span class="text-green-500">Neural Collaborative Filtering:</span> Learns complex user-item interaction patterns</li>
+    <li class="my-2"><span class="text-green-500">Transformer Architectures:</span> Processes sequential user behavior (BERT4Rec)</li>
+    <li class="my-2"><span class="text-green-500">Graph Neural Networks:</span> Models relationships in social/user-item graphs</li>
+    <li class="my-2"><span class="text-green-500">Strengths:</span> Handles sparse data well, discovers non-linear patterns</li>
+  </ul>
+  </div>
+
+  <!-- Real-Time Personalization -->
+  <div class="mb-8 p-6 bg-white rounded-lg border border-gray-200">
+    <h3 class="text-xl font-semibold text-gray-800 mb-4">3. Real-Time Personalization</h3>
+    <div class="">
+      <div class="px-3 py-1  text-indigo-800 rounded-full text-sm">Session-based recommendations</div>
+      <div class="px-3 py-1  text-indigo-800 rounded-full text-sm">Context-aware suggestions</div>
+      <div class="px-3 py-1  text-indigo-800 rounded-full text-sm">Adaptive interfaces</div>
+    </div>
+  </div>
+
+  <!-- Common Algorithms -->
+  <div class="mb-8 p-6 bg-white rounded-lg border border-gray-200">
+    <h3 class="text-xl font-semibold text-gray-800 mb-4">Common Algorithms Used</h3>
+    <div class="space-y-6">
+      <div>
+        <h4 class="font-medium text-gray-700 mb-2">1. Traditional ML Algorithms:</h4>
+        <div class="flex flex-wrap gap-2">
+          <span class="px-2 py-1 bg-gray-100 text-gray-700 rounded text-xs">Matrix Factorization (SVD, ALS)</span>
+          <span class="px-2 py-1 bg-gray-100 text-gray-700 rounded text-xs">k-Nearest Neighbors (k-NN)</span>
+          <span class="px-2 py-1 bg-gray-100 text-gray-700 rounded text-xs">Decision Trees and Random Forests</span>
+          <span class="px-2 py-1 bg-gray-100 text-gray-700 rounded text-xs">Gradient Boosted Machines (XGBoost, LightGBM)</span>
+        </div>
+      </div>
+      <div>
+        <h4 class="font-medium text-gray-700 mb-2">2. Deep Learning Approaches:</h4>
+        <div class="flex flex-wrap gap-2">
+          <span class="px-2 py-1 bg-gray-100 text-gray-700 rounded text-xs">Wide & Deep Learning (Google)</span>
+          <span class="px-2 py-1 bg-gray-100 text-gray-700 rounded text-xs">Neural Collaborative Filtering</span>
+          <span class="px-2 py-1 bg-gray-100 text-gray-700 rounded text-xs">Transformer-based models (BERT4Rec)</span>
+          <span class="px-2 py-1 bg-gray-100 text-gray-700 rounded text-xs">Graph Neural Networks</span>
+        </div>
+      </div>
+      <div>
+        <h4 class="font-medium text-gray-700 mb-2">3. Reinforcement Learning:</h4>
+        <div class="flex flex-wrap gap-2">
+          <span class="px-2 py-1 bg-gray-100 text-gray-700 rounded text-xs">Multi-armed bandits</span>
+          <span class="px-2 py-1 bg-gray-100 text-gray-700 rounded text-xs">Contextual bandits</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Implementation Tools -->
+  <div class="p-6 bg-white rounded-lg border border-gray-200">
+    <h3 class="text-xl font-semibold text-gray-800 mb-4">Implementation Tools & Frameworks</h3>
+    <h4 class="font-medium text-gray-700 mb-2">Commercial Platforms:</h4>
+    <div class="">
+      <span class="px-3 py-1.5 bg-amber-50 text-amber-700 rounded-full flex items-center">
+        <svg class="w-4 h-4 mr-1.5" fill="currentColor" viewBox="0 0 20 20">
+          <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd" />
+        </svg>
+        Adobe Target
+      </span>
+      <span class="px-3 py-1.5 bg-amber-50 text-amber-700 rounded-full flex items-center">
+        <svg class="w-4 h-4 mr-1.5" fill="currentColor" viewBox="0 0 20 20">
+          <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd" />
+        </svg>
+        Dynamic Yield
+      </span>
+      <span class="px-3 py-1.5 bg-amber-50 text-amber-700 rounded-full flex items-center">
+        <svg class="w-4 h-4 mr-1.5" fill="currentColor" viewBox="0 0 20 20">
+          <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd" />
+        </svg>
+        Optimizely
+      </span>
+      <span class="px-3 py-1.5 bg-amber-50 text-amber-700 rounded-full flex items-center">
+        <svg class="w-4 h-4 mr-1.5" fill="currentColor" viewBox="0 0 20 20">
+          <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd" />
+        </svg>
+        Salesforce Einstein
+      </span>
+    </div>
+  </div>
+</div>
+
+<div class="max-w-6xl mx-auto p-6 bg-gray-50 rounded-xl shadow-sm">
+  <!-- Open Source Tools -->
+  <div class="mb-8 p-6 bg-white rounded-lg border border-gray-200">
+    <h3 class="text-xl font-semibold text-gray-800 mb-4">Open Source Tools</h3>
+    
+    <!-- Recommendation Systems -->
+    <div class="mb-6">
+      <h4 class="font-medium text-gray-700 mb-3 flex items-center">
+        <svg class="w-5 h-5 mr-2 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+        </svg>
+        Recommendation Systems
+      </h4>
+      <ul class="">
+        <li class="my-2">
+            <a href="https://surpriselib.com/" class=" text-green-500 p-3 rounded-lg">
+            <h5 class="font-medium text-blue-700">Surprise</h5>
+            <p class="text-gray-600 text-sm">Python scikit for building recommender systems</p>
+            </a>
+        </li>
+        <li class="my-2">
+            <a href="https://github.com/lyst/lightfm" class=" text-green-500 p-3 rounded-lg">
+            <h5 class="font-medium text-blue-700">LightFM</h5>
+            <p class="text-gray-600 text-sm">Hybrid recommendation algorithm</p>
+            </a>
+        </li>
+        <li class="my-2">
+            <a href="https://www.tensorflow.org/recommenders" class=" text-green-500 p-3 rounded-lg">
+            <h5 class="font-medium text-blue-700">TensorFlow Recommenders</h5>
+            <p class="text-gray-600 text-sm">TF library for recommendation systems</p>
+            </a>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Machine Learning Frameworks -->
+    <div class="mb-6">
+      <h4 class="font-medium text-gray-700 mb-3 flex items-center">
+        <svg class="w-5 h-5 mr-2 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+        </svg>
+        Machine Learning Frameworks
+      </h4>
+      <ul class="">
+        <li class="my-2">
+            <a href="https://scikit-learn.org/stable/" class=" text-green-500 p-3 rounded-lg">
+            <h5 class="font-medium text-green-700">Scikit-learn</h5>
+            <p class="text-gray-600 text-sm">Traditional ML algorithms</p>
+            </a>
+        </li>
+        <li class="my-2">
+            <a href="https://www.tensorflow.org/" class=" text-green-500 p-3 rounded-lg">
+            <h5 class="font-medium text-green-700">TensorFlow / PyTorch</h5>
+            <p class="text-gray-600 text-sm">Deep learning</p>
+            </a>
+        </li>
+        <li class="my-2">
+            <a href="https://xgboost.readthedocs.io/en/stable/" class=" text-green-500 p-3 rounded-lg">
+            <h5 class="font-medium text-green-700">XGBoost</h5>
+            <p class="text-gray-600 text-sm">Gradient boosting</p>
+            </a>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Feature Stores -->
+    <div class="mb-6">
+      <h4 class="font-medium text-gray-700 mb-3 flex items-center">
+        <svg class="w-5 h-5 mr-2 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+        </svg>
+        Feature Stores
+      </h4>
+      <ul class="">
+        <li class="my-2">
+            <a href="https://feast.dev/" class=" text-green-500 p-3 rounded-lg">
+            <h5 class="font-medium text-purple-700">Feast</h5>
+            <p class="text-gray-600 text-sm">Feature store for ML</p>
+            </a>
+        </li>
+        <li class="my-2">
+            <a href="https://www.hopsworks.ai/" class=" text-green-500 p-3 rounded-lg">
+            <h5 class="font-medium text-purple-700">Hopsworks</h5>
+            <p class="text-gray-600 text-sm">Open-source feature store</p>
+            </a>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Full-stack Solutions -->
+    <div>
+      <h4 class="font-medium text-gray-700 mb-3 flex items-center">
+        <svg class="w-5 h-5 mr-2 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01" />
+        </svg>
+        Full-stack Solutions
+      </h4>
+      <ul class="">
+        <li class="my-2">
+            <a href="https://predictionio.apache.org/" class="border-b text-green-500 p-2 rounded-lg">
+                <h5 class="font-medium text-amber-700">Apache PredictionIO</h5>
+                <p class="text-gray-600 text-sm">Discontinued but concepts still valuable</p>
+            </a>
+        </li>
+        <li class="my-2">
+        <a href="https://mindsdb.com/" class="border-b text-green-500 p-2 rounded-lg">
+          <h5 class="font-medium text-amber-700">MindsDB</h5>
+          <p class="text-gray-600 text-sm">Open-source ML automation</p>
+        </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Open Source Projects to Explore -->
+  <div class="mb-8 p-6 bg-white rounded-lg border border-gray-200">
+    <h3 class="text-xl font-semibold text-gray-800 mb-4">Open Source Projects to Explore</h3>
+    
+    <!-- Recommender Systems -->
+    <div class="mb-6">
+      <h4 class="font-medium text-gray-700 mb-2">Recommender Systems:</h4>
+      <div class="space-y-2">
+        <a href="https://recbole.io/" class="flex items-start p-3 hover:bg-gray-50 rounded-lg transition">
+          <span class="border-b text-green-500 text-xs font-medium px-2.5 py-0.5 rounded mr-3">RecBole</span>
+          <p class="text-gray-600 text-sm">All-in-one recommendation library</p>
+        </a>
+        <a href="https://github.com/PreferredAI/cornac" class="flex items-start p-3 hover:bg-gray-50 rounded-lg transition">
+          <span class="border-b text-green-500 text-xs font-medium px-2.5 py-0.5 rounded mr-3">Cornac</span>
+          <p class="text-gray-600 text-sm">Comparative framework for recommender systems</p>
+        </a>
+        <a href="https://github.com/sisinflab/elliot" class="flex items-start p-3 hover:bg-gray-50 rounded-lg transition">
+          <span class="border-b text-green-500 text-xs font-medium px-2.5 py-0.5 rounded mr-3">Elliot</span>
+          <p class="text-gray-600 text-sm">Comprehensive recommendation framework</p>
+        </a>
+      </div>
+    </div>
+
+    <!-- Personalization Engines -->
+    <div class="mb-6">
+      <h4 class="font-medium text-gray-700 mb-2">Personalization Engines:</h4>
+      <div class="space-y-2">
+        <a href="https://github.com/ylongqi/openrec" class="flex items-start p-3 hover:bg-gray-50 rounded-lg transition">
+          <span class="border-b text-green-500 text-xs font-medium px-2.5 py-0.5 rounded mr-3">OpenRec</span>
+          <p class="text-gray-600 text-sm">Modular recommender system</p>
+        </a>
+        <a href="https://github.com/AmazingDD/daisyRec" class="flex items-start p-3 hover:bg-gray-50 rounded-lg transition">
+          <span class="border-b text-green-500 text-xs font-medium px-2.5 py-0.5 rounded mr-3">DaisyRec</span>
+          <p class="text-gray-600 text-sm">Recommender with hybrid algorithms</p>
+        </a>
+      </div>
+    </div>
+
+    <!-- Session-based Recommendations -->
+    <div>
+      <h4 class="font-medium text-gray-700 mb-2">Session-based Recommendations:</h4>
+      <div class="space-y-2">
+        <a href="https://github.com/hidasib/GRU4Rec" class="flex items-start p-3 hover:bg-gray-50 rounded-lg transition">
+          <span class="text-xs font-medium px-2.5 py-0.5 rounded mr-3 border-b text-green-500">GRU4Rec</span>
+          <p class="text-gray-600 text-sm">Session-based recommendations with RNNs</p>
+        </a>
+        <a href="https://github.com/FeiSun/BERT4Rec" class="flex items-start p-3 hover:bg-gray-50 rounded-lg transition">
+          <span class="text-xs font-medium px-2.5 py-0.5 rounded mr-3 border-b text-green-500">BERT4Rec - </span>
+          <p class="text-gray-600 text-sm">Sequential recommendation using BERT</p>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Implementation Steps -->
+  <div class="p-6 bg-white rounded-lg border border-gray-200">
+    <h3 class="text-xl font-semibold text-gray-800 mb-4">Implementation Steps</h3>
+    
+    <div class="space-y-4">
+      <!-- Data Collection -->
+      <div class="flex">
+        <div class="flex-shrink-0 mr-4">
+          <div class="flex items-center justify-center w-10 h-10 rounded-full bg-blue-100 text-blue-800 font-semibold">1</div>
+        </div>
+        <div>
+          <h4 class="font-medium text-gray-700 mb-2">Data Collection & Processing:</h4>
+          <ul class="list-disc list-inside text-gray-600 text-sm space-y-1">
+            <li class="my-2">Implement tracking for user interactions</li>
+            <li class="my-2">Build data pipelines to process this data</li>
+            <li class="my-2">Create user and item feature stores</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Model Development -->
+      <div class="flex">
+        <div class="flex-shrink-0 mr-4">
+          <div class="flex items-center justify-center w-10 h-10 rounded-full bg-green-100 text-green-800 font-semibold">2</div>
+        </div>
+        <div>
+          <h4 class="font-medium text-gray-700 mb-2">Model Development:</h4>
+          <ul class="list-disc list-inside text-gray-600 text-sm space-y-1">
+            <li class="my-2">Start with simple algorithms (k-NN, matrix factorization)</li>
+            <li class="my-2">Progress to more complex models as needed</li>
+            <li class="my-2">Implement A/B testing framework</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Deployment -->
+      <div class="flex">
+        <div class="flex-shrink-0 mr-4">
+          <div class="flex items-center justify-center w-10 h-10 rounded-full bg-purple-100 text-purple-800 font-semibold">3</div>
+        </div>
+        <div>
+          <h4 class="font-medium text-gray-700 mb-2">Deployment:</h4>
+          <ul class="list-disc list-inside text-gray-600 text-sm space-y-1">
+            <li class="my-2">Real-time serving (TensorFlow Serving, Flask/FastAPI)</li>
+            <li class="my-2">Batch recommendations for some use cases</li>
+            <li class="my-2">Monitoring and feedback loops</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Evaluation -->
+      <div class="flex">
+        <div class="flex-shrink-0 mr-4">
+          <div class="flex items-center justify-center w-10 h-10 rounded-full bg-amber-100 text-amber-800 font-semibold">4</div>
+        </div>
+        <div>
+          <h4 class="font-medium text-gray-700 mb-2">Evaluation & Iteration:</h4>
+          <ul class="list-disc list-inside text-gray-600 text-sm space-y-1">
+            <li class="my-2">Offline metrics (precision@k, recall@k, NDCG)</li>
+            <li class="my-2">Online metrics (click-through rate, conversion rate)</li>
+            <li class="my-2">Continuous model retraining</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+  <div class="p-6 bg-white rounded-lg border border-gray-200 mt-3">
+    <div class="flex">
+    <div class="flex-shrink-0 mr-4">
+          <!-- <div class="flex items-center justify-center w-10 h-10 rounded-full bg-amber-100 text-amber-800 font-semibold">4</div> -->
+        </div>
+        <div>
+          <h4 class="font-medium text-gray-700 mb-2">Challenges to Consider:</h4>
+          <ul class="list-disc list-inside text-gray-600 text-sm space-y-1">
+            <li class="my-2">Cold start problem (new users/items)</li>
+            <li class="my-2">Data privacy and ethical considerations</li>
+            <li class="my-2">Explainability of recommendations</li>
+            <li class="my-2">Scalability for large user bases</li>
+            <li class="my-2">Real-time performance requirements</li>
+          </ul>
+        </div>
+    </div>
+  </div>
+</div>
+<!-- Voice and Conversational UI -->
+     <div class="container mx-auto px-4 py-8 max-w-4xl">
+        <h1 class="text-3xl font-bold text-center mb-8">2. Voice & Conversational UI: Implementation Guide</h1>
+        
+        <!-- Understanding Section -->
+        <div class="mb-12 p-6 bg-white rounded-lg shadow-md">
+            <h2 class="text-2xl font-semibold mb-4 text-green-500">Understanding Voice & Conversational Interfaces</h2>
+            <p class="mb-4">Conversational UIs enable natural language interactions between humans and machines, including:</p>
+            <ul class="list-disc pl-6 space-y-2">
+                <li>Voice assistants (Alexa, Google Assistant-style)</li>
+                <li>Chatbots (text-based conversational agents)</li>
+                <li>Multimodal interfaces (combining voice, text, and visual elements)</li>
+            </ul>
+        </div>
+
+        <!-- Key Components -->
+        <div class="mb-12 p-6 bg-white rounded-lg shadow-md">
+            <h2 class="text-2xl font-semibold mb-4 text-green-500">Key Components</h2>
+            
+            <div class="mb-6">
+                <h3 class="text-xl font-medium mb-2 text-green-600 section-heading">1. Speech Recognition (ASR - Automatic Speech Recognition)</h3>
+                <p>
+                  The speech recognition component converts spoken language into text while also handling various challenges including different accents, background noise, and speech variations to ensure accurate transcription across diverse speaking conditions.
+                </p>
+            </div>
+            
+            <div class="mb-6">
+                <h3 class="text-xl font-medium mb-2 text-green-600 section-heading">2. Natural Language Understanding (NLU)</h3>
+                <p>NLU extracts intent and entities from user input, enabling the system to comprehend context and maintain conversation state for meaningful interactions.</p>
+            </div>
+            
+            <div class="mb-6">
+                <h3 class="text-xl font-medium mb-2 text-green-600 section-heading">3. Dialogue Management</h3>
+                <p>
+                  This maintains the conversation flow, handles multi-turn dialogues, and manages context and memory to ensure coherent and context-aware responses.
+                </p>
+            </div>
+            
+            <div class="mb-6">
+                <h3 class="text-xl font-medium mb-2 text-green-600 section-heading">4. Natural Language Generation (NLG)</h3>
+                <p>NLG formulates human-like responses and personalizes them based on user data to create more engaging and relevant interactions.</p>
+            </div>
+            
+            <div class="mb-6">
+                <h3 class="text-xl font-medium mb-2 text-green-600 section-heading">5. Speech Synthesis (TTS - Text-to-Speech)</h3>
+                <p>TTS converts text responses into natural-sounding speech, allowing the system to communicate verbally with users.</p>
+            </div>
+        </div>
+
+        <!-- Implementation Approaches -->
+        <div class="mb-12 p-6 bg-white rounded-lg shadow-md">
+            <h2 class="text-2xl font-semibold mb-4 text-green-500">Implementation Approaches</h2>
+            
+            <div class="mb-6">
+                <h3 class="text-xl font-medium mb-2 text-green-600 section-heading">1. Rule-Based Systems</h3>
+                <p>These systems use decision trees for simple workflows and pattern matching for responses, making them ideal for constrained domains with predictable interactions.</p>
+            </div>
+            
+            <div class="mb-6">
+                <h3 class="text-xl font-medium mb-2 text-green-600 section-heading">2. Machine Learning-Based Systems</h3>
+                <p>
+                  These leverage intent classification models, named entity recognition, and sequence-to-sequence models for open-domain chatbots, enabling more flexible and adaptive conversations.
+                </p>
+            </div>
+            
+            <div class="mb-6">
+                <h3 class="text-xl font-medium mb-2 text-green-600 section-heading">3. Hybrid Systems</h3>
+                <p>Hybrid approaches combine rule-based and ML techniques, using rules for critical paths and machine learning for flexibility in handling diverse inputs.</p>
+            </div>
+        </div>
+
+        <!-- Core Algorithms & Techniques -->
+        <div class="mb-12 p-6 bg-white rounded-lg shadow-md">
+            <h2 class="text-2xl font-semibold mb-4 text-green-500">Core Algorithms & Techniques</h2>
+            
+            <div class="mb-6">
+                <h3 class="text-xl font-medium mb-2 text-green-600 section-heading">1. Speech Recognition:</h3>
+                <ul class="list-disc pl-6 space-y-2">
+                    <li>Hidden Markov Models (traditional)</li>
+                    <li>DeepSpeech (Baidu/Mozilla)</li>
+                    <li>Connectionist Temporal Classification (CTC)</li>
+                    <li>Transformer-based models (Whisper)</li>
+                </ul>
+            </div>
+            
+            <div class="mb-6">
+                <h3 class="text-xl font-medium mb-2 text-green-600 section-heading">2. Natural Language Understanding:</h3>
+                <ul class="list-disc pl-6 space-y-2">
+                    <li>Intent classification (BERT, RoBERTa)</li>
+                    <li>Named Entity Recognition (spaCy, Stanford NER)</li>
+                    <li>Sentiment analysis</li>
+                </ul>
+            </div>
+            
+            <div class="mb-6">
+                <h3 class="text-xl font-medium mb-2 text-green-600 section-heading">3. Dialogue Management:</h3>
+                <ul class="list-disc pl-6 space-y-2">
+                    <li>Reinforcement learning (for adaptive systems)</li>
+                    <li>Finite state machines (for structured dialogues)</li>
+                    <li>Memory networks (for context retention)</li>
+                </ul>
+            </div>
+            
+            <div class="mb-6">
+                <h3 class="text-xl font-medium mb-2 text-green-600 section-heading">4. Speech Synthesis:</h3>
+                <ul class="list-disc pl-6 space-y-2">
+                    <li>Concatenative synthesis</li>
+                    <li>Parametric synthesis (WaveNet, Tacotron)</li>
+                    <li>Neural TTS models</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Tools & Frameworks -->
+        <div class="mb-12 p-6 bg-white rounded-lg shadow-md">
+            <h2 class="text-2xl font-semibold mb-4 text-green-500">Tools & Frameworks</h2>
+            
+            <div class="mb-6">
+                <h3 class="text-xl font-medium mb-2 text-green-600 section-heading">Commercial Platforms:</h3>
+                <ul class="list-disc pl-6 space-y-2">
+                    <li>Amazon Lex</li>
+                    <li>Google Dialogflow</li>
+                    <li>IBM Watson Assistant</li>
+                    <li>Microsoft Bot Framework</li>
+                </ul>
+            </div>
+            
+            <div class="mb-6">
+                <h3 class="text-xl font-medium mb-2 text-green-600 section-heading">Open Source Tools:</h3>
+                
+                <h4 class="text-lg font-medium mb-1 mt-4">1. Speech Recognition:</h4>
+                <ul class="list-disc pl-6 space-y-2">
+                    <li><a class="text-green-500" href="https://github.com/openai/whisper"> Whisper (OpenAI)</a></li>
+                    <li><a class="text-green-500" href="https://alphacephei.com/vosk/"> Vosk (Offline ASR)</a></li>
+                    <li><a class="text-green-500" href="https://github.com/mozilla/DeepSpeech"> DeepSpeech (Mozilla) </a></li>
+                </ul>
+                
+                <h4 class="text-lg font-medium mb-1 mt-4">2. NLU & Dialogue Management:</h4>
+                <ul class="list-disc pl-6 space-y-2">
+                    <li><a class="text-green-500" href="https://rasa.com/"> Rasa (Full conversational AI stack)</a></li>
+                    <li><a class="text-green-500" href="https://github.com/snipsco/snips-nlu">Snips NLU (Now discontinued but concepts still valuable)</a></li>
+                    <li> <a class="text-green-500" href="https://huggingface.co/docs/transformers/index">HuggingFace Transformers (For state-of-the-art NLU)</a></li>
+                </ul>
+                
+                <h4 class="text-lg font-medium mb-1 mt-4">3. Text-to-Speech:</h4>
+                <ul class="list-disc pl-6 space-y-2">
+                    <li><a class="text-green-500" href="https://github.com/MycroftAI/mimic3"> Mimic 3 (Mycroft)</a></li>
+                    <li><a class="text-green-500" href="https://github.com/coqui-ai/TTS"> Coqui TTS </a></li>
+                    <li> <a class="text-green-500" href="http://www.cstr.ed.ac.uk/projects/festival/"></a>Festival (Classic TTS system)</li>
+                </ul>
+                
+                <h4 class="text-lg font-medium mb-1 mt-4">4. Full-Stack Frameworks:</h4>
+                <ul class="list-disc pl-6 space-y-2">
+                    <li><a class="text-green-500" href="https://mycroft.ai/">Mycroft AI (Open source voice assistant)</a></li>
+                    <li><a class="text-green-500" href="https://rhasspy.readthedocs.io/">Rhasspy (Offline voice assistant toolkit)</a></li>
+                    <li><a class="text-green-500" href="https://getleon.ai/">Leon AI (Personal assistant)</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Open Source Projects to Explore -->
+        <div class="mb-12 p-6 bg-white rounded-lg shadow-md">
+            <h2 class="text-2xl font-semibold mb-4 text-green-500">Open Source Projects to Explore</h2>
+            
+            <div class="mb-6">
+                <h3 class="text-xl font-medium mb-2 text-green-600 section-heading">1. Voice Assistants:</h3>
+                <ul class="list-disc pl-6 space-y-2">
+                    <li><a class="text-green-500" href="https://almond.stanford.edu/"> Almond (Stanford's open virtual assistant)</a></li>
+                    <li><a class="text-green-500" href="https://jasperproject.github.io/"> Jasper (Python-based voice assistant)</a></li>
+                    <li><a class="text-green-500" href="https://mycroft.ai/get-picroft/"> Picroft (Raspberry Pi voice assistant)</a></li>
+                </ul>
+            </div>
+            
+            <div class="mb-6">
+                <h3 class="text-xl font-medium mb-2 text-green-600 section-heading">2. Chatbot Frameworks:</h3>
+                <ul class="list-disc pl-6 space-y-2">
+                    <li><a class="text-green-500" href=""> Botpress (Open source chatbot platform)</a></li>
+                    <li><a class="text-green-500" href=""> ChatterBot (Python chatbot library)</a></li>
+                    <li><a class="text-green-500" href=""> DeepPavlov (Russian NLP library with chatbot capabilities)</a></li>
+                </ul>
+            </div>
+            
+            <div class="mb-6">
+                <h3 class="text-xl font-medium mb-2 text-green-600 section-heading">3. Conversational AI Research:</h3>
+                <ul class="list-disc pl-6 space-y-2">
+                    <li><a class="text-green-500" href="https://parl.ai/"> ParlAI (Facebook's dialog research framework)</a></li>
+                    <li><a class="text-green-500" href="https://github.com/ConvLab/ConvLab"> ConvLab (Multi-domain end-to-end dialog system)</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Development Guidelines -->
+        <div class="mb-12 p-6 bg-white rounded-lg shadow-md">
+            <h2 class="text-2xl font-semibold mb-4 text-green-500">Development Guidelines</h2>
+            
+            <div class="mb-6">
+                <h3 class="text-xl font-medium mb-2 text-green-600 section-heading">1. Planning Phase</h3>
+                <ul class="list-disc pl-6 space-y-2">
+                    <li>Define use cases and scope (open-domain vs. closed-domain)</li>
+                    <li>Identify key intents and entities</li>
+                    <li>Design conversation flows (happy path and edge cases)</li>
+                    <li>Consider privacy and data security requirements</li>
+                </ul>
+            </div>
+            
+            <div class="mb-6">
+                <h3 class="text-xl font-medium mb-2 text-green-600 section-heading">2. Development Best Practices</h3>
+                <ul class="list-disc pl-6 space-y-2">
+                    <li>Start with a narrow domain before expanding</li>
+                    <li>Implement thorough logging for continuous improvement</li>
+                    <li>Build with multimodal capabilities in mind (voice + text + visual)</li>
+                    <li>Design for accessibility from the beginning</li>
+                </ul>
+            </div>
+            
+            <div class="mb-6">
+                <h3 class="text-xl font-medium mb-2 text-green-600 section-heading">3. Testing & Evaluation</h3>
+                <ul class="list-disc pl-6 space-y-2">
+                    <li>Conduct Wizard of Oz testing early</li>
+                    <li>Measure both technical metrics (WER, intent accuracy) and UX metrics</li>
+                    <li>Implement A/B testing for different dialog approaches</li>
+                    <li>Test with diverse user groups (accents, speech patterns)</li>
+                </ul>
+            </div>
+            
+            <div class="mb-6">
+                <h3 class="text-xl font-medium mb-2 text-green-600 section-heading">4. Deployment Considerations</h3>
+                <ul class="list-disc pl-6 space-y-2">
+                    <li>Optimize for latency (especially for voice interfaces)</li>
+                    <li>Plan for offline capabilities if needed</li>
+                    <li>Implement proper error handling and fallback mechanisms</li>
+                    <li>Consider hybrid cloud/edge architectures for responsiveness</li>
+                </ul>
+            </div>
+            
+            <div class="mb-6">
+                <h3 class="text-xl font-medium mb-2 text-green-600 section-heading">5. Continuous Improvement</h3>
+                <ul class="list-disc pl-6 space-y-2">
+                    <li>Implement user feedback mechanisms</li>
+                    <li>Set up analytics for conversation mining</li>
+                    <li>Regularly update NLU models with new training data</li>
+                    <li>Monitor for bias in language understanding</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Challenges to Address -->
+        <div class="mb-12 p-6 bg-white rounded-lg shadow-md">
+            <h2 class="text-2xl font-semibold mb-4 text-green-500">Challenges to Address</h2>
+            
+            <div class="mb-6">
+                <h3 class="text-xl font-medium mb-2 text-green-600 section-heading">1. Speech Recognition:</h3>
+                <ul class="list-disc pl-6 space-y-2">
+                    <li>Handling diverse accents and dialects</li>
+                    <li>Dealing with background noise</li>
+                    <li>Supporting multiple languages</li>
+                </ul>
+            </div>
+            
+            <div class="mb-6">
+                <h3 class="text-xl font-medium mb-2 text-green-600 section-heading">2. Conversational Understanding:</h3>
+                <ul class="list-disc pl-6 space-y-2">
+                    <li>Resolving ambiguous references</li>
+                    <li>Maintaining context across turns</li>
+                    <li>Handling unexpected user inputs</li>
+                </ul>
+            </div>
+            
+            <div class="mb-6">
+                <h3 class="text-xl font-medium mb-2 text-green-600 section-heading">3. Response Generation:</h3>
+                <ul class="list-disc pl-6 space-y-2">
+                    <li>Balancing consistency and variety</li>
+                    <li>Managing personality and tone</li>
+                    <li>Providing appropriate error recovery</li>
+                </ul>
+            </div>
+            
+            <div class="mb-6">
+                <h3 class="text-xl font-medium mb-2 text-green-600 section-heading">4. System Integration:</h3>
+                <ul class="list-disc pl-6 space-y-2">
+                    <li>Connecting with backend systems</li>
+                    <li>Managing state across channels</li>
+                    <li>Ensuring security in voice transactions</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Getting Started Recommendations -->
+        <div class="mb-12 p-6 bg-white rounded-lg shadow-md">
+            <h2 class="text-2xl font-semibold mb-4 text-green-500">Getting Started Recommendations</h2>
+            
+            <div class="mb-6">
+                <h3 class="text-xl font-medium mb-2 text-green-600 section-heading">1. For Beginners:</h3>
+                <ul class="list-disc pl-6 space-y-2">
+                    <li>Start with a text-based chatbot using Rasa or Dialogflow</li>
+                    <li>Experiment with simple voice commands using Mycroft or Rhasspy</li>
+                    <li>Build a basic FAQ bot before attempting complex dialogues</li>
+                </ul>
+            </div>
+            
+            <div class="mb-6">
+                <h3 class="text-xl font-medium mb-2 text-green-600 section-heading">2. For Intermediate Developers:</h3>
+                <ul class="list-disc pl-6 space-y-2">
+                    <li>Implement a custom NLU component with spaCy or HuggingFace</li>
+                    <li>Experiment with multimodal interactions (voice + GUI)</li>
+                    <li>Try integrating with knowledge graphs for richer responses</li>
+                </ul>
+            </div>
+            
+            <div class="mb-6">
+                <h3 class="text-xl font-medium mb-2 text-green-600 section-heading">3. For Advanced Projects:</h3>
+                <ul class="list-disc pl-6 space-y-2">
+                    <li>Build a completely offline voice assistant</li>
+                    <li>Implement reinforcement learning for adaptive dialogues</li>
+                    <li>Experiment with emotion detection in voice</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- Neomorphic, Glassmorphism designs -->
+    <div class="container mx-auto px-4 py-8 max-w-4xl">
+        <h1 class="text-4xl font-bold text-center mb-8 text-gray-800">Neomorphic & Glassmorphism 2.0: Implementation Guide</h1>
+        
+        <!-- Understanding the Design Trends -->
+        <div class="mb-12 p-8">
+            <h2 class="text-2xl font-semibold mb-6 text-gray-700">1. Understanding the Design Trends</h2>
+            
+            <div class="mb-8 glass-card p-6">
+                <h3 class="text-xl font-medium mb-4 text-gray-700 section-heading">Neomorphic (Soft UI)</h3>
+                <p class="mb-3">Inspired by skeuomorphism but with a minimalist approach</p>
+                <p class="mb-3">Uses subtle shadows and highlights to create "soft" 3D elements</p>
+                <p class="mb-3">Works best on light/dark solid backgrounds</p>
+                
+                <h4 class="font-medium mt-4 mb-2 text-gray-700">Key features:</h4>
+                <p class="mb-2">• Double shadows (inner + outer)</p>
+                <p class="mb-2">• Low contrast for a natural, tactile feel</p>
+                <p class="mb-2">• Minimalist color palettes</p>
+            </div>
+            
+            <div class="mb-8 glass-card p-6">
+                <h3 class="text-xl font-medium mb-4 text-gray-700 section-heading">Glassmorphism 2.0 (Frosted Glass Effect)</h3>
+                <p class="mb-3">An evolution of Glassmorphism with more depth and realism</p>
+                <p class="mb-3">Uses blur effects, transparency, and subtle borders</p>
+                <p class="mb-3">Best for modern, futuristic interfaces</p>
+                
+                <h4 class="font-medium mt-4 mb-2 text-gray-700">Key features:</h4>
+                <p class="mb-2">• Background blur (frosted glass effect)</p>
+                <p class="mb-2">• Vibrant colors with transparency</p>
+                <p class="mb-2">• Thin light borders for contrast</p>
+                <p class="mb-2">• Layered depth (floating elements)</p>
+            </div>
+        </div>
+
+        <!-- Implementation Techniques -->
+        <div class="mb-12 p-8">
+            <h2 class="text-2xl font-semibold mb-6 text-gray-700">2. Implementation Techniques</h2>
+            
+            <div class="mb-8 glass-card p-6">
+                <h3 class="text-xl font-medium mb-4 text-gray-700 section-heading">For Neomorphic Design</h3>
+                
+                <h4 class="font-medium mb-3 text-gray-700">CSS Approach</h4>
+                <div class="bg-gray-800 rounded-lg p-4 mb-4">
+                    <pre class="text-green-400 overflow-x-auto">
+.neo-element {
+    background: #e0e5ec;
+    border-radius: 20px;
+    box-shadow: 
+        9px 9px 16px rgba(163, 177, 198, 0.6),
+        -9px -9px 16px rgba(255, 255, 255, 0.5);
+}
+
+.neo-button {
+    background: #e0e5ec;
+    border-radius: 10px;
+    box-shadow: 
+        5px 5px 10px rgba(163, 177, 198, 0.6),
+        -5px -5px 10px rgba(255, 255, 255, 0.5);
+    transition: all 0.2s ease;
+}
+
+.neo-button:active {
+    box-shadow: 
+        inset 3px 3px 5px rgba(163, 177, 198, 0.6),
+        inset -3px -3px 5px rgba(255, 255, 255, 0.5);
+}</pre>
+                </div>
+                
+                <h4 class="font-medium mb-3 text-gray-700">Tailwind CSS Approach</h4>
+                <div class="bg-gray-800 rounded-lg p-4 mb-4">
+                    <pre class="text-green-400 overflow-x-auto">
+&lt;div class="bg-[#e0e5ec] rounded-3xl 
+    shadow-[9px_9px_16px_rgba(163,177,198,0.6),-9px_-9px_16px_rgba(255,255,255,0.5)]"&gt;
+    Neomorphic Element
+&lt;/div&gt;
+
+&lt;button class="bg-[#e0e5ec] rounded-xl px-6 py-3
+    shadow-[5px_5px_10px_rgba(163,177,198,0.6),-5px_-5px_10px_rgba(255,255,255,0.5)]
+    active:shadow-[inset_3px_3px_5px_rgba(163,177,198,0.6),inset_-3px_-3px_5px_rgba(255,255,255,0.5)]
+    transition-all duration-200"&gt;
+    Click Me
+&lt;/button&gt;</pre>
+                </div>
+            </div>
+            
+            <div class="glass-card p-6">
+                <h3 class="text-xl font-medium mb-4 text-gray-700 section-heading">For Glassmorphism 2.0</h3>
+                
+                <h4 class="font-medium mb-3 text-gray-700">CSS Approach</h4>
+                <div class="bg-gray-800 rounded-lg p-4 mb-4">
+                    <pre class="text-green-400 overflow-x-auto">
+.glass-element {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+}
+
+.glass-button {
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    transition: all 0.3s ease;
+}
+
+.glass-button:hover {
+    background: rgba(255, 255, 255, 0.3);
+}</pre>
+                </div>
+                
+                <h4 class="font-medium mb-3 text-gray-700">Tailwind CSS Approach</h4>
+                <div class="bg-gray-800 rounded-lg p-4">
+                    <pre class="text-green-400 overflow-x-auto">
+&lt;div class="bg-white/15 backdrop-blur-lg 
+    border border-white/20 rounded-3xl
+    shadow-[0_8px_32px_0_rgba(31,38,135,0.15)]"&gt;
+    Glass Element
+&lt;/div&gt;
+
+&lt;button class="bg-white/20 backdrop-blur-sm
+    border border-white/30 rounded-xl px-6 py-3
+    hover:bg-white/30 transition-all duration-300"&gt;
+    Glass Button
+&lt;/button&gt;</pre>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Demo Elements -->
+        <div class="mb-12 p-8 neo-card">
+            <h2 class="text-2xl font-semibold mb-6 text-gray-700">Live Examples</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="neo-card p-6 flex flex-col items-center">
+                    <h3 class="text-lg font-medium mb-4 text-gray-700">Neomorphic Elements</h3>
+                    <div class="w-32 h-32 neo-card rounded-full mb-4 flex items-center justify-center">
+                        <div class="w-20 h-20 rounded-full" style="
+                            background: #e0e5ec;
+                            box-shadow: 
+                                inset 5px 5px 10px rgba(163, 177, 198, 0.6),
+                                inset -5px -5px 10px rgba(255, 255, 255, 0.5);
+                        "></div>
+                    </div>
+                    <button class="neo-btn px-6 py-2 text-gray-700">Button</button>
+                </div>
+                
+                <div class="glass-card p-6 flex flex-col items-center">
+                    <h3 class="text-lg font-medium mb-4 text-gray-700">Glassmorphism Elements</h3>
+                    <div class="w-32 h-32 glass-card rounded-full mb-4 flex items-center justify-center">
+                        <div class="w-20 h-20 rounded-full" style="
+                            background: rgba(255, 255, 255, 0.3);
+                            backdrop-filter: blur(5px);
+                            border: 1px solid rgba(255, 255, 255, 0.4);
+                        "></div>
+                    </div>
+                    <button class="glass-card px-6 py-2 text-gray-700 border border-white/30">Button</button>
+                </div>
+            </div>
+        </div>
+    </div>                
+                <div class="code-block mb-4">
+                    <pre><code>// Basic Vue 3 component example
+import { defineComponent } from 'vue';
+
+export default defineComponent({
+  name: 'MyComponent',
+  // Component options go here
+});</code></pre>
+                </div>
+                
+                <p>Components allow you to split your UI into independent, reusable pieces that can be composed together to build complex applications. In Vue 3, components can be defined using either the Options API (similar to Vue 2) or the new Composition API.</p>
+            </article>
+
+            <article id="templates" class="bg-white p-6 rounded-lg shadow-sm">
+                <h2 class="text-2xl font-bold mb-4">Component Templates</h2>
+                <p class="mb-4">Vue components use an HTML-based template syntax that allows you to declaratively bind the rendered DOM to the underlying component instance's data.</p>
+                
+                <h3 class="text-xl font-semibold mt-6 mb-3">Template Syntax</h3>
+                <ul class="list-disc pl-6 mb-4 space-y-2">
+                    <li class="my-2"><strong>Text Interpolation:</strong> <code class="bg-gray-100 px-1 rounded">{{ message }}</code></li>
+                    <li class="my-2"><strong>Directives:</strong> Special attributes with the <code class="bg-gray-100 px-1 rounded">v-</code> prefix</li>
+                    <li class="my-2"><strong>Event Handling:</strong> <code class="bg-gray-100 px-1 rounded">v-on:click</code> or <code class="bg-gray-100 px-1 rounded">@click</code></li>
+                    <li class="my-2"><strong>Two-way Binding:</strong> <code class="bg-gray-100 px-1 rounded">v-model</code></li>
+                </ul>
+                
+                <h3 class="text-xl font-semibold mt-6 mb-3">Template Examples</h3>
+                <div class="code-block mb-4">
+                    <pre><code>&lt;template&gt;
+  &lt;div&gt;
+    &lt;!-- Text interpolation --&gt;
+    &lt;p&gt;{{ message }}&lt;/p&gt;
+    
+    &lt;!-- Conditional rendering --&gt;
+    &lt;p v-if="showMessage"&gt;Visible when showMessage is true&lt;/p&gt;
+    
+    &lt;!-- List rendering --&gt;
+    &lt;ul&gt;
+      &lt;li v-for="item in items" :key="item.id"&gt;
+        {{ item.text }}
+      &lt;/li&gt;
+    &lt;/ul&gt;
+    
+    &lt;!-- Event handling --&gt;
+    &lt;button @click="handleClick"&gt;Click me&lt;/button&gt;
+    
+    &lt;!-- Two-way binding --&gt;
+    &lt;input v-model="inputText" type="text"&gt;
+  &lt;/div&gt;
+&lt;/template&gt;</code></pre>
+                </div>
+                
+                <p>Vue 3 also supports fragments (multiple root nodes) in templates, which wasn't possible in Vue 2 without a wrapper element.</p>
+            </article>
+
+            <article id="styling" class="bg-white p-6 rounded-lg shadow-sm">
+                <h2 class="text-2xl font-bold mb-4">Styling Vue Components</h2>
+                <p class="mb-4">Vue components can be styled in several ways, each with its own use cases and advantages.</p>
+                
+                <h3 class="text-xl font-semibold mt-6 mb-3">Scoped CSS</h3>
+                <p class="mb-4">Scoped CSS ensures that styles only apply to the current component by adding unique data attributes to elements.</p>
+                
+                <div class="code-block mb-4">
+                    <pre><code>&lt;style scoped&gt;
+.button {
+  background-color: #3b82f6;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+}
+&lt;/style&gt;</code></pre>
+                </div>
+                
+                <h3 class="text-xl font-semibold mt-6 mb-3">CSS Modules</h3>
+                <p class="mb-4">CSS Modules provide locally scoped CSS with generated class names that you can reference in your templates.</p>
+                
+                <div class="code-block mb-4">
+                    <pre><code>&lt;style module&gt;
+.success {
+  color: #10b981;
+}
+.error {
+  color: #ef4444;
+}
+&lt;/style&gt;
+
+&lt;template&gt;
+  &lt;p :class="$style.success"&gt;This will be green&lt;/p&gt;
+&lt;/template&gt;</code></pre>
+                </div>
+                
+                <h3 class="text-xl font-semibold mt-6 mb-3">CSS Pre-processors</h3>
+                <p class="mb-4">Vue supports Sass, Less, and Stylus out of the box when using the Vue CLI.</p>
+                
+                <div class="code-block mb-4">
+                    <pre><code>&lt;style lang="scss" scoped&gt;
+$primary-color: #3b82f6;
+
+.button {
+  background-color: $primary-color;
+  
+  &:hover {
+    background-color: darken($primary-color, 10%);
+  }
+}
+&lt;/style&gt;</code></pre>
+                </div>
+                
+                <h3 class="text-xl font-semibold mt-6 mb-3">Tailwind CSS with Vue</h3>
+                <p class="mb-4">Tailwind CSS works well with Vue components. Here's an example:</p>
+                
+                <div class="code-block mb-4">
+                    <pre><code>&lt;template&gt;
+  &lt;button 
+    class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+    @click="handleClick"
+  &gt;
+    Click me
+  &lt;/button&gt;
+&lt;/template&gt;</code></pre>
+                </div>
+            </article>
+
+            <article id="data-management" class="bg-white p-6 rounded-lg shadow-sm">
+                <h2 class="text-2xl font-bold mb-4">Data Management in Components</h2>
+                <p class="mb-4">Vue components manage their own state through various reactive properties.</p>
+                
+                <h3 class="text-xl font-semibold mt-6 mb-3">Options API Data</h3>
+                <div class="code-block mb-4">
+                    <pre><code>export default {
+  data() {
+    return {
+      count: 0,
+      message: 'Hello Vue!',
+      todos: [
+        { id: 1, text: 'Learn Vue' },
+        { id: 2, text: 'Build something awesome' }
+      ]
+    }
+  }
+}</code></pre>
+                </div>
+                
+                <h3 class="text-xl font-semibold mt-6 mb-3">Composition API Reactive State</h3>
+                <div class="code-block mb-4">
+                    <pre><code>import { ref, reactive } from 'vue'
+
+export default {
+  setup() {
+    const count = ref(0)
+    const state = reactive({
+      message: 'Hello Vue!',
+      todos: [
+        { id: 1, text: 'Learn Vue' },
+        { id: 2, text: 'Build something awesome' }
+      ]
+    })
+    
+    return { count, state }
+  }
+}</code></pre>
+                </div>
+                
+                <h3 class="text-xl font-semibold mt-6 mb-3">Props - Parent to Child Communication</h3>
+                <div class="code-block mb-4">
+                    <pre><code>// Child component
+export default {
+  props: {
+    title: String,
+    likes: {
+      type: Number,
+      default: 0
+    },
+    isPublished: {
+      type: Boolean,
+      required: true
+    }
+  }
+}
+
+// Parent component usage
+&lt;blog-post title="My Journey with Vue" :likes="42" :is-published="true"&gt;&lt;/blog-post&gt;</code></pre>
+                </div>
+                
+                <h3 class="text-xl font-semibold mt-6 mb-3">Emits - Child to Parent Communication</h3>
+                <div class="code-block mb-4">
+                    <pre><code>// Child component
+export default {
+  emits: ['update:title'],
+  methods: {
+    updateTitle() {
+      this.$emit('update:title', 'New Title')
+    }
+  }
+}
+
+// Parent component usage
+&lt;blog-post :title="post.title" @update:title="post.title = $event"&gt;&lt;/blog-post&gt;</code></pre>
+                </div>
+            </article>
+
+            <article id="lifecycle-hooks" class="bg-white p-6 rounded-lg shadow-sm">
+                <h2 class="text-2xl font-bold mb-4">Lifecycle Hooks</h2>
+                <p class="mb-4">Lifecycle hooks allow you to execute code at specific stages of a component's lifecycle.</p>
+                
+                <div class="overflow-x-auto mb-6">
+                    <table class="min-w-full bg-white border border-gray-200">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Hook</th>
+                                <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Description</th>
+                                <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Options API</th>
+                                <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Composition API</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200">
+                            <tr>
+                                <td class="px-4 py-2">beforeCreate</td>
+                                <td class="px-4 py-2">Called immediately after instance initialization</td>
+                                <td class="px-4 py-2">✓</td>
+                                <td class="px-4 py-2">Not needed (use setup())</td>
+                            </tr>
+                            <tr class="bg-gray-50">
+                                <td class="px-4 py-2">created</td>
+                                <td class="px-4 py-2">Called after instance is created</td>
+                                <td class="px-4 py-2">✓</td>
+                                <td class="px-4 py-2">Not needed (use setup())</td>
+                            </tr>
+                            <tr>
+                                <td class="px-4 py-2">beforeMount</td>
+                                <td class="px-4 py-2">Called before mounting begins</td>
+                                <td class="px-4 py-2">✓</td>
+                                <td class="px-4 py-2">onBeforeMount</td>
+                            </tr>
+                            <tr class="bg-gray-50">
+                                <td class="px-4 py-2">mounted</td>
+                                <td class="px-4 py-2">Called after instance is mounted</td>
+                                <td class="px-4 py-2">✓</td>
+                                <td class="px-4 py-2">onMounted</td>
+                            </tr>
+                            <tr>
+                                <td class="px-4 py-2">beforeUpdate</td>
+                                <td class="px-4 py-2">Called when data changes, before DOM is patched</td>
+                                <td class="px-4 py-2">✓</td>
+                                <td class="px-4 py-2">onBeforeUpdate</td>
+                            </tr>
+                            <tr class="bg-gray-50">
+                                <td class="px-4 py-2">updated</td>
+                                <td class="px-4 py-2">Called after DOM is updated</td>
+                                <td class="px-4 py-2">✓</td>
+                                <td class="px-4 py-2">onUpdated</td>
+                            </tr>
+                            <tr>
+                                <td class="px-4 py-2">beforeUnmount</td>
+                                <td class="px-4 py-2">Called before instance is unmounted</td>
+                                <td class="px-4 py-2">✓</td>
+                                <td class="px-4 py-2">onBeforeUnmount</td>
+                            </tr>
+                            <tr class="bg-gray-50">
+                                <td class="px-4 py-2">unmounted</td>
+                                <td class="px-4 py-2">Called after instance is unmounted</td>
+                                <td class="px-4 py-2">✓</td>
+                                <td class="px-4 py-2">onUnmounted</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <h3 class="text-xl font-semibold mt-6 mb-3">Example Usage</h3>
+                <div class="code-block mb-4">
+                    <pre><code>// Options API
+export default {
+  mounted() {
+    console.log('Component is mounted!')
+    // Good for DOM operations, API calls, etc.
+  },
+  beforeUnmount() {
+    console.log('Component will be destroyed')
+    // Good for cleanup (event listeners, intervals, etc.)
+  }
+}
+
+// Composition API
+import { onMounted, onBeforeUnmount } from 'vue'
+
+export default {
+  setup() {
+    onMounted(() => {
+      console.log('Component is mounted!')
+    })
+    
+    onBeforeUnmount(() => {
+      console.log('Component will be destroyed')
+    })
+  }
+}</code></pre>
+                </div>
+            </article>
+
+            <article id="dynamic-rendering" class="bg-white p-6 rounded-lg shadow-sm">
+                <h2 class="text-2xl font-bold mb-4">Dynamic Rendering</h2>
+                <p class="mb-4">Vue provides several ways to render content dynamically based on conditions or lists.</p>
+                
+                <h3 class="text-xl font-semibold mt-6 mb-3">Conditional Rendering</h3>
+                <div class="code-block mb-4">
+                    <pre><code>&lt;!-- v-if vs v-show --&gt;
+&lt;div v-if="type === 'A'"&gt;Rendered if type is A (removed from DOM if false)&lt;/div&gt;
+&lt;div v-else-if="type === 'B'"&gt;Rendered if type is B&lt;/div&gt;
+&lt;div v-else&gt;Rendered if neither A nor B&lt;/div&gt;
+
+&lt;div v-show="shouldShow"&gt;Always rendered, toggled with display CSS (better for frequent toggles)&lt;/div&gt;</code></pre>
+                </div>
+                
+                <h3 class="text-xl font-semibold mt-6 mb-3">List Rendering</h3>
+                <div class="code-block mb-4">
+                    <pre><code>&lt;!-- Basic list --&gt;
+&lt;ul&gt;
+  &lt;li v-for="item in items" :key="item.id"&gt;
+    {{ item.text }}
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;!-- With index --&gt;
+&lt;div v-for="(item, index) in items" :key="item.id"&gt;
+  {{ index }} - {{ item.text }}
+&lt;/div&gt;
+
+&lt;!-- Object iteration --&gt;
+&lt;div v-for="(value, key) in object" :key="key"&gt;
+  {{ key }}: {{ value }}
+&lt;/div&gt;</code></pre>
+                </div>
+                
+                <h3 class="text-xl font-semibold mt-6 mb-3">Dynamic Components</h3>
+                <p class="mb-4">The <code class="bg-gray-100 px-1 rounded">&lt;component&gt;</code> element can dynamically switch between components using the <code class="bg-gray-100 px-1 rounded">is</code> attribute.</p>
+                
+                <div class="code-block mb-4">
+                    <pre><code>&lt;!-- CurrentTab changes when tab changes --&gt;
+&lt;component :is="currentTab"&gt;&lt;/component&gt;
+
+&lt;!-- Keep alive preserves state --&gt;
+&lt;KeepAlive&gt;
+  &lt;component :is="currentTab"&gt;&lt;/component&gt;
+&lt;/KeepAlive&gt;</code></pre>
+                </div>
+            </article>
+
+            <article id="optimization" class="bg-white p-6 rounded-lg shadow-sm">
+                <h2 class="text-2xl font-bold mb-4">Component Optimization</h2>
+                <p class="mb-4">Optimizing Vue components improves performance and user experience.</p>
+                
+                <h3 class="text-xl font-semibold mt-6 mb-3">Key Optimization Techniques</h3>
+                <ul class="list-disc pl-6 mb-4 space-y-2">
+                    <li class="my-2"><strong>v-once:</strong> Render static content once and skip future updates</li>
+                    <li class="my-2"><strong>v-memo:</strong> New in Vue 3, memoizes a sub-tree to skip unnecessary updates</li>
+                    <li class="my-2"><strong>Lazy Loading:</strong> Load components only when needed</li>
+                    <li class="my-2"><strong>Virtual Scrolling:</strong> For large lists</li>
+                    <li class="my-2"><strong>Computed Properties:</strong> Cache expensive calculations</li>
+                </ul>
+                
+                <h3 class="text-xl font-semibold mt-6 mb-3">v-once Example</h3>
+                <div class="code-block mb-4">
+                    <pre><code>&lt;!-- Will never update --&gt;
+&lt;span v-once&gt;This will never change: {{ msg }}&lt;/span&gt;</code></pre>
+                </div>
+                
+                <h3 class="text-xl font-semibold mt-6 mb-3">v-memo Example</h3>
+                <div class="code-block mb-4">
+                    <pre><code>&lt;div v-for="item in list" :key="item.id" v-memo="[item.id === selected]"&gt;
+  &lt;p&gt;ID: {{ item.id }} - Selected: {{ item.id === selected }}&lt;/p&gt;
+  &lt;p&gt;...more child nodes...&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+                </div>
+                
+                <h3 class="text-xl font-semibold mt-6 mb-3">Lazy Loading Components</h3>
+                <div class="code-block mb-4">
+                    <pre><code>// Instead of:
+// import HeavyComponent from './HeavyComponent.vue'
+
+// Use:
+const HeavyComponent = defineAsyncComponent(() =>
+  import('./HeavyComponent.vue')
+)
+
+export default {
+  components: {
+    HeavyComponent
+  }
+}</code></pre>
+                </div>
+                
+                <h3 class="text-xl font-semibold mt-6 mb-3">Virtual Scrolling</h3>
+                <p class="mb-4">For large lists, use libraries like <code class="bg-gray-100 px-1 rounded">vue-virtual-scroller</code>:</p>
+                
+                <div class="code-block mb-4">
+                    <pre><code>&lt;RecycleScroller
+  class="scroller"
+  :items="items"
+  :item-size="50"
+  key-field="id"
+&gt;
+  &lt;template v-slot="{ item }"&gt;
+    &lt;div class="item"&gt;
+      {{ item.name }}
+    &lt;/div&gt;
+  &lt;/template&gt;
+&lt;/RecycleScroller&gt;</code></pre>
+                </div>
+            </article>
+
+            <article id="composition-api" class="bg-white p-6 rounded-lg shadow-sm">
+                <h2 class="text-2xl font-bold mb-4">Composition API</h2>
+                <p class="mb-4">The Composition API is a new way to organize component logic introduced in Vue 3.</p>
+                
+                <h3 class="text-xl font-semibold mt-6 mb-3">Basic Example</h3>
+                <div class="code-block mb-4">
+                    <pre><code>import { ref, computed, onMounted } from 'vue'
+
+export default {
+  setup() {
+    const count = ref(0)
+    const doubleCount = computed(() => count.value * 2)
+    
+    function increment() {
+      count.value++
+    }
+    
+    onMounted(() => {
+      console.log('Component mounted')
+    })
+    
+    return {
+      count,
+      doubleCount,
+      increment
+    }
+  }
+}</code></pre>
+                </div>
+                
+                <h3 class="text-xl font-semibold mt-6 mb-3">Composition API Benefits</h3>
+                <ul class="list-disc pl-6 mb-4 space-y-2">
+                    <li class="my-2">Better organization of related code</li>
+                    <li class="my-2">Easier code reuse (composables)</li>
+                    <li class="my-2">Better TypeScript support</li>
+                    <li class="my-2">More flexible than Options API organization</li>
+                </ul>
+                
+                <h3 class="text-xl font-semibold mt-6 mb-3">Composables (Reusable Logic)</h3>
+                <div class="code-block mb-4">
+                    <pre><code>// useCounter.js
+import { ref, computed } from 'vue'
+
+export function useCounter() {
+  const count = ref(0)
+  const doubleCount = computed(() => count.value * 2)
+  
+  function increment() {
+    count.value++
+  }
+  
+  return { count, doubleCount, increment }
+}
+
+// Component using the composable
+import { useCounter } from './useCounter'
+
+export default {
+  setup() {
+    const { count, doubleCount, increment } = useCounter()
+    
+    return { count, doubleCount, increment }
+  }
+}</code></pre>
+                </div>
+                
+                <h3 class="text-xl font-semibold mt-6 mb-3">&lt;script setup&gt; Syntax (SFC)</h3>
+                <p class="mb-4">The <code class="bg-gray-100 px-1 rounded">&lt;script setup&gt;</code> syntax is syntactic sugar for using Composition API in Single File Components.</p>
+                
+                <div class="code-block mb-4">
+                    <pre><code>&lt;script setup&gt;
+import { ref } from 'vue'
+
+const count = ref(0)
+
+function increment() {
+  count.value++
+}
+&lt;/script&gt;
+
+&lt;template&gt;
+  &lt;button @click="increment"&gt;Count is: {{ count }}&lt;/button&gt;
+&lt;/template&gt;</code></pre>
+                </div>
+            </article>
+
+            <article id="options-api" class="bg-white p-6 rounded-lg shadow-sm">
+                <h2 class="text-2xl font-bold mb-4">Options API</h2>
+                <p class="mb-4">The Options API is the traditional way of writing Vue components, familiar to Vue 2 users.</p>
+                
+                <h3 class="text-xl font-semibold mt-6 mb-3">Complete Example</h3>
+                <div class="code-block mb-4">
+                    <pre><code>export default {
+  name: 'MyComponent',
+  props: {
+    title: String,
+    initialCount: {
+      type: Number,
+      default: 0
+    }
+  },
+  data() {
+    return {
+      count: this.initialCount,
+      message: 'Hello Vue!'
+    }
+  },
+  computed: {
+    doubleCount() {
+      return this.count * 2
+    }
+  },
+  watch: {
+    count(newVal, oldVal) {
+      console.log(`Count changed from ${oldVal} to ${newVal}`)
+    }
+  },
+  methods: {
+    increment() {
+      this.count++
+    }
+  },
+  created() {
+    console.log('Component created')
+  },
+  mounted() {
+    console.log('Component mounted to DOM')
+  }
+}</code></pre>
+                </div>
+                
+                <h3 class="text-xl font-semibold mt-6 mb-3">When to Use Options API</h3>
+                <ul class="list-disc pl-6 mb-4 space-y-2">
+                    <li class="my-2">When migrating from Vue 2</li>
+                    <li class="my-2">For simple components where organization isn't an issue</li>
+                    <li class="my-2">When working with teams familiar with Vue 2</li>
+                    <li class="my-2">For small projects where Composition API benefits aren't needed</li>
+                </ul>
+                
+                <h3 class="text-xl font-semibold mt-6 mb-3">Options API vs Composition API</h3>
+                <div class="overflow-x-auto mb-6">
+                    <table class="min-w-full bg-white border border-gray-200">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Feature</th>
+                                <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Options API</th>
+                                <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Composition API</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200">
+                            <tr>
+                                <td class="px-4 py-2">Organization</td>
+                                <td class="px-4 py-2">By option type (data, methods, etc.)</td>
+                                <td class="px-4 py-2">By logical concern</td>
+                            </tr>
+                            <tr class="bg-gray-50">
+                                <td class="px-4 py-2">Reusability</td>
+                                <td class="px-4 py-2">Mixins (can cause naming collisions)</td>
+                                <td class="px-4 py-2">Composables (cleaner reuse)</td>
+                            </tr>
+                            <tr>
+                                <td class="px-4 py-2">TypeScript</td>
+                                <td class="px-4 py-2">Works but not ideal</td>
+                                <td class="px-4 py-2">Excellent support</td>
+                            </tr>
+                            <tr class="bg-gray-50">
+                                <td class="px-4 py-2">Learning Curve</td>
+                                <td class="px-4 py-2">Easier for beginners</td>
+                                <td class="px-4 py-2">Requires understanding reactivity</td>
+                            </tr>
+                            <tr>
+                                <td class="px-4 py-2">Flexibility</td>
+                                <td class="px-4 py-2">Limited by options structure</td>
+                                <td class="px-4 py-2">Very flexible</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </article>
+
+            <article id="conclusion" class="bg-white p-6 rounded-lg shadow-sm">
+                <h2 class="text-2xl font-bold mb-4">Conclusion</h2>
+                <p class="mb-4">Vue 3 components offer powerful features for building modern web applications. Whether you choose the Options API or Composition API depends on your project's needs and your team's preferences.</p>
+                
+                <h3 class="text-xl font-semibold mt-6 mb-3">Key Takeaways</h3>
+                <ul class="list-disc pl-6 mb-4 space-y-2">
+                    <li class="my-2">Vue components combine template, logic, and styling in reusable units</li>
+                    <li class="my-2">The Composition API offers better code organization and reusability for complex components</li>
+                    <li class="my-2">The Options API remains a valid choice, especially for simpler components</li>
+                    <li class="my-2">Vue 3's reactivity system enables efficient dynamic rendering</li>
+                    <li class="my-2">Performance optimizations like v-memo and lazy loading can significantly improve your app</li>
+                </ul>
+                
+                <div class="bg-blue-50 border-l-4 border-blue-500 p-4 mb-6">
+                    <div class="flex">
+                        <div class="flex-shrink-0">
+                            <svg class="h-5 w-5 text-blue-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2h-1V9z" clip-rule="evenodd" />
+                            </svg>
+                        </div>
+                        <div class="ml-3">
+                            <p class="text-sm text-blue-700">
+                                Vue 3's flexibility allows you to choose the right approach for each component in your application. Many projects successfully use both APIs where they make the most sense.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <h3 class="text-xl font-semibold mt-6 mb-3">Further Reading</h3>
+                <ul class="list-disc pl-6 mb-4 space-y-2">
+                    <li class="my-2"><a href="https://v3.vuejs.org/guide/introduction.html" class="text-blue-600 hover:underline">Official Vue 3 Documentation</a></li>
+                    <li class="my-2"><a href="https://v3.vuejs.org/guide/composition-api-introduction.html" class="text-blue-600 hover:underline">Composition API Guide</a></li>
+                    <li class="my-2"><a href="https://v3.vuejs.org/guide/migration/introduction.html" class="text-blue-600 hover:underline">Vue 3 Migration Guide</a></li>
+                    <li class="my-2"><a href="https://github.com/vuejs/awesome-vue" class="text-blue-600 hover:underline">Awesome Vue Resources</a></li>
+                </ul>
+            </article>
+
+            <!-- <div class="bg-white p-6 rounded-lg shadow-sm">
+                <h2 class="text-2xl font-bold mb-4">Comments</h2>
+                <div class="mb-6">
+                    <textarea class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" rows="3" placeholder="Add your comment..."></textarea>
+                    <button class="mt-2 bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition">Post Comment</button>
+                </div>
+                <div class="space-y-4">
+                    <div class="border-b pb-4">
+                        <div class="flex items-start">
+                            <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="User" class="w-10 h-10 rounded-full mr-3">
+                            <div>
+                                <div class="font-semibold">Sarah Johnson</div>
+                                <div class="text-sm text-gray-500 mb-2">2 days ago</div>
+                                <p>Great article! The comparison between Options API and Composition API was particularly helpful.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="border-b pb-4">
+                        <div class="flex items-start">
+                            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="User" class="w-10 h-10 rounded-full mr-3">
+                            <div>
+                                <div class="font-semibold">Michael Chen</div>
+                                <div class="text-sm text-gray-500 mb-2">1 week ago</div>
+                                <p>Thanks for covering the optimization techniques. v-memo has been a game changer for our performance issues.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+        </main>
+    </div>
+
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between">
+                <div class="mb-6 md:mb-0">
+                    <h3 class="text-xl font-bold mb-4">Vue Resources</h3>
+                    <ul class="space-y-2">
+                        <li class="my-2"><a href="https://vuejs.org" class="hover:underline">Official Website</a></li>
+                        <li class="my-2"><a href="https://github.com/vuejs/core" class="hover:underline">GitHub Repository</a></li>
+                        <li class="my-2"><a href="https://forum.vuejs.org" class="hover:underline">Community Forum</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4">About This Guide</h3>
+                    <p class="mb-4">This comprehensive guide covers Vue 3 component fundamentals and advanced techniques.</p>
+                    <p>&copy; 2025 ui-dev-tech-docs.xyz. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+        <!-- Footer -->
+    <footer class="footer">
+        <p>© 2025 UI Dev Tech Docs. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Simple comment form handler
+        const commentForm = document.querySelector('textarea');
+        const commentButton = document.querySelector('button');
+        
+        commentButton.addEventListener('click', () => {
+            if (commentForm.value.trim() !== '') {
+                alert('Comment submitted! (This is a demo)');
+                commentForm.value = '';
+            }
+        });
+    </script>
+</body>
+</html>
