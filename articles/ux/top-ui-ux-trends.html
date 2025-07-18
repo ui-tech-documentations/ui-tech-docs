@@ -84,6 +84,107 @@
         .section-heading {
             scroll-margin-top: 1rem;
         }
+
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+        }
+        
+        .interaction-card {
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+        
+        .interaction-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .ripple {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .ripple-effect {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.7);
+            transform: scale(0);
+            animation: ripple 600ms linear;
+            pointer-events: none;
+        }
+        
+        @keyframes ripple {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+        
+        .btn-click {
+            transition: transform 0.1s ease;
+        }
+        
+        .btn-click:active {
+            transform: scale(0.95);
+        }
+        
+        .loader {
+            width: 48px;
+            height: 48px;
+            border: 5px solid #e2e8f0;
+            border-bottom-color: #3b82f6;
+            border-radius: 50%;
+            display: inline-block;
+            animation: rotation 1s linear infinite;
+        }
+        
+        @keyframes rotation {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: #f43f5e;
+            opacity: 0;
+        }
+        
+        .code-block {
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            background-color: #1e293b;
+            color: #e2e8f0;
+        }
+        
+        .progress-celebration {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .progress-celebration::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, rgba(59,130,246,0.2) 0%, rgba(99,102,241,0.2) 100%);
+            transform: translateX(-100%);
+        }
+        
+        .progress-celebration.complete::after {
+            animation: progressCelebration 1.5s ease-out;
+        }
+        
+        @keyframes progressCelebration {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
     </style>
     
     <!-- Google tag (gtag.js) -->
@@ -112,7 +213,7 @@
             <h1 class="text-3xl md:text-4xl font-bold text-gray-900">Top UI/UX Design Trends to Watch in 2025, With Implementation Guides</h1>
             <p class="mt-2 text-lg text-gray-600">As technology evolves, so do user expectations. Designers must stay ahead by adopting emerging UI/UX trends that enhance usability, aesthetics, and engagement. Here are the key UI/UX trends shaping 2025: <span class="text-green-500 text-base">AI-Powered Personalization, Voice & Conversational UI, Neomorphic & Glassmorphism 2.0, AR/VR & Spatial Design, Dark Mode & Eye-Friendly Designs, Micro-Interactions & Haptic Feedback, Scrollytelling & Immersive Storytelling, Ethical & Inclusive Design, Super Apps & Modular Interfaces, Biometric Authentication & Security UX</span></p>
             <div class="mt-4 flex items-center">
-                <span class="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded">UI/UX Trends </span>
+                <span class="bg-blue-100 text-green-800 text-xs font-semibold px-2.5 py-0.5 rounded">UI/UX Trends </span>
                 <span class="ml-2 text-sm text-gray-500">Last updated: <time datetime="2025-07-05">July 5, 2025</time></span>
             </div>
         </div>
@@ -124,16 +225,16 @@
                 <h2 class="text-xl font-semibold mb-4">Table of Contents</h2>
                 <nav>
                     <ul class="space-y-2">
-                        <li class="my-2"><a href="#introduction" class="text-blue-600 hover:underline highlight">Introduction</a></li>
-                        <li class="my-2"><a href="#templates" class="text-blue-600 hover:underline highlight">Component Templates</a></li>
-                        <li class="my-2"><a href="#styling" class="text-blue-600 hover:underline highlight">Styling Components</a></li>
-                        <li class="my-2"><a href="#data-management" class="text-blue-600 hover:underline highlight">Data Management</a></li>
-                        <li class="my-2"><a href="#lifecycle-hooks" class="text-blue-600 hover:underline highlight">Lifecycle Hooks</a></li>
-                        <li class="my-2"><a href="#dynamic-rendering" class="text-blue-600 hover:underline highlight">Dynamic Rendering</a></li>
-                        <li class="my-2"><a href="#optimization" class="text-blue-600 hover:underline highlight">Optimization</a></li>
-                        <li class="my-2"><a href="#composition-api" class="text-blue-600 hover:underline highlight">Composition API</a></li>
-                        <li class="my-2"><a href="#options-api" class="text-blue-600 hover:underline highlight">Options API</a></li>
-                        <li class="my-2"><a href="#conclusion" class="text-blue-600 hover:underline highlight">Conclusion</a></li>
+                        <li class="my-2"><a href="#introduction" class="text-green-600 hover:underline highlight">Introduction</a></li>
+                        <li class="my-2"><a href="#templates" class="text-green-600 hover:underline highlight">Component Templates</a></li>
+                        <li class="my-2"><a href="#styling" class="text-green-600 hover:underline highlight">Styling Components</a></li>
+                        <li class="my-2"><a href="#data-management" class="text-green-600 hover:underline highlight">Data Management</a></li>
+                        <li class="my-2"><a href="#lifecycle-hooks" class="text-green-600 hover:underline highlight">Lifecycle Hooks</a></li>
+                        <li class="my-2"><a href="#dynamic-rendering" class="text-green-600 hover:underline highlight">Dynamic Rendering</a></li>
+                        <li class="my-2"><a href="#optimization" class="text-green-600 hover:underline highlight">Optimization</a></li>
+                        <li class="my-2"><a href="#composition-api" class="text-green-600 hover:underline highlight">Composition API</a></li>
+                        <li class="my-2"><a href="#options-api" class="text-green-600 hover:underline highlight">Options API</a></li>
+                        <li class="my-2"><a href="#conclusion" class="text-green-600 hover:underline highlight">Conclusion</a></li>
                     </ul>
                 </nav>
                 <!-- <div class="mt-8">
@@ -176,25 +277,25 @@
                     </p>
                     <ul class="space-y-3 text-gray-600">
                     <li class="flex items-start">
-                        <svg class="h-5 w-5 text-blue-500 mt-0.5 mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <svg class="h-5 w-5 text-green-500 mt-0.5 mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                         </svg>
                         <span>User behavior tracking: clicks, views, time spent, search queries</span>
                     </li>
                     <li class="flex items-start">
-                        <svg class="h-5 w-5 text-blue-500 mt-0.5 mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <svg class="h-5 w-5 text-green-500 mt-0.5 mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                         </svg>
                         <span>Demographic data: age, location, gender (when available)</span>
                     </li>
                     <li class="flex items-start">
-                        <svg class="h-5 w-5 text-blue-500 mt-0.5 mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <svg class="h-5 w-5 text-green-500 mt-0.5 mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                         </svg>
                         <span>Contextual data: device type, time of day, referral source</span>
                     </li>
                     <li class="flex items-start">
-                        <svg class="h-5 w-5 text-blue-500 mt-0.5 mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <svg class="h-5 w-5 text-green-500 mt-0.5 mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                         </svg>
                         <span>Explicit preferences: ratings, feedback, surveys</span>
@@ -246,9 +347,9 @@
   <div class="mb-8 p-6 bg-white rounded-lg border border-gray-200">
     <h3 class="text-xl font-semibold text-gray-800 mb-4">3. Real-Time Personalization</h3>
     <div class="">
-      <div class="px-3 py-1  text-indigo-800 rounded-full text-sm">Session-based recommendations</div>
-      <div class="px-3 py-1  text-indigo-800 rounded-full text-sm">Context-aware suggestions</div>
-      <div class="px-3 py-1  text-indigo-800 rounded-full text-sm">Adaptive interfaces</div>
+      <div class="px-3 py-1  text-green-800 rounded-full text-sm">Session-based recommendations</div>
+      <div class="px-3 py-1  text-green-800 rounded-full text-sm">Context-aware suggestions</div>
+      <div class="px-3 py-1  text-green-800 rounded-full text-sm">Adaptive interfaces</div>
     </div>
   </div>
 
@@ -325,7 +426,7 @@
     <!-- Recommendation Systems -->
     <div class="mb-6">
       <h4 class="font-medium text-gray-700 mb-3 flex items-center">
-        <svg class="w-5 h-5 mr-2 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg class="w-5 h-5 mr-2 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
         </svg>
         Recommendation Systems
@@ -333,19 +434,19 @@
       <ul class="">
         <li class="my-2">
             <a href="https://surpriselib.com/" class=" text-green-500 p-3 rounded-lg">
-            <h5 class="font-medium text-blue-700">Surprise</h5>
+            <h5 class="font-medium text-green-700">Surprise</h5>
             <p class="text-gray-600 text-sm">Python scikit for building recommender systems</p>
             </a>
         </li>
         <li class="my-2">
             <a href="https://github.com/lyst/lightfm" class=" text-green-500 p-3 rounded-lg">
-            <h5 class="font-medium text-blue-700">LightFM</h5>
+            <h5 class="font-medium text-green-700">LightFM</h5>
             <p class="text-gray-600 text-sm">Hybrid recommendation algorithm</p>
             </a>
         </li>
         <li class="my-2">
             <a href="https://www.tensorflow.org/recommenders" class=" text-green-500 p-3 rounded-lg">
-            <h5 class="font-medium text-blue-700">TensorFlow Recommenders</h5>
+            <h5 class="font-medium text-green-700">TensorFlow Recommenders</h5>
             <p class="text-gray-600 text-sm">TF library for recommendation systems</p>
             </a>
         </li>
@@ -386,7 +487,7 @@
     <!-- Feature Stores -->
     <div class="mb-6">
       <h4 class="font-medium text-gray-700 mb-3 flex items-center">
-        <svg class="w-5 h-5 mr-2 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg class="w-5 h-5 mr-2 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
         </svg>
         Feature Stores
@@ -394,13 +495,13 @@
       <ul class="">
         <li class="my-2">
             <a href="https://feast.dev/" class=" text-green-500 p-3 rounded-lg">
-            <h5 class="font-medium text-purple-700">Feast</h5>
+            <h5 class="font-medium text-green-700">Feast</h5>
             <p class="text-gray-600 text-sm">Feature store for ML</p>
             </a>
         </li>
         <li class="my-2">
             <a href="https://www.hopsworks.ai/" class=" text-green-500 p-3 rounded-lg">
-            <h5 class="font-medium text-purple-700">Hopsworks</h5>
+            <h5 class="font-medium text-green-700">Hopsworks</h5>
             <p class="text-gray-600 text-sm">Open-source feature store</p>
             </a>
         </li>
@@ -494,7 +595,7 @@
       <!-- Data Collection -->
       <div class="flex">
         <div class="flex-shrink-0 mr-4">
-          <div class="flex items-center justify-center w-10 h-10 rounded-full bg-blue-100 text-blue-800 font-semibold">1</div>
+          <div class="flex items-center justify-center w-10 h-10 rounded-full bg-blue-100 text-green-800 font-semibold">1</div>
         </div>
         <div>
           <h4 class="font-medium text-gray-700 mb-2">Data Collection & Processing:</h4>
@@ -524,7 +625,7 @@
       <!-- Deployment -->
       <div class="flex">
         <div class="flex-shrink-0 mr-4">
-          <div class="flex items-center justify-center w-10 h-10 rounded-full bg-purple-100 text-purple-800 font-semibold">3</div>
+          <div class="flex items-center justify-center w-10 h-10 rounded-full bg-green-100 text-green-800 font-semibold">3</div>
         </div>
         <div>
           <h4 class="font-medium text-gray-700 mb-2">Deployment:</h4>
@@ -1092,13 +1193,13 @@
             <div class="neumorphic-inset p-4 pl-8">
                 <div class="mb-3">
                     <p class="font-medium">o Neumorphism.io (Shadow generator)</p>
-                    <a href="https://neumorphism.io" target="_blank" class="text-blue-500 hover:text-blue-700 text-sm">https://neumorphism.io</a>
+                    <a href="https://neumorphism.io" target="_blank" class="text-green-500 hover:text-green-700 text-sm">https://neumorphism.io</a>
                 </div>
                 
             </div>
             <div>
                     <p class="font-medium">Reference</p>
-                    <a href="https://www.justinmind.com/ui-design/neumorphism" target="_blank" class="text-blue-500 hover:text-blue-700 text-sm">
+                    <a href="https://www.justinmind.com/ui-design/neumorphism" target="_blank" class="text-green-500 hover:text-green-700 text-sm">
                       https://www.justinmind.com/ui-design/neumorphism
                     </a>
                 </div>
@@ -1571,6 +1672,950 @@
                 <div class="flex items-start">
                     <span class="text-green-400 mr-2 text-xl">•</span>
                     <span>Experiment with AI (MediaPipe for hand tracking)</span>
+                </div>
+            </div>
+        </div>
+        <!-- Dark mode & Eye friendly design -->
+         <div class="max-w-6xl mx-auto p-4 md:p-8">
+        <!-- Theme Toggle -->
+        <!-- <div class="flex justify-end mb-8">
+            <div class="toggle-wrapper">
+                <span class="text-sm">Light</span>
+                <label class="toggle-container">
+                    <input type="checkbox" id="themeToggle">
+                    <span class="toggle-slider bg-gray-300 dark:bg-gray-600"></span>
+                </label>
+                <span class="text-sm">Dark</span>
+            </div>
+        </div> -->
+        
+        <!-- Header Section -->
+        <div class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-md mb-8">
+            <h2 class="text-2xl md:text-3xl font-bold mb-2 text-green-500 dark:text-green-400">Dark Mode & Eye-Friendly Design: Implementation Guide</h2>
+            <p class="text-lg text-gray-700 dark:text-gray-300">Dark mode and eye-friendly designs reduce eye strain, improve readability, and enhance UX. Here's how to implement them, the best tools, and open-source resources.</p>
+        </div>
+        
+        <!-- Section 1: Key Principles -->
+        <div class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-md mb-8">
+            <h3 class="text-2xl font-bold mb-6 text-green-500 dark:text-green-400">1. Key Principles of Eye-Friendly Design</h3>
+            
+            <div class="space-y-4">
+                <div class="flex items-start">
+                    <span class="text-green-500 mr-3 text-xl">✅</span>
+                    <div>
+                        <span class="font-medium">Contrast Ratio</span>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">(WCAG recommends 4.5:1 for text)</p>
+                    </div>
+                </div>
+                <div class="flex items-start">
+                    <span class="text-green-500 mr-3 text-xl">✅</span>
+                    <div>
+                        <span class="font-medium">Reduced Blue Light</span>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">(Warmer tones in dark mode)</p>
+                    </div>
+                </div>
+                <div class="flex items-start">
+                    <span class="text-green-500 mr-3 text-xl">✅</span>
+                    <div>
+                        <span class="font-medium">Adaptive Brightness</span>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">(Auto-adjusts based on ambient light)</p>
+                    </div>
+                </div>
+                <div class="flex items-start">
+                    <span class="text-green-500 mr-3 text-xl">✅</span>
+                    <div>
+                        <span class="font-medium">Legible Typography</span>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">(Sans-serif fonts, proper spacing)</p>
+                    </div>
+                </div>
+                <div class="flex items-start">
+                    <span class="text-green-500 mr-3 text-xl">✅</span>
+                    <div>
+                        <span class="font-medium">Motion Reduction</span>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">(Prefers reduced motion for accessibility)</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Section 2: Implementation Approaches -->
+        <div class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-md mb-8">
+            <h2 class="text-2xl font-bold mb-6 text-green-600 dark:text-green-400">2. Implementation Approaches</h2>
+            
+            <div class="grid md:grid-cols-1 gap-8">
+                <!-- Dark Mode Toggle -->
+                <div>
+                    <h3 class="text-xl font-semibold mb-4 text-green-500 dark:text-green-300">A. Dark Mode Toggle (CSS/JS)</h3>
+                    
+                    <div class="mb-6">
+                        <h4 class="font-medium mb-2">JavaScript</h4>
+                        <pre class="bg-gray-100 dark:bg-gray-700 p-4 rounded-lg code-block overflow-x-auto">
+<code class="text-green-500 dark:text-gray-200">// Check for saved theme preference
+const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+const currentTheme = localStorage.getItem('theme');
+
+if (currentTheme === 'dark' || (!currentTheme && prefersDark.matches)) {
+    document.documentElement.classList.add('dark');
+}
+
+// Theme toggle functionality
+document.getElementById('themeToggle').addEventListener('change', function() {
+    if (this.checked) {
+        document.documentElement.classList.add('dark');
+        localStorage.setItem('theme', 'dark');
+    } else {
+        document.documentElement.classList.remove('dark');
+        localStorage.setItem('theme', 'light');
+    }
+});</code>
+                        </pre>
+                    </div>
+                    
+                    <div>
+                        <h4 class="font-medium mb-2">CSS</h4>
+                        <pre class="bg-gray-100 dark:bg-gray-700 p-4 rounded-lg code-block overflow-x-auto">
+<code class="text-green-500 dark:text-gray-200">/* Tailwind dark mode config */
+module.exports = {
+    darkMode: 'class',
+    // ...
+}
+
+/* Custom dark mode styles */
+.dark {
+    --color-bg-primary: #121212;
+    --color-text-primary: #e0e0e0;
+    /* ... */
+}
+
+@media (prefers-color-scheme: dark) {
+    /* System dark mode fallback */
+}</code>
+                        </pre>
+                    </div>
+                </div>
+                
+                <!-- Color Palettes -->
+                <div>
+                    <h3 class="text-xl font-semibold mb-4 text-green-500 dark:text-green-300">C. Eye-Friendly Color Palettes</h3>
+                    
+                    <div class="grid grid-cols-2 gap-4 mb-6">
+                        <div class="dark-mode-bg p-4 rounded-lg">
+                            <p class="font-medium">Dark Mode</p>
+                            <p class="text-sm">Background: #121212</p>
+                            <p class="text-sm">Text: #e0e0e0</p>
+                        </div>
+                        <div class="light-mode-bg p-4 rounded-lg">
+                            <p class="font-medium">Light Mode</p>
+                            <p class="text-sm">Background: #f8f9fa</p>
+                            <p class="text-sm">Text: #212529</p>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <p class="font-medium mb-2">Accent Colors</p>
+                        <div class="flex items-center space-x-4">
+                            <div class="w-16 h-16 bg-blue-600 rounded-lg flex items-center justify-center">
+                                <span class="text-white text-xs">Avoid</span>
+                            </div>
+                            <div class="text-sm">
+                                <p>Pure blue (#0000FF)</p>
+                                <p>Too harsh in dark mode</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center space-x-4 mt-4">
+                            <div class="w-16 h-16 bg-green-400 rounded-lg flex items-center justify-center accent-green">
+                                <span class="text-white text-xs">Use</span>
+                            </div>
+                            <div class="text-sm">
+                                <p>Softer green (#BB86FC)</p>
+                                <p>Easier on the eyes</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Section 3: Best Tools & Libraries -->
+        <div class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-md mb-8">
+            <h2 class="text-2xl font-bold mb-6 text-green-600 dark:text-green-400">3. Best Tools & Libraries</h2>
+            
+            <div class="grid md:grid-cols-3 gap-6">
+                <!-- CSS Frameworks -->
+                <div>
+                    <h3 class="text-xl font-semibold mb-4 text-green-500 dark:text-green-300">A. CSS Frameworks with Dark Mode</h3>
+                    <ol class="space-y-3 list-decimal list-inside">
+                        <li class="pl-2">Tailwind CSS (Use dark: modifier)</li>
+                        <li class="pl-2">Material-UI (Built-in dark theme)</li>
+                        <li class="pl-2">Bootstrap Dark Mode</li>
+                    </ol>
+                </div>
+                
+                <!-- Dark Mode Plugins -->
+                <div>
+                    <h3 class="text-xl font-semibold mb-4 text-green-500 dark:text-green-300">B. Dark Mode Plugins</h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <span class="text-green-500 mr-2">•</span>
+                            <span>Darkmode.js (1-click dark mode)</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-green-500 mr-2">•</span>
+                            <span>react-dark-mode-toggle (React component)</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-green-500 mr-2">•</span>
+                            <span>vue-dark-mode (Vue.js plugin)</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Contrast Checkers -->
+                <div>
+                    <h3 class="text-xl font-semibold mb-4 text-green-500 dark:text-green-300">C. Color Contrast Checkers</h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <span class="text-green-500 mr-2">•</span>
+                            <span>WebAIM Contrast Checker</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-green-500 mr-2">•</span>
+                            <span>Coolors Contrast Checker</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-green-500 mr-2">•</span>
+                            <span>Chrome DevTools</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Section 4: Open-Source Projects -->
+        <div class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-md mb-8">
+            <h2 class="text-2xl font-bold mb-6 text-green-600 dark:text-green-400">4. Open-Source Projects & Templates</h2>
+            
+            <div class="grid md:grid-cols-2 gap-6">
+                <!-- Dark Mode UI Kits -->
+                <div>
+                    <h3 class="text-xl font-semibold mb-4 text-green-500 dark:text-green-300">A. Dark Mode UI Kits</h3>
+                    <ol class="space-y-3 list-decimal list-inside">
+                        <li class="pl-2">
+                            <span>Dark/Light Theme Figma Kit</span>
+                            <a href="https://www.figma.com/community/file/123456789" class="text-green-500 hover:text-green-700 dark:hover:text-green-300 block text-sm">Figma Community</a>
+                        </li>
+                        <li class="pl-2">
+                            <span>Tailwind Dark Mode Template</span>
+                            <a href="https://github.com/tailwindlabs/tailwindcss-dark-mode" class="text-green-500 hover:text-green-700 dark:hover:text-green-300 block text-sm">GitHub</a>
+                        </li>
+                        <li class="pl-2">
+                            <span>Free Dark UI Dashboard</span>
+                            <a href="https://github.com/creativetimofficial/black-dashboard" class="text-green-500 hover:text-green-700 dark:hover:text-green-300 block text-sm">GitHub</a>
+                        </li>
+                    </ol>
+                </div>
+                
+                <!-- Eye-Friendly Design Systems -->
+                <div>
+                    <h3 class="text-xl font-semibold mb-4 text-green-500 dark:text-green-300">B. Eye-Friendly Design Systems</h3>
+                    <ol class="space-y-3 list-decimal list-inside" start="4">
+                        <li class="pl-2">
+                            <span>Adobe's Accessible Palette Generator</span>
+                            <a href="https://color.adobe.com/create/color-accessibility" class="text-green-500 hover:text-green-700 dark:hover:text-green-300 block text-sm">Adobe Color</a>
+                        </li>
+                        <li class="pl-2">
+                            <span>A11y Style Guide</span>
+                            <a href="https://a11y-style-guide.com" class="text-green-500 hover:text-green-700 dark:hover:text-green-300 block text-sm">Website</a>
+                        </li>
+                        <li class="pl-2">
+                            <span>Open Color (Accessible Colors)</span>
+                            <a href="https://yeun.github.io/open-color" class="text-green-500 hover:text-green-700 dark:hover:text-green-300 block text-sm">GitHub</a>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Section 5: Best Practices -->
+        <div class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-md mb-8">
+            <h2 class="text-2xl font-bold mb-6 text-green-600 dark:text-green-400">5. Best Practices</h2>
+            
+            <div class="grid md:grid-cols-2 gap-6">
+                <!-- Dark Mode Practices -->
+                <div>
+                    <h3 class="text-xl font-semibold mb-4 text-green-500 dark:text-green-300">For Dark Mode</h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <span class="text-green-500 mr-2">•</span>
+                            <span>Avoid pure black (#000000) → Use dark gray (#121212)</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-green-500 mr-2">•</span>
+                            <span>Desaturate colors (reduce harsh contrasts)</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-green-500 mr-2">•</span>
+                            <span>Test on OLED screens (true blacks vs. dark grays)</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Eye-Friendly Practices -->
+                <div>
+                    <h3 class="text-xl font-semibold mb-4 text-green-500 dark:text-green-300">For Eye-Friendly Design</h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <span class="text-green-500 mr-2">•</span>
+                            <span>Use warm grays instead of cool grays</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-green-500 mr-2">•</span>
+                            <span>Implement dynamic text sizing (rem units)</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-green-500 mr-2">•</span>
+                            <span>Support prefers-reduced-motion</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Section 6: Where to Use -->
+        <div class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-md mb-8">
+            <h2 class="text-2xl font-bold mb-6 text-green-600 dark:text-green-400">6. Where to Use These Techniques</h2>
+            
+            <div class="overflow-x-auto">
+                <table class="w-full border-collapse">
+                    <thead>
+                        <tr class="bg-green-100 dark:bg-green-900/50 text-left">
+                            <th class="p-3 font-semibold text-green-800 dark:text-green-200">Use Case</th>
+                            <th class="p-3 font-semibold text-green-800 dark:text-green-200">Dark Mode</th>
+                            <th class="p-3 font-semibold text-green-800 dark:text-green-200">Eye-Friendly Adjustments</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="border-t border-gray-200 dark:border-gray-700">
+                            <td class="p-3">Websites</td>
+                            <td class="p-3 text-green-500">✅</td>
+                            <td class="p-3 text-green-500">✅ (Contrast, readable fonts)</td>
+                        </tr>
+                        <tr class="border-t border-gray-200 dark:border-gray-700">
+                            <td class="p-3">Mobile Apps</td>
+                            <td class="p-3 text-green-500">✅</td>
+                            <td class="p-3 text-green-500">✅ (Dynamic text scaling)</td>
+                        </tr>
+                        <tr class="border-t border-gray-200 dark:border-gray-700">
+                            <td class="p-3">E-Books/PDFs</td>
+                            <td class="p-3 text-green-500">✅</td>
+                            <td class="p-3 text-green-500">✅ (Sepia tone mode)</td>
+                        </tr>
+                        <tr class="border-t border-gray-200 dark:border-gray-700">
+                            <td class="p-3">Developer Tools</td>
+                            <td class="p-3 text-green-500">✅</td>
+                            <td class="p-3 text-green-500">✅ (Syntax highlighting)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+        <!-- Section 7: Final Recommendations -->
+        <div class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-md">
+            <h2 class="text-2xl font-bold mb-6 text-green-600 dark:text-green-400">7. Final Recommendations</h2>
+            
+            <div class="space-y-4">
+                <div class="flex items-start">
+                    <span class="text-green-500 mr-2 text-xl">•</span>
+                    <span>Start with CSS variables for easy theming</span>
+                </div>
+                <div class="flex items-start">
+                    <span class="text-green-500 mr-2 text-xl">•</span>
+                    <span>Respect OS preferences (prefers-color-scheme)</span>
+                </div>
+                <div class="flex items-start">
+                    <span class="text-green-500 mr-2 text-xl">•</span>
+                    <span>Test with real users (Accessibility audits)</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Micro-Interactions -->
+     <div class="bg-white rounded-xl p-6 shadow-sm mb-8 interaction-card">
+            <h1 class="text-3xl md:text-4xl font-bold mb-2 text-green-600">Micro-Interactions & Haptic Feedback: Implementation Guide</h1>
+            <p class="text-lg text-gray-700">Micro-interactions and haptic feedback enhance UX by providing subtle, engaging responses to user actions. Here's how to implement them effectively:</p>
+        </div>
+        
+        <!-- Section 1: Core Concepts -->
+        <div class="bg-white rounded-xl p-6 shadow-sm mb-8 interaction-card">
+            <h2 class="text-2xl font-bold mb-6 text-green-600">1. Core Concepts</h2>
+            
+            <div class="grid md:grid-cols-3 gap-6">
+                <!-- Micro-Interactions Column -->
+                <div class="border-l-2 border-green-400 pl-4">
+                    <h3 class="text-xl font-semibold mb-4 text-green-500">A. Micro-Interactions</h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <span class="text-green-500 mr-2">•</span>
+                            <span>Button clicks (Ripple effects, scale animations)</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-green-500 mr-2">•</span>
+                            <span>Form validation (Success/error indicators)</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-green-500 mr-2">•</span>
+                            <span>Loading states (Skeleton screens, progress bars)</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-green-500 mr-2">•</span>
+                            <span>Notifications (Subtle slide-in animations)</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Haptic Feedback Column -->
+                <div class="border-l-2 border-green-400 pl-4">
+                    <h3 class="text-xl font-semibold mb-4 text-green-500">B. Haptic Feedback</h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <span class="text-green-500 mr-2">•</span>
+                            <span>Vibrations (Short pulses for confirmation)</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-green-500 mr-2">•</span>
+                            <span>Tactile responses (Apple's Taptic Engine, Android's Vibrator API)</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-green-500 mr-2">•</span>
+                            <span>Pressure-sensitive interactions (3D Touch, Force Touch)</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Emotion-Driven Column -->
+                <div class="border-l-2 border-green-400 pl-4">
+                    <h3 class="text-xl font-semibold mb-4 text-green-500">C. Emotion-Driven Interactions</h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <span class="text-green-500 mr-2">•</span>
+                            <span>Celebratory animations (Confetti, fireworks)</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-green-500 mr-2">•</span>
+                            <span>Playful transitions (Bouncy effects, elastic scrolling)</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-green-500 mr-2">•</span>
+                            <span>Reward feedback (Badges, progress unlocks)</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Section 2: Implementation Methods -->
+        <div class="bg-white rounded-xl p-6 shadow-sm mb-8 interaction-card">
+            <h2 class="text-2xl font-bold mb-6 text-green-600">2. Implementation Methods</h2>
+            
+            <div class="grid md:grid-cols-1 gap-8">
+                <!-- CSS/JS Examples -->
+                <div>
+                    <h3 class="text-xl font-semibold mb-4 text-green-500">A. CSS/JS for Micro-Interactions</h3>
+                    
+                    <div class="mb-6">
+                        <h4 class="font-medium mb-2">1. Button Click Effect (CSS)</h4>
+                        <div class="flex justify-center mb-4">
+                            <button class="btn-click px-6 py-3 bg-green-600 text-white rounded-lg shadow-md hover:bg-green-700">
+                                Click Me
+                            </button>
+                        </div>
+                        <pre class="bg-gray-800 p-4 rounded-lg code-block overflow-x-auto">
+<code class="text-gray-200">.btn-click {
+    transition: transform 0.1s ease;
+}
+
+.btn-click:active {
+    transform: scale(0.95);
+}</code>
+                        </pre>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <h4 class="font-medium mb-2">2. Ripple Effect (JS)</h4>
+                        <div class="flex justify-center mb-4">
+                            <button id="rippleBtn" class="ripple px-6 py-3 bg-green-600 text-white rounded-lg shadow-md hover:bg-green-700">
+                                Ripple Effect
+                            </button>
+                        </div>
+                        <pre class="bg-gray-800 p-4 rounded-lg code-block overflow-x-auto">
+<code class="text-gray-200">// JavaScript
+const buttons = document.querySelectorAll('.ripple');
+buttons.forEach(button => {
+    button.addEventListener('click', function(e) {
+        const x = e.clientX - e.target.getBoundingClientRect().left;
+        const y = e.clientY - e.target.getBoundingClientRect().top;
+        
+        const circle = document.createElement('span');
+        circle.classList.add('ripple-effect');
+        circle.style.left = `${x}px`;
+        circle.style.top = `${y}px`;
+        
+        this.appendChild(circle);
+        
+        setTimeout(() => {
+            circle.remove();
+        }, 600);
+    });
+});
+
+/* CSS */
+.ripple {
+    position: relative;
+    overflow: hidden;
+}
+
+.ripple-effect {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.7);
+    transform: scale(0);
+    animation: ripple 600ms linear;
+    pointer-events: none;
+}
+
+@keyframes ripple {
+    to {
+        transform: scale(4);
+        opacity: 0;
+    }
+}</code>
+                        </pre>
+                    </div>
+                    
+                    <div>
+                        <h4 class="font-medium mb-2">3. Loading Spinner (Pure CSS)</h4>
+                        <div class="flex justify-center mb-4">
+                            <div class="loader"></div>
+                        </div>
+                        <pre class="bg-gray-800 p-4 rounded-lg code-block overflow-x-auto">
+<code class="text-gray-200">.loader {
+    width: 48px;
+    height: 48px;
+    border: 5px solid #e2e8f0;
+    border-bottom-color: #3b82f6;
+    border-radius: 50%;
+    display: inline-block;
+    animation: rotation 1s linear infinite;
+}
+
+@keyframes rotation {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}</code>
+                        </pre>
+                    </div>
+                </div>
+                
+                <!-- Haptic Feedback Examples -->
+                <div>
+                    <h3 class="text-xl font-semibold mb-4 text-green-500">B. Haptic Feedback (Mobile APIs)</h3>
+                    
+                    <div class="mb-6">
+                        <h4 class="font-medium mb-2">1. Android (Java/Kotlin)</h4>
+                        <pre class="bg-gray-800 p-4 rounded-lg code-block overflow-x-auto">
+<code class="text-gray-200">// Java
+Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+if (vibrator.hasVibrator()) {
+    // Vibrate for 50ms
+    vibrator.vibrate(50);
+}
+
+// Kotlin
+val vibrator = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
+if (vibrator.hasVibrator()) {
+    // Vibrate for 50ms
+    vibrator.vibrate(50)
+}</code>
+                        </pre>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <h4 class="font-medium mb-2">2. iOS (Swift)</h4>
+                        <pre class="bg-gray-800 p-4 rounded-lg code-block overflow-x-auto">
+<code class="text-gray-200">import UIKit
+import CoreHaptics
+
+// For basic vibration
+AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
+
+// For more advanced haptics (iOS 13+)
+if CHHapticEngine.capabilitiesForHardware().supportsHaptics {
+    do {
+        let engine = try CHHapticEngine()
+        try engine.start()
+        
+        let intensity = CHHapticEventParameter(parameterID: .hapticIntensity, value: 1.0)
+        let sharpness = CHHapticEventParameter(parameterID: .hapticSharpness, value: 1.0)
+        let event = CHHapticEvent(
+            eventType: .hapticTransient,
+            parameters: [intensity, sharpness],
+            relativeTime: 0
+        )
+        
+        let pattern = try CHHapticPattern(events: [event], parameters: [])
+        let player = try engine.makePlayer(with: pattern)
+        try player.start(atTime: 0)
+    } catch {
+        print("Haptic error: \(error)")
+    }
+}</code>
+                        </pre>
+                    </div>
+                    
+                    <div>
+                        <h4 class="font-medium mb-2">3. Web (Experimental)</h4>
+                        <div class="flex justify-center mb-4">
+                            <button id="vibrateBtn" class="px-6 py-3 bg-green-600 text-white rounded-lg shadow-md hover:bg-green-700">
+                                Try Vibration (Mobile)
+                            </button>
+                        </div>
+                        <pre class="bg-gray-800 p-4 rounded-lg code-block overflow-x-auto">
+<code class="text-gray-200">// Check if vibration API is supported
+if ('vibrate' in navigator) {
+    // Vibrate for 50ms
+    document.getElementById('vibrateBtn').addEventListener('click', () => {
+        navigator.vibrate(50);
+    });
+} else {
+    console.log('Vibration API not supported');
+}
+
+// Pattern: vibrate for 100ms, pause for 50ms, vibrate for 150ms
+// navigator.vibrate([100, 50, 150]);</code>
+                        </pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Section 3: Best Tools & Libraries -->
+        <div class="bg-white rounded-xl p-6 shadow-sm mb-8 interaction-card">
+            <h2 class="text-2xl font-bold mb-6 text-green-600">3. Best Tools & Libraries</h2>
+            
+            <div class="grid md:grid-cols-3 gap-6">
+                <!-- CSS Animation Libraries -->
+                <div>
+                    <h3 class="text-xl font-semibold mb-4 text-green-500">A. CSS Animation Libraries</h3>
+                    <ol class="space-y-3 list-decimal list-inside">
+                        <li class="pl-2">
+                            <span>Animate.css (Pre-built animations)</span>
+                            <a href="https://animate.style" class="text-green-500 hover:text-green-700 block text-sm">Website</a>
+                        </li>
+                        <li class="pl-2">
+                            <span>Hover.css (Hover effects)</span>
+                            <a href="https://ianlunn.github.io/Hover/" class="text-green-500 hover:text-green-700 block text-sm">GitHub</a>
+                        </li>
+                        <li class="pl-2">
+                            <span>Motion One (Lightweight animations)</span>
+                            <a href="https://motion.dev" class="text-green-500 hover:text-green-700 block text-sm">Website</a>
+                        </li>
+                        <li class="pl-2">
+                            <span>CSShake (Fun shaking effects)</span>
+                            <a href="https://elrumordelaluz.github.io/csshake/" class="text-green-500 hover:text-green-700 block text-sm">GitHub</a>
+                        </li>
+                    </ol>
+                </div>
+                
+                <!-- JavaScript Libraries -->
+                <div>
+                    <h3 class="text-xl font-semibold mb-4 text-green-500">B. JavaScript Libraries</h3>
+                    <ol class="space-y-3 list-decimal list-inside">
+                        <li class="pl-2">
+                            <span>GSAP (High-performance animations)</span>
+                            <a href="https://greensock.com/gsap/" class="text-green-500 hover:text-green-700 block text-sm">Website</a>
+                        </li>
+                        <li class="pl-2">
+                            <span>Framer Motion (React animation library)</span>
+                            <a href="https://www.framer.com/motion/" class="text-green-500 hover:text-green-700 block text-sm">Website</a>
+                        </li>
+                        <li class="pl-2">
+                            <span>Lottie (Adobe After Effects animations in JS)</span>
+                            <a href="https://airbnb.design/lottie/" class="text-green-500 hover:text-green-700 block text-sm">Website</a>
+                        </li>
+                    </ol>
+                </div>
+                
+                <!-- Haptic Feedback Libraries -->
+                <div>
+                    <h3 class="text-xl font-semibold mb-4 text-green-500">C. Haptic Feedback Libraries</h3>
+                    <ol class="space-y-3 list-decimal list-inside">
+                        <li class="pl-2">
+                            <span>React Haptic (React)</span>
+                            <a href="https://github.com/joshwcomeau/react-haptic" class="text-green-500 hover:text-green-700 block text-sm">GitHub</a>
+                        </li>
+                        <li class="pl-2">
+                            <span>Vibration.js (Web wrapper)</span>
+                            <a href="https://github.com/ai/vibration.js" class="text-green-500 hover:text-green-700 block text-sm">GitHub</a>
+                        </li>
+                        <li class="pl-2">
+                            <span>Capacitor Haptics (Cross-platform)</span>
+                            <a href="https://capacitorjs.com/docs/apis/haptics" class="text-green-500 hover:text-green-700 block text-sm">Documentation</a>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Section 4: Open-Source Projects -->
+        <div class="bg-white rounded-xl p-6 shadow-sm mb-8 interaction-card">
+            <h2 class="text-2xl font-bold mb-6 text-green-600">4. Open-Source Projects & Templates</h2>
+            
+            <div class="grid md:grid-cols-3 gap-6">
+                <!-- Micro-Interaction Examples -->
+                <div>
+                    <h3 class="text-xl font-semibold mb-4 text-green-500">A. Micro-Interaction Examples</h3>
+                    <ol class="space-y-3 list-decimal list-inside">
+                        <li class="pl-2">
+                            <span>Micro-Interactions Collection (CodePen)</span>
+                            <a href="https://codepen.io/collection/DQvYpQ" class="text-green-500 hover:text-green-700 block text-sm">CodePen</a>
+                        </li>
+                        <li class="pl-2">
+                            <span>Button Hover Effects</span>
+                            <a href="https://github.com/IanLunn/Hover" class="text-green-500 hover:text-green-700 block text-sm">GitHub</a>
+                        </li>
+                        <li class="pl-2">
+                            <span>Loading Animations CSS</span>
+                            <a href="https://github.com/tobiasahlin/SpinKit" class="text-green-500 hover:text-green-700 block text-sm">GitHub</a>
+                        </li>
+                    </ol>
+                </div>
+                
+                <!-- Haptic Feedback Projects -->
+                <div>
+                    <h3 class="text-xl font-semibold mb-4 text-green-500">B. Haptic Feedback Projects</h3>
+                    <ol class="space-y-3 list-decimal list-inside" start="4">
+                        <li class="pl-2">
+                            <span>Web Vibration API Demo</span>
+                            <a href="https://github.com/mdn/dom-examples/tree/main/vibration-api" class="text-green-500 hover:text-green-700 block text-sm">GitHub</a>
+                        </li>
+                        <li class="pl-2">
+                            <span>React Native Haptics</span>
+                            <a href="https://github.com/mkuczera/react-native-haptic-feedback" class="text-green-500 hover:text-green-700 block text-sm">GitHub</a>
+                        </li>
+                    </ol>
+                </div>
+                
+                <!-- Full UI Kits -->
+                <div>
+                    <h3 class="text-xl font-semibold mb-4 text-green-500">C. Full UI Kits with Micro-Interactions</h3>
+                    <ol class="space-y-3 list-decimal list-inside" start="6">
+                        <li class="pl-2">
+                            <span>Tailwind UI Animations</span>
+                            <a href="https://tailwindui.com/components" class="text-green-500 hover:text-green-700 block text-sm">Website</a>
+                        </li>
+                        <li class="pl-2">
+                            <span>Material Design Motion</span>
+                            <a href="https://m2.material.io/design/motion" class="text-green-500 hover:text-green-700 block text-sm">Documentation</a>
+                        </li>
+                        <li class="pl-2">
+                            <span>Apple Human Interface Guidelines (Haptics)</span>
+                            <a href="https://developer.apple.com/design/human-interface-guidelines/haptics" class="text-green-500 hover:text-green-700 block text-sm">Documentation</a>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Section 5: Best Practices -->
+        <div class="bg-white rounded-xl p-6 shadow-sm mb-8 interaction-card">
+            <h2 class="text-2xl font-bold mb-6 text-green-600">5. Best Practices</h2>
+            
+            <div class="space-y-4">
+                <div class="flex items-start">
+                    <span class="text-green-500 mr-3 text-xl">✅</span>
+                    <span>Keep animations under 300ms (Fast enough to feel responsive)</span>
+                </div>
+                <div class="flex items-start">
+                    <span class="text-green-500 mr-3 text-xl">✅</span>
+                    <span>Use easing functions (ease-out, cubic-bezier) for natural motion</span>
+                </div>
+                <div class="flex items-start">
+                    <span class="text-green-500 mr-3 text-xl">✅</span>
+                    <span>Provide fallbacks for users with prefers-reduced-motion</span>
+                </div>
+                <div class="flex items-start">
+                    <span class="text-green-500 mr-3 text-xl">✅</span>
+                    <span>Test haptics on real devices (Android/iOS simulators don't emulate vibrations well)</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Section 6: Emotion-Driven Examples -->
+        <div class="bg-white rounded-xl p-6 shadow-sm mb-8 interaction-card">
+            <h2 class="text-2xl font-bold mb-6 text-green-600">6. Emotion-Driven Interaction Examples</h2>
+            
+            <div class="grid md:grid-cols-1 gap-6">
+                <!-- Confetti Celebration -->
+                <div>
+                    <h3 class="text-xl font-semibold mb-4 text-green-500">1. Confetti Celebration (JS)</h3>
+                    <div class="flex justify-center mb-4 relative h-32">
+                        <button id="confettiBtn" class="px-6 py-3 bg-pink-600 text-white rounded-lg shadow-md hover:bg-pink-700 h-12 self-center">
+                            Celebrate!
+                        </button>
+                    </div>
+                    <pre class="bg-gray-800 p-4 rounded-lg code-block overflow-x-auto">
+<code class="text-gray-200">document.getElementById('confettiBtn').addEventListener('click', function() {
+    const colors = ['#f43f5e', '#ec4899', '#d946ef', '#a855f7', '#8b5cf6'];
+    const container = this.parentElement;
+    
+    for (let i = 0; i < 50; i++) {
+        const confetti = document.createElement('div');
+        confetti.classList.add('confetti');
+        confetti.style.left = Math.random() * 100 + '%';
+        confetti.style.top = '-10px';
+        confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+        confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
+        
+        const animDuration = Math.random() * 3 + 2;
+        confetti.style.animation = `confettiFall ${animDuration}s linear forwards`;
+        
+        container.appendChild(confetti);
+        
+        setTimeout(() => {
+            confetti.remove();
+        }, animDuration * 1000);
+    }
+});
+
+/* CSS */
+@keyframes confettiFall {
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(150px) rotate(360deg);
+        opacity: 0;
+    }
+}</code>
+                    </pre>
+                </div>
+                
+                <!-- Progress Celebration -->
+                <div>
+                    <h3 class="text-xl font-semibold mb-4 text-green-500">2. Progress Celebration (CSS)</h3>
+                    <div class="flex flex-col items-center mb-4">
+                        <div class="w-full h-4 bg-gray-200 rounded-full mb-2 overflow-hidden">
+                            <div id="progressBar" class="h-full bg-green-600 rounded-full" style="width: 0%"></div>
+                        </div>
+                        <button id="progressBtn" class="px-6 py-3 bg-green-600 text-white rounded-lg shadow-md hover:bg-green-700 progress-celebration">
+                            Complete Task
+                        </button>
+                    </div>
+                    <pre class="bg-gray-800 p-4 rounded-lg code-block overflow-x-auto">
+<code class="text-gray-200">document.getElementById('progressBtn').addEventListener('click', function() {
+    const progressBar = document.getElementById('progressBar');
+    let width = 0;
+    const interval = setInterval(() => {
+        if (width >= 100) {
+            clearInterval(interval);
+            this.classList.add('complete');
+            setTimeout(() => {
+                this.classList.remove('complete');
+            }, 1500);
+        } else {
+            width++;
+            progressBar.style.width = width + '%';
+        }
+    }, 20);
+});
+
+/* CSS */
+.progress-celebration::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(90deg, rgba(59,130,246,0.2) 0%, rgba(99,102,241,0.2) 100%);
+    transform: translateX(-100%);
+}
+
+.progress-celebration.complete::after {
+    animation: progressCelebration 1.5s ease-out;
+}
+
+@keyframes progressCelebration {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}</code>
+                    </pre>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Section 7: Where to Use -->
+        <div class="bg-white rounded-xl p-6 shadow-sm mb-8 interaction-card">
+            <h2 class="text-2xl font-bold mb-6 text-green-600">7. Where to Use These Effects</h2>
+            
+            <div class="overflow-x-auto">
+                <table class="w-full border-collapse">
+                    <thead>
+                        <tr class="bg-green-100 text-left">
+                            <th class="p-3 font-semibold text-green-800">Use Case</th>
+                            <th class="p-3 font-semibold text-green-800">Micro-Interaction</th>
+                            <th class="p-3 font-semibold text-green-800">Haptic Feedback</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="border-t border-gray-200">
+                            <td class="p-3">Button Clicks</td>
+                            <td class="p-3">Ripple, scale</td>
+                            <td class="p-3">Short vibration</td>
+                        </tr>
+                        <tr class="border-t border-gray-200">
+                            <td class="p-3">Form Submission</td>
+                            <td class="p-3">Loading spinner</td>
+                            <td class="p-3">Success buzz</td>
+                        </tr>
+                        <tr class="border-t border-gray-200">
+                            <td class="p-3">Pull-to-Refresh</td>
+                            <td class="p-3">Elastic animation</td>
+                            <td class="p-3">Subtle tap</td>
+                        </tr>
+                        <tr class="border-t border-gray-200">
+                            <td class="p-3">Game UX</td>
+                            <td class="p-3">Particle effects</td>
+                            <td class="p-3">Strong vibration</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+        <!-- Final Recommendations -->
+        <div class="bg-white rounded-xl p-6 shadow-sm interaction-card">
+            <h2 class="text-2xl font-bold mb-6 text-green-600">Final Recommendations</h2>
+            
+            <div class="space-y-4">
+                <div class="flex items-start">
+                    <span class="text-green-500 mr-2 text-xl">•</span>
+                    <span>Start small: Add a button press animation first</span>
+                </div>
+                <div class="flex items-start">
+                    <span class="text-green-500 mr-2 text-xl">•</span>
+                    <span>Use CSS transitions where possible (better performance than JS)</span>
+                </div>
+                <div class="flex items-start">
+                    <span class="text-green-500 mr-2 text-xl">•</span>
+                    <span>Test on multiple devices: Haptics vary across Android/iOS</span>
+                </div>
+                <div class="flex items-start">
+                    <span class="text-green-500 mr-2 text-xl">•</span>
+                    <span>Measure impact: Track engagement before/after adding micro-interactions</span>
                 </div>
             </div>
         </div>
@@ -2179,12 +3224,12 @@ function increment() {
                 <div class="bg-blue-50 border-l-4 border-blue-500 p-4 mb-6">
                     <div class="flex">
                         <div class="flex-shrink-0">
-                            <svg class="h-5 w-5 text-blue-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                            <svg class="h-5 w-5 text-green-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                                 <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2h-1V9z" clip-rule="evenodd" />
                             </svg>
                         </div>
                         <div class="ml-3">
-                            <p class="text-sm text-blue-700">
+                            <p class="text-sm text-green-700">
                                 Vue 3's flexibility allows you to choose the right approach for each component in your application. Many projects successfully use both APIs where they make the most sense.
                             </p>
                         </div>
@@ -2193,10 +3238,10 @@ function increment() {
                 
                 <h3 class="text-xl font-semibold mt-6 mb-3">Further Reading</h3>
                 <ul class="list-disc pl-6 mb-4 space-y-2">
-                    <li class="my-2"><a href="https://v3.vuejs.org/guide/introduction.html" class="text-blue-600 hover:underline">Official Vue 3 Documentation</a></li>
-                    <li class="my-2"><a href="https://v3.vuejs.org/guide/composition-api-introduction.html" class="text-blue-600 hover:underline">Composition API Guide</a></li>
-                    <li class="my-2"><a href="https://v3.vuejs.org/guide/migration/introduction.html" class="text-blue-600 hover:underline">Vue 3 Migration Guide</a></li>
-                    <li class="my-2"><a href="https://github.com/vuejs/awesome-vue" class="text-blue-600 hover:underline">Awesome Vue Resources</a></li>
+                    <li class="my-2"><a href="https://v3.vuejs.org/guide/introduction.html" class="text-green-600 hover:underline">Official Vue 3 Documentation</a></li>
+                    <li class="my-2"><a href="https://v3.vuejs.org/guide/composition-api-introduction.html" class="text-green-600 hover:underline">Composition API Guide</a></li>
+                    <li class="my-2"><a href="https://v3.vuejs.org/guide/migration/introduction.html" class="text-green-600 hover:underline">Vue 3 Migration Guide</a></li>
+                    <li class="my-2"><a href="https://github.com/vuejs/awesome-vue" class="text-green-600 hover:underline">Awesome Vue Resources</a></li>
                 </ul>
             </article>
 
@@ -2282,6 +3327,103 @@ function increment() {
                 alert('Comment submitted! (This is a demo)');
                 commentForm.value = '';
             }
+        });
+
+        // Micro interactions
+        document.addEventListener('DOMContentLoaded', function() {
+            // Ripple Effect
+            const buttons = document.querySelectorAll('.ripple');
+            buttons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    const x = e.clientX - e.target.getBoundingClientRect().left;
+                    const y = e.clientY - e.target.getBoundingClientRect().top;
+                    
+                    const circle = document.createElement('span');
+                    circle.classList.add('ripple-effect');
+                    circle.style.left = `${x}px`;
+                    circle.style.top = `${y}px`;
+                    
+                    this.appendChild(circle);
+                    
+                    setTimeout(() => {
+                        circle.remove();
+                    }, 600);
+                });
+            });
+            
+            // Vibration Button
+            const vibrateBtn = document.getElementById('vibrateBtn');
+            if ('vibrate' in navigator) {
+                vibrateBtn.addEventListener('click', () => {
+                    navigator.vibrate(50);
+                });
+            } else {
+                vibrateBtn.textContent = 'Vibration not supported';
+                vibrateBtn.classList.add('opacity-50', 'cursor-not-allowed');
+            }
+            
+            // Confetti Button
+            const confettiBtn = document.getElementById('confettiBtn');
+            confettiBtn.addEventListener('click', function() {
+                const colors = ['#f43f5e', '#ec4899', '#d946ef', '#a855f7', '#8b5cf6'];
+                const container = this.parentElement;
+                
+                // Create keyframes if they don't exist
+                if (!document.getElementById('confettiFallKeyframes')) {
+                    const style = document.createElement('style');
+                    style.id = 'confettiFallKeyframes';
+                    style.textContent = `
+                        @keyframes confettiFall {
+                            0% {
+                                transform: translateY(0) rotate(0deg);
+                                opacity: 1;
+                            }
+                            100% {
+                                transform: translateY(150px) rotate(360deg);
+                                opacity: 0;
+                            }
+                        }
+                    `;
+                    document.head.appendChild(style);
+                }
+                
+                for (let i = 0; i < 50; i++) {
+                    const confetti = document.createElement('div');
+                    confetti.classList.add('confetti');
+                    confetti.style.left = Math.random() * 100 + '%';
+                    confetti.style.top = '-10px';
+                    confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                    confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
+                    
+                    const animDuration = Math.random() * 3 + 2;
+                    confetti.style.animation = `confettiFall ${animDuration}s linear forwards`;
+                    
+                    container.appendChild(confetti);
+                    
+                    setTimeout(() => {
+                        confetti.remove();
+                    }, animDuration * 1000);
+                }
+            });
+            
+            // Progress Celebration
+            const progressBtn = document.getElementById('progressBtn');
+            progressBtn.addEventListener('click', function() {
+                const progressBar = document.getElementById('progressBar');
+                let width = 0;
+                const interval = setInterval(() => {
+                    if (width >= 100) {
+                        clearInterval(interval);
+                        this.classList.add('complete');
+                        setTimeout(() => {
+                            this.classList.remove('complete');
+                        }, 1500);
+                    } else {
+                        width++;
+                        progressBar.style.width = width + '%';
+                    }
+                }, 20);
+            });
         });
     </script>
 </body>
