@@ -14,6 +14,8 @@
     <title>Vue 3 Components: The Complete Guide | Modern Web Development</title>
     <link rel="stylesheet" href="../../assets/tailwind.css">
     <link rel="stylesheet" href="../../assets/style.css">
+    <link rel="stylesheet" href="./assets/micro-interactions.css">
+    <link rel="stylesheet" href="./assets/story-telling-animation.css">
     <!-- <link rel="stylesheet" href="../../assets/article.css"> -->
     <style>
         .code-block {
@@ -2619,6 +2621,409 @@ if ('vibrate' in navigator) {
                 </div>
             </div>
         </div>
+        <div class="progress-bar" style="width: 0%"></div>
+    
+    <div class="scroll-snap">
+        <!-- Hero Section -->
+        <section class="story-section bg-gradient-to-b from-blue-50 to-indigo-100 flex items-center justify-center text-center">
+            <div class="max-w-3xl px-4">
+                <h1 class="text-5xl md:text-6xl font-bold mb-6 text-indigo-900">Scrollytelling & Immersive Storytelling</h1>
+                <p class="text-xl md:text-2xl text-indigo-800 mb-8">Combine narrative storytelling with interactive scrolling techniques to create engaging, cinematic web experiences.</p>
+                <div class="scroll-indicator">
+                    <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 5v14M19 12l-7 7-7-7"/>
+                    </svg>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Core Techniques -->
+        <section class="story-section bg-white">
+            <div class="max-w-4xl mx-auto">
+                <h2 class="text-4xl font-bold mb-12 text-center text-indigo-900">1. Core Techniques for Scrollytelling</h2>
+                
+                <div class="grid md:grid-cols-3 gap-8">
+                    <!-- Scroll-Triggered Animations -->
+                    <div class="reveal-animation">
+                        <h3 class="text-2xl font-bold mb-4 text-indigo-800 border-b border-indigo-200 pb-2">A. Scroll-Triggered Animations</h3>
+                        <ul class="space-y-3">
+                            <li class="flex items-start">
+                                <span class="text-indigo-600 mr-2">•</span>
+                                <span>Parallax effects (foreground/background moving at different speeds)</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-indigo-600 mr-2">•</span>
+                                <span>Reveal animations (content appears as user scrolls)</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-indigo-600 mr-2">•</span>
+                                <span>Progress-based animations (elements transform based on scroll position)</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Immersive Visual Elements -->
+                    <div class="reveal-animation" style="transition-delay: 0.2s">
+                        <h3 class="text-2xl font-bold mb-4 text-indigo-800 border-b border-indigo-200 pb-2">B. Immersive Visual Elements</h3>
+                        <ul class="space-y-3">
+                            <li class="flex items-start">
+                                <span class="text-indigo-600 mr-2">•</span>
+                                <span>Fullscreen video backgrounds</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-indigo-600 mr-2">•</span>
+                                <span>3D models and WebGL effects</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-indigo-600 mr-2">•</span>
+                                <span>Interactive infographics</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-indigo-600 mr-2">•</span>
+                                <span>Spatial audio that responds to scroll position</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Narrative Structure -->
+                    <div class="reveal-animation" style="transition-delay: 0.4s">
+                        <h3 class="text-2xl font-bold mb-4 text-indigo-800 border-b border-indigo-200 pb-2">C. Narrative Structure</h3>
+                        <ul class="space-y-3">
+                            <li class="flex items-start">
+                                <span class="text-indigo-600 mr-2">•</span>
+                                <span>Section-based storytelling (chapters)</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-indigo-600 mr-2">•</span>
+                                <span>Scroll-driven transitions between scenes</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-indigo-600 mr-2">•</span>
+                                <span>Branching narratives (user choices affect story)</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Implementation Tools -->
+        <section class="story-section bg-gray-50">
+            <div class="max-w-4xl mx-auto">
+                <h2 class="text-4xl font-bold mb-12 text-center text-indigo-900">2. Implementation Tools & Libraries</h2>
+                
+                <div class="grid md:grid-cols-3 gap-8">
+                    <!-- JavaScript Libraries -->
+                    <div class="reveal-animation">
+                        <h3 class="text-2xl font-bold mb-4 text-indigo-800 border-b border-indigo-200 pb-2">A. JavaScript Libraries</h3>
+                        <ol class="space-y-3 list-decimal list-inside">
+                            <li class="pl-2">
+                                <span>ScrollMagic (The jQuery plugin for scroll interactions)</span>
+                                <a href="https://scrollmagic.io" class="text-indigo-600 hover:text-indigo-800 block text-sm">Website</a>
+                            </li>
+                            <li class="pl-2">
+                                <span>GSAP + ScrollTrigger (Professional-grade animations)</span>
+                                <a href="https://greensock.com/scrolltrigger/" class="text-indigo-600 hover:text-indigo-800 block text-sm">Documentation</a>
+                            </li>
+                            <li class="pl-2">
+                                <span>AOS (Animate On Scroll) (Lightweight scroll animations)</span>
+                                <a href="https://michalsnik.github.io/aos/" class="text-indigo-600 hover:text-indigo-800 block text-sm">Demo</a>
+                            </li>
+                            <li class="pl-2">
+                                <span>Locomotive Scroll (Smooth scrolling with parallax)</span>
+                                <a href="https://locomotivemtl.github.io/locomotive-scroll/" class="text-indigo-600 hover:text-indigo-800 block text-sm">GitHub</a>
+                            </li>
+                        </ol>
+                    </div>
+                    
+                    <!-- CSS Solutions -->
+                    <div class="reveal-animation" style="transition-delay: 0.2s">
+                        <h3 class="text-2xl font-bold mb-4 text-indigo-800 border-b border-indigo-200 pb-2">B. CSS Solutions</h3>
+                        <ol class="space-y-3 list-decimal list-inside">
+                            <li class="pl-2">
+                                <span>Native CSS Scroll Snap</span>
+                                <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/scroll-snap-type" class="text-indigo-600 hover:text-indigo-800 block text-sm">MDN Docs</a>
+                            </li>
+                            <li class="pl-2">
+                                <span>CSS Viewport Units & @scroll-timeline (Experimental)</span>
+                                <a href="https://developer.chrome.com/blog/scroll-driven-animations/" class="text-indigo-600 hover:text-indigo-800 block text-sm">Chrome Developers</a>
+                            </li>
+                        </ol>
+                    </div>
+                    
+                    <!-- 3D & WebGL Libraries -->
+                    <div class="reveal-animation" style="transition-delay: 0.4s">
+                        <h3 class="text-2xl font-bold mb-4 text-indigo-800 border-b border-indigo-200 pb-2">C. 3D & WebGL Libraries</h3>
+                        <ol class="space-y-3 list-decimal list-inside">
+                            <li class="pl-2">
+                                <span>Three.js (3D graphics in browser)</span>
+                                <a href="https://threejs.org" class="text-indigo-600 hover:text-indigo-800 block text-sm">Website</a>
+                            </li>
+                            <li class="pl-2">
+                                <span>React Three Fiber (Three.js for React)</span>
+                                <a href="https://docs.pmnd.rs/react-three-fiber" class="text-indigo-600 hover:text-indigo-800 block text-sm">Documentation</a>
+                            </li>
+                            <li class="pl-2">
+                                <span>Spline (No-code 3D design tool)</span>
+                                <a href="https://spline.design" class="text-indigo-600 hover:text-indigo-800 block text-sm">Website</a>
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Open-Source Projects -->
+        <section class="story-section bg-white">
+            <div class="max-w-4xl mx-auto">
+                <h2 class="text-4xl font-bold mb-12 text-center text-indigo-900">3. Open-Source Projects & Templates</h2>
+                
+                <div class="grid md:grid-cols-2 gap-8">
+                    <!-- Starter Templates -->
+                    <div class="reveal-animation">
+                        <h3 class="text-2xl font-bold mb-4 text-indigo-800 border-b border-indigo-200 pb-2">A. Starter Templates</h3>
+                        <ol class="space-y-3 list-decimal list-inside">
+                            <li class="pl-2">
+                                <span>Scrollytelling Starter Kit (Basic scroll-driven story framework)</span>
+                                <a href="https://github.com/russellgoldenberg/scrollama" class="text-indigo-600 hover:text-indigo-800 block text-sm">GitHub</a>
+                            </li>
+                            <li class="pl-2">
+                                <span>GSAP ScrollTrigger Boilerplate</span>
+                                <a href="https://github.com/creativeocean/gsap-scrolltrigger-boilerplate" class="text-indigo-600 hover:text-indigo-800 block text-sm">GitHub</a>
+                            </li>
+                            <li class="pl-2">
+                                <span>Locomotive Scroll Template</span>
+                                <a href="https://github.com/locomotivemtl/locomotive-boilerplate" class="text-indigo-600 hover:text-indigo-800 block text-sm">GitHub</a>
+                            </li>
+                        </ol>
+                    </div>
+                    
+                    <!-- Showcase Examples -->
+                    <div class="reveal-animation" style="transition-delay: 0.2s">
+                        <h3 class="text-2xl font-bold mb-4 text-indigo-800 border-b border-indigo-200 pb-2">B. Showcase Examples</h3>
+                        <ol class="space-y-3 list-decimal list-inside" start="4">
+                            <li class="pl-2">
+                                <span>NYT Snow Fall Clone (Classic scrollytelling example)</span>
+                                <a href="https://github.com/emilyxxie/snowfall_nyt" class="text-indigo-600 hover:text-indigo-800 block text-sm">GitHub</a>
+                            </li>
+                            <li class="pl-2">
+                                <span>Apple-like Scroll Effects</span>
+                                <a href="https://github.com/emilkowalski/apple-like-scroll" class="text-indigo-600 hover:text-indigo-800 block text-sm">GitHub</a>
+                            </li>
+                            <li class="pl-2">
+                                <span>3D Scroll Journey</span>
+                                <a href="https://github.com/brunoimbrizi/interactive-particles" class="text-indigo-600 hover:text-indigo-800 block text-sm">GitHub</a>
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Implementation Guide -->
+        <section class="story-section bg-gray-50">
+            <div class="max-w-4xl mx-auto">
+                <h2 class="text-4xl font-bold mb-12 text-center text-indigo-900">4. Implementation Guide</h2>
+                
+                <div class="grid md:grid-cols-2 gap-8">
+                    <!-- Basic Scroll-Triggered Animation -->
+                    <div class="reveal-animation">
+                        <h3 class="text-2xl font-bold mb-4 text-indigo-800 border-b border-indigo-200 pb-2">Basic Scroll-Triggered Animation (GSAP)</h3>
+                        <pre class="bg-gray-800 p-4 rounded-lg overflow-x-auto text-sm text-gray-200">
+<code class="text-green-500">// Initialize ScrollTrigger
+gsap.registerPlugin(ScrollTrigger);
+
+// Animate element when it enters viewport
+gsap.from(".animate-element", {
+    scrollTrigger: {
+        trigger: ".animate-element",
+        start: "top 80%",
+        end: "bottom 20%",
+        toggleActions: "play none none reverse"
+    },
+    duration: 1,
+    opacity: 0,
+    y: 50,
+    ease: "power2.out"
+});
+
+// Pin element during scroll
+gsap.to(".pin-element", {
+    scrollTrigger: {
+        trigger: ".pin-container",
+        pin: true,
+        start: "top top",
+        end: "+=1000"
+    }
+});</code>
+                        </pre>
+                    </div>
+                    
+                    <!-- Advanced Parallax Effect -->
+                    <div class="reveal-animation" style="transition-delay: 0.2s">
+                        <h3 class="text-2xl font-bold mb-4 text-indigo-800 border-b border-indigo-200 pb-2">Advanced Parallax Effect (CSS + JS)</h3>
+                        <pre class="bg-gray-800 p-4 rounded-lg overflow-x-auto text-sm text-gray-200">
+<code class="text-green-500">// JavaScript Parallax
+window.addEventListener('scroll', function() {
+    const scrollPosition = window.pageYOffset;
+    const parallaxElements = document.querySelectorAll('.parallax');
+    
+    parallaxElements.forEach(element => {
+        const speed = parseFloat(element.dataset.speed) || 0.5;
+        const yPos = -(scrollPosition * speed);
+        element.style.transform = `translate3d(0, ${yPos}px, 0)`;
+    });
+});
+
+/* CSS-only Parallax */
+.parallax-container {
+    perspective: 1px;
+    height: 100vh;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.parallax-child {
+    transform-style: preserve-3d;
+}
+
+.parallax-bg {
+    transform: translateZ(-1px) scale(2);
+}</code>
+                        </pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Best Practices -->
+        <section class="story-section bg-white">
+            <div class="max-w-4xl mx-auto">
+                <h2 class="text-4xl font-bold mb-12 text-center text-indigo-900">5. Best Practices</h2>
+                
+                <div class="grid md:grid-cols-3 gap-8">
+                    <!-- Performance Optimization -->
+                    <div class="reveal-animation">
+                        <h3 class="text-2xl font-bold mb-4 text-indigo-800 border-b border-indigo-200 pb-2">✅ Performance Optimization</h3>
+                        <ul class="space-y-3">
+                            <li class="flex items-start">
+                                <span class="text-indigo-600 mr-2">•</span>
+                                <span>Use will-change: transform for animated elements</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-indigo-600 mr-2">•</span>
+                                <span>Implement lazy loading for media assets</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-indigo-600 mr-2">•</span>
+                                <span>Consider using the Intersection Observer API</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Accessibility Considerations -->
+                    <div class="reveal-animation" style="transition-delay: 0.2s">
+                        <h3 class="text-2xl font-bold mb-4 text-indigo-800 border-b border-indigo-200 pb-2">✅ Accessibility Considerations</h3>
+                        <ul class="space-y-3">
+                            <li class="flex items-start">
+                                <span class="text-indigo-600 mr-2">•</span>
+                                <span>Provide alternative navigation (keyboard controls)</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-indigo-600 mr-2">•</span>
+                                <span>Include pause/play for auto-scrolling content</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-indigo-600 mr-2">•</span>
+                                <span>Ensure proper color contrast for text overlays</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Mobile Considerations -->
+                    <div class="reveal-animation" style="transition-delay: 0.4s">
+                        <h3 class="text-2xl font-bold mb-4 text-indigo-800 border-b border-indigo-200 pb-2">✅ Mobile Considerations</h3>
+                        <ul class="space-y-3">
+                            <li class="flex items-start">
+                                <span class="text-indigo-600 mr-2">•</span>
+                                <span>Test touch scroll behavior</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-indigo-600 mr-2">•</span>
+                                <span>Simplify animations for mobile performance</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-indigo-600 mr-2">•</span>
+                                <span>Consider reduced motion preferences</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Where to Use -->
+        <section class="story-section bg-gray-50">
+            <div class="max-w-4xl mx-auto">
+                <h2 class="text-4xl font-bold mb-12 text-center text-indigo-900">6. Where to Use These Techniques</h2>
+                
+                <div class="overflow-x-auto">
+                    <table class="w-full border-collapse">
+                        <thead>
+                            <tr class="bg-indigo-100 text-left">
+                                <th class="p-3 font-semibold text-indigo-800">Use Case</th>
+                                <th class="p-3 font-semibold text-indigo-800">Recommended Approach</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="border-t border-gray-200">
+                                <td class="p-3">Brand Storytelling</td>
+                                <td class="p-3">Fullscreen video + scroll transitions</td>
+                            </tr>
+                            <tr class="border-t border-gray-200">
+                                <td class="p-3">Data Visualization</td>
+                                <td class="p-3">Scroll-triggered animated charts</td>
+                            </tr>
+                            <tr class="border-t border-gray-200">
+                                <td class="p-3">Product Showcase</td>
+                                <td class="p-3">3D model interactions</td>
+                            </tr>
+                            <tr class="border-t border-gray-200">
+                                <td class="p-3">Editorial Content</td>
+                                <td class="p-3">Mixed media scrollytelling</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Emerging Trends -->
+        <section class="story-section bg-white">
+            <div class="max-w-4xl mx-auto">
+                <h2 class="text-4xl font-bold mb-12 text-center text-indigo-900">7. Emerging Trends</h2>
+                
+                <div class="space-y-6">
+                    <div class="flex items-start">
+                        <span class="text-indigo-600 mr-3 text-2xl">•</span>
+                        <span class="text-lg">WebXR integration (Scroll-triggered AR experiences)</span>
+                    </div>
+                    <div class="flex items-start">
+                        <span class="text-indigo-600 mr-3 text-2xl">•</span>
+                        <span class="text-lg">AI-generated narratives (Dynamic story adaptation)</span>
+                    </div>
+                    <div class="flex items-start">
+                        <span class="text-indigo-600 mr-3 text-2xl">•</span>
+                        <span class="text-lg">Haptic scroll feedback (Vibrations synced to scroll)</span>
+                    </div>
+                </div>
+                
+                <div class="mt-12 p-6 bg-indigo-50 rounded-lg border border-indigo-100">
+                    <p class="text-lg text-indigo-800">For an advanced implementation, consider combining Three.js for 3D elements, GSAP for animations, and Howler.js for spatial audio to create truly immersive experiences.</p>
+                </div>
+            </div>
+        </section>
+    </div>
                 <div class="code-block mb-4">
                     <pre><code>// Basic Vue 3 component example
 import { defineComponent } from 'vue';
@@ -3426,5 +3831,6 @@ function increment() {
             });
         });
     </script>
+    <script src="./assets/story-telling-scorlling.js"></script>
 </body>
 </html>
