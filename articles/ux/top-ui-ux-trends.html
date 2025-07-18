@@ -1245,6 +1245,335 @@
                 </div>
             </div>
         </div>
+
+        <!-- AR VR Implementation -->
+                 <div class="tech-card rounded-xl p-6">
+            <h2 class="text-2xl md:text-3xl font-bold mb-2 text-green-400 glow-text">AR/VR & Spatial Design: Implementation Guide</h2>
+            <p class="text-lg text-gray-300">Augmented Reality (AR), Virtual Reality (VR), and Spatial Design (3D UI/UX) are transforming digital interactions. Here's a breakdown of how to implement them, the best tools & algorithms, and open-source projects to get started.</p>
+        </div>
+        
+        <!-- Section 1: Core Technologies -->
+        <div class="tech-card rounded-xl p-6">
+            <h3 class="text-2xl font-bold mb-6 text-green-400 glow-text">1. Core Technologies & Implementation Approaches</h3>
+            
+            <div class="grid md:grid-cols-3 gap-6">
+                <!-- AR Column -->
+                <div class="border-l-2 border-green-400 pl-4">
+                    <h3 class="text-xl font-semibold mb-4 text-green-400">A. Augmented Reality (AR)</h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <span class="text-green-400 mr-2">•</span>
+                            <span>Marker-Based AR (QR codes, images)</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-green-400 mr-2">•</span>
+                            <span>Markerless AR (SLAM, plane detection)</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-green-400 mr-2">•</span>
+                            <span>WebAR (Browser-based AR)</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-green-400 mr-2">•</span>
+                            <span>Mobile AR (ARKit, ARCore)</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- VR Column -->
+                <div class="border-l-2 border-green-400 pl-4">
+                    <h3 class="text-xl font-semibold mb-4 text-green-400">B. Virtual Reality (VR)</h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <span class="text-green-400 mr-2">•</span>
+                            <span>3D Environments (Unity, Unreal Engine)</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-green-400 mr-2">•</span>
+                            <span>360° Video (WebVR, A-Frame)</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-green-400 mr-2">•</span>
+                            <span>Social VR (Multiplayer VR spaces)</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Spatial Design Column -->
+                <div class="border-l-2 border-green-400 pl-4">
+                    <h3 class="text-xl font-semibold mb-4 text-green-400">C. Spatial Design (3D UI/UX)</h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <span class="text-green-400 mr-2">•</span>
+                            <span>3D Interfaces (Depth, lighting, physics)</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-green-400 mr-2">•</span>
+                            <span>Gesture & Voice Controls (Hand tracking, NLP)</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-green-400 mr-2">•</span>
+                            <span>Holographic UI (Microsoft HoloLens, Magic Leap)</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Section 2: Key Algorithms -->
+        <div class="tech-card rounded-xl p-6">
+            <h3 class="text-2xl font-bold mb-6 text-green-400 glow-text">2. Key Algorithms Used in AR/VR</h3>
+            
+            <div class="overflow-x-auto">
+                <table class="w-full border-collapse">
+                    <thead>
+                        <tr class="bg-green-900/50 text-left">
+                            <th class="p-3 font-semibold text-green-300">Category</th>
+                            <th class="p-3 font-semibold text-green-300">Algorithms</th>
+                            <th class="p-3 font-semibold text-green-300">Use Case</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="algorithm-row">
+                            <td class="p-3 font-medium">Tracking</td>
+                            <td class="p-3">SLAM (Simultaneous Localization & Mapping)</td>
+                            <td class="p-3">Real-time environment mapping</td>
+                        </tr>
+                        <tr class="algorithm-row">
+                            <td class="p-3 font-medium">Object Detection</td>
+                            <td class="p-3">YOLO, CNN (Convolutional Neural Networks)</td>
+                            <td class="p-3">Recognizing objects in AR</td>
+                        </tr>
+                        <tr class="algorithm-row">
+                            <td class="p-3 font-medium">Hand/Gesture Tracking</td>
+                            <td class="p-3">MediaPipe, OpenPose</td>
+                            <td class="p-3">VR hand interactions</td>
+                        </tr>
+                        <tr class="algorithm-row">
+                            <td class="p-3 font-medium">3D Rendering</td>
+                            <td class="p-3">Ray Tracing, Rasterization</td>
+                            <td class="p-3">Realistic lighting in VR</td>
+                        </tr>
+                        <tr class="algorithm-row">
+                            <td class="p-3 font-medium">Spatial Audio</td>
+                            <td class="p-3">HRTF (Head-Related Transfer Function)</td>
+                            <td class="p-3">Directional sound in VR</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+        <!-- Section 3: Development Tools -->
+        <div class="tech-card rounded-xl p-6">
+            <h3 class="text-2xl font-bold mb-6 text-green-400 glow-text">3. Best Development Tools</h3>
+            
+            <div class="grid md:grid-cols-3 gap-6">
+                <!-- AR Tools -->
+                <div>
+                    <h4 class="text-xl font-semibold mb-4 text-green-400 border-b border-green-400 pb-2">A. AR Development</h4>
+                    <ol class="space-y-3 list-decimal list-inside">
+                        <li class="pl-2">ARKit (Apple) (iOS)</li>
+                        <li class="pl-2">ARCore (Google) (Android)</li>
+                        <li class="pl-2">Vuforia (Cross-platform AR)</li>
+                        <li class="pl-2">WebXR (Browser-based AR/VR)</li>
+                    </ol>
+                </div>
+                
+                <!-- VR Tools -->
+                <div>
+                    <h4 class="text-xl font-semibold mb-4 text-green-400 border-b border-green-400 pb-2">B. VR Development</h4>
+                    <ol class="space-y-3 list-decimal list-inside">
+                        <li class="pl-2">Unity (C#) – Best for cross-platform VR</li>
+                        <li class="pl-2">Unreal Engine (C++) – High-end graphics</li>
+                        <li class="pl-2">Godot Engine (Open-source alternative)</li>
+                    </ol>
+                </div>
+                
+                <!-- Spatial Tools -->
+                <div>
+                    <h4 class="text-xl font-semibold mb-4 text-green-400 border-b border-green-400 pb-2">C. Spatial Design Tools</h4>
+                    <ol class="space-y-3 list-decimal list-inside">
+                        <li class="pl-2">Blender (3D modeling)</li>
+                        <li class="pl-2">Figma 3D (Prototyping 3D UI)</li>
+                        <li class="pl-2">Spline (Interactive 3D design)</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Section 4: Open-Source Projects -->
+        <div class="tech-card rounded-xl p-6">
+            <h3 class="text-2xl font-bold mb-6 text-green-400 glow-text">4. Open-Source Projects to Start With</h3>
+            
+            <div class="grid md:grid-cols-3 gap-6">
+                <!-- AR Projects -->
+                <div>
+                    <h3 class="text-xl font-semibold mb-4 text-green-400 border-b border-green-400 pb-2">A. AR Projects</h3>
+                    <ol class="space-y-3 list-decimal list-inside">
+                        <li class="pl-2">
+                            <span>AR.js (Web-based AR)</span>
+                            <a href="https://github.com/AR-js-org/AR.js" class="text-green-300 hover:text-green-100 block text-sm">GitHub</a>
+                        </li>
+                        <li class="pl-2">
+                            <span>OpenARK (Open-source AR toolkit)</span>
+                            <a href="https://github.com/augcog/OpenARK" class="text-green-300 hover:text-green-100 block text-sm">GitHub</a>
+                        </li>
+                        <li class="pl-2">
+                            <span>Zappar (WebAR + Three.js)</span>
+                            <a href="https://github.com/zappar-xr" class="text-green-300 hover:text-green-100 block text-sm">GitHub</a>
+                        </li>
+                    </ol>
+                </div>
+                
+                <!-- VR Projects -->
+                <div>
+                    <h3 class="text-xl font-semibold mb-4 text-green-400 border-b border-green-400 pb-2">B. VR Projects</h3>
+                    <ol class="space-y-3 list-decimal list-inside">
+                        <li class="pl-2">
+                            <span>A-Frame (WebVR framework)</span>
+                            <a href="https://github.com/aframevr/aframe" class="text-green-300 hover:text-green-100 block text-sm">GitHub</a>
+                        </li>
+                        <li class="pl-2">
+                            <span>OpenXR (VR standard)</span>
+                            <a href="https://github.com/KhronosGroup/OpenXR-SDK" class="text-green-300 hover:text-green-100 block text-sm">GitHub</a>
+                        </li>
+                        <li class="pl-2">
+                            <span>WebXR Samples (Browser VR demos)</span>
+                            <a href="https://github.com/immersive-web/webxr-samples" class="text-green-300 hover:text-green-100 block text-sm">GitHub</a>
+                        </li>
+                    </ol>
+                </div>
+                
+                <!-- Spatial UI Projects -->
+                <div>
+                    <h3 class="text-xl font-semibold mb-4 text-green-400 border-b border-green-400 pb-2">C. Spatial UI/UX Projects</h3>
+                    <ol class="space-y-3 list-decimal list-inside">
+                        <li class="pl-2">
+                            <span>Microsoft Mixed Reality Toolkit (MRTK)</span>
+                            <a href="https://github.com/Microsoft/MixedRealityToolkit-Unity" class="text-green-300 hover:text-green-100 block text-sm">GitHub</a>
+                        </li>
+                        <li class="pl-2">
+                            <span>Oculus Interaction SDK</span>
+                            <a href="https://developer.oculus.com/downloads/package/oculus-interaction-sdk/" class="text-green-300 hover:text-green-100 block text-sm">Oculus Dev</a>
+                        </li>
+                        <li class="pl-2">
+                            <span>Three.js (3D Web UI)</span>
+                            <a href="https://github.com/mrdoob/three.js" class="text-green-300 hover:text-green-100 block text-sm">GitHub</a>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Section 5: Implementation Guide -->
+        <div class="tech-card rounded-xl p-6">
+            <h3 class="text-2xl font-bold mb-6 text-green-400 glow-text">5. Step-by-Step Implementation Guide</h3>
+            
+            <div class="grid md:grid-cols-1 gap-6">
+                <!-- AR Guide -->
+                <div class="border border-gray-700 rounded-lg p-4">
+                    <h4 class="text-xl font-semibold mb-4 text-green-400">A. Building a Simple AR App (WebAR)</h4>
+                    <ol class="space-y-4">
+                        <li class="flex items-start">
+                            <span class="bg-green-400 text-gray-900 rounded-full w-6 h-6 flex items-center justify-center mr-3 flex-shrink-0">1</span>
+                            <span>Use AR.js</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="bg-green-400 text-gray-900 rounded-full w-6 h-6 flex items-center justify-center mr-3 flex-shrink-0">2</span>
+                            <span>Create a marker-based AR experience</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="bg-green-400 text-gray-900 rounded-full w-6 h-6 flex items-center justify-center mr-3 flex-shrink-0">3</span>
+                            <span>Test on mobile with a Hiro marker</span>
+                        </li>
+                    </ol>
+                </div>
+                
+                <!-- VR Guide -->
+                <div class="border border-gray-700 rounded-lg p-4">
+                    <h4 class="text-xl font-semibold mb-4 text-green-400">B. Building a VR Scene (WebXR + A-Frame)</h4>
+                    <ol class="space-y-4">
+                        <li class="flex items-start">
+                            <span class="bg-green-400 text-gray-900 rounded-full w-6 h-6 flex items-center justify-center mr-3 flex-shrink-0">1</span>
+                            <span>Use A-Frame</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="bg-green-400 text-gray-900 rounded-full w-6 h-6 flex items-center justify-center mr-3 flex-shrink-0">2</span>
+                            <span>Create a 360° VR environment</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="bg-green-400 text-gray-900 rounded-full w-6 h-6 flex items-center justify-center mr-3 flex-shrink-0">3</span>
+                            <span>Test in VR using a WebXR-compatible browser</span>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Section 6: Best Practices -->
+        <div class="tech-card rounded-xl p-6">
+            <h3 class="text-2xl font-bold mb-6 text-green-400 glow-text">6. Best Practices for AR/VR & Spatial Design</h3>
+            
+            <div class="grid md:grid-cols-2 gap-4">
+                <div class="flex items-start">
+                    <span class="text-green-400 mr-3 text-xl">✅</span>
+                    <span>Optimize for Performance (60+ FPS in VR)</span>
+                </div>
+                <div class="flex items-start">
+                    <span class="text-green-400 mr-3 text-xl">✅</span>
+                    <span>Design for Comfort (Avoid motion sickness)</span>
+                </div>
+                <div class="flex items-start">
+                    <span class="text-green-400 mr-3 text-xl">✅</span>
+                    <span>Use Spatial Audio (Directional sound cues)</span>
+                </div>
+                <div class="flex items-start">
+                    <span class="text-green-400 mr-3 text-xl">✅</span>
+                    <span>Test on Real Devices (Oculus, HoloLens, mobile AR)</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Section 7: Future Trends -->
+        <div class="tech-card rounded-xl p-6">
+            <h3 class="text-2xl font-bold mb-6 text-green-400 glow-text">7. Future Trends to Watch</h3>
+            
+            <div class="space-y-3">
+                <div class="flex items-start">
+                    <span class="text-green-400 mr-2 text-xl">•</span>
+                    <span>AI + AR (Real-time object recognition)</span>
+                </div>
+                <div class="flex items-start">
+                    <span class="text-green-400 mr-2 text-xl">•</span>
+                    <span>Haptic Feedback Gloves (Tactile VR interactions)</span>
+                </div>
+                <div class="flex items-start">
+                    <span class="text-green-400 mr-2 text-xl">•</span>
+                    <span>Neural Rendering (Photorealistic VR)</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Final Recommendations -->
+        <div class="tech-card rounded-xl p-6">
+            <h3 class="text-2xl font-bold mb-6 text-green-400 glow-text">Final Recommendations</h3>
+            
+            <div class="space-y-3">
+                <div class="flex items-start">
+                    <span class="text-green-400 mr-2 text-xl">•</span>
+                    <span>Start small (WebAR/WebXR before native apps)</span>
+                </div>
+                <div class="flex items-start">
+                    <span class="text-green-400 mr-2 text-xl">•</span>
+                    <span>Leverage open-source (A-Frame, Three.js, MRTK)</span>
+                </div>
+                <div class="flex items-start">
+                    <span class="text-green-400 mr-2 text-xl">•</span>
+                    <span>Experiment with AI (MediaPipe for hand tracking)</span>
+                </div>
+            </div>
+        </div>
                 <div class="code-block mb-4">
                     <pre><code>// Basic Vue 3 component example
 import { defineComponent } from 'vue';
