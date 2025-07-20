@@ -3,191 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Comprehensive guide to Vue 3 components covering templates, styling, Composition API, optimization techniques and more for modern web development">
-    <meta name="keywords" content="Vue 3, Vue Components, Composition API, Options API, Vue Templates, Vue Styling, Vue Optimization">
-    <meta name="author" content="Your Name">
-    <meta property="og:title" content="Vue 3 Components: The Complete Guide">
-    <meta property="og:description" content="Learn everything about Vue 3 components including templates, styling, APIs and optimization techniques">
+    <meta name="description" content="Discover the top UI/UX design trends for 2025, including AI personalization, voice UI, neomorphism, AR/VR, dark mode, and ethical design. Get implementation guides for each trend.">
+    <meta name="keywords" content="UI trends 2025, UX design trends, AI personalization, voice UI, neomorphism, glassmorphism, AR/VR design, dark mode UX, micro-interactions, ethical design, biometric UX">
+    <meta name="author" content="Your Name or Brand">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Top UI/UX Design Trends in 2025 (With Implementation Guides)">
+    <meta property="og:description" content="Discover the key UI/UX trends shaping 2025, including AI personalization, voice UI, neomorphism, AR/VR, and ethical design. Learn how to implement them.">
     <meta property="og:type" content="article">
-    <meta property="og:url" content="https://ui-dev-tech-docs.xyz/articles/vue/vue-3-components-a-complete-guide-2025.html">
-    <meta name="twitter:card" content="summary_large_image">
-    <title>Vue 3 Components: The Complete Guide | Modern Web Development</title>
+    <meta property="og:url" content="https://ui-dev-tech-docs.xyz/articles/ux/top-ui-ux-trends.html">
+    <meta property="article:published_time" content="2025-07-21T00:00:00+00:00">
+    <!-- <meta property="article:author" content="https://yourwebsite.com/author"> -->
+    <meta property="article:section" content="Design">
+    <meta property="article:tag" content="UI Design">
+    <meta property="article:tag" content="UX Trends">
+    <title>Top UI/UX Design Trends in 2025 (With Implementation Guides)</title>
     <link rel="stylesheet" href="../../assets/tailwind.css">
     <link rel="stylesheet" href="../../assets/style.css">
     <link rel="stylesheet" href="./assets/micro-interactions.css">
     <link rel="stylesheet" href="./assets/story-telling-animation.css">
     <!-- <link rel="stylesheet" href="../../assets/article.css"> -->
-    <style>
-        .code-block {
-            background-color: #1e293b;
-            color: #f8fafc;
-            padding: 1rem;
-            border-radius: 0.5rem;
-            overflow-x: auto;
-            font-family: 'Courier New', monospace;
-        }
-        .sidebar {
-            position: sticky;
-            top: 2rem;
-        }
-        .highlight {
-            position: relative;
-        }
-        .highlight::after {
-            content: '';
-            position: absolute;
-            left: 0;
-            bottom: -2px;
-            width: 100%;
-            height: 2px;
-            background: linear-gradient(90deg, #3b82f6, #8b5cf6);
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform 0.3s ease;
-        }
-        .highlight:hover::after {
-            transform: scaleX(1);
-        }
-
-                /* Neomorphic Styles */
-        .neo-card {
-            background: #e0e5ec;
-            border-radius: 20px;
-            box-shadow: 
-                9px 9px 16px rgba(163, 177, 198, 0.6),
-                -9px -9px 16px rgba(255, 255, 255, 0.5);
-        }
-        
-        .neo-btn {
-            background: #e0e5ec;
-            border-radius: 10px;
-            box-shadow: 
-                5px 5px 10px rgba(163, 177, 198, 0.6),
-                -5px -5px 10px rgba(255, 255, 255, 0.5);
-            transition: all 0.2s ease;
-        }
-        
-        .neo-btn:active {
-            box-shadow: 
-                inset 3px 3px 5px rgba(163, 177, 198, 0.6),
-                inset -3px -3px 5px rgba(255, 255, 255, 0.5);
-        }
-        
-        /* Glassmorphism Styles */
-        .glass-card {
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.18);
-            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
-        }
-        
-        .section-heading {
-            scroll-margin-top: 1rem;
-        }
-
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
-        
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #f8fafc;
-        }
-        
-        .interaction-card {
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-        }
-        
-        .interaction-card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
-        }
-        
-        .ripple {
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .ripple-effect {
-            position: absolute;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.7);
-            transform: scale(0);
-            animation: ripple 600ms linear;
-            pointer-events: none;
-        }
-        
-        @keyframes ripple {
-            to {
-                transform: scale(4);
-                opacity: 0;
-            }
-        }
-        
-        .btn-click {
-            transition: transform 0.1s ease;
-        }
-        
-        .btn-click:active {
-            transform: scale(0.95);
-        }
-        
-        .loader {
-            width: 48px;
-            height: 48px;
-            border: 5px solid #e2e8f0;
-            border-bottom-color: #3b82f6;
-            border-radius: 50%;
-            display: inline-block;
-            animation: rotation 1s linear infinite;
-        }
-        
-        @keyframes rotation {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        
-        .confetti {
-            position: absolute;
-            width: 10px;
-            height: 10px;
-            background-color: #f43f5e;
-            opacity: 0;
-        }
-        
-        .code-block {
-            font-family: 'Courier New', monospace;
-            font-size: 0.9rem;
-            background-color: #1e293b;
-            color: #e2e8f0;
-        }
-        
-        .progress-celebration {
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .progress-celebration::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(90deg, rgba(59,130,246,0.2) 0%, rgba(99,102,241,0.2) 100%);
-            transform: translateX(-100%);
-        }
-        
-        .progress-celebration.complete::after {
-            animation: progressCelebration 1.5s ease-out;
-        }
-        
-        @keyframes progressCelebration {
-            0% { transform: translateX(-100%); }
-            100% { transform: translateX(100%); }
-        }
-    </style>
+    <link rel="stylesheet" href="./assets/styles.css">
     
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-1JM965KD2L"></script>
@@ -227,16 +62,16 @@
                 <h2 class="text-xl font-semibold mb-4">Table of Contents</h2>
                 <nav>
                     <ul class="space-y-2">
-                        <li class="my-2"><a href="#introduction" class="text-green-600 hover:underline highlight">Introduction</a></li>
-                        <li class="my-2"><a href="#templates" class="text-green-600 hover:underline highlight">Component Templates</a></li>
-                        <li class="my-2"><a href="#styling" class="text-green-600 hover:underline highlight">Styling Components</a></li>
-                        <li class="my-2"><a href="#data-management" class="text-green-600 hover:underline highlight">Data Management</a></li>
-                        <li class="my-2"><a href="#lifecycle-hooks" class="text-green-600 hover:underline highlight">Lifecycle Hooks</a></li>
-                        <li class="my-2"><a href="#dynamic-rendering" class="text-green-600 hover:underline highlight">Dynamic Rendering</a></li>
-                        <li class="my-2"><a href="#optimization" class="text-green-600 hover:underline highlight">Optimization</a></li>
-                        <li class="my-2"><a href="#composition-api" class="text-green-600 hover:underline highlight">Composition API</a></li>
-                        <li class="my-2"><a href="#options-api" class="text-green-600 hover:underline highlight">Options API</a></li>
-                        <li class="my-2"><a href="#conclusion" class="text-green-600 hover:underline highlight">Conclusion</a></li>
+                        <li class="my-2"><a href="#introduction" class="text-green-600 hover:underline highlight">1. AI-Powered Personalization</a></li>
+                        <li class="my-2"><a href="#voice-conversational-ui" class="text-green-600 hover:underline highlight">2. Voice & Conversational UI</a></li>
+                        <li class="my-2"><a href="#neomorphic-glassmorphism" class="text-green-600 hover:underline highlight">3. Neomorphic Design</a></li>
+                        <li class="my-2"><a href="#ar-vr-implementation" class="text-green-600 hover:underline highlight">4. AR/VR & Spatial Design</a></li>
+                        <li class="my-2"><a href="#dark-mode-eye-friendly" class="text-green-600 hover:underline highlight">5. Eye-Friendly Design</a></li>
+                        <li class="my-2"><a href="#micro-interactions" class="text-green-600 hover:underline highlight">6. Micro-Interactions</a></li>
+                        <li class="my-2"><a href="#immersive-storytelling" class="text-green-600 hover:underline highlight">7. Immersive Storytelling</a></li>
+                        <li class="my-2"><a href="#super-apps" class="text-green-600 hover:underline highlight">8. Super Apps & Modular Interfaces</a></li>
+                        <li class="my-2"><a href="#biometric-authentication" class="text-green-600 hover:underline highlight">9. Biometric Authentication</a></li>
+                        <li class="my-2"><a href="#ethical-inclusive-design" class="text-green-600 hover:underline highlight">10. Ethical & Inclusive Design</a></li>
                     </ul>
                 </nav>
                 <!-- <div class="mt-8">
@@ -257,7 +92,7 @@
         </aside>
 
         <main class="md:w-3/4 space-y-12">
-            <article id="introduction" class="bg-white p-6 rounded-lg shadow-sm">
+            <article id="introduction" class="bg-white md:p-6 p-3 rounded-lg shadow-sm">
                 <h2 class="text-2xl font-bold mb-4">Why These Trends Matter?</h2>
                 <p class="mb-4"></p>
                 <ul>
@@ -270,7 +105,7 @@
                 <h3 class="text-xl font-bold mb-4">Understanding AI-Powered Personalization</h3>
                 <p>AI-powered personalization uses machine learning algorithms to tailor content, products, and experiences to individual users based on their behavior, preferences, and characteristics. This approach goes beyond basic rule-based personalization by continuously learning and adapting to user interactions.</p>
                 <h3 class="text-xl font-bold mb-4 mt-4">Key Implementation Approaches</h3>
-                <div class="max-w-6xl mx-auto p-6 bg-gray-50 rounded-xl shadow-sm">
+                <div class="max-w-6xl mx-auto md:p-6 bg-gray-50 rounded-xl shadow-sm">
                 <!-- Data Collection Layer -->
                 <div class="mb-8 p-6 bg-white rounded-lg border border-gray-200">
                     <h3 class="text-xl font-semibold text-gray-800 mb-4">1. Data Collection Layer</h3>
@@ -420,7 +255,7 @@
   </div>
 </div>
 
-<div class="max-w-6xl mx-auto p-6 bg-gray-50 rounded-xl shadow-sm">
+<div class="max-w-6xl mx-auto md:p-6 mt-4 md:mt-0 bg-gray-50 rounded-xl shadow-sm">
   <!-- Open Source Tools -->
   <div class="mb-8 p-6 bg-white rounded-lg border border-gray-200">
     <h3 class="text-xl font-semibold text-gray-800 mb-4">Open Source Tools</h3>
@@ -675,11 +510,11 @@
   </div>
 </div>
 <!-- Voice and Conversational UI -->
-     <div class="container mx-auto px-4 py-8 max-w-4xl">
-        <h1 class="text-3xl font-bold text-center mb-8">2. Voice & Conversational UI: Implementation Guide</h1>
+     <div class="containe mx-auto px-4 py-8 max-w-4xl" id="voice-conversational-ui">
+        <h1 class="text-xl md:text-2xl font-bold mb-8">2. Voice & Conversational UI: Implementation Guide</h1>
         
         <!-- Understanding Section -->
-        <div class="mb-12 p-6 bg-white rounded-lg shadow-md">
+        <div class="mb-12 md:p-6 bg-white rounded-lg">
             <h2 class="text-2xl font-semibold mb-4 text-green-500">Understanding Voice & Conversational Interfaces</h2>
             <p class="mb-4">Conversational UIs enable natural language interactions between humans and machines, including:</p>
             <ul class="list-disc pl-6 space-y-2">
@@ -690,7 +525,7 @@
         </div>
 
         <!-- Key Components -->
-        <div class="mb-12 p-6 bg-white rounded-lg shadow-md">
+        <div class="mb-12 md:p-6 bg-white rounded-lg shadow-m">
             <h2 class="text-2xl font-semibold mb-4 text-green-500">Key Components</h2>
             
             <div class="mb-6">
@@ -724,7 +559,7 @@
         </div>
 
         <!-- Implementation Approaches -->
-        <div class="mb-12 p-6 bg-white rounded-lg shadow-md">
+        <div class="mb-12 md:p-6 bg-white rounded-lg shadow-m">
             <h2 class="text-2xl font-semibold mb-4 text-green-500">Implementation Approaches</h2>
             
             <div class="mb-6">
@@ -746,7 +581,7 @@
         </div>
 
         <!-- Core Algorithms & Techniques -->
-        <div class="mb-12 p-6 bg-white rounded-lg shadow-md">
+        <div class="mb-12 md:p-6 bg-white rounded-lg shadow-m">
             <h2 class="text-2xl font-semibold mb-4 text-green-500">Core Algorithms & Techniques</h2>
             
             <div class="mb-6">
@@ -788,7 +623,7 @@
         </div>
 
         <!-- Tools & Frameworks -->
-        <div class="mb-12 p-6 bg-white rounded-lg shadow-md">
+        <div class="mb-12 md:p-6 bg-white rounded-lg shadow-m">
             <h2 class="text-2xl font-semibold mb-4 text-green-500">Tools & Frameworks</h2>
             
             <div class="mb-6">
@@ -835,7 +670,7 @@
         </div>
 
         <!-- Open Source Projects to Explore -->
-        <div class="mb-12 p-6 bg-white rounded-lg shadow-md">
+        <div class="mb-12 md:p-6 bg-white rounded-lg shadow-m">
             <h2 class="text-2xl font-semibold mb-4 text-green-500">Open Source Projects to Explore</h2>
             
             <div class="mb-6">
@@ -866,7 +701,7 @@
         </div>
 
         <!-- Development Guidelines -->
-        <div class="mb-12 p-6 bg-white rounded-lg shadow-md">
+        <div class="mb-12 md:p-6 bg-white rounded-lg shadow-m">
             <h2 class="text-2xl font-semibold mb-4 text-green-500">Development Guidelines</h2>
             
             <div class="mb-6">
@@ -921,7 +756,7 @@
         </div>
 
         <!-- Challenges to Address -->
-        <div class="mb-12 p-6 bg-white rounded-lg shadow-md">
+        <div class="mb-12 md:p-6 bg-white rounded-lg shadow-m">
             <h2 class="text-2xl font-semibold mb-4 text-green-500">Challenges to Address</h2>
             
             <div class="mb-6">
@@ -962,7 +797,7 @@
         </div>
 
         <!-- Getting Started Recommendations -->
-        <div class="mb-12 p-6 bg-white rounded-lg shadow-md">
+        <div class="mb-12 md:p-6 bg-white rounded-lg shadow-m">
             <h2 class="text-2xl font-semibold mb-4 text-green-500">Getting Started Recommendations</h2>
             
             <div class="mb-6">
@@ -994,14 +829,14 @@
         </div>
     </div>
     <!-- Neomorphic, Glassmorphism designs -->
-    <div class="container mx-auto px-4 py-8 max-w-4xl">
-        <h1 class="text-4xl font-bold text-center mb-8 text-gray-800">Neomorphic & Glassmorphism 2.0: Implementation Guide</h1>
+    <div class="containe mx-auto px-4 py-8 max-w-4xl" id="neomorphic-glassmorphism">
+        <h1 class=" text-xl md:text-3xl font-bold text-ce mb-8 text-gray-800">3. Neomorphic & Glassmorphism 2.0: Implementation Guide</h1>
         
         <!-- Understanding the Design Trends -->
-        <div class="mb-12 p-8">
-            <h2 class="text-2xl font-semibold mb-6 text-gray-700">1. Understanding the Design Trends</h2>
+        <div class="mb-12 md:p-8">
+            <h2 class="text-xl md:text-2xl font-semibold mb-6 text-gray-700">1. Understanding the Design Trends</h2>
             
-            <div class="mb-8 glass-card p-6">
+            <div class="mb-8 glass-card md:p-6 p-3">
                 <h3 class="text-xl font-medium mb-4 text-gray-700 section-heading">Neomorphic (Soft UI)</h3>
                 <p class="mb-3">Inspired by skeuomorphism but with a minimalist approach</p>
                 <p class="mb-3">Uses subtle shadows and highlights to create "soft" 3D elements</p>
@@ -1013,7 +848,7 @@
                 <p class="mb-2">• Minimalist color palettes</p>
             </div>
             
-            <div class="mb-8 glass-card p-6">
+            <div class="mb-8 glass-card md:p-6 p-3">
                 <h3 class="text-xl font-medium mb-4 text-gray-700 section-heading">Glassmorphism 2.0 (Frosted Glass Effect)</h3>
                 <p class="mb-3">An evolution of Glassmorphism with more depth and realism</p>
                 <p class="mb-3">Uses blur effects, transparency, and subtle borders</p>
@@ -1028,10 +863,10 @@
         </div>
 
         <!-- Implementation Techniques -->
-        <div class="mb-12 p-8">
-            <h2 class="text-2xl font-semibold mb-6 text-gray-700">2. Implementation Techniques</h2>
+        <div class="mb-12 md:p-8">
+            <h2 class="text-xl md:text-2xl font-semibold mb-6 text-gray-700">2. Implementation Techniques</h2>
             
-            <div class="mb-8 glass-card p-6">
+            <div class="mb-8 glass-card md:p-6 p-3">
                 <h3 class="text-xl font-medium mb-4 text-gray-700 section-heading">For Neomorphic Design</h3>
                 
                 <h4 class="font-medium mb-3 text-gray-700">CSS Approach</h4>
@@ -1187,8 +1022,8 @@
         </div>
     </div>
     <!-- Tools for Neomorphic Design -->
-    <div class="neumorphic max-w-2xl w-full p-8">
-        <h1 class="text-3xl font-bold mb-6 text-green-600">Tools for Neomorphic Design</h1>
+    <div class="neumorphic max-w-2xl w-full md:p-8">
+        <h1 class="text-xl md:text-3xl font-bold mb-6 text-green-600">Tools for Neomorphic Design</h1>
         
         <div class="mb-8">
             <h2 class="text-xl font-semibold mb-4 text-green-500">• CSS Generators:</h2>
@@ -1208,8 +1043,8 @@
         </div>
     </div>   
     <!-- Tools for glassmorphism design-->
-      <div class="glassmorphism rounded-2xl p-6 shadow-xl">
-            <h1 class="text-3xl font-bold mb-6 text-green-500">Tools for Glassmorphism</h1>
+      <div class="glassmorphism rounded-2xl p-3 md:p-6 shadow-xl">
+            <h1 class="text-xl md:text-3xl font-bold mb-6 text-green-500">Tools for Glassmorphism</h1>
             
             <div class="mb-8">
                 <h2 class="text-xl font-semibold mb-4 text-green-400">• CSS Generators:</h2>
@@ -1233,8 +1068,8 @@
 
 
         <!-- Section 3: Development Guidelines -->
-        <div class="glassmorphism rounded-2xl p-6 shadow-xl">
-            <h3 class="text-2xl font-bold mb-6 text-green-500">4. Development Guidelines</h3>
+        <div class="glassmorphism rounded-2xl p-3 md:p-6 shadow-xl">
+            <h3 class="text-xl md:text-2xl font-bold mb-6 text-green-500">4. Development Guidelines</h3>
             
             <div class="grid md:grid-cols-2 gap-6">
                 <div>
@@ -1296,8 +1131,8 @@
         </div>
 
         <!-- Section 4: Where to Use These Effects -->
-        <div class="glassmorphism rounded-2xl p-6 shadow-xl">
-            <h3 class="text-2xl font-bold mb-6 text-green-500">5. Where to Use These Effects</h3>
+        <div class="glassmorphism rounded-2xl p-3 md:p-6 shadow-xl mt-3">
+            <h3 class="text-xl md:text-2xl font-bold mb-6 text-green-500">5. Where to Use These Effects</h3>
             
             <div class="overflow-x-auto">
                 <table class="w-full glassmorphism rounded-lg">
@@ -1330,8 +1165,8 @@
         </div>
 
         <!-- Section 5: Final Recommendations -->
-        <div class="glassmorphism rounded-2xl p-6 shadow-xl">
-            <h3 class="text-2xl font-bold mb-6 text-green-500">6. Final Recommendations</h3>
+        <div class="glassmorphism rounded-2xl p-3 md:p-6 mt-3 shadow-xl">
+            <h3 class="text-2x md:text-2xl font-bold mb-6 text-green-500">6. Final Recommendations</h3>
             
             <div class="glassmorphism p-4 rounded-lg">
                 <div class="flex items-start mb-2">
@@ -1350,14 +1185,14 @@
         </div>
 
         <!-- AR VR Implementation -->
-                 <div class="tech-card rounded-xl p-6">
-            <h2 class="text-2xl md:text-3xl font-bold mb-2 text-green-400 glow-text">AR/VR & Spatial Design: Implementation Guide</h2>
-            <p class="text-lg text-gray-300">Augmented Reality (AR), Virtual Reality (VR), and Spatial Design (3D UI/UX) are transforming digital interactions. Here's a breakdown of how to implement them, the best tools & algorithms, and open-source projects to get started.</p>
+                 <div class="tech-card rounded-xl p-6" id="ar-vr-implementation">
+            <h2 class="text-xl md:text-3xl font-bold mb-2 glow-text">4. AR/VR & Spatial Design: Implementation Guide</h2>
+            <p class="md:text-lg text-gray-300">Augmented Reality (AR), Virtual Reality (VR), and Spatial Design (3D UI/UX) are transforming digital interactions. Here's a breakdown of how to implement them, the best tools & algorithms, and open-source projects to get started.</p>
         </div>
         
         <!-- Section 1: Core Technologies -->
         <div class="tech-card rounded-xl p-6">
-            <h3 class="text-2xl font-bold mb-6 text-green-400 glow-text">1. Core Technologies & Implementation Approaches</h3>
+            <h3 class="text-xl md:text-2xl font-bold mb-6 text-green-400 glow-text">1. Core Technologies & Implementation Approaches</h3>
             
             <div class="grid md:grid-cols-3 gap-6">
                 <!-- AR Column -->
@@ -1425,7 +1260,7 @@
         
         <!-- Section 2: Key Algorithms -->
         <div class="tech-card rounded-xl p-6">
-            <h3 class="text-2xl font-bold mb-6 text-green-400 glow-text">2. Key Algorithms Used in AR/VR</h3>
+            <h3 class="text-xl md:text-2xl font-bold mb-6 text-green-400 glow-text">2. Key Algorithms Used in AR/VR</h3>
             
             <div class="overflow-x-auto">
                 <table class="w-full border-collapse">
@@ -1469,7 +1304,7 @@
         
         <!-- Section 3: Development Tools -->
         <div class="tech-card rounded-xl p-6">
-            <h3 class="text-2xl font-bold mb-6 text-green-400 glow-text">3. Best Development Tools</h3>
+            <h3 class="text-xl md:text-2xl font-bold mb-6 text-green-400 glow-text">3. Best Development Tools</h3>
             
             <div class="grid md:grid-cols-3 gap-6">
                 <!-- AR Tools -->
@@ -1507,7 +1342,7 @@
         
         <!-- Section 4: Open-Source Projects -->
         <div class="tech-card rounded-xl p-6">
-            <h3 class="text-2xl font-bold mb-6 text-green-400 glow-text">4. Open-Source Projects to Start With</h3>
+            <h3 class="text-xl md:text-2xl font-bold mb-6 text-green-400 glow-text">4. Open-Source Projects to Start With</h3>
             
             <div class="grid md:grid-cols-3 gap-6">
                 <!-- AR Projects -->
@@ -1570,8 +1405,8 @@
         </div>
         
         <!-- Section 5: Implementation Guide -->
-        <div class="tech-card rounded-xl p-6">
-            <h3 class="text-2xl font-bold mb-6 text-green-400 glow-text">5. Step-by-Step Implementation Guide</h3>
+        <div class="tech-card rounded-xl p-3 md:p-6">
+            <h3 class="text-xl md:text-2xl font-bold mb-6 text-green-400 glow-text">5. Step-by-Step Implementation Guide</h3>
             
             <div class="grid md:grid-cols-1 gap-6">
                 <!-- AR Guide -->
@@ -1579,15 +1414,15 @@
                     <h4 class="text-xl font-semibold mb-4 text-green-400">A. Building a Simple AR App (WebAR)</h4>
                     <ol class="space-y-4">
                         <li class="flex items-start">
-                            <span class="bg-green-400 text-gray-900 rounded-full w-6 h-6 flex items-center justify-center mr-3 flex-shrink-0">1</span>
+                            <span class="bg-green-400 text-gray-100 rounded-full w-6 h-6 flex items-center justify-center mr-3 flex-shrink-0">1</span>
                             <span>Use AR.js</span>
                         </li>
                         <li class="flex items-start">
-                            <span class="bg-green-400 text-gray-900 rounded-full w-6 h-6 flex items-center justify-center mr-3 flex-shrink-0">2</span>
+                            <span class="bg-green-400 text-gray-100 rounded-full w-6 h-6 flex items-center justify-center mr-3 flex-shrink-0">2</span>
                             <span>Create a marker-based AR experience</span>
                         </li>
                         <li class="flex items-start">
-                            <span class="bg-green-400 text-gray-900 rounded-full w-6 h-6 flex items-center justify-center mr-3 flex-shrink-0">3</span>
+                            <span class="bg-green-400 text-gray-100 rounded-full w-6 h-6 flex items-center justify-center mr-3 flex-shrink-0">3</span>
                             <span>Test on mobile with a Hiro marker</span>
                         </li>
                     </ol>
@@ -1598,15 +1433,15 @@
                     <h4 class="text-xl font-semibold mb-4 text-green-400">B. Building a VR Scene (WebXR + A-Frame)</h4>
                     <ol class="space-y-4">
                         <li class="flex items-start">
-                            <span class="bg-green-400 text-gray-900 rounded-full w-6 h-6 flex items-center justify-center mr-3 flex-shrink-0">1</span>
+                            <span class="bg-green-400 text-gray-100 rounded-full w-6 h-6 flex items-center justify-center mr-3 flex-shrink-0">1</span>
                             <span>Use A-Frame</span>
                         </li>
                         <li class="flex items-start">
-                            <span class="bg-green-400 text-gray-900 rounded-full w-6 h-6 flex items-center justify-center mr-3 flex-shrink-0">2</span>
+                            <span class="bg-green-400 text-gray-100 rounded-full w-6 h-6 flex items-center justify-center mr-3 flex-shrink-0">2</span>
                             <span>Create a 360° VR environment</span>
                         </li>
                         <li class="flex items-start">
-                            <span class="bg-green-400 text-gray-900 rounded-full w-6 h-6 flex items-center justify-center mr-3 flex-shrink-0">3</span>
+                            <span class="bg-green-400 text-gray-100 rounded-full w-6 h-6 flex items-center justify-center mr-3 flex-shrink-0">3</span>
                             <span>Test in VR using a WebXR-compatible browser</span>
                         </li>
                     </ol>
@@ -1616,7 +1451,7 @@
         
         <!-- Section 6: Best Practices -->
         <div class="tech-card rounded-xl p-6">
-            <h3 class="text-2xl font-bold mb-6 text-green-400 glow-text">6. Best Practices for AR/VR & Spatial Design</h3>
+            <h3 class="text-xl md:text-2xl font-bold mb-6 text-green-400 glow-text">6. Best Practices for AR/VR & Spatial Design</h3>
             
             <div class="grid md:grid-cols-2 gap-4">
                 <div class="flex items-start">
@@ -1640,7 +1475,7 @@
         
         <!-- Section 7: Future Trends -->
         <div class="tech-card rounded-xl p-6">
-            <h3 class="text-2xl font-bold mb-6 text-green-400 glow-text">7. Future Trends to Watch</h3>
+            <h3 class="text-xl md:text-2xl font-bold mb-6 text-green-400 glow-text">7. Future Trends to Watch</h3>
             
             <div class="space-y-3">
                 <div class="flex items-start">
@@ -1660,7 +1495,7 @@
         
         <!-- Final Recommendations -->
         <div class="tech-card rounded-xl p-6">
-            <h3 class="text-2xl font-bold mb-6 text-green-400 glow-text">Final Recommendations</h3>
+            <h3 class="text-xl md:text-2xl font-bold mb-6 text-green-400 glow-text">Final Recommendations</h3>
             
             <div class="space-y-3">
                 <div class="flex items-start">
@@ -1692,66 +1527,67 @@
         </div> -->
         
         <!-- Header Section -->
-        <div class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-md mb-8">
-            <h2 class="text-2xl md:text-3xl font-bold mb-2 text-green-500 dark:text-green-400">Dark Mode & Eye-Friendly Design: Implementation Guide</h2>
-            <p class="text-lg text-gray-700 dark:text-gray-300">Dark mode and eye-friendly designs reduce eye strain, improve readability, and enhance UX. Here's how to implement them, the best tools, and open-source resources.</p>
+        <div class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-m mb-8" id="dark-mode-eye-friendly">
+            <h2 class="text-xl md:text-2xl md:text-3xl font-bold mb-2">5. Dark Mode & Eye-Friendly Design: Implementation Guide</h2>
+            <p class="md:text-lg text-gray-400 dark:text-gray-300">Dark mode and eye-friendly designs reduce eye strain, improve readability, and enhance UX. Here's how to implement them, the best tools, and open-source resources.</p>
         </div>
         
         <!-- Section 1: Key Principles -->
         <div class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-md mb-8">
-            <h3 class="text-2xl font-bold mb-6 text-green-500 dark:text-green-400">1. Key Principles of Eye-Friendly Design</h3>
+            <h3 class="text-xl md:text-2xl font-bold mb-6 text-green-500 dark:text-green-400">1. Key Principles of Eye-Friendly Design</h3>
             
-            <div class="space-y-4">
-                <div class="flex items-start">
-                    <span class="text-green-500 mr-3 text-xl">✅</span>
+            <ul class="space-y-4 list-disc">
+                <li class="flex items-start">
+                    <!-- <span class="text-green-500 mr-3 text-xl">✅</span> -->
                     <div>
                         <span class="font-medium">Contrast Ratio</span>
                         <p class="text-sm text-gray-600 dark:text-gray-400">(WCAG recommends 4.5:1 for text)</p>
                     </div>
-                </div>
-                <div class="flex items-start">
-                    <span class="text-green-500 mr-3 text-xl">✅</span>
+                </li>
+                <li class="flex items-start">
+                    <!-- <span class="text-green-500 mr-3 text-xl">✅</span> -->
                     <div>
                         <span class="font-medium">Reduced Blue Light</span>
                         <p class="text-sm text-gray-600 dark:text-gray-400">(Warmer tones in dark mode)</p>
                     </div>
-                </div>
-                <div class="flex items-start">
-                    <span class="text-green-500 mr-3 text-xl">✅</span>
+                </li>
+                <li class="flex items-start">
+                    <!-- <span class="text-green-500 mr-3 text-xl">✅</span> -->
                     <div>
                         <span class="font-medium">Adaptive Brightness</span>
                         <p class="text-sm text-gray-600 dark:text-gray-400">(Auto-adjusts based on ambient light)</p>
                     </div>
-                </div>
-                <div class="flex items-start">
-                    <span class="text-green-500 mr-3 text-xl">✅</span>
+                </li>
+                <li class="flex items-start">
+                    <!-- <span class="text-green-500 mr-3 text-xl">✅</span> -->
                     <div>
                         <span class="font-medium">Legible Typography</span>
                         <p class="text-sm text-gray-600 dark:text-gray-400">(Sans-serif fonts, proper spacing)</p>
                     </div>
-                </div>
-                <div class="flex items-start">
-                    <span class="text-green-500 mr-3 text-xl">✅</span>
+                </li>
+                <li class="flex items-start">
+                    <!-- <span class="text-green-500 mr-3 text-xl">✅</span> -->
                     <div>
                         <span class="font-medium">Motion Reduction</span>
                         <p class="text-sm text-gray-600 dark:text-gray-400">(Prefers reduced motion for accessibility)</p>
                     </div>
-                </div>
-            </div>
+                </li>
+            </ul>
         </div>
         
         <!-- Section 2: Implementation Approaches -->
         <div class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-md mb-8">
-            <h2 class="text-2xl font-bold mb-6 text-green-600 dark:text-green-400">2. Implementation Approaches</h2>
+            <h2 class="text-xl md:text-2xl font-bold mb-6 text-green-600 dark:text-green-400">2. Implementation Approaches</h2>
             
-            <div class="grid md:grid-cols-1 gap-8">
+            <div class="gri md:grid-cols-1 gap-8">
                 <!-- Dark Mode Toggle -->
                 <div>
                     <h3 class="text-xl font-semibold mb-4 text-green-500 dark:text-green-300">A. Dark Mode Toggle (CSS/JS)</h3>
                     
                     <div class="mb-6">
                         <h4 class="font-medium mb-2">JavaScript</h4>
-                        <pre class="bg-gray-100 dark:bg-gray-700 p-4 rounded-lg code-block overflow-x-auto">
+                        <div class="overflow-x-auto">
+                            <pre class="bg-gray-100 dark:bg-gray-700 p-4 rounded-lg code-block overflow-x-auto">
 <code class="text-green-500 dark:text-gray-200">// Check for saved theme preference
 const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
 const currentTheme = localStorage.getItem('theme');
@@ -1770,7 +1606,8 @@ document.getElementById('themeToggle').addEventListener('change', function() {
         localStorage.setItem('theme', 'light');
     }
 });</code>
-                        </pre>
+                            </pre>
+                        </div>
                     </div>
                     
                     <div>
@@ -1798,7 +1635,7 @@ module.exports = {
                 
                 <!-- Color Palettes -->
                 <div>
-                    <h3 class="text-xl font-semibold mb-4 text-green-500 dark:text-green-300">C. Eye-Friendly Color Palettes</h3>
+                    <h3 class="text-xl font-semibold mb-4 mt-4 text-green-500 dark:text-green-300">C. Eye-Friendly Color Palettes</h3>
                     
                     <div class="grid grid-cols-2 gap-4 mb-6">
                         <div class="dark-mode-bg p-4 rounded-lg">
@@ -1841,7 +1678,7 @@ module.exports = {
         
         <!-- Section 3: Best Tools & Libraries -->
         <div class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-md mb-8">
-            <h2 class="text-2xl font-bold mb-6 text-green-600 dark:text-green-400">3. Best Tools & Libraries</h2>
+            <h2 class="text-xl md:text-2xl font-bold mb-6 text-green-600 dark:text-green-400">3. Best Tools & Libraries</h2>
             
             <div class="grid md:grid-cols-3 gap-6">
                 <!-- CSS Frameworks -->
@@ -1896,7 +1733,7 @@ module.exports = {
         
         <!-- Section 4: Open-Source Projects -->
         <div class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-md mb-8">
-            <h2 class="text-2xl font-bold mb-6 text-green-600 dark:text-green-400">4. Open-Source Projects & Templates</h2>
+            <h2 class="text-xl md:text-2xl font-bold mb-6 text-green-600 dark:text-green-400">4. Open-Source Projects & Templates</h2>
             
             <div class="grid md:grid-cols-2 gap-6">
                 <!-- Dark Mode UI Kits -->
@@ -1986,7 +1823,7 @@ module.exports = {
         
         <!-- Section 6: Where to Use -->
         <div class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-md mb-8">
-            <h2 class="text-2xl font-bold mb-6 text-green-600 dark:text-green-400">6. Where to Use These Techniques</h2>
+            <h2 class="text-xl md:text-2xl font-bold mb-6 text-green-600 dark:text-green-400">6. Where to Use These Techniques</h2>
             
             <div class="overflow-x-auto">
                 <table class="w-full border-collapse">
@@ -2025,7 +1862,7 @@ module.exports = {
         
         <!-- Section 7: Final Recommendations -->
         <div class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-md">
-            <h2 class="text-2xl font-bold mb-6 text-green-600 dark:text-green-400">7. Final Recommendations</h2>
+            <h2 class="text-xl md:text-2xl font-bold mb-6 text-green-600 dark:text-green-400">7. Final Recommendations</h2>
             
             <div class="space-y-4">
                 <div class="flex items-start">
@@ -2044,14 +1881,14 @@ module.exports = {
         </div>
     </div>
     <!-- Micro-Interactions -->
-     <div class="bg-white rounded-xl p-6 shadow-sm mb-8 interaction-card">
-            <h1 class="text-3xl md:text-4xl font-bold mb-2 text-green-600">Micro-Interactions & Haptic Feedback: Implementation Guide</h1>
-            <p class="text-lg text-gray-700">Micro-interactions and haptic feedback enhance UX by providing subtle, engaging responses to user actions. Here's how to implement them effectively:</p>
+     <div class="bg-white rounded-xl p-6 shadow-sm mb-8 interaction-card" id="micro-interactions">
+            <h1 class="text-2xl md:text-3xl font-bold mb-2">6. Micro-Interactions & Haptic Feedback: Implementation Guide</h1>
+            <p class="md:text-lg text-gray-400">Micro-interactions and haptic feedback enhance UX by providing subtle, engaging responses to user actions. Here's how to implement them effectively:</p>
         </div>
         
         <!-- Section 1: Core Concepts -->
         <div class="bg-white rounded-xl p-6 shadow-sm mb-8 interaction-card">
-            <h2 class="text-2xl font-bold mb-6 text-green-600">1. Core Concepts</h2>
+            <h2 class="text-xl text-2xl font-bold mb-6 text-green-600">1. Core Concepts</h2>
             
             <div class="grid md:grid-cols-3 gap-6">
                 <!-- Micro-Interactions Column -->
@@ -2121,7 +1958,7 @@ module.exports = {
         <div class="bg-white rounded-xl p-6 shadow-sm mb-8 interaction-card">
             <h2 class="text-2xl font-bold mb-6 text-green-600">2. Implementation Methods</h2>
             
-            <div class="grid md:grid-cols-1 gap-8">
+            <div class="gri md:grid-cols-1 gap-8">
                 <!-- CSS/JS Examples -->
                 <div>
                     <h3 class="text-xl font-semibold mb-4 text-green-500">A. CSS/JS for Micro-Interactions</h3>
@@ -2221,7 +2058,7 @@ buttons.forEach(button => {
                 </div>
                 
                 <!-- Haptic Feedback Examples -->
-                <div>
+                <div class="mt-4">
                     <h3 class="text-xl font-semibold mb-4 text-green-500">B. Haptic Feedback (Mobile APIs)</h3>
                     
                     <div class="mb-6">
@@ -2458,7 +2295,7 @@ if ('vibrate' in navigator) {
         <div class="bg-white rounded-xl p-6 shadow-sm mb-8 interaction-card">
             <h2 class="text-2xl font-bold mb-6 text-green-600">6. Emotion-Driven Interaction Examples</h2>
             
-            <div class="grid md:grid-cols-1 gap-6">
+            <div class="gri md:grid-cols-1 gap-6">
                 <!-- Confetti Celebration -->
                 <div>
                     <h3 class="text-xl font-semibold mb-4 text-green-500">1. Confetti Celebration (JS)</h3>
@@ -2625,9 +2462,9 @@ if ('vibrate' in navigator) {
     
     <div class="scroll-snap">
         <!-- Hero Section -->
-        <section class="story-section bg-gradient-to-b from-blue-50 to-green-100 flex items-center justify-center text-center">
+        <section id="immersive-storytelling" class="story-section bg-gradient-to-b from-blue-50 to-green-100 flex items-center justify-center text-center">
             <div class="max-w-3xl px-4">
-                <h1 class="text-5xl md:text-6xl font-bold mb-6 text-green-900">Scrollytelling & Immersive Storytelling</h1>
+                <h1 class="text-xl md:text-4xl font-bold mb-6 text-green-900">Scrollytelling & Immersive Storytelling</h1>
                 <p class="text-xl md:text-2xl text-green-800 mb-8">Combine narrative storytelling with interactive scrolling techniques to create engaging, cinematic web experiences.</p>
                 <div class="scroll-indicator">
                     <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -2640,7 +2477,7 @@ if ('vibrate' in navigator) {
         <!-- Core Techniques -->
         <section class="story-section bg-white">
             <div class="max-w-4xl mx-auto">
-                <h2 class="text-4xl font-bold mb-12 text-center text-green-900">1. Core Techniques for Scrollytelling</h2>
+                <h2 class="text-xl md:text-4xl font-bold mb-12 text-center text-green-900">1. Core Techniques for Scrollytelling</h2>
                 
                 <div class="grid md:grid-cols-3 gap-8">
                     <!-- Scroll-Triggered Animations -->
@@ -2965,7 +2802,7 @@ window.addEventListener('scroll', function() {
         <!-- Where to Use -->
         <section class="story-section bg-gray-50">
             <div class="max-w-4xl mx-auto">
-                <h2 class="text-4xl font-bold mb-12 text-center text-green-900">6. Where to Use These Techniques</h2>
+                <h2 class="text-xl md:text-4xl font-bold mb-12 text-center text-green-900">6. Where to Use These Techniques</h2>
                 
                 <div class="overflow-x-auto">
                     <table class="w-full border-collapse">
@@ -3001,7 +2838,7 @@ window.addEventListener('scroll', function() {
         <!-- Emerging Trends -->
         <section class="story-section bg-white">
             <div class="max-w-4xl mx-auto">
-                <h2 class="text-4xl font-bold mb-12 text-center text-green-900">7. Emerging Trends</h2>
+                <h2 class="text-xl md:text-4xl font-bold mb-12 text-center text-green-900">7. Emerging Trends</h2>
                 
                 <div class="space-y-6">
                     <div class="flex items-start">
@@ -3025,9 +2862,9 @@ window.addEventListener('scroll', function() {
         </section>
     </div>
     <!-- Supar app & Modular Interfaces -->
-    <div class="bg-white rounded-xl p-6 shadow-sm mb-8">
-            <h1 class="text-3xl md:text-4xl font-bold mb-2 text-green-700">Super Apps & Modular Interfaces: Implementation Guide</h1>
-            <p class="text-lg text-gray-700">Building all-in-one platforms with customizable interfaces requires careful architecture and modern development approaches. Here's how to implement super app functionality:</p>
+    <div class="bg-white rounded-xl p-6 shadow-sm mb-8" id="super-apps">
+            <h2 class="text-xl md:text-4xl font-bold mb-2">8. Super Apps & Modular Interfaces: Implementation Guide</h2>
+            <p class="md:text-lg text-gray-400">Building all-in-one platforms with customizable interfaces requires careful architecture and modern development approaches. Here's how to implement super app functionality:</p>
         </div>
         
         <!-- Section 1: Core Architectural Patterns -->
@@ -3298,7 +3135,7 @@ function Dashboard() {
         <div class="bg-white rounded-xl p-6 shadow-sm mb-8">
             <h2 class="text-2xl font-bold mb-6 text-green-700">5. Key Implementation Steps</h2>
             
-            <div class="grid md:grid-cols-2 gap-8">
+            <div class="gri md:grid-cols-2 gap-8">
                 <!-- Define Core Shell -->
                 <div>
                     <h3 class="text-xl font-semibold mb-4 text-green-700">1. Define Core Shell:</h3>
@@ -3482,9 +3319,9 @@ const PaymentModule = React.lazy(() => import(
         </div>
         <!-- biometric security   -->
          <!-- Header Section -->
-        <div class="bg-white rounded-xl p-6 shadow-sm mb-8">
-            <h1 class="text-3xl md:text-4xl font-bold mb-2 text-green-700">Biometric Authentication & Security UX</h1>
-            <p class="text-lg text-gray-700">A Seamless Future of Digital Access</p>
+        <div class="bg-white rounded-xl p-6 shadow-sm mb-8" id="biometric-authentication">
+            <h1 class="text-xl md:text-3xl md:text-4xl font-bold mb-2">9. Biometric Authentication & Security UX</h1>
+            <p class="md:text-lg text-gray-400">A Seamless Future of Digital Access</p>
             <div class="mt-4 p-4 bg-green-50 rounded-lg border border-green-100">
                 <p class="text-green-800">As technology continues to reshape our lives, the demand for more secure yet frictionless authentication methods is rising. Biometric authentication—using unique human features like fingerprints, facial recognition, or iris patterns—is rapidly becoming the new standard for modern security user experiences (UX).</p>
             </div>
@@ -3492,7 +3329,7 @@ const PaymentModule = React.lazy(() => import(
         
         <!-- What is Biometric Authentication? -->
         <div class="bg-white rounded-xl p-6 shadow-sm mb-8">
-            <h2 class="text-2xl font-bold mb-6 text-green-700">🌟 What is Biometric Authentication?</h2>
+            <h2 class="text-xl md:text-2xl font-bold mb-6 text-green-700">🌟 What is Biometric Authentication?</h2>
             <p class="mb-6">Biometric authentication is a security process that verifies a user's identity using their unique biological traits. Common modalities include:</p>
             
             <div class="grid md:grid-cols-2 gap-6">
@@ -3566,7 +3403,7 @@ const PaymentModule = React.lazy(() => import(
         
         <!-- Why Biometric UX Matters? -->
         <div class="bg-white rounded-xl p-6 shadow-sm mb-8">
-            <h2 class="text-2xl font-bold mb-6 text-green-700">⚙️ Why Biometric UX Matters?</h2>
+            <h2 class="text-xl md:text-2xl font-bold mb-6 text-green-700">⚙️ Why Biometric UX Matters?</h2>
             <p class="mb-6">Security systems must not only be effective but also usable. A secure system that frustrates users can lead to lower adoption or unsafe workarounds (e.g., writing down passwords). This is where Security UX (User Experience) comes in.</p>
             
             <div class="p-6 bg-green-50 rounded-lg mb-6">
@@ -3592,7 +3429,7 @@ const PaymentModule = React.lazy(() => import(
         
         <!-- Types of Biometric Security UX in Practice -->
         <div class="bg-white rounded-xl p-6 shadow-sm mb-8">
-            <h2 class="text-2xl font-bold mb-6 text-green-700">🛡️ Types of Biometric Security UX in Practice</h2>
+            <h2 class="text-xl md:text-2xl font-bold mb-6 text-green-700">🛡️ Types of Biometric Security UX in Practice</h2>
             
             <div class="grid md:grid-cols-3 gap-6">
                 <!-- Device-Level Biometrics -->
@@ -3678,7 +3515,7 @@ const PaymentModule = React.lazy(() => import(
         
         <!-- Blockchain + Biometric Identity -->
         <div class="bg-white rounded-xl p-6 shadow-sm mb-8">
-            <h2 class="text-2xl font-bold mb-6 text-green-700">🔗 Blockchain + Biometric Identity</h2>
+            <h2 class="text-xl md:text-2xl font-bold mb-6 text-green-700">🔗 Blockchain + Biometric Identity</h2>
             <p class="mb-6">Biometrics + Decentralized Identity is an emerging model for securing digital transactions without relying on centralized databases. Here's how it works:</p>
             
             <div class="auth-flow mb-6">
@@ -3701,7 +3538,7 @@ const PaymentModule = React.lazy(() => import(
         
         <!-- Designing Good Biometric UX -->
         <div class="bg-white rounded-xl p-6 shadow-sm mb-8">
-            <h2 class="text-2xl font-bold mb-6 text-green-700">Designing Good Biometric UX</h2>
+            <h2 class="text-xl md:text-2xl font-bold mb-6 text-green-700">Designing Good Biometric UX</h2>
             <p class="mb-6">To make biometric security user-friendly and trustworthy:</p>
             
             <div class="overflow-x-auto">
@@ -3740,7 +3577,7 @@ const PaymentModule = React.lazy(() => import(
         
         <!-- Implementation Sections -->
         <div class="bg-white rounded-xl p-6 shadow-sm mb-8">
-            <h2 class="text-2xl font-bold mb-6 text-green-700">🔐 Implementation Guide</h2>
+            <h2 class="text-xl md:text-2xl font-bold mb-6 text-green-700">🔐 Implementation Guide</h2>
             
             <!-- Face ID, Fingerprint, Retina Scan -->
             <div class="mb-8">
@@ -3996,7 +3833,7 @@ const PaymentModule = React.lazy(() => import(
         
         <!-- Suggested Learning & Starter Projects -->
         <div class="bg-white rounded-xl p-6 shadow-sm mb-8">
-            <h2 class="text-2xl font-bold mb-6 text-green-700">🚀 Suggested Learning & Starter Projects</h2>
+            <h2 class="text-xl md:text-2xl font-bold mb-6 text-green-700">🚀 Suggested Learning & Starter Projects</h2>
             
             <div class="overflow-x-auto">
                 <table class="w-full border-collapse">
@@ -4035,7 +3872,7 @@ const PaymentModule = React.lazy(() => import(
         
         <!-- Bonus Tips -->
         <div class="bg-white rounded-xl p-6 shadow-sm">
-            <h2 class="text-2xl font-bold mb-6 text-green-700">🧠 Bonus Tips for Good Security UX</h2>
+            <h2 class="text-xl md:text-2xl font-bold mb-6 text-green-700">🧠 Bonus Tips for Good Security UX</h2>
             
             <div class="grid md:grid-cols-2 gap-6">
                 <div class="security-principle">
@@ -4064,11 +3901,135 @@ const PaymentModule = React.lazy(() => import(
                 
             </article>
 
+        <!-- Ethical, Inclusive Design -->
+             <!-- Hero Section -->
+              <div class="bg-white shadow-sm" id="ethical-inclusive-design">
+    <header class="hero-gradient">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-6 md:pt-24">
+            <div class="text-cente">
+                <h2 class="text-xl md:text-4xl font-bold text-gray-900 mb-2">10. Ethical & Inclusive Design</h2>
+                <p class="md:text-lg text-gray-500 max-w-3xl mx-auto">Building digital experiences that serve everyone fairly and respectfully</p>
+            </div>
+        </div>
+    </header>
 
+    <!-- Main Content -->
+    <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <article class="prose prose-lg max-w-none">
+            <p class="text-gray-700 mb-8">In today's digital landscape, ethical and inclusive design is no longer optional—it's a necessity. By prioritizing accessibility, diversity, and user privacy, we can create products that serve everyone fairly and respectfully.</p>
+
+            <!-- Accessibility Section -->
+            <section class="mb-16">
+                <h2 class="text-3xl font-bold text-gray-900 mb-6">1. Accessibility-First Approach</h2>
+                <p class="text-gray-700 mb-6">Accessibility ensures that all users, including those with disabilities, can interact with your content seamlessly. Key practices include:</p>
+                
+                <div class="bg-gray-50 p-6 rounded-lg highlight-box mb-6">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Better Contrast & Readability</h3>
+                    <ul class="list-disc pl-6 space-y-2 text-gray-700">
+                        <li>Use high-contrast color combinations (e.g., dark text on light backgrounds)</li>
+                        <li>Avoid relying solely on color to convey information (add icons or labels)</li>
+                        <li>Follow WCAG (Web Content Accessibility Guidelines) standards</li>
+                    </ul>
+                </div>
+
+                <div class="bg-gray-50 p-6 rounded-lg highlight-box mb-6">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Screen Reader & Keyboard Navigation Support</h3>
+                    <ul class="list-disc pl-6 space-y-2 text-gray-700">
+                        <li>Ensure all interactive elements (buttons, links) are keyboard-navigable</li>
+                        <li>Use semantic HTML (<code class="bg-gray-200 px-1 rounded">&lt;header&gt;</code>, <code class="bg-gray-200 px-1 rounded">&lt;nav&gt;</code>, <code class="bg-gray-200 px-1 rounded">&lt;button&gt;</code>) for better screen reader interpretation</li>
+                        <li>Provide descriptive alt text for images</li>
+                    </ul>
+                </div>
+
+                <div class="bg-gray-50 p-6 rounded-lg highlight-box">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Responsive & Adaptive Design</h3>
+                    <ul class="list-disc pl-6 space-y-2 text-gray-700">
+                        <li>Optimize for different screen sizes (mobile, tablet, desktop)</li>
+                        <li>Allow text resizing without breaking the layout</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Inclusive Visuals Section -->
+            <section class="mb-16">
+                <h2 class="text-3xl font-bold text-gray-900 mb-6">2. Gender-Neutral & Culturally Inclusive Visuals</h2>
+                <p class="text-gray-700 mb-6">Representation matters. Your design should reflect the diversity of your audience.</p>
+                
+                <div class="bg-gray-50 p-6 rounded-lg highlight-box mb-6">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Avoid Stereotypes</h3>
+                    <ul class="list-disc pl-6 space-y-2 text-gray-700">
+                        <li>Use imagery that doesn't reinforce gender roles (e.g., not all nurses should be depicted as women, not all engineers as men)</li>
+                        <li>Show diverse family structures, professions, and lifestyles</li>
+                    </ul>
+                </div>
+
+                <div class="bg-gray-50 p-6 rounded-lg highlight-box mb-6">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Culturally Inclusive Illustrations & Icons</h3>
+                    <ul class="list-disc pl-6 space-y-2 text-gray-700">
+                        <li>Use neutral or varied skin tones in avatars and icons</li>
+                        <li>Avoid culturally specific metaphors that may exclude some users</li>
+                        <li>Celebrate global perspectives in visuals and content</li>
+                    </ul>
+                </div>
+
+                <div class="bg-gray-50 p-6 rounded-lg highlight-box">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Inclusive Language</h3>
+                    <ul class="list-disc pl-6 space-y-2 text-gray-700">
+                        <li>Use gender-neutral terms (e.g., "they/them" instead of "he/she")</li>
+                        <li>Avoid idioms that may not translate well across cultures</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Privacy Section -->
+            <section class="mb-16">
+                <h2 class="text-3xl font-bold text-gray-900 mb-6">3. Privacy-Focused UX</h2>
+                <p class="text-gray-700 mb-6">Users deserve transparency and control over their data.</p>
+                
+                <div class="bg-gray-50 p-6 rounded-lg highlight-box mb-6">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Clear Data Usage Policies</h3>
+                    <ul class="list-disc pl-6 space-y-2 text-gray-700">
+                        <li>Explain in simple terms what data you collect and why</li>
+                        <li>Provide easy-to-find privacy policies and consent options</li>
+                    </ul>
+                </div>
+
+                <div class="bg-gray-50 p-6 rounded-lg highlight-box mb-6">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Minimal Tracking & Dark Pattern Avoidance</h3>
+                    <ul class="list-disc pl-6 space-y-2 text-gray-700">
+                        <li>Don't force users to opt into unnecessary data collection</li>
+                        <li>Avoid manipulative designs (e.g., hidden unsubscribe buttons, misleading checkboxes)</li>
+                    </ul>
+                </div>
+
+                <div class="bg-gray-50 p-6 rounded-lg highlight-box">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">User Control & Transparency</h3>
+                    <ul class="list-disc pl-6 space-y-2 text-gray-700">
+                        <li>Allow users to easily access, download, or delete their data</li>
+                        <li>Provide granular privacy settings (e.g., opt-in for cookies, ad personalization)</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Conclusion -->
+            <section class="bg-indigo-50 p-8 rounded-xl">
+                <h2 class="text-2xl font-bold text-gray-900 mb-4">Conclusion</h2>
+                <p class="text-gray-700 mb-6">Ethical and inclusive design isn't just about compliance—it's about empathy. By adopting an <strong>accessibility-first mindset</strong>, embracing <strong>diverse representation</strong>, and prioritizing <strong>user privacy</strong>, we can create digital experiences that are welcoming, fair, and trustworthy for all.</p>
+                <p class="text-gray-700">What steps are you taking to make your designs more inclusive? Share your thoughts in the comments!</p>
+            </section>
+        </article>
+    </main>
+</div>
+    <!-- Comments Section -->
+  
 
         </main>
+        <!-- Ethical, Inclusive Design -->
+         
     </div>
 
+    <!-- Ethical, Inclusive design -->
+    
         <!-- Footer -->
     <footer class="footer">
         <p>© 2025 UI Dev Tech Docs. All rights reserved.</p>
