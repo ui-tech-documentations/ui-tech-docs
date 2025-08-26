@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>JSON Prompt Generator</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen flex items-center justify-center p-6">
+  <div class="bg-white rounded-2xl shadow-xl w-full max-w-6xl p-6">
+    <h1 class="text-2xl font-bold text-center text-gray-800 mb-6">JSON Prompt Generator</h1>
+    <p>Creating JSON-Based Prompts for UI Code Generation</p>
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <!-- FORM SECTION -->
+      <form id="promptForm" class="space-y-4">
+        <!-- Task -->
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-1">Task</label>
+          <input type="text" id="task" value="generate_component" class="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+        </div>
+
+        <!-- Framework (selection) -->
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-1">Framework</label>
+          <select id="framework" class="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+            <option value="bootstrap5" selected>bootstrap5</option>
+            <option value="tailwind">tailwind</option>
+            <option value="bulma">bulma</option>
+            <option value="materialize">materialize</option>
+          </select>
+        </div>
+
+        <!-- Component (selection) -->
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-1">Component</label>
+          <select id="component" class="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+            <option value="navbar">navbar</option>
+            <option value="hero-section" selected>hero-section</option>
+            <option value="about-section">about-section</option>
+            <option value="footer">footer</option>
+            <option value="cta">cta</option>
+          </select>
+        </div>
+
+        <!-- Requirements (textarea for custom JSON input) -->
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-1">Requirements (JSON format)</label>
+          <textarea id="requirements" rows="5" class="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+{
+  "navigation_buttons": "left and right",
+  "pagination": "dots",
+  "background_image": true,
+  "slide_content": ["heading","brief description","action button"],
+  "responsive": true
+}
+          </textarea>
+          <p class="text-xs text-gray-500 mt-1">Edit this JSON to match the component type.</p>
+        </div>
+
+        <!-- JS Behavior -->
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-1">JS Behavior (JSON)</label>
+          <textarea id="js_behavior" rows="4" class="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+{
+  "init_on_page_load": false,
+  "programmatic_control": true,
+  "navigations_control": true,
+  "pagination_control": true
+}
+          </textarea>
+        </div>
+
+        <!-- Accessibility always enabled -->
+        <div class="flex items-center">
+          <input type="checkbox" id="aria_labels" checked disabled class="h-4 w-4 text-blue-600 border-gray-300 rounded">
+          <label for="aria_labels" class="ml-2 text-sm text-gray-700">Accessibility: aria_labels (always true)</label>
+        </div>
+
+        <!-- Output Format -->
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-1">Output Format</label>
+          <input type="text" id="output_format" value="annotated_code" class="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+        </div>
+
+        <!-- Generate Button -->
+        <button type="button" onclick="generateJSON()" class="w-full bg-blue-600 text-white rounded-lg p-3 font-medium hover:bg-blue-700">
+          Generate JSON
+        </button>
+      </form>
+
+      <!-- OUTPUT SECTION -->
+      <div id="outputSection" class="hidden flex flex-col">
+        <h2 class="text-lg font-semibold text-gray-800 mb-2">Generated JSON Prompt</h2>
+        <pre id="jsonOutput" class="bg-gray-900 text-green-400 p-4 rounded-lg overflow-x-auto flex-grow"></pre>
+        <button onclick="copyJSON()" class="mt-3 w-full bg-gray-800 text-white rounded-lg p-2 font-medium hover:bg-gray-900">
+          Copy JSON
+        </button>
+        <p id="copyStatus" class="text-sm text-green-600 mt-2 hidden">Copied to clipboard!</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function generateJSON() {
+      const task = document.getElementById('task').value.trim();
+      const framework = document.getElementById('framework').value.trim();
+      const component = document.getElementById('component').value.trim();
+      let requirements = {};
+      let jsBehavior = {};
+      try {
+        requirements = JSON.parse(document.getElementById('requirements').value);
+      } catch(e) {
+        alert("Invalid JSON in Requirements");
+        return;
+      }
+      try {
+        jsBehavior = JSON.parse(document.getElementById('js_behavior').value);
+      } catch(e) {
+        alert("Invalid JSON in JS Behavior");
+        return;
+      }
+      const outputFormat = document.getElementById('output_format').value.trim();
+
+      const jsonPrompt = {
+        task: task,
+        framework: framework,
+        component: component,
+        requirements: requirements,
+        js_behavior: jsBehavior,
+        accessibility: { aria_labels: true },
+        output_format: outputFormat
+      };
+
+      const jsonString = JSON.stringify(jsonPrompt, null, 4);
+      document.getElementById('jsonOutput').textContent = jsonString;
+      document.getElementById('outputSection').classList.remove('hidden');
+      document.getElementById('copyStatus').classList.add('hidden');
+    }
+
+    function copyJSON() {
+      const jsonText = document.getElementById('jsonOutput').textContent;
+      navigator.clipboard.writeText(jsonText).then(() => {
+        document.getElementById('copyStatus').classList.remove('hidden');
+        setTimeout(() => {
+          document.getElementById('copyStatus').classList.add('hidden');
+        }, 2000);
+      });
+    }
+  </script>
+</body>
+</html>

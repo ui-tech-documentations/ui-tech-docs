@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>JSON Prompt Generator</title>
+  <script src="https://unpkg.com/petite-vue" defer init></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen flex justify-center items-start py-10">
+
+<div v-scope="PromptApp" class="bg-white shadow-lg rounded-2xl p-6 w-full max-w-3xl">
+  <h1 class="text-2xl font-bold mb-4 text-center">UI JSON Prompt Generator</h1>
+  
+  <!-- Select Component -->
+  <label class="block mb-2 font-semibold">Choose Component</label>
+  <select v-model="component" @change="updateFields" class="w-full border rounded-lg p-2 mb-4">
+    <option disabled value="">-- Select a Component --</option>
+    <option>navbar</option>
+    <option>hero section</option>
+    <option>service section</option>
+    <option>about section</option>
+    <option>cta section</option>
+    <option>footer</option>
+  </select>
+
+  <!-- Dynamic Fields -->
+  <div v-if="fields.length > 0">
+    <h2 class="text-lg font-semibold mb-2">Requirements</h2>
+    <template v-for="(field, index) in fields">
+      <label :for="field.key" class="block mt-2 capitalize">{{ field.label }}</label>
+      <input 
+        v-if="field.type === 'text'" 
+        v-model="requirements[field.key]" 
+        :id="field.key" 
+        type="text" 
+        class="w-full border rounded-lg p-2"
+        :placeholder="field.placeholder">
+
+      <input 
+        v-if="field.type === 'boolean'" 
+        v-model="requirements[field.key]" 
+        :id="field.key" 
+        type="checkbox" 
+        class="mr-2">
+      <span v-if="field.type === 'boolean'">{{ field.label }}</span>
+
+      <textarea 
+        v-if="field.type === 'list'" 
+        v-model="requirements[field.key]" 
+        :id="field.key" 
+        class="w-full border rounded-lg p-2" 
+        :placeholder="field.placeholder"></textarea>
+    </template>
+  </div>
+
+  <!-- Generate Button -->
+  <button 
+    @click="generateJSON" 
+    class="mt-4 w-full bg-blue-600 text-white font-semibold py-2 rounded-lg hover:bg-blue-700">
+    Generate JSON Prompt
+  </button>
+
+  <!-- Output JSON -->
+  <div v-if="outputJSON" class="mt-4">
+    <h2 class="text-lg font-semibold mb-2">Generated JSON Prompt</h2>
+    <pre class="bg-gray-100 p-3 rounded-lg text-sm overflow-x-auto">{{ outputJSON }}</pre>
+    <button 
+      @click="copyJSON" 
+      class="mt-2 bg-green-600 text-white font-semibold py-2 px-4 rounded-lg hover:bg-green-700">
+      Copy JSON
+    </button>
+    <p v-if="copySuccess" class="text-green-600 text-sm mt-2">Copied to clipboard!</p>
+  </div>
+</div>
+
+<script>
+function PromptApp() {
+  return {
+    component: '',
+    requirements: {},
+    fields: [],
+    outputJSON: '',
+    copySuccess: false,
+    componentsConfig: {
+      navbar: [
+        { key: 'brand', label: 'Brand Name', type: 'text', placeholder: 'MyLogo' },
+        { key: 'menu_items', label: 'Menu Items (comma-separated)', type: 'list', placeholder: 'Home, Services, About, Contact' },
+        { key: 'cta_button', label: 'CTA Button Text', type: 'text', placeholder: 'Sign Up' },
+        { key: 'sticky_top', label: 'Sticky Top', type: 'boolean' },
+        { key: 'responsive_behavior', label: 'Responsive Behavior', type: 'text', placeholder: 'collapse_on_mobile' }
+      ],
+      'hero section': [
+        { key: 'heading', label: 'Heading Text', type: 'text', placeholder: 'Welcome to My Site' },
+        { key: 'subheading', label: 'Subheading', type: 'text', placeholder: 'We build awesome things' },
+        { key: 'cta_button', label: 'CTA Button Text', type: 'text', placeholder: 'Get Started' }
+      ],
+      'service section': [
+        { key: 'heading', label: 'Heading Text', type: 'text', placeholder: 'Our Services' },
+        { key: 'service_cards', label: 'Service Cards (comma-separated)', type: 'list', placeholder: 'Web Design, App Development, SEO' }
+      ],
+      'about section': [
+        { key: 'image_url', label: 'Image URL', type: 'text', placeholder: 'https://example.com/image.jpg' },
+        { key: 'text', label: 'About Text', type: 'text', placeholder: 'We are a creative agency...' }
+      ],
+      'cta section': [
+        { key: 'heading', label: 'CTA Heading', type: 'text', placeholder: 'Ready to Start?' },
+        { key: 'cta_button', label: 'CTA Button Text', type: 'text', placeholder: 'Contact Us' }
+      ],
+      footer: [
+        { key: 'footer_text', label: 'Footer Text', type: 'text', placeholder: '© 2025 My Company' }
+      ]
+    },
+    updateFields() {
+      this.fields = this.componentsConfig[this.component] || [];
+      this.requirements = {};
+      this.fields.forEach(field => {
+        this.requirements[field.key] = (field.type === 'boolean') ? false : '';
+      });
+      this.outputJSON = '';
+      this.copySuccess = false;
+    },
+    generateJSON() {
+      const jsonData = {
+        task: 'generate_component',
+        framework: 'bootstrap5',
+        component: this.component,
+        requirements: { ...this.requirements },
+        js_behavior: { init_on_page_load: true },
+        accessibility: { aria_labels: true },
+        output_format: 'annotated_code'
+      };
+      this.outputJSON = JSON.stringify(jsonData, null, 2);
+      this.copySuccess = false;
+    },
+    copyJSON() {
+      navigator.clipboard.writeText(this.outputJSON).then(() => {
+        this.copySuccess = true;
+        setTimeout(() => this.copySuccess = false, 2000);
+      });
+    }
+  }
+}
+</script>
+</body>
+</html>
