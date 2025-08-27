@@ -1,0 +1,187 @@
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css">
+<!-- Bulma Navbar Component -->
+<nav class="navbar is-fixed-top" role="navigation" aria-label="main navigation">
+  <!-- Brand Section -->
+  <div class="navbar-brand">
+    <!-- Logo/Brand -->
+    <a class="navbar-item" href="/" aria-label="Home">
+      <strong>MyLogo</strong>
+    </a>
+    
+    <!-- Burger Menu for Mobile -->
+    <a 
+      role="button" 
+      class="navbar-burger" 
+      aria-label="menu" 
+      aria-expanded="false" 
+      data-target="navbarMenu"
+    >
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+
+  <!-- Menu Items Container -->
+  <div id="navbarMenu" class="navbar-menu">
+    <!-- Start of Menu Items -->
+    <div class="navbar-start">
+      <!-- Home Link -->
+      <a class="navbar-item" href="#home" data-nav-item="home">
+        Home
+      </a>
+      
+      <!-- Services Link -->
+      <a class="navbar-item" href="#services" data-nav-item="services">
+        Services
+      </a>
+      
+      <!-- About Link -->
+      <a class="navbar-item" href="#about" data-nav-item="about">
+        About
+      </a>
+      
+      <!-- Contact Link -->
+      <a class="navbar-item" href="#contact" data-nav-item="contact">
+        Contact
+      </a>
+    </div>
+
+    <!-- End of Menu Items (CTA Button) -->
+    <div class="navbar-end">
+      <div class="navbar-item">
+        <div class="buttons">
+          <!-- Sign Up CTA Button -->
+          <a class="button is-primary" id="cta-signup" href="#signup">
+            <strong>Sign Up</strong>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- JavaScript for Navbar Behavior -->
+<script>
+/**
+ * Navbar Controller Component
+ * Provides programmatic control over Bulma navbar
+ * Handles navigation events and active states
+ */
+class NavbarController {
+  constructor() {
+    this.burger = document.querySelector('.navbar-burger');
+    this.menu = document.querySelector('#navbarMenu');
+    this.navItems = document.querySelectorAll('[data-nav-item]');
+    this.ctaButton = document.getElementById('cta-signup');
+    this.activeItem = null;
+  }
+
+  /**
+   * Initialize navbar event listeners
+   * Call this method when DOM is ready
+   */
+  init() {
+    // Mobile menu toggle
+    this.burger.addEventListener('click', () => this.toggleMobileMenu());
+    
+    // Navigation item clicks
+    this.navItems.forEach(item => {
+      item.addEventListener('click', (e) => {
+        e.preventDefault();
+        this.handleNavigation(item.dataset.navItem);
+      });
+    });
+    
+    // CTA button click
+    this.ctaButton.addEventListener('click', (e) => {
+      e.preventDefault();
+      this.handleCTAClick();
+    });
+  }
+
+  /**
+   * Toggle mobile menu visibility
+   */
+  toggleMobileMenu() {
+    this.burger.classList.toggle('is-active');
+    this.menu.classList.toggle('is-active');
+    
+    // Update ARIA attributes
+    const isExpanded = this.burger.classList.contains('is-active');
+    this.burger.setAttribute('aria-expanded', isExpanded);
+  }
+
+  /**
+   * Handle navigation item clicks
+   * @param {string} itemId - ID of clicked navigation item
+   */
+  handleNavigation(itemId) {
+    // Remove active state from all items
+    this.navItems.forEach(item => {
+      item.classList.remove('is-active');
+    });
+    
+    // Set active state to clicked item
+    const activeElement = document.querySelector(`[data-nav-item="${itemId}"]`);
+    if (activeElement) {
+      activeElement.classList.add('is-active');
+      this.activeItem = itemId;
+      
+      // Close mobile menu after selection
+      if (this.menu.classList.contains('is-active')) {
+        this.toggleMobileMenu();
+      }
+      
+      // Dispatch custom event for navigation
+      window.dispatchEvent(new CustomEvent('navbar:navigate', {
+        detail: { item: itemId }
+      }));
+    }
+  }
+
+  /**
+   * Handle CTA button click
+   */
+  handleCTAClick() {
+    // Dispatch custom event for CTA action
+    window.dispatchEvent(new CustomEvent('navbar:cta-click', {
+      detail: { action: 'signup' }
+    }));
+  }
+
+  /**
+   * Programmatically set active navigation item
+   * @param {string} itemId - ID of item to activate
+   */
+  setActiveItem(itemId) {
+    this.handleNavigation(itemId);
+  }
+
+  /**
+   * Programmatically toggle mobile menu
+   * @param {boolean} forceState - Optional: true to open, false to close
+   */
+  toggleMenu(forceState) {
+    const currentState = this.menu.classList.contains('is-active');
+    
+    if (forceState !== undefined) {
+      if ((forceState && !currentState) || (!forceState && currentState)) {
+        this.toggleMobileMenu();
+      }
+    } else {
+      this.toggleMobileMenu();
+    }
+  }
+}
+
+// Create instance (but don't initialize automatically)
+const navbar = new NavbarController();
+
+// Export for programmatic control
+window.navbarController = {
+  init: () => navbar.init(),
+  setActiveItem: (item) => navbar.setActiveItem(item),
+  toggleMenu: (state) => navbar.toggleMenu(state)
+};
+</script>

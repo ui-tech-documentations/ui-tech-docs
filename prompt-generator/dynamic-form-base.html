@@ -1,0 +1,44 @@
+<form id="dynamicForm">
+  <label for="type">Choose type:</label>
+  <select id="type" name="type">
+    <option value="">--Select--</option>
+    <option value="student">Student</option>
+    <option value="employee">Employee</option>
+  </select>
+
+  <!-- Student Fields -->
+  <div class="conditional student hidden">
+    <label>School Name: <input type="text" name="school"></label>
+    <label>Grade: <input type="text" name="grade"></label>
+  </div>
+
+  <!-- Employee Fields -->
+  <div class="conditional employee hidden">
+    <label>Company Name: <input type="text" name="company"></label>
+    <label>Job Title: <input type="text" name="job"></label>
+  </div>
+
+  <button type="submit">Submit</button>
+</form>
+
+<style>
+.hidden { display: none; }
+</style>
+
+<script>
+document.getElementById('type').addEventListener('change', function(e) {
+  const value = e.target.value;
+
+  // Hide all conditional groups first
+  document.querySelectorAll('.conditional').forEach(div => {
+    div.classList.add('hidden');
+  });
+
+  // Show only the matching group
+  if (value) {
+    document.querySelectorAll(`.conditional.${value}`).forEach(div => {
+      div.classList.remove('hidden');
+    });
+  }
+});
+</script>

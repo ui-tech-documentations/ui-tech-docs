@@ -1,0 +1,107 @@
+<form id="dynamicForm">
+  <label for="role">Choose role:</label>
+  <select id="role" name="role">
+    <option value="">--Select--</option>
+    <option value="student">Student</option>
+    <option value="employee">Employee</option>
+  </select>
+
+  <div id="extraFields"></div>
+  <button type="submit">Submit</button>
+</form>
+
+<script>
+const fieldMap = {
+  student: [
+    { label: "School Name", name: "school", type: "text" },
+    { label: "Grade", name: "grade", type: "text" }
+  ],
+  employee: [
+    { label: "Company Name", name: "company", type: "text" },
+    { label: "Job Title", name: "job", type: "text" }
+  ]
+};
+
+// Render fields when role changes
+document.getElementById('role').addEventListener('change', function(e) {
+  const value = e.target.value;
+  const container = document.getElementById('extraFields');
+  container.innerHTML = '';
+
+  if (fieldMap[value]) {
+    fieldMap[value].forEach(field => {
+      const label = document.createElement('label');
+      label.textContent = `${field.label}: `;
+      const input = document.createElement('input');
+      input.type = field.type;
+      input.name = field.name;
+      label.appendChild(input);
+      container.appendChild(label);
+      container.appendChild(document.createElement('br'));
+    });
+  }
+});
+</script>
+<script>
+document.getElementById('dynamicForm').addEventListener('submit', function(e) {
+  e.preventDefault(); // stop default submit
+  const form = e.target;
+  const role = form.role.value;
+
+  // Collect data only from rendered inputs
+  const data = {};
+  new FormData(form).forEach((value, key) => {
+    if (key !== "role") data[key] = value; // skip the select field for now
+  });
+
+  // Conditional JSON output
+  let jsonOutput = {};
+  if (role === 'student') {
+    jsonOutput = {
+      type: 'student',
+      details: {
+        school: data.school || '',
+        grade: data.grade || ''
+      }
+    };
+  } else if (role === 'employee') {
+    jsonOutput = {
+      type: 'employee',
+      details: {
+        company: data.company || '',
+        job: data.job || ''
+      }
+    };
+  } else {
+    jsonOutput = { type: 'unknown', details: {} };
+  }
+
+  console.log("Generated JSON:", jsonOutput);
+  alert(JSON.stringify(jsonOutput, null, 2));
+});
+
+// more advanced json rules
+const config = {
+  student: {
+    fields: [
+      { label: "School Name", name: "school", type: "text" },
+      { label: "Grade", name: "grade", type: "text" }
+    ],
+    json: data => ({
+      type: "student",
+      details: { school: data.school, grade: data.grade }
+    })
+  },
+  employee: {
+    fields: [
+      { label: "Company Name", name: "company", type: "text" },
+      { label: "Job Title", name: "job", type: "text" }
+    ],
+    json: data => ({
+      type: "employee",
+      details: { company: data.company, job: data.job }
+    })
+  }
+};
+
+</script>
