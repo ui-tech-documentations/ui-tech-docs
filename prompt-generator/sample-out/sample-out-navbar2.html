@@ -1,0 +1,1329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bootstrap 5 Navbar Component</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.0/font/bootstrap-icons.min.css" rel="stylesheet">
+    <style>
+        /* Custom styles for demo content */
+        .content-section {
+            height: 100vh;
+            padding: 100px 0 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .content-section:nth-child(odd) {
+            background-color: #f8f9fa;
+        }
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.5rem;
+        }
+        /* Smooth scroll for anchor links */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body>
+    <!-- BOOTSTRAP 5 NAVBAR COMPONENT -->
+    <!-- Features: Sticky top, responsive collapse, accessibility, CTA button -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top" 
+         id="mainNavbar" 
+         aria-label="Main navigation">
+        
+        <div class="container">
+            <!-- Brand Logo -->
+            <a class="navbar-brand" href="#home" aria-label="MyLogo - Go to homepage">
+                <i class="bi bi-code-slash me-2"></i>MyLogo
+            </a>
+
+            <!-- Mobile Toggle Button -->
+            <button class="navbar-toggler" 
+                    type="button" 
+                    data-bs-toggle="collapse" 
+                    data-bs-target="#navbarNav" 
+                    aria-controls="navbarNav" 
+                    aria-expanded="false" 
+                    aria-label="Toggle navigation menu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Collapsible Navigation Menu -->
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <!-- Main Menu Items -->
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" 
+                           href="#home" 
+                           aria-current="page"
+                           data-nav-item="home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" 
+                           href="#services"
+                           data-nav-item="services">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" 
+                           href="#about"
+                           data-nav-item="about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" 
+                           href="#contact"
+                           data-nav-item="contact">Contact</a>
+                    </li>
+                </ul>
+
+                <!-- CTA Button -->
+                <div class="d-flex">
+                    <button class="btn btn-outline-light" 
+                            type="button"
+                            id="ctaButton"
+                            aria-label="Sign up for our service">
+                        <i class="bi bi-person-plus me-2"></i>Sign Up
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!-- Bootstrap 5 Navbar Component with Enhanced Features -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top" role="navigation" aria-label="Main Navigation">
+  <div class="container">
+    <!-- Brand Logo -->
+    <a class="navbar-brand" href="#" aria-label="MyLogo Homepage">MyLogo</a>
+    
+    <!-- Mobile Toggle Button -->
+    <button 
+      class="navbar-toggler" 
+      type="button" 
+      data-bs-toggle="collapse" 
+      data-bs-target="#navbarNav" 
+      aria-controls="navbarNav" 
+      aria-expanded="false" 
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    
+    <!-- Collapsible Navigation -->
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <!-- Main Navigation Menu -->
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="#" aria-current="page">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Services</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">About</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Contact</a>
+        </li>
+      </ul>
+      
+      <!-- Call-to-Action Button -->
+      <div class="d-flex">
+        <button class="btn btn-primary" type="button" aria-label="Sign Up for Account">Sign Up</button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+    <!-- DEMO CONTENT SECTIONS -->
+    <!-- These sections demonstrate the navbar functionality -->
+
+
+   <!-- USAGE EXAMPLES & TESTING -->
+    <div class="position-fixed bottom-0 end-0 m-3" style="z-index: 1000;">
+        <div class="card shadow-sm">
+            <div class="card-body p-2">
+                <small class="text-muted">
+                    <strong>Test Controls:</strong><br>
+                    <button class="btn btn-sm btn-outline-primary me-1" onclick="navController.navigateTo('about')">Go to About</button>
+                    <button class="btn btn-sm btn-outline-secondary" onclick="navController.navigateNext()">Next →</button>
+                </small>
+            </div>
+        </div>
+    </div>
+    <!-- hero section -->
+     <!-- Bootstrap 5 Hero Section Component with Carousel Functionality -->
+<div id="heroCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel" aria-label="Hero Slideshow">
+  <!-- Carousel Indicators (Pagination Dots) -->
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+  </div>
+
+  <!-- Carousel Inner (Slides Container) -->
+  <div class="carousel-inner">
+    <!-- Slide 1 -->
+    <div class="carousel-item active" style="background-image: url('https://picsum.photos/seed/slide1/1920/1080.jpg');">
+      <div class="carousel-overlay"></div>
+      <div class="container h-100 d-flex align-items-center justify-content-center">
+        <div class="carousel-content text-center text-white">
+          <h1 class="display-3 fw-bold mb-4">Welcome to Our Platform</h1>
+          <p class="lead mb-5">Discover innovative solutions designed to transform your business and accelerate growth in the digital age.</p>
+          <button class="btn btn-primary btn-lg px-5 py-3" aria-label="Get Started Now">Get Started</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 2 -->
+    <div class="carousel-item" style="background-image: url('https://picsum.photos/seed/slide2/1920/1080.jpg');">
+      <div class="carousel-overlay"></div>
+      <div class="container h-100 d-flex align-items-center justify-content-center">
+        <div class="carousel-content text-center text-white">
+          <h1 class="display-3 fw-bold mb-4">Powerful Features</h1>
+          <p class="lead mb-5">Leverage cutting-edge technology with our comprehensive suite of tools built for modern enterprises.</p>
+          <button class="btn btn-primary btn-lg px-5 py-3" aria-label="Explore Features">Explore Features</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 3 -->
+    <div class="carousel-item" style="background-image: url('https://picsum.photos/seed/slide3/1920/1080.jpg');">
+      <div class="carousel-overlay"></div>
+      <div class="container h-100 d-flex align-items-center justify-content-center">
+        <div class="carousel-content text-center text-white">
+          <h1 class="display-3 fw-bold mb-4">Join Our Community</h1>
+          <p class="lead mb-5">Connect with thousands of professionals and unlock exclusive resources for your success journey.</p>
+          <button class="btn btn-primary btn-lg px-5 py-3" aria-label="Sign Up Today">Sign Up Today</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Navigation Controls -->
+  <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev" aria-label="Previous Slide">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next" aria-label="Next Slide">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+
+
+    <!-- about section -->
+     <!-- Bootstrap 5 About Section Component -->
+<section id="about-section" class="py-5 bg-light" aria-labelledby="about-heading">
+  <div class="container">
+    <!-- Section Heading -->
+    <h2 id="about-heading" class="text-center fw-bold text-decoration-underline mb-5">About</h2>
+    
+    <!-- Cards Container -->
+    <div class="row g-4" role="region" aria-label="About Cards">
+      <!-- Card 1 -->
+      <div class="col-md-4">
+        <div class="card h-100 shadow-hover-medium" tabindex="0" role="article" aria-labelledby="card1-title">
+          <img src="https://picsum.photos/seed/about1/400/300.jpg" class="card-img-top" alt="Team collaboration">
+          <div class="card-body d-flex flex-column">
+            <h3 id="card1-title" class="card-title">Our Mission</h3>
+            <p class="card-text flex-grow-1">We're committed to delivering innovative solutions that transform businesses and empower communities through technology.</p>
+            <a href="#" class="btn btn-primary mt-3" aria-label="Learn more about our mission">Learn More</a>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Card 2 -->
+      <div class="col-md-4">
+        <div class="card h-100 shadow-hover-medium" tabindex="0" role="article" aria-labelledby="card2-title">
+          <img src="https://picsum.photos/seed/about2/400/300.jpg" class="card-img-top" alt="Team working">
+          <div class="card-body d-flex flex-column">
+            <h3 id="card2-title" class="card-title">Our Team</h3>
+            <p class="card-text flex-grow-1">Our diverse team of experts brings together decades of experience in technology, design, and business strategy.</p>
+            <a href="#" class="btn btn-primary mt-3" aria-label="Meet our team">Meet the Team</a>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Card 3 -->
+      <div class="col-md-4">
+        <div class="card h-100 shadow-hover-medium" tabindex="0" role="article" aria-labelledby="card3-title">
+          <img src="https://picsum.photos/seed/about3/400/300.jpg" class="card-img-top" alt="Office environment">
+          <div class="card-body d-flex flex-column">
+            <h3 id="card3-title" class="card-title">Our Values</h3>
+            <p class="card-text flex-grow-1">Integrity, innovation, and inclusion drive everything we do as we build a better future for all stakeholders.</p>
+            <a href="#" class="btn btn-primary mt-3" aria-label="Explore our values">Explore Values</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Navigation Controls -->
+    <div class="d-flex justify-content-center align-items-center mt-5">
+      <button id="prev-card" class="btn btn-outline-secondary me-3" aria-label="Previous Card">
+        <i class="bi bi-chevron-left"></i>
+      </button>
+      
+      <!-- Pagination Dots -->
+      <nav aria-label="Card Pagination">
+        <ul class="pagination pagination-sm mb-0">
+          <li class="page-item active"><a class="page-link" href="#" data-card-index="0" aria-label="Card 1" aria-current="page">1</a></li>
+          <li class="page-item"><a class="page-link" href="#" data-card-index="1" aria-label="Card 2">2</a></li>
+          <li class="page-item"><a class="page-link" href="#" data-card-index="2" aria-label="Card 3">3</a></li>
+        </ul>
+      </nav>
+      
+      <button id="next-card" class="btn btn-outline-secondary ms-3" aria-label="Next Card">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- cta section -->
+<!-- Bootstrap 5 CTA Section Component -->
+<section id="cta-section" class="py-5 bg-light text-center" aria-labelledby="cta-heading">
+  <div class="container">
+    <!-- Section Headings -->
+    <h2 id="cta-heading" class="mb-3">Contact Us</h2>
+    <p class="lead mb-4 text-muted">connect with us</p>
+    
+    <!-- CTA Button -->
+    <button id="cta-button" class="btn btn-light btn-lg px-5 py-3 border border-secondary" type="button" aria-label="Contact Us">
+      Contact Us
+    </button>
+    
+    <!-- Navigation Controls -->
+    <div class="d-flex justify-content-center align-items-center mt-4">
+      <button id="prev-section" class="btn btn-sm btn-outline-secondary me-3" aria-label="Previous Section">
+        <i class="bi bi-chevron-left"></i>
+      </button>
+      
+      <!-- Pagination Dots -->
+      <nav aria-label="Section Pagination">
+        <ul class="pagination pagination-sm mb-0">
+          <li class="page-item"><a class="page-link" href="#" data-section-index="0" aria-label="Section 1">1</a></li>
+          <li class="page-item"><a class="page-link" href="#" data-section-index="1" aria-label="Section 2">2</a></li>
+          <li class="page-item active"><a class="page-link" href="#" data-section-index="2" aria-label="Section 3" aria-current="page">3</a></li>
+          <li class="page-item"><a class="page-link" href="#" data-section-index="3" aria-label="Section 4">4</a></li>
+        </ul>
+      </nav>
+      
+      <button id="next-section" class="btn btn-sm btn-outline-secondary ms-3" aria-label="Next Section">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- CTA Section Styles -->
+<style>
+  #cta-section {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  #cta-section::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('https://picsum.photos/seed/cta-bg/1920/600.jpg');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.1;
+    z-index: -1;
+  }
+  
+  .btn-light {
+    transition: all 0.3s ease;
+  }
+  
+  .btn-light:hover {
+    background-color: #e2e6ea;
+    border-color: #6c757d;
+    transform: translateY(-2px);
+  }
+  
+  .btn-light:focus {
+    box-shadow: 0 0 0 0.25rem rgba(108, 117, 125, 0.25);
+  }
+  
+  .pagination .page-item.active .page-link {
+    background-color: #6c757d;
+    border-color: #6c757d;
+  }
+  
+  @media (max-width: 768px) {
+    .btn-lg {
+      padding: 0.5rem 1.5rem;
+      font-size: 1rem;
+    }
+  }
+</style>
+
+<!-- CTA Section JavaScript -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // CTA Section Control Object
+  const ctaSectionControl = {
+    // Initialize the CTA section
+    init: function() {
+      this.setupEventListeners();
+      this.updateActiveSection(2); // Assuming this is the 3rd section (index 2)
+    },
+    
+    // Setup event listeners
+    setupEventListeners: function() {
+      // CTA Button click
+      document.getElementById('cta-button').addEventListener('click', () => {
+        this.triggerContactAction();
+      });
+      
+      // Previous section button
+      document.getElementById('prev-section').addEventListener('click', () => {
+        this.prevSection();
+      });
+      
+      // Next section button
+      document.getElementById('next-section').addEventListener('click', () => {
+        this.nextSection();
+      });
+      
+      // Pagination dots
+      document.querySelectorAll('.pagination .page-link').forEach(dot => {
+        dot.addEventListener('click', (e) => {
+          e.preventDefault();
+          const index = parseInt(e.target.getAttribute('data-section-index'));
+          this.goToSection(index);
+        });
+      });
+      
+      // Keyboard navigation
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowLeft') {
+          this.prevSection();
+        } else if (e.key === 'ArrowRight') {
+          this.nextSection();
+        } else if (e.key === 'Enter' && document.activeElement.id === 'cta-button') {
+          this.triggerContactAction();
+        }
+      });
+    },
+    
+    // Update active section state
+    updateActiveSection: function(index) {
+      const dots = document.querySelectorAll('.pagination .page-link');
+      
+      // Remove active state from all dots
+      dots.forEach(dot => {
+        dot.parentElement.classList.remove('active');
+        dot.removeAttribute('aria-current');
+      });
+      
+      // Add active state to current dot
+      if (dots[index]) {
+        dots[index].parentElement.classList.add('active');
+        dots[index].setAttribute('aria-current', 'page');
+      }
+      
+      // Announce change for screen readers
+      this.announceSectionChange(index);
+    },
+    
+    // Navigation control methods
+    goToSection: function(index) {
+      if (index >= 0 && index < 4) { // Assuming 4 sections total
+        this.updateActiveSection(index);
+        
+        // In a real implementation, this would scroll to the section
+        console.log(`Navigating to section ${index + 1}`);
+        
+        // Simulate section navigation
+        const sections = ['hero', 'about', 'cta', 'footer'];
+        if (sections[index]) {
+          const targetSection = document.getElementById(`${sections[index]}-section`);
+          if (targetSection) {
+            targetSection.scrollIntoView({ behavior: 'smooth' });
+          }
+        }
+      }
+    },
+    
+    nextSection: function() {
+      const activeDot = document.querySelector('.pagination .page-item.active .page-link');
+      const currentIndex = parseInt(activeDot.getAttribute('data-section-index'));
+      const nextIndex = (currentIndex + 1) % 4; // Assuming 4 sections total
+      this.goToSection(nextIndex);
+    },
+    
+    prevSection: function() {
+      const activeDot = document.querySelector('.pagination .page-item.active .page-link');
+      const currentIndex = parseInt(activeDot.getAttribute('data-section-index'));
+      const prevIndex = (currentIndex - 1 + 4) % 4; // Assuming 4 sections total
+      this.goToSection(prevIndex);
+    },
+    
+    // Pagination control methods
+    goToPage: function(pageNumber) {
+      this.goToSection(pageNumber - 1);
+    },
+    
+    // Handle CTA button action
+    triggerContactAction: function() {
+      // In a real implementation, this would open a contact form or modal
+      alert('Contact form would open here');
+      
+      // Alternative: Scroll to contact form if it exists
+      const contactForm = document.getElementById('contact-form');
+      if (contactForm) {
+        contactForm.scrollIntoView({ behavior: 'smooth' });
+      }
+    },
+    
+    // Programmatic control methods
+    triggerCTA: function() {
+      document.getElementById('cta-button').click();
+    },
+    
+    // Update button text programmatically
+    updateButtonText: function(newText) {
+      document.getElementById('cta-button').textContent = newText;
+    },
+    
+    // Update button style programmatically
+    updateButtonStyle: function(newStyle) {
+      const button = document.getElementById('cta-button');
+      button.className = `btn btn-${newStyle} btn-lg px-5 py-3`;
+      
+      // Add border for light style
+      if (newStyle === 'light') {
+        button.classList.add('border', 'border-secondary');
+      }
+    },
+    
+    // Accessibility helper
+    announceSectionChange: function(index) {
+      const sectionNames = [
+        "Hero Section",
+        "About Section",
+        "Contact Section",
+        "Footer Section"
+      ];
+      
+      const announcement = document.createElement('div');
+      announcement.setAttribute('aria-live', 'polite');
+      announcement.setAttribute('aria-atomic', 'true');
+      announcement.style.position = 'absolute';
+      announcement.style.left = '-10000px';
+      announcement.textContent = `Now viewing: ${sectionNames[index]}`;
+      document.body.appendChild(announcement);
+      setTimeout(() => announcement.remove(), 1000);
+    },
+    
+    // Get current active section index
+    getCurrentSection: function() {
+      const activeDot = document.querySelector('.pagination .page-item.active .page-link');
+      return parseInt(activeDot.getAttribute('data-section-index'));
+    }
+  };
+  
+  // Initialize on page load
+  ctaSectionControl.init();
+  
+  // Expose control object globally for external access
+  window.ctaSectionControl = ctaSectionControl;
+});
+</script>
+
+<!-- Bootstrap Icons CDN -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <section id="home" class="content-section bg-light">
+        <div class="container text-center">
+            <h1>Home Section</h1>
+            <p class="lead">Welcome to our website! Try the navigation above.</p>
+        </div>
+    </section>
+
+    <section id="services" class="content-section">
+        <div class="container text-center">
+            <h1>Services Section</h1>
+            <p class="lead">Our amazing services are listed here.</p>
+        </div>
+    </section>
+
+    <section id="about" class="content-section bg-light">
+        <div class="container text-center">
+            <h1>About Section</h1>
+            <p class="lead">Learn more about our company and mission.</p>
+        </div>
+    </section>
+        <section id="contact" class="content-section">
+        <div class="container text-center">
+            <h1>Contact Section</h1>
+            <p class="lead">Get in touch with us today!</p>
+        </div>
+    </section>
+<!-- About Section Styles -->
+<style>
+  /* Card Hover Shadow Effect */
+  .shadow-hover-medium {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .shadow-hover-medium:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+  }
+  
+  /* Card Focus State */
+  .card:focus {
+    outline: 3px solid #0d6efd;
+    outline-offset: 2px;
+  }
+  
+  /* Pagination Active State */
+  .pagination .page-item.active .page-link {
+    background-color: #0d6efd;
+    border-color: #0d6efd;
+  }
+  
+  /* Responsive Adjustments */
+  @media (max-width: 768px) {
+    .card-img-top {
+      height: 200px;
+      object-fit: cover;
+    }
+  }
+</style>
+
+<!-- About Section JavaScript -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // About Section Control Object
+  const aboutSectionControl = {
+    // Initialize the about section
+    init: function() {
+      this.setupEventListeners();
+      this.updateActiveCard(0);
+      this.makeCardsAccessible();
+    },
+    
+    // Setup event listeners
+    setupEventListeners: function() {
+      // Previous button
+      document.getElementById('prev-card').addEventListener('click', () => {
+        this.prevCard();
+      });
+      
+      // Next button
+      document.getElementById('next-card').addEventListener('click', () => {
+        this.nextCard();
+      });
+      
+      // Pagination dots
+      document.querySelectorAll('.pagination .page-link').forEach(dot => {
+        dot.addEventListener('click', (e) => {
+          e.preventDefault();
+          const index = parseInt(e.target.getAttribute('data-card-index'));
+          this.goToCard(index);
+        });
+      });
+      
+      // Card button clicks
+      document.querySelectorAll('.card .btn').forEach((btn, index) => {
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          this.handleCardAction(index);
+        });
+      });
+      
+      // Keyboard navigation
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowLeft') {
+          this.prevCard();
+        } else if (e.key === 'ArrowRight') {
+          this.nextCard();
+        }
+      });
+    },
+    
+    // Update active card state
+    updateActiveCard: function(index) {
+      const cards = document.querySelectorAll('.card');
+      const dots = document.querySelectorAll('.pagination .page-link');
+      
+      // Remove active state from all cards and dots
+      cards.forEach(card => {
+        card.setAttribute('aria-selected', 'false');
+        card.classList.remove('border-primary');
+      });
+      
+      dots.forEach(dot => {
+        dot.parentElement.classList.remove('active');
+        dot.removeAttribute('aria-current');
+      });
+      
+      // Add active state to current card and dot
+      if (cards[index]) {
+        cards[index].setAttribute('aria-selected', 'true');
+        cards[index].classList.add('border-primary');
+        cards[index].focus();
+      }
+      
+      if (dots[index]) {
+        dots[index].parentElement.classList.add('active');
+        dots[index].setAttribute('aria-current', 'page');
+      }
+      
+      // Announce change for screen readers
+      this.announceCardChange(index);
+    },
+    
+    // Navigation control methods
+    goToCard: function(index) {
+      if (index >= 0 && index < 3) {
+        this.updateActiveCard(index);
+      }
+    },
+    
+    nextCard: function() {
+      const activeDot = document.querySelector('.pagination .page-item.active .page-link');
+      const currentIndex = parseInt(activeDot.getAttribute('data-card-index'));
+      const nextIndex = (currentIndex + 1) % 3;
+      this.goToCard(nextIndex);
+    },
+    
+    prevCard: function() {
+      const activeDot = document.querySelector('.pagination .page-item.active .page-link');
+      const currentIndex = parseInt(activeDot.getAttribute('data-card-index'));
+      const prevIndex = (currentIndex - 1 + 3) % 3;
+      this.goToCard(prevIndex);
+    },
+    
+    // Pagination control methods
+    goToPage: function(pageNumber) {
+      this.goToCard(pageNumber - 1);
+    },
+    
+    // Handle card-specific actions
+    handleCardAction: function(cardIndex) {
+      const actions = [
+        () => alert('Learn More about our mission would be implemented here'),
+        () => alert('Meet the Team functionality would be implemented here'),
+        () => alert('Explore Values functionality would be implemented here')
+      ];
+      
+      if (actions[cardIndex]) {
+        actions[cardIndex]();
+      }
+    },
+    
+    // Accessibility enhancements
+    makeCardsAccessible: function() {
+      const cards = document.querySelectorAll('.card');
+      cards.forEach((card, index) => {
+        card.setAttribute('role', 'article');
+        card.setAttribute('aria-labelledby', `card${index + 1}-title`);
+        card.setAttribute('tabindex', '0');
+      });
+    },
+    
+    // Announce card change for screen readers
+    announceCardChange: function(index) {
+      const cardTitles = [
+        "Our Mission",
+        "Our Team",
+        "Our Values"
+      ];
+      
+      const announcement = document.createElement('div');
+      announcement.setAttribute('aria-live', 'polite');
+      announcement.setAttribute('aria-atomic', 'true');
+      announcement.style.position = 'absolute';
+      announcement.style.left = '-10000px';
+      announcement.textContent = `Now viewing: ${cardTitles[index]}`;
+      document.body.appendChild(announcement);
+      setTimeout(() => announcement.remove(), 1000);
+    },
+    
+    // Get current active card index
+    getCurrentCard: function() {
+      const activeDot = document.querySelector('.pagination .page-item.active .page-link');
+      return parseInt(activeDot.getAttribute('data-card-index'));
+    },
+    
+    // Programmatic control methods
+    showCard: function(index) {
+      this.goToCard(index);
+    },
+    
+    hideCard: function(index) {
+      // In this implementation, we don't hide cards but could be extended
+      console.log(`Hide card ${index} functionality would be implemented here`);
+    },
+    
+    // Update card content programmatically
+    updateCardContent: function(index, content) {
+      const card = document.querySelectorAll('.card')[index];
+      if (card && content) {
+        if (content.title) {
+          card.querySelector('.card-title').textContent = content.title;
+        }
+        if (content.description) {
+          card.querySelector('.card-text').textContent = content.description;
+        }
+        if (content.buttonText) {
+          card.querySelector('.btn').textContent = content.buttonText;
+        }
+      }
+    }
+  };
+  
+  // Initialize on page load
+  aboutSectionControl.init();
+  
+  // Expose control object globally for external access
+  window.aboutSectionControl = aboutSectionControl;
+});
+</script>
+
+<!-- Bootstrap Icons CDN -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+
+    <!-- Bootstrap 5 JavaScript Bundle -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        /**
+         * NAVBAR JAVASCRIPT CONTROLLER
+         * Provides programmatic control and enhanced navigation features
+         */
+        class NavbarController {
+            constructor(navbarId) {
+                this.navbar = document.getElementById(navbarId);
+                this.navItems = this.navbar.querySelectorAll('[data-nav-item]');
+                this.ctaButton = document.getElementById('ctaButton');
+                this.currentPage = 'home';
+                
+                this.init();
+            }
+
+            /**
+             * Initialize navbar on page load
+             * Sets up event listeners and initial state
+             */
+            init() {
+                console.log('🚀 Navbar initialized');
+                
+                // Set up navigation click handlers
+                this.setupNavigationControl();
+                
+                // Set up CTA button handler
+                this.setupCTAButton();
+                
+                // Set up scroll spy for active states
+                this.setupScrollSpy();
+                
+                // Mark as initialized
+                this.navbar.setAttribute('data-initialized', 'true');
+            }
+
+            /**
+             * Programmatic navigation control
+             * Allows switching between pages via JavaScript
+             */
+            navigateTo(page) {
+                console.log(`📍 Navigating to: ${page}`);
+                
+                // Remove active class from all items
+                this.navItems.forEach(item => {
+                    item.classList.remove('active');
+                    item.removeAttribute('aria-current');
+                });
+                
+                // Add active class to target item
+                const targetItem = this.navbar.querySelector(`[data-nav-item="${page}"]`);
+                if (targetItem) {
+                    targetItem.classList.add('active');
+                    targetItem.setAttribute('aria-current', 'page');
+                    this.currentPage = page;
+                    
+                    // Smooth scroll to section
+                    const targetSection = document.getElementById(page);
+                    if (targetSection) {
+                        targetSection.scrollIntoView({ behavior: 'smooth' });
+                    }
+                }
+            }
+
+            /**
+             * Set up navigation control handlers
+             */
+            setupNavigationControl() {
+                this.navItems.forEach(item => {
+                    item.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        const page = item.getAttribute('data-nav-item');
+                        this.navigateTo(page);
+                    });
+                });
+            }
+
+            /**
+             * Set up CTA button functionality
+             */
+            setupCTAButton() {
+                this.ctaButton.addEventListener('click', () => {
+                    console.log('🎯 CTA Button clicked');
+                    alert('Sign Up clicked! This would typically open a modal or redirect to registration.');
+                });
+            }
+
+            /**
+             * Scroll spy functionality for automatic active state updates
+             */
+            setupScrollSpy() {
+                const sections = document.querySelectorAll('section[id]');
+                
+                window.addEventListener('scroll', () => {
+                    let current = '';
+                    
+                    sections.forEach(section => {
+                        const sectionTop = section.offsetTop - 100;
+                        if (window.pageYOffset >= sectionTop) {
+                            current = section.getAttribute('id');
+                        }
+                    });
+                    
+                    if (current && current !== this.currentPage) {
+                        this.updateActiveState(current);
+                    }
+                });
+            }
+
+            /**
+             * Update active navigation state
+             */
+            updateActiveState(page) {
+                this.navItems.forEach(item => {
+                    item.classList.remove('active');
+                    item.removeAttribute('aria-current');
+                });
+                
+                const targetItem = this.navbar.querySelector(`[data-nav-item="${page}"]`);
+                if (targetItem) {
+                    targetItem.classList.add('active');
+                    targetItem.setAttribute('aria-current', 'page');
+                    this.currentPage = page;
+                }
+            }
+
+            /**
+             * Pagination-style navigation (next/previous)
+             */
+            navigateNext() {
+                const pages = ['home', 'services', 'about', 'contact'];
+                const currentIndex = pages.indexOf(this.currentPage);
+                const nextIndex = (currentIndex + 1) % pages.length;
+                this.navigateTo(pages[nextIndex]);
+            }
+
+            navigatePrevious() {
+                const pages = ['home', 'services', 'about', 'contact'];
+                const currentIndex = pages.indexOf(this.currentPage);
+                const prevIndex = currentIndex === 0 ? pages.length - 1 : currentIndex - 1;
+                this.navigateTo(pages[prevIndex]);
+            }
+
+            /**
+             * Get current active page
+             */
+            getCurrentPage() {
+                return this.currentPage;
+            }
+
+            /**
+             * Collapse mobile menu (useful for programmatic control)
+             */
+            collapseMobileMenu() {
+                const navbarCollapse = this.navbar.querySelector('.navbar-collapse');
+                if (navbarCollapse.classList.contains('show')) {
+                    const bsCollapse = new bootstrap.Collapse(navbarCollapse);
+                    bsCollapse.hide();
+                }
+            }
+        }
+
+        // Initialize navbar on page load
+        let navController;
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            // Create navbar controller instance
+            navController = new NavbarController('mainNavbar');
+            
+            // Demo: Add keyboard navigation (optional enhancement)
+            document.addEventListener('keydown', function(e) {
+                if (e.ctrlKey) {
+                    switch(e.key) {
+                        case 'ArrowRight':
+                            e.preventDefault();
+                            navController.navigateNext();
+                            break;
+                        case 'ArrowLeft':
+                            e.preventDefault();
+                            navController.navigatePrevious();
+                            break;
+                    }
+                }
+            });
+            
+            console.log('✅ Page loaded - Navbar ready!');
+            console.log('💡 Try: Ctrl+Arrow keys for keyboard navigation');
+            console.log('💡 Access via: window.navController or navController variable');
+        });
+
+        // Expose controller globally for external access
+        window.navController = navController;
+        
+        /**
+         * PROGRAMMATIC API EXAMPLES
+         * Use these functions to control the navbar from external scripts
+         */
+        
+        // Example functions for external control
+        window.navbarAPI = {
+            // Navigate to specific page
+            goTo: (page) => navController?.navigateTo(page),
+            
+            // Get current page
+            current: () => navController?.getCurrentPage(),
+            
+            // Navigate forward/backward
+            next: () => navController?.navigateNext(),
+            prev: () => navController?.navigatePrevious(),
+            
+            // Collapse mobile menu
+            collapse: () => navController?.collapseMobileMenu()
+        };
+    </script>
+
+ 
+
+<!-- Hero Section Styles -->
+<style>
+  #heroCarousel {
+    height: 100vh;
+    min-height: 500px;
+  }
+
+  .carousel-item {
+    height: 100vh;
+    min-height: 500px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+  }
+
+  .carousel-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+  }
+
+  .carousel-content {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+  }
+
+  .carousel-content h1 {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  }
+
+  .carousel-content p {
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .carousel-content h1 {
+      font-size: 2.5rem;
+    }
+    
+    .carousel-content p {
+      font-size: 1.1rem;
+    }
+    
+    .btn-lg {
+      padding: 0.75rem 2rem;
+      font-size: 1rem;
+    }
+  }
+</style>
+
+<!-- Hero Section JavaScript -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Initialize Bootstrap Carousel
+  const heroCarousel = new bootstrap.Carousel(document.getElementById('heroCarousel'), {
+    interval: 5000,
+    wrap: true,
+    keyboard: true,
+    pause: 'hover'
+  });
+  
+  // Programmatic Control Object
+  const heroControl = {
+    // Initialize carousel state
+    init: function() {
+      this.setupEventListeners();
+      this.updateSlideVisibility();
+    },
+    
+    // Setup event listeners
+    setupEventListeners: function() {
+      // Handle slide change events
+      document.getElementById('heroCarousel').addEventListener('slide.bs.carousel', (event) => {
+        this.updateSlideVisibility(event.to);
+      });
+      
+      // Handle button clicks
+      document.querySelectorAll('.carousel-content .btn').forEach((btn, index) => {
+        btn.addEventListener('click', () => {
+          this.handleSlideAction(index);
+        });
+      });
+    },
+    
+    // Update slide visibility and accessibility
+    updateSlideVisibility: function(slideIndex = 0) {
+      const slides = document.querySelectorAll('.carousel-item');
+      const indicators = document.querySelectorAll('.carousel-indicators button');
+      
+      slides.forEach((slide, index) => {
+        if (index === slideIndex) {
+          slide.setAttribute('aria-hidden', 'false');
+          slide.classList.add('active');
+        } else {
+          slide.setAttribute('aria-hidden', 'true');
+          slide.classList.remove('active');
+        }
+      });
+      
+      indicators.forEach((indicator, index) => {
+        if (index === slideIndex) {
+          indicator.setAttribute('aria-current', 'true');
+          indicator.classList.add('active');
+        } else {
+          indicator.removeAttribute('aria-current');
+          indicator.classList.remove('active');
+        }
+      });
+      
+      // Announce slide change for screen readers
+      this.announceSlideChange(slideIndex);
+    },
+    
+    // Navigation control methods
+    goToSlide: function(slideIndex) {
+      if (slideIndex >= 0 && slideIndex < 3) {
+        heroCarousel.to(slideIndex);
+      }
+    },
+    
+    nextSlide: function() {
+      heroCarousel.next();
+    },
+    
+    prevSlide: function() {
+      heroCarousel.prev();
+    },
+    
+    // Pagination control methods
+    goToPage: function(pageNumber) {
+      this.goToSlide(pageNumber - 1);
+    },
+    
+    // Handle slide-specific actions
+    handleSlideAction: function(slideIndex) {
+      const actions = [
+        () => alert('Get Started functionality would be implemented here'),
+        () => alert('Explore Features functionality would be implemented here'),
+        () => alert('Sign Up functionality would be implemented here')
+      ];
+      
+      if (actions[slideIndex]) {
+        actions[slideIndex]();
+      }
+    },
+    
+    // Accessibility helper
+    announceSlideChange: function(slideIndex) {
+      const slideTitles = [
+        "Welcome to Our Platform",
+        "Powerful Features",
+        "Join Our Community"
+      ];
+      
+      const announcement = document.createElement('div');
+      announcement.setAttribute('aria-live', 'polite');
+      announcement.setAttribute('aria-atomic', 'true');
+      announcement.style.position = 'absolute';
+      announcement.style.left = '-10000px';
+      announcement.textContent = `Now viewing: ${slideTitles[slideIndex]}`;
+      document.body.appendChild(announcement);
+      setTimeout(() => announcement.remove(), 1000);
+    },
+    
+    // Pause carousel
+    pause: function() {
+      heroCarousel.pause();
+    },
+    
+    // Resume carousel
+    cycle: function() {
+      heroCarousel.cycle();
+    },
+    
+    // Get current slide index
+    getCurrentSlide: function() {
+      return document.querySelector('.carousel-item.active').dataset.bsIndex || 0;
+    }
+  };
+  
+  // Initialize on page load
+  heroControl.init();
+  
+  // Expose control object globally for external access
+  window.heroControl = heroControl;
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+  // Initialize Bootstrap Collapse Component
+  const navbarCollapse = new bootstrap.Collapse(document.getElementById('navbarNav'), {
+    toggle: false
+  });
+  
+  // Programmatic Control Object
+  const navbarControl = {
+    // Initialize navbar state
+    init: function() {
+      this.updateActiveState();
+      this.setupEventListeners();
+    },
+    
+    // Update active navigation state
+    updateActiveState: function() {
+      const currentPath = window.location.pathname;
+      const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
+      
+      navLinks.forEach(link => {
+        if (link.getAttribute('href') === currentPath) {
+          link.classList.add('active');
+          link.setAttribute('aria-current', 'page');
+        } else {
+          link.classList.remove('active');
+          link.removeAttribute('aria-current');
+        }
+      });
+    },
+    
+    // Setup event listeners
+    setupEventListeners: function() {
+      // Handle navigation clicks
+      document.querySelectorAll('.navbar-nav .nav-link').forEach(link => {
+        link.addEventListener('click', (e) => {
+          this.setActiveItem(e.target);
+          if (window.innerWidth < 992) navbarCollapse.hide();
+        });
+      });
+      
+      // Handle CTA button
+      document.querySelector('.btn-primary').addEventListener('click', () => {
+        this.triggerSignup();
+      });
+    },
+    
+    // Programmatically set active navigation item
+    setActiveItem: function(element) {
+      document.querySelectorAll('.navbar-nav .nav-link').forEach(link => {
+        link.classList.remove('active');
+        link.removeAttribute('aria-current');
+      });
+      element.classList.add('active');
+      element.setAttribute('aria-current', 'page');
+    },
+    
+    // Navigation control methods
+    navigateTo: function(index) {
+      const navItems = document.querySelectorAll('.navbar-nav .nav-link');
+      if (index >= 0 && index < navItems.length) {
+        navItems[index].click();
+      }
+    },
+    
+    nextItem: function() {
+      const activeItem = document.querySelector('.navbar-nav .nav-link.active');
+      const navItems = Array.from(document.querySelectorAll('.navbar-nav .nav-link'));
+      const currentIndex = navItems.indexOf(activeItem);
+      this.navigateTo((currentIndex + 1) % navItems.length);
+    },
+    
+    prevItem: function() {
+      const activeItem = document.querySelector('.navbar-nav .nav-link.active');
+      const navItems = Array.from(document.querySelectorAll('.navbar-nav .nav-link'));
+      const currentIndex = navItems.indexOf(activeItem);
+      this.navigateTo((currentIndex - 1 + navItems.length) % navItems.length);
+    },
+    
+    // Pagination-like navigation
+    goToPage: function(pageName) {
+      const targetLink = Array.from(document.querySelectorAll('.navbar-nav .nav-link'))
+        .find(link => link.textContent.trim().toLowerCase() === pageName.toLowerCase());
+      if (targetLink) targetLink.click();
+    },
+    
+    // CTA Button handler
+    triggerSignup: function() {
+      alert('Sign Up functionality would be implemented here');
+      // Actual implementation would open signup modal or redirect
+    },
+    
+    // Mobile menu control
+    toggleMobileMenu: function() {
+      navbarCollapse.toggle();
+    },
+    
+    // Accessibility helper
+    announceNavigation: function(message) {
+      const announcement = document.createElement('div');
+      announcement.setAttribute('aria-live', 'polite');
+      announcement.setAttribute('aria-atomic', 'true');
+      announcement.style.position = 'absolute';
+      announcement.style.left = '-10000px';
+      announcement.textContent = message;
+      document.body.appendChild(announcement);
+      setTimeout(() => announcement.remove(), 1000);
+    }
+  };
+  
+  // Initialize on page load
+  navbarControl.init();
+  
+  // Expose control object globally for external access
+  window.navbarControl = navbarControl;
+});
+</script>
+</body>
+</html>

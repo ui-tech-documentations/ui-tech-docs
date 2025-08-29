@@ -6,20 +6,20 @@
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-100 min-h-screen flex items-center justify-center p-6">
-  <div class="bg-white rounded-2xl shadow-xl w-full max-w-6xl p-6">
-    <h1 class="text-2xl font-bold text-center text-gray-800 mb-2">JSON Prompt Generator</h1>
+  <div class="bg-white rounded-2xl shadow-xl w-full max-w-8xl p-6">
+    <h1 class="text-2xl font-bold text-center text-gray-800 mb-2">JSON Prompt Generator ( For UI Development)</h1>
     <p class="text-center mb-2">Creating JSON-Based Prompts for UI Component Code Generation, then run it through your preferred LLM</p>
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+    <div class="grid grid-cols-1 lg:grid-cols-1 gap-6">
       <!-- FORM SECTION -->
-      <form id="promptForm" class="space-y-4 grid">
+      <form id="promptForm" class="space-y-4 grid grid-cols-1 lg:grid-cols-3">
         <!-- Task -->
-        <div>
-          <label class="block text-sm font-medium text-gray-700 mb-1">Task</label>
+        <div class="px-2 mt-5">
+          <label class="block text-sm font-medium text-gray-700 mb">Task</label>
           <input type="text" id="task" value="generate_component" class="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
         </div>
 
         <!-- Framework (selection) -->
-        <div>
+        <div class="px-2">
           <label class="block text-sm font-medium text-gray-700 mb-1">Framework</label>
           <select id="framework" class="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
             <option value="bootstrap5" selected>bootstrap5</option>
@@ -30,41 +30,42 @@
         </div>
 
         <!-- Component (selection) -->
-        <div>
+        <div class="px-2">
           <label class="block text-sm font-medium text-gray-700 mb-1">Component</label>
           <select id="component" class="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
             <option value="navbar">navbar</option>
             <option value="hero-section" selected>hero-section</option>
             <option value="about-section">about-section</option>
-            <option value="footer">footer</option>
-            <option value="cta">cta</option>
+            <option value="cta-section">cta</option>
+            <option value="footer-section">footer</option>
+
           </select>
         </div>
         <!-- Navbar section items -->
          <!-- Brand -->
-      <div class="conditional navbar">
+      <div class="conditional navbar px-2">
         <label class="block text-sm font-medium text-gray-700 mb-1">Brand Logo Image</label>
         <input type="text" id="brand" value="MyLogo" class="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
       </div>
       <!-- Menu Items -->
-      <div class="conditional navbar">
+      <div class="conditional navbar px-2">
         <label class="block text-sm font-medium text-gray-700 mb-1">Menu Items (comma separated)</label>
         <input type="text" id="menu_items" value="Home,Services,About,Contact" class="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
       </div>
        <!-- CTA Button -->
-      <div class="conditional navbar">
+      <div class="conditional navbar px-2">
         <label class="block text-sm font-medium text-gray-700 mb-1">CTA Button</label>
         <input type="text" id="cta_button" value="Sign Up" class="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
       </div>
 
       <!-- Sticky Top -->
-      <div class="flex items-center conditional navbar">
+      <div class="flex items-center conditional navbar px-2">
         <input type="checkbox" id="sticky_top" checked class="h-4 w-4 text-blue-600 border-gray-300 rounded">
         <label for="sticky_top" class="ml-2 text-sm text-gray-700">Sticky Top</label>
       </div>
         <!-- Hero section items -->
         <!-- Navigation Buttons -->
-        <div class="form-check form-control conditional hero-section">
+        <div class="form-check form-control conditional hero-section px-2">
           <label class="bloc text-sm font-medium text-gray-700 mb-1 d-inline" for="navigation_button">Navigation Buttons</label>
           <input type="checkbox" id="navigation_buttons" checked class="h-4 w-4 text-blue-600 d-inline-block border-gray-300 rounded">
           <label class="bloc text-sm font-medium text-gray-700 mb-1 d-inline" for="navigation_button">Additional</label>
@@ -72,7 +73,7 @@
           <input type="text" id="navigation_buttons_details" value="left and right" class="w-fu d-inline border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500 mt-1" placeholder="Details (e.g., left and right)">
         </div>
         <!-- Pagination Dots -->
-        <div class="form-check form-control conditional hero-section">
+        <div class="form-check form-control conditional hero-section px-2">
           <label class="bloc text-sm font-medium text-gray-700 mb-1 d-inline" for="navigation_button">Pagination Dots</label>
           <input type="checkbox" id="pagination" checked class="h-4 w-4 text-blue-600 d-inline-block border-gray-300 rounded">
           <label class="bloc text-sm font-medium text-gray-700 mb-1 d-inline" for="navigation_button">Additional</label>
@@ -80,19 +81,90 @@
           <input type="text" id="navigation_buttons_details" value="left and right" class="w-fu d-inline border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500 mt-1" placeholder="Details (e.g., left and right)">
         </div>
         <!-- Background image -->
-        <div class="form-check form-control conditional hero-section">
+        <div class="form-check form-control conditional hero-section px-2">
           <label class="bloc text-sm font-medium text-gray-700 mb-1 d-inline" for="navigation_button">Background Image</label>
           <input type="checkbox" id="background_image" checked class="h-4 w-4 text-blue-600 d-inline-block border-gray-300 rounded">
           <label class="bloc text-sm font-medium text-gray-700 mb-1 d-inline" for="navigation_button">Additional</label>
           <input type="text" id="navigation_buttons_details" value="left and right" class="w-fu d-inline border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500 mt-1" placeholder="Details (e.g., left and right)">
         </div>
         <!-- Slide Content -->
-        <div class="form-check form-control conditional hero-section">
+        <div class="form-check form-control conditional hero-section px-2">
           <label class="bloc text-sm font-medium text-gray-700 mb-1 d-inline" for="navigation_button">Slide Content Format</label>
           <input type="text" id="slide_content_format" value="'['heading','brief description','action button']'" class="w-fu d-inline border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500 mt-1" placeholder="Slide content format (e.g., ['heading','brief description','action button'])">
         </div>
-<!-- Responsive -->
-        <div class="form-check form-control">
+
+        <!-- About Section Items -->
+        <!-- Menu Items -->
+      <div class="conditional about-section px-2">
+        <label class="block text-sm font-medium text-gray-700 mb-1">Section Heading</label>
+        <input type="text" id="about_section_heading" value="About" class="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+      </div>
+      <div class="conditional about-section px-2">
+        <label class="block text-sm font-medium text-gray-700 mb-1">Heading text align</label>
+        <input type="text" id="heading-text-align" value="Center" class="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+      </div>
+        <div class="form-check form-control conditional about-section px-2">
+          <label class="bloc text-sm font-medium text-gray-700 mb-1 d-inline" for="navigation_button">Heading text bold</label>
+          <input type="checkbox" id="heading_text_bold" checked class="h-4 w-4 text-blue-600 d-inline-block border-gray-300 rounded">
+        </div>
+        <div class="form-check form-control conditional about-section px-2">
+          <label class="bloc text-sm font-medium text-gray-700 mb-1 d-inline" for="navigation_button">heading_text_underline</label>
+          <input type="checkbox" id="heading_text_underline" checked class="h-4 w-4 text-blue-600 d-inline-block border-gray-300 rounded">
+        </div>
+      <div class="conditional about-section px-2">
+        <label class="block text-sm font-medium text-gray-700 mb-1">Cards count</label>
+        <input type="text" id="cards_count" value="3" class="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+      </div>
+      <div class="form-check form-control conditional about-section px-2">
+          <label class="bloc text-sm font-medium text-gray-700 mb-1 d-inline" for="navigation_button">Card Content Format</label>
+          <input type="text" id="card_content_format" value="'['top image','heading','brief description','action button']'" class="w-fu d-inline border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500 mt-1" placeholder="Slide content format (e.g., ['heading','brief description','action button'])">
+        </div>
+      <div class="form-check form-control conditional about-section px-2">
+          <label class="bloc text-sm font-medium text-gray-700 mb-1 d-inline" for="navigation_button">Card Hover shadow</label>
+          <input type="text" id="card_hover_shadow" value="medium" class="w-fu d-inline border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500 mt-1" placeholder="Slide content format (e.g., ['heading','brief description','action button'])">
+        </div>
+        <!-- <div class="conditional about-section px-2 hidden">
+     <!-- Responsive -->
+      <!-- CTA Section -->
+      <div class="conditional cta-section px-2">
+        <label class="block text-sm font-medium text-gray-700 mb-1">Background Color</label>
+        <input type="text" id="cta_bg_color" value="About" class="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+      </div>
+      <div class="conditional cta-section px-2">
+        <label class="block text-sm font-medium text-gray-700 mb-1">Section Heading</label>
+        <input type="text" id="cta_section_heading" value="Contact Us" class="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+      </div>
+      <div class="conditional cta-section px-2">
+        <label class="block text-sm font-medium text-gray-700 mb-1">Section Sub Heading</label>
+        <input type="text" id="cta_section_sub_heading" value="connect with us" class="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+      </div>
+      <div class="conditional cta-section px-2">
+        <label class="block text-sm font-medium text-gray-700 mb-1">CTA Button Text</label>
+        <input type="text" id="cta_button_text" value="Contact Us" class="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+      </div>
+      <div class="conditional cta-section px-2">
+        <label class="block text-sm font-medium text-gray-700 mb-1">CTA Button Style</label>
+        <input type="text" id="cta_button_style" value="light" class="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+      </div>
+      <div class="conditional cta-section px-2">
+        <label class="block text-sm font-medium text-gray-700 mb-1">Text Align</label>
+        <input type="text" id="cta_text_align" value="Center" class="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+      </div>
+
+      <!-- Footer Section Items -->
+        <div class="form-check form-control conditional footer-section px-2">
+          <label class="bloc text-sm font-medium text-gray-700 mb-1 d-inline" for="navigation_button">Logo Image</label>
+          <input type="checkbox" id="footer_logo_image" checked class="h-4 w-4 text-blue-600 d-inline-block border-gray-300 rounded">
+        </div>
+        <div class="conditional footer-section px-2">
+        <label class="block text-sm font-medium text-gray-700 mb-1">Logo Position</label>
+        <input type="text" id="footer_logo_position" value="left" class="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+      </div>
+      <div class="conditional footer-section px-2">
+        <label class="block text-sm font-medium text-gray-700 mb-1">Menu Sections</label>
+        <input type="text" id="footer_menu_sections" value="left" class="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+      </div>
+        <div class="form-check form-control px-2">
           <label class="bloc text-sm font-medium text-gray-700 mb-1 d-inline" for="navigation_button">Responsive</label>
           <input type="checkbox" id="responsive" checked class="h-4 w-4 text-blue-600 d-inline-block border-gray-300 rounded">
         </div>
@@ -101,25 +173,25 @@
         <!-- </div> -->
 
         <!-- JS Behavior -->
-        <div class="form-check form-control">
+        <div class="form-check form-control px-2">
           <label class="bloc text-sm font-medium text-gray-700 mb-1 d-inline" for="navigation_button">init_on_page_load</label>
           <input type="checkbox" id="init_on_page_load" checked class="h-4 w-4 text-blue-600 d-inline-block border-gray-300 rounded">
         </div>
-        <div class="form-check form-control mt-2">
+        <div class="form-check form-control js-control-item mt-2 px-2">
           <label class="bloc text-sm font-medium text-gray-700 mb-1 d-inline" for="navigation_button">programmatic_control</label>
           <input type="checkbox" id="programmatic_control" checked class="h-4 w-4 text-blue-600 d-inline-block border-gray-300 rounded">
         </div>
-        <div class="form-check form-control mt-2">
+        <div class="form-check form-control js-control-item mt-2 px-2">
           <label class="bloc text-sm font-medium text-gray-700 mb-1 d-inline" for="navigations_control">navigations_control</label>
           <input type="checkbox" id="navigations_control" checked class="h-4 w-4 text-blue-600 d-inline-block border-gray-300 rounded">
         </div>
-        <div class="form-check form-control mt-2">
+        <div class="form-check form-control js-control-item mt-2 px-2">
           <label class="bloc text-sm font-medium text-gray-700 mb-1 d-inline" for="pagination_control">pagination_control</label>
           <input type="checkbox" id="pagination_control" checked class="h-4 w-4 text-blue-600 d-inline-block border-gray-300 rounded">
         </div>
 
         <!-- Accessibility always enabled -->
-        <div class="flex items-center mt-2">
+        <div class="flex items-center mt-2 px-2">
           <input type="checkbox" id="aria_labels" checked disabled class="h-4 w-4 text-blue-600 border-gray-300 rounded">
           <label for="aria_labels" class="ml-2 text-sm text-gray-700">Accessibility: aria_labels (always true)</label>
         </div>
@@ -130,18 +202,19 @@
           <input type="text" id="output_format" value="annotated_code" class="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
         </div>
 
-        <!-- Generate Button -->
-        <button type="button" onclick="generateJSON()" class="w-full bg-blue-600 mt-2 text-white rounded-lg p-3 font-medium hover:bg-blue-700">
-          Generate JSON
-        </button>
       </form>
-
+      <div class="text-center">
+        <!-- Generate Button -->
+        <button type="button" onclick="generateJSON()" class="w-ful bg-blue-600 mt-2 text-white rounded-lg p-3 font-medium hover:bg-blue-700">
+          Create Prompt
+        </button>
+      </div>
       <!-- OUTPUT SECTION -->
       <div id="outputSection" class="hidden flex flex-col">
         <h2 class="text-lg font-semibold text-gray-800 mb-2">Generated JSON Prompt</h2>
         <pre id="jsonOutput" class="bg-gray-900 text-green-400 p-4 rounded-lg overflow-x-auto flex-grow"></pre>
         <button onclick="copyJSON()" class="mt-3 w-full bg-gray-800 text-white rounded-lg p-2 font-medium hover:bg-gray-900">
-          Copy JSON
+          Copy JSON 
         </button>
         <p id="copyStatus" class="text-sm text-green-600 mt-2 hidden">Copied to clipboard!</p>
       </div>
@@ -168,19 +241,45 @@
           requirements.background_image = document.getElementById('background_image').checked;
           requirements.slide_content = document.getElementById('slide_content_format').value.trim();
           requirements.responsive = document.getElementById('responsive').checked;
-      } 
+      } else if(component === 'about-section') {
+          requirements.section_heading = document.getElementById('about_section_heading').value.trim();
+          requirements.heading_text_align = document.getElementById('heading-text-align').value.trim();
+          requirements.heading_text_bold = document.getElementById('heading_text_bold').checked;
+          requirements.heading_text_underline = document.getElementById('heading_text_underline').checked;
+          requirements.cards_count = parseInt(document.getElementById('cards_count').value.trim(), 10) || 0;
+          requirements.card_content_format = document.getElementById('card_content_format').value.trim(); 
+          requirements.card_hover_shadow = document.getElementById('card_hover_shadow').value.trim();
+          
+      } else if(component === 'cta-section') {
+          requirements.background_color = document.getElementById('cta_bg_color').value.trim();
+          requirements.section_heading = document.getElementById('cta_section_heading').value.trim();
+          requirements.section_sub_heading = document.getElementById('cta_section_sub_heading').value.trim();
+          requirements.cta_button_text = document.getElementById('cta_button_text').value.trim();
+          requirements.cta_button_style = document.getElementById('cta_button_style').value.trim();
+          requirements.text_align = document.getElementById('cta_text_align').value.trim();
+      } else if(component === 'footer-section') {
+          requirements.logo_image = document.getElementById('footer_logo_image').checked;
+          requirements.logo_position = document.getElementById('footer_logo_position').value.trim();
+          requirements.menu_sections = document.getElementById('footer_menu_sections').value.trim();
+      }
       // requirements = JSON.stringify(requirements);
     }catch(e) {
         console.error(e);
         alert("Invalid JSON in Requirements");
         return;
       }
-      // try {
-      //   jsBehavior = JSON.parse(document.getElementById('js_behavior').value);
-      // } catch(e) {
-      //   alert("Invalid JSON in JS Behavior");
-      //   return;
-      // }
+      try {
+        
+        // jsBehavior = JSON.parse(document.getElementById('js_behavior').value);
+        jsBehavior.init_on_page_load = document.getElementById('init_on_page_load').checked;
+        jsBehavior.programmatic_control = document.getElementById('programmatic_control').checked;
+        jsBehavior.navigations_control = document.getElementById('navigations_control').checked;
+        jsBehavior.pagination_control = document.getElementById('pagination_control').checked;
+      } catch(e) {
+        console.error(e);
+        alert("Invalid JSON in JS Behavior");
+        return;
+      }
       const outputFormat = document.getElementById('output_format').value.trim();
 
       const jsonPrompt = {
@@ -223,7 +322,44 @@
       div.classList.remove('hidden');
     });
   }
+
+  // set js-contorls
+  const jsControlComponents = ['hero-section'];
+  document.querySelectorAll(`.js-control-item input`).forEach(item => {
+    item.checked = false;
+  });
+  if(jsControlComponents.includes(value)) {
+    console.log('enable js controls', value);
+    document.querySelectorAll(`.js-control-item input`).forEach(item => {
+      item.checked = true;
+    });
+  }else {
+    console.log('disable js controls', value);
+    unsetNavigationControls();
+  } 
 });
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Your JavaScript code to manipulate the DOM goes here
+  // Hide all conditional groups first
+  document.querySelectorAll('.conditional').forEach(div => {
+    div.classList.add('hidden');
+  });
+
+  // set component to navbar by default
+  document.getElementById('component').value = 'navbar';
+
+  document.querySelectorAll(`.conditional.navbar`).forEach(div => {
+      div.classList.remove('hidden');
+    });
+});
+
+function unsetNavigationControls() {
+  document.getElementById('navigation_buttons').checked = false;
+  document.getElementById('pagination').checked = false;
+  document.getElementById('programmatic_control').checked = false;
+}
+
   </script>
 </body>
 </html>
