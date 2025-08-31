@@ -5,9 +5,9 @@
   <title>JSON Prompt Generator</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gray-100 min-h-screen flex items-center justify-center p-6">
+<body class="bg-green-300 min-h-screen flex items-center justify-center p-6">
   <div class="bg-white rounded-2xl shadow-xl w-full max-w-8xl p-6">
-    <h1 class="text-2xl font-bold text-center text-gray-800 mb-2">JSON Prompt Generator ( For UI Development)</h1>
+    <h1 class="text-2xl font-bold text-center text-green-600 mb-2">JSON Prompt Generator ( For UI Development)</h1>
     <p class="text-center mb-2">Creating JSON-Based Prompts for UI Component Code Generation, then run it through your preferred LLM</p>
     <div class="grid grid-cols-1 lg:grid-cols-1 gap-6">
       <!-- FORM SECTION -->
@@ -66,8 +66,9 @@
         <!-- Hero section items -->
         <!-- Navigation Buttons -->
         <div class="form-check form-control conditional hero-section px-2">
-          <label class="bloc text-sm font-medium text-gray-700 mb-1 d-inline" for="navigation_button">Navigation Buttons</label>
           <input type="checkbox" id="navigation_buttons" checked class="h-4 w-4 text-blue-600 d-inline-block border-gray-300 rounded">
+
+          <label class="bloc text-sm font-medium text-gray-700 mb-1 d-inline" for="navigation_button">Navigation Buttons</label>
           <label class="bloc text-sm font-medium text-gray-700 mb-1 d-inline" for="navigation_button">Additional</label>
 
           <input type="text" id="navigation_buttons_details" value="left and right" class="w-fu d-inline border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500 mt-1" placeholder="Details (e.g., left and right)">
@@ -78,14 +79,14 @@
           <input type="checkbox" id="pagination" checked class="h-4 w-4 text-blue-600 d-inline-block border-gray-300 rounded">
           <label class="bloc text-sm font-medium text-gray-700 mb-1 d-inline" for="navigation_button">Additional</label>
 
-          <input type="text" id="navigation_buttons_details" value="left and right" class="w-fu d-inline border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500 mt-1" placeholder="Details (e.g., left and right)">
+          <input type="text" id="navigation_buttons_details" value="" class="w-fu d-inline border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500 mt-1" placeholder="Details (e.g., left and right)">
         </div>
         <!-- Background image -->
         <div class="form-check form-control conditional hero-section px-2">
           <label class="bloc text-sm font-medium text-gray-700 mb-1 d-inline" for="navigation_button">Background Image</label>
           <input type="checkbox" id="background_image" checked class="h-4 w-4 text-blue-600 d-inline-block border-gray-300 rounded">
           <label class="bloc text-sm font-medium text-gray-700 mb-1 d-inline" for="navigation_button">Additional</label>
-          <input type="text" id="navigation_buttons_details" value="left and right" class="w-fu d-inline border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500 mt-1" placeholder="Details (e.g., left and right)">
+          <input type="text" id="navigation_buttons_details" value="" class="w-fu d-inline border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500 mt-1" placeholder="Details (e.g., left and right)">
         </div>
         <!-- Slide Content -->
         <div class="form-check form-control conditional hero-section px-2">
@@ -108,7 +109,7 @@
           <input type="checkbox" id="heading_text_bold" checked class="h-4 w-4 text-blue-600 d-inline-block border-gray-300 rounded">
         </div>
         <div class="form-check form-control conditional about-section px-2">
-          <label class="bloc text-sm font-medium text-gray-700 mb-1 d-inline" for="navigation_button">heading_text_underline</label>
+          <label class="bloc text-sm font-medium text-gray-700 mb-1 d-inline" for="navigation_button">Heading Text Underline</label>
           <input type="checkbox" id="heading_text_underline" checked class="h-4 w-4 text-blue-600 d-inline-block border-gray-300 rounded">
         </div>
       <div class="conditional about-section px-2">
@@ -116,8 +117,8 @@
         <input type="text" id="cards_count" value="3" class="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
       </div>
       <div class="form-check form-control conditional about-section px-2">
-          <label class="bloc text-sm font-medium text-gray-700 mb-1 d-inline" for="navigation_button">Card Content Format</label>
-          <input type="text" id="card_content_format" value="'['top image','heading','brief description','action button']'" class="w-fu d-inline border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500 mt-1" placeholder="Slide content format (e.g., ['heading','brief description','action button'])">
+          <label class="block text-sm font-medium text-gray-700 mb-1 d-inlin" for="navigation_button">Card Content Format</label>
+          <input type="text" id="card_content_format" value="'['top image','heading','brief description','action button']'" class="w-full d-inlin border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500 mt-1" placeholder="Slide content format (e.g., ['heading','brief description','action button'])">
         </div>
       <div class="form-check form-control conditional about-section px-2">
           <label class="bloc text-sm font-medium text-gray-700 mb-1 d-inline" for="navigation_button">Card Hover shadow</label>
@@ -153,20 +154,20 @@
 
       <!-- Footer Section Items -->
         <div class="form-check form-control conditional footer-section px-2">
-          <label class="bloc text-sm font-medium text-gray-700 mb-1 d-inline" for="navigation_button">Logo Image</label>
           <input type="checkbox" id="footer_logo_image" checked class="h-4 w-4 text-blue-600 d-inline-block border-gray-300 rounded">
+          <label class="bloc text-sm font-medium text-gray-700 mb-1 d-inline" for="navigation_button">Logo Image</label>
         </div>
         <div class="conditional footer-section px-2">
         <label class="block text-sm font-medium text-gray-700 mb-1">Logo Position</label>
         <input type="text" id="footer_logo_position" value="left" class="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
       </div>
       <div class="conditional footer-section px-2">
+        <input type="text" id="footer_menu_sections" value="Works, About, Contact" class="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
         <label class="block text-sm font-medium text-gray-700 mb-1">Menu Sections</label>
-        <input type="text" id="footer_menu_sections" value="left" class="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
       </div>
         <div class="form-check form-control px-2">
-          <label class="bloc text-sm font-medium text-gray-700 mb-1 d-inline" for="navigation_button">Responsive</label>
           <input type="checkbox" id="responsive" checked class="h-4 w-4 text-blue-600 d-inline-block border-gray-300 rounded">
+          <label class="bloc text-sm font-medium text-gray-700 mb-1 d-inline" for="navigation_button">Responsive</label>
         </div>
 
           <p class="text-xs text-gray-500 mt-1">Edit this JSON to match the component type.</p>
@@ -174,20 +175,20 @@
 
         <!-- JS Behavior -->
         <div class="form-check form-control px-2">
-          <label class="bloc text-sm font-medium text-gray-700 mb-1 d-inline" for="navigation_button">init_on_page_load</label>
           <input type="checkbox" id="init_on_page_load" checked class="h-4 w-4 text-blue-600 d-inline-block border-gray-300 rounded">
+          <label class="bloc text-sm font-medium text-gray-700 mb-1 d-inline" for="navigation_button">Init on page load</label>
         </div>
         <div class="form-check form-control js-control-item mt-2 px-2">
-          <label class="bloc text-sm font-medium text-gray-700 mb-1 d-inline" for="navigation_button">programmatic_control</label>
           <input type="checkbox" id="programmatic_control" checked class="h-4 w-4 text-blue-600 d-inline-block border-gray-300 rounded">
+          <label class="bloc text-sm font-medium text-gray-700 mb-1 d-inline" for="navigation_button">Programmatic Control</label>
         </div>
         <div class="form-check form-control js-control-item mt-2 px-2">
-          <label class="bloc text-sm font-medium text-gray-700 mb-1 d-inline" for="navigations_control">navigations_control</label>
           <input type="checkbox" id="navigations_control" checked class="h-4 w-4 text-blue-600 d-inline-block border-gray-300 rounded">
+          <label class="bloc text-sm font-medium text-gray-700 mb-1 d-inline" for="navigations_control">Navigations control</label>
         </div>
         <div class="form-check form-control js-control-item mt-2 px-2">
-          <label class="bloc text-sm font-medium text-gray-700 mb-1 d-inline" for="pagination_control">pagination_control</label>
           <input type="checkbox" id="pagination_control" checked class="h-4 w-4 text-blue-600 d-inline-block border-gray-300 rounded">
+          <label class="bloc text-sm font-medium text-gray-700 mb-1 d-inline" for="pagination_control">Pagination control</label>
         </div>
 
         <!-- Accessibility always enabled -->
@@ -205,15 +206,15 @@
       </form>
       <div class="text-center">
         <!-- Generate Button -->
-        <button type="button" onclick="generateJSON()" class="w-ful bg-blue-600 mt-2 text-white rounded-lg p-3 font-medium hover:bg-blue-700">
+        <button type="button" onclick="generateJSON()" class="w-ful bg-green-600 mt-2 text-white rounded-lg p-3 font-medium hover:bg-green-700">
           Create Prompt
         </button>
       </div>
       <!-- OUTPUT SECTION -->
       <div id="outputSection" class="hidden flex flex-col">
         <h2 class="text-lg font-semibold text-gray-800 mb-2">Generated JSON Prompt</h2>
-        <pre id="jsonOutput" class="bg-gray-900 text-green-400 p-4 rounded-lg overflow-x-auto flex-grow"></pre>
-        <button onclick="copyJSON()" class="mt-3 w-full bg-gray-800 text-white rounded-lg p-2 font-medium hover:bg-gray-900">
+        <pre id="jsonOutput" class="bg-gray-100 text-green-600 p-4 rounded-lg overflow-x-auto flex-grow"></pre>
+        <button onclick="copyJSON()" class="mt-3 w-64 bg-green-600 text-white rounded-lg p-2 font-medium hover:bg-gren-900">
           Copy JSON 
         </button>
         <p id="copyStatus" class="text-sm text-green-600 mt-2 hidden">Copied to clipboard!</p>
