@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>How to Use HTML Minifiers — A Practical Guide</title>
+  <meta name="description" content="Learn how to use HTML minifiers: online tools, npm packages, build-tool integrations (Webpack, Vite, Gulp), and best practices for production. Includes examples and tips." />
+  <meta name="keywords" content="HTML minifier, web performance, html-minifier-terser, gulp-htmlmin, webpack html minimizer, Vite optimization, website speed, front-end build optimization, minify HTML files, Node.js automation" />
+  <link rel="canonical" href="https://example.com/html-minifiers-guide" />
+  <meta name="robots" content="index, follow" />
+  <meta name="author" content="Naveen V" />
+  <meta name="theme-color" content="#0ea5e9" />
+
+  <!-- Open Graph / Social -->
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="How to Use HTML Minifiers — A Practical Guide" />
+  <meta property="og:description" content="Learn how to use HTML minifiers: online tools, npm packages, build-tool integrations and best practices for production." />
+  <meta property="og:url" content="https://example.com/html-minifiers-guide" />
+  <meta property="og:site_name" content="Web Performance Lab" />
+  <meta property="og:image" content="https://example.com/og-image-html-minifiers.png" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="How to Use HTML Minifiers — A Practical Guide" />
+  <meta name="twitter:description" content="Learn how to use HTML minifiers: online tools, npm packages, build-tool integrations and best practices for production." />
+  <meta name="twitter:image" content="https://example.com/og-image-html-minifiers.png" />
+
+  <!-- Structured Data (Article) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "How to Use HTML Minifiers — A Practical Guide",
+    "description": "Learn how to use HTML minifiers: online tools, npm packages, build-tool integrations and best practices for production.",
+    "author": {"@type": "Person", "name": "Naveen V"},
+    "publisher": {"@type": "Organization", "name": "Web Performance Lab"},
+    "datePublished": "2025-10-31",
+    "mainEntityOfPage": {"@type": "WebPage", "@id": "https://example.com/html-minifiers-guide"}
+  }
+  </script>
+
+  <!-- Tailwind CDN (for quick preview) -->
+  <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+  <link rel="stylesheet" href="../../assets/tailwind.css">
+  <link rel="stylesheet" href="../../assets/style.css">
+
+  <style>
+    /* Small custom CSS to complement Tailwind */
+    pre { white-space: pre-wrap; word-break: break-word; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", monospace; }
+    .prose-code { background: rgba(15,23,42,0.05); padding: .25rem .5rem; border-radius: .375rem; display: inline-block; }
+  </style>
+</head>
+<body class="bg-gray-100 text-slate-800 antialiased">
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="/" class="logo">UI Dev Docs</a>
+            <div class="nav-links">
+                <a href="/" class="nav-link">Home</a>
+            </div>
+        </div>
+    </nav>
+  <header class="bg-white border-b">
+    <div class="max-w-4xl mx-auto p-6">
+      <a href="#" class="text-sm text-sky-600 font-semibold">Web Performance</a>
+      <h1 class="mt-3 text-3xl font-extrabold leading-tight">How to Use HTML Minifiers — A Practical Guide</h1>
+      <p class="mt-2 text-slate-600">A compact, actionable article covering online tools, npm packages, integrations (Webpack/Vite/Gulp) and best practices.</p>
+      <div class="mt-4 text-sm text-slate-500">By <strong>Naveen V</strong> · <time datetime="2025-10-31">Oct 31, 2025</time> · <span class="ml-2">Reading time: 6 min</span></div>
+    </div>
+  </header>
+
+  <main class="max-w-4xl mx-auto p-6">
+    <article class="prose prose-slate lg:prose-lg">
+      <section>
+        <h2 class="font-bold mb-3">Why HTML Minification Matters</h2>
+        <p>HTML minification removes unnecessary characters (whitespace, comments, redundant attributes) from your HTML so files are smaller and parse faster. It's an easy win for page speed — especially for static pages and template-heavy sites.</p>
+      </section>
+
+      <section>
+        <h2 class="font-bold my-3">1. Quick: Online HTML Minifiers</h2>
+        <p>If you only need to minify a file or test a snippet, online tools are the fastest option. Paste your HTML and copy the minified output.</p>
+        <ul class="my-3">
+          <li><span class="prose-code"><a target="_blank" href="https://html-minifier.com/">html-minifier.com</a></span> — feature-rich options.</li>
+          <li><span class="prose-code"><a target="_blank" href="https://www.minifier.org/"></a> minifier.org</span> — super simple UI.</li>
+        </ul>
+        <p><strong>When to use:</strong> single files, quick checks, or non-technical editors.</p>
+      </section>
+
+      <section>
+        <h2 class="my-3 font-bold">2. For Developers: npm + <code>html-minifier-terser</code></h2>
+        <p class="mb-3">Integrate minification into scripts or build tasks using Node.js.</p>
+        <h3 class="mb-2">Install</h3>
+        <pre class="rounded-md p-4 bg-slate-900 text-slate-100"><code>npm install --save-dev html-minifier-terser</code></pre>
+
+        <h3 class="my-2">Simple script (ESM)</h3>
+        <pre class="rounded-md p-4 bg-slate-900 text-slate-100"><code>import { minify } from "html-minifier-terser";
+import { readFileSync, writeFileSync } from "fs";
+
+const input = readFileSync("index.html", "utf8");
+const result = await minify(input, {
+  collapseWhitespace: true,
+  removeComments: true,
+  minifyCSS: true,
+  minifyJS: true
+});
+writeFileSync("index.min.html", result);
+console.log("✅ index.min.html created!");</code></pre>
+
+        <p class="mt-2"><strong>Tip:</strong> Use this in small CI steps or npm scripts to create minified copies during your release process.</p>
+      </section>
+
+      <section>
+        <h2 class="my-2 font-bold">3. Build Tool Integrations</h2>
+
+        <h3>Webpack</h3>
+        <p class="mb-2">Use <code>html-webpack-plugin</code> and <code>html-minimizer-webpack-plugin</code> to minify templates produced by Webpack.</p>
+        <pre class="rounded-md p-4 bg-slate-900 text-slate-100"><code>npm install html-webpack-plugin html-minimizer-webpack-plugin --save-dev</code></pre>
+
+        <pre class="rounded-md p-4 bg-slate-900 text-slate-100"><code>// webpack.config.js (snippet)
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const HtmlMinimizerPlugin = require("html-minimizer-webpack-plugin");
+
+module.exports = {
+  plugins: [
+    new HtmlWebpackPlugin({ template: "./src/index.html", minify: true })
+  ],
+  optimization: {
+    minimize: true,
+    minimizer: [`...`, new HtmlMinimizerPlugin()]
+  }
+};</code></pre>
+
+        <h3 class="my-2 font-bold">Vite / Vue / React</h3>
+        <p>Most modern frameworks (Vite, Next.js, Nuxt) perform HTML/CSS/JS minification automatically in production builds. Simply run your framework's production build command (<span class="prose-code">npm run build</span>).</p>
+
+        <h3 class="font-bold mb-3">Gulp</h3>
+        <pre class="rounded-md p-4 bg-slate-900 text-slate-100"><code>npm install --save-dev gulp-htmlmin
+
+// gulpfile.js
+const gulp = require('gulp');
+const htmlmin = require('gulp-htmlmin');
+
+gulp.task('minify-html', () => {
+  return gulp.src('src/*.html')
+    .pipe(htmlmin({ collapseWhitespace: true, removeComments: true }))
+    .pipe(gulp.dest('dist'));
+});</code></pre>
+
+      </section>
+
+      <section>
+        <h2 class="font-bold my-2">4. Framework Notes</h2>
+        <p>Frameworks like Next.js, Nuxt, and Vite-powered apps usually handle minifying assets in production. Check framework docs if you need to tweak minifier options (for example, to preserve inline scripts or critical CSS).</p>
+      </section>
+
+      <section>
+        <h2 class="my-2 font-bold">5. Best Practices & Tips</h2>
+        <ul>
+          <li><strong>Only in production:</strong> Don’t minify during development — it slows debugging and makes diffs harder.</li>
+          <li><strong>Minify CSS & JS too:</strong> Use dedicated minifiers/optimizers (Terser, cssnano) alongside HTML minification for maximum gains.</li>
+          <li><strong>Be careful with inline code:</strong> Aggressive minification options can break inline JavaScript or CSS. Test after minification.</li>
+          <li><strong>Combine with compression:</strong> Serve Gzip or Brotli from the server — minified files + compression = best file-size savings.</li>
+          <li><strong>Automate in CI/CD:</strong> Run minification as part of your build pipeline so production artifacts are always optimized.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 class="font-bold my-2">6. Example: Adding an npm script</h2>
+        <p class="mb-2">Add a script so anyone on the team can produce a minified file with one command.</p>
+        <pre class="rounded-md p-4 bg-slate-900 text-slate-100"><code>// package.json (scripts)
+{
+  "scripts": {
+    "build:minify": "node scripts/minify.js"
+  }
+}
+
+// then run:
+// npm run build:minify</code></pre>
+      </section>
+
+      <section>
+        <h2 class="my-2 font-bold">7. Troubleshooting</h2>
+        <p>If the minified output breaks your page:</p>
+        <ol>
+          <li>Disable <code>removeComments</code> temporarily to see if comments contained important flags.</li>
+          <li>Set <code>collapseWhitespace</code> to <code>false</code> for sections with inline &lt;pre&gt; or whitespace-sensitive markup.</li>
+          <li>Minify incrementally — HTML first, then CSS, then JS — to find which step introduces the issue.</li>
+        </ol>
+      </section>
+
+      <section>
+        <h2>Wrap-up</h2>
+        <p>HTML minification is a low-effort, high-impact optimization. Use online tools for quick jobs, npm packages for scripted automation, and integrate minification into your build pipeline for consistent, production-ready results.</p>
+        <p>If you'd like, I can:</p>
+        <ul>
+          <li>Convert this article into a Markdown file for your blog platform.</li>
+          <li>Create a GitHub Actions workflow that runs HTML minification during CI.</li>
+          <li>Generate a downloadable HTML template (already created here) that you can host on GitHub Pages.</li>
+        </ul>
+      </section>
+
+    </article>
+
+<footer class="footer">
+        <p>© 2025 UI Dev Docs. All rights reserved.</p>
+    </footer>
+
+  </main>
+</body>
+</html>
