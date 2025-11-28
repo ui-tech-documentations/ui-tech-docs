@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vue Quiz</title>
+  <meta name="description" content="Vue.js online quiz — 50 objective questions with explanations. Practice for interviews or mock tests." />
+    <meta name="keywords" content="Vue, Vue.js, Vue 3, quiz, interview questions, frontend, mock test" />
+    <meta name="author" content="Your Name" />
+    <meta property="og:title" content="Vue.js Online Quiz" />
+    <meta property="og:description" content="Practice 50 Vue.js MCQs with explanations." />
+    <meta property="og:type" content="website" />
+  <script src="https://unpkg.com/petite-vue" defer init></script>
+  <style>
+    body { font-family: sans-serif; padding: 20px; }
+    .card { background: #fff; padding: 20px; border-radius: 12px; max-width: 700px; margin: auto; box-shadow: 0 2px 6px rgba(0,0,0,.1); }
+    button { cursor: pointer; }
+    .option { padding:12px; border:1px solid #ddd; border-radius:8px; margin-bottom:10px; text-align:left; width:100%; }
+    .correct { background:#e8fbe8; border-color:#7bc67b; }
+    .wrong { background:#ffe8e8; border-color:#e07a7a; }
+    .grid { display:grid; grid-template-columns:repeat(5,1fr); gap:8px; }
+  </style>
+  <link rel="stylesheet" href="../../../assets/tailwind.css">
+    <link rel="stylesheet" href="../../../assets/style.css">
+      <!-- <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script> -->
+      <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+</head>
+<body class="bg-green-200 py-4">
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="/" class="logo">UI Dev Docs</a>
+            <div class="nav-links">
+                <a href="/" class="nav-link">Home</a>
+            </div>
+        </div>
+    </nav>
+<div class="card mt-4" v-scope="quizApp()">
+  <h2 class="font-bold text-green-700 text-xl">Vue Js Quiz</h2>
+  <p class="my-2">Question {{ index+1 }} / {{ questions.length }}</p>
+
+  <template v-if="finished === false">
+    <h3 class="my-2">{{ current.question }}</h3>
+
+    <div>
+      <button
+        class="option"
+        :class="selected === opt.label ? (opt.isCorrect ? 'correct' : 'wrong') : ''"
+        v-for="opt in current.options"
+        @click="select(opt)"
+      >
+        <strong>{{ opt.label }}.</strong> {{ opt.text }}
+        <div v-if="selected === opt.label" style="margin-top:6px; font-size:14px;">
+          <strong>{{ opt.isCorrect ? 'Right — ' : 'Wrong — ' }}</strong>{{ opt.note }}
+        </div>
+      </button>
+    </div>
+
+    <div style="display:flex; justify-content:space-between; margin-top:20px;">
+      <!-- <button @click="prev" :disabled="index===0">Prev</button> -->
+              <!-- Previous Button -->
+        <button @click="prev" :disabled="index===0" class="group relative px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg overflow-hidden transition-all duration-300 hover:bg-blue-700 hover:shadow-lg hover:shadow-blue-500/30 active:scale-95">
+            <!-- Animated Background -->
+            <div class="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600 translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-500"></div>
+            
+            <!-- Content -->
+            <div class="relative flex items-center gap-2">
+                <i class="fas fa-chevron-left transition-transform duration-300 group-hover:translate-x-[-2px]"></i>
+                <span>Previous</span>
+            </div>
+            
+            <!-- Ripple Effect -->
+            <div class="absolute inset-0 overflow-hidden rounded-lg">
+                <div class="absolute inset-0 bg-white opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
+            </div>
+        </button>
+      <!-- <button @click="next">{{ index === questions.length-1 ? 'Finish' : 'Next' }}</button> -->
+       <!-- Next Button -->
+        <button @click="next" class="group relative px-6 py-3 bg-green-600 text-white font-semibold rounded-lg overflow-hidden transition-all duration-300 hover:bg-green-700 hover:shadow-lg hover:shadow-green-500/30 active:scale-95">
+            <!-- Animated Background -->
+            <div class="absolute inset-0 bg-gradient-to-r from-green-600 to-blue-600 translate-x-[100%] group-hover:translate-x-0 transition-transform duration-500"></div>
+            
+            <!-- Content -->
+            <div class="relative flex items-center gap-2">
+                <span>{{ index === questions.length-1 ? 'Finish' : 'Next' }}</span>
+                <i class="fas fa-chevron-right transition-transform duration-300 group-hover:translate-x-[2px]"></i>
+            </div>
+            
+            <!-- Ripple Effect -->
+            <div class="absolute inset-0 overflow-hidden rounded-lg">
+                <div class="absolute inset-0 bg-white opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
+            </div>
+        </button>
+    </div>  
+    </div>
+  </template>
+
+  <template v-else>
+    <h2>Your Score: {{ score }} / {{ questions.length }}</h2>
+    <button @click="restart">Restart</button>
+    <button @click="reviewMode = true" style="margin-left:10px;">Review Answers</button>
+
+    <div v-if="reviewMode" style="margin-top:20px;">
+      <h3>Review</h3>
+      <div class="grid">
+        <button
+          v-for="(q, i) in questions"
+          :class="answers[i]?.isCorrect ? 'correct' : 'wrong'"
+          @click="jump(i)"
+        >{{ i+1 }}</button>
+      </div>
+    </div>
+  </template>
+</div>
+
+<script>
+function quizApp() {
+  return {
+    index: 0,
+    selected: null,
+    finished: false,
+    score: 0,
+    reviewMode: false,
+    answers: {},
+
+questions: [
+  {
+    id: 1,
+    question: "Which directive is used for conditional rendering in Vue?",
+    options: [
+      { label: "A", text: "v-show", isCorrect: false, note: "v-show toggles display only." },
+      { label: "B", text: "v-condition", isCorrect: false, note: "Not a Vue directive." },
+      { label: "C", text: "v-if", isCorrect: true, note: "Correct directive for conditional rendering." },
+      { label: "D", text: "v-render", isCorrect: false, note: "Not a Vue directive." }
+    ]
+  },
+  {
+    id: 2,
+    question: "Which lifecycle hook runs after the component is inserted into the DOM?",
+    options: [
+      { label: "A", text: "created", isCorrect: false, note: "created runs before DOM creation." },
+      { label: "B", text: "mounted", isCorrect: true, note: "mounted runs after DOM is available." },
+      { label: "C", text: "beforeMount", isCorrect: false, note: "beforeMount happens before DOM insertion." },
+      { label: "D", text: "updated", isCorrect: false, note: "updated runs after reactive updates." }
+    ]
+  },
+  {
+    id: 3,
+    question: "Which Vue CLI command creates a new Vue project?",
+    options: [
+      { label: "A", text: "vue serve", isCorrect: false, note: "vue serve only serves a project." },
+      { label: "B", text: "vue new", isCorrect: false, note: "vue new is not a valid command." },
+      { label: "C", text: "vue create", isCorrect: true, note: "vue create generates a new project." },
+      { label: "D", text: "vue build", isCorrect: false, note: "vue build is for production builds." }
+    ]
+  },
+  {
+    id: 4,
+    question: "How do you correctly declare reactive data in a Vue component?",
+    options: [
+      { label: "A", text: "data: () => ({ count: 0 })", isCorrect: false, note: "Arrow functions do not bind this correctly." },
+      { label: "B", text: "data: { count: 0 }", isCorrect: false, note: "Works only in root instance, not components." },
+      { label: "C", text: "data() { return { count: 0 } }", isCorrect: true, note: "Components must return an object from data()." },
+      { label: "D", text: "state() { return { count: 0 } }", isCorrect: false, note: "state() is not a Vue API." }
+    ]
+  },
+  {
+    id: 5,
+    question: "Which feature is used for parent-to-child data passing?",
+    options: [
+      { label: "A", text: "Emits", isCorrect: false, note: "Emits are for child to parent." },
+      { label: "B", text: "Events", isCorrect: false, note: "Events do not pass data downward." },
+      { label: "C", text: "Props", isCorrect: true, note: "Props pass data from parent to child." },
+      { label: "D", text: "Watchers", isCorrect: false, note: "Watchers only observe changes." }
+    ]
+  },
+  {
+    id: 6,
+    question: "Which directive binds a dynamic value to an attribute?",
+    options: [
+      { label: "A", text: "{ value }", isCorrect: false, note: "Not valid Vue syntax." },
+      { label: "B", text: "v-bind:value=\"value\"", isCorrect: true, note: "v-bind binds attributes dynamically." },
+      { label: "C", text: "value=\"{{ value }}\"", isCorrect: false, note: "Mustache cannot be used inside attributes." },
+      { label: "D", text: "bind-value(value)", isCorrect: false, note: "Not a Vue directive." }
+    ]
+  },
+  {
+    id: 7,
+    question: "Which directive is used for looping in Vue?",
+    options: [
+      { label: "A", text: "v-for", isCorrect: true, note: "v-for loops through arrays/objects." },
+      { label: "B", text: "v-each", isCorrect: false, note: "v-each does not exist." },
+      { label: "C", text: "v-repeat", isCorrect: false, note: "v-repeat was in Vue 0.x only." },
+      { label: "D", text: "v-iterate", isCorrect: false, note: "v-iterate does not exist." }
+    ]
+  },
+  {
+    id: 8,
+    question: "What does v-model provide?",
+    options: [
+      { label: "A", text: "One-way binding", isCorrect: false, note: "It's two-way, not one-way." },
+      { label: "B", text: "Two-way binding", isCorrect: true, note: "v-model syncs input and state." },
+      { label: "C", text: "Component registration", isCorrect: false, note: "Not related to components." },
+      { label: "D", text: "Watch event binding", isCorrect: false, note: "Listeners are bound with v-on." }
+    ]
+  },
+  {
+    id: 9,
+    question: "What is usually the root component in a Vue project?",
+    options: [
+      { label: "A", text: "main.js", isCorrect: false, note: "main.js boots the app, not a component." },
+      { label: "B", text: "root.vue", isCorrect: false, note: "root.vue is not a convention." },
+      { label: "C", text: "App.vue", isCorrect: true, note: "App.vue is the common root component." },
+      { label: "D", text: "index.vue", isCorrect: false, note: "index.vue is not standard." }
+    ]
+  },
+  {
+    id: 10,
+    question: "Which directive is used for DOM event handling?",
+    options: [
+      { label: "A", text: "v-on:event", isCorrect: true, note: "v-on attaches DOM event listeners." },
+      { label: "B", text: "on:", isCorrect: false, note: "on: is not valid Vue syntax." },
+      { label: "C", text: "listen:event", isCorrect: false, note: "listen:event does not exist." },
+      { label: "D", text: "v-bind:event", isCorrect: false, note: "v-bind is for attributes, not events." }
+    ]
+  },
+  {
+    id: 11,
+    question: "Which API is used to create a Vue app in Vue 3?",
+    options: [
+      { label: "A", text: "new Vue()", isCorrect: false, note: "new Vue() is Vue 2 syntax." },
+      { label: "B", text: "Vue.start()", isCorrect: false, note: "Vue.start() does not exist." },
+      { label: "C", text: "createApp()", isCorrect: true, note: "createApp() is the new Vue 3 API." },
+      { label: "D", text: "Vue.initialize()", isCorrect: false, note: "Vue.initialize() does not exist." }
+    ]
+  },
+  {
+    id: 12,
+    question: "Which composition API method creates reactive state?",
+    options: [
+      { label: "A", text: "ref", isCorrect: true, note: "ref creates reactive primitive values." },
+      { label: "B", text: "reactiveValue", isCorrect: false, note: "reactiveValue does not exist." },
+      { label: "C", text: "watch", isCorrect: false, note: "watch monitors changes, does not create state." },
+      { label: "D", text: "computed", isCorrect: false, note: "computed creates derived state, not reactive values." }
+    ]
+  },
+  {
+    id: 13,
+    question: "Which directive is used to show/hide elements without removing them from DOM?",
+    options: [
+      { label: "A", text: "v-close", isCorrect: false, note: "v-close does not exist." },
+      { label: "B", text: "v-hide", isCorrect: false, note: "v-hide does not exist." },
+      { label: "C", text: "v-show", isCorrect: true, note: "v-show toggles display using CSS." },
+      { label: "D", text: "v-if", isCorrect: false, note: "v-if removes/adds DOM nodes." }
+    ]
+  },
+  {
+    id: 14,
+    question: "What is the purpose of the key attribute in v-for?",
+    options: [
+      { label: "A", text: "For styling list items", isCorrect: false, note: "key does not affect styling." },
+      { label: "B", text: "To track identity for efficient rendering", isCorrect: true, note: "key helps Vue reuse or replace items efficiently." },
+      { label: "C", text: "To animate list items", isCorrect: false, note: "key is not for animations." },
+      { label: "D", text: "To sync props", isCorrect: false, note: "key does not sync props." }
+    ]
+  },
+  {
+    id: 15,
+    question: "Which function is used to define computed properties in the Composition API?",
+    options: [
+      { label: "A", text: "calc()", isCorrect: false, note: "calc() is CSS." },
+      { label: "B", text: "computed()", isCorrect: true, note: "computed() creates derived reactive state." },
+      { label: "C", text: "calculate()", isCorrect: false, note: "calculate() does not exist." },
+      { label: "D", text: "compute()", isCorrect: false, note: "compute() is not a Vue API." }
+    ]
+  },
+  {
+    id: 16,
+    question: "Which method registers a global component in Vue 3?",
+    options: [
+      { label: "A", text: "Vue.register()", isCorrect: false, note: "Vue.register does not exist." },
+      { label: "B", text: "Vue.component()", isCorrect: false, note: "Vue.component() is for Vue 2." },
+      { label: "C", text: "app.component()", isCorrect: true, note: "app.component registers global components in Vue 3." },
+      { label: "D", text: "component.use()", isCorrect: false, note: "component.use() is invalid." }
+    ]
+  },
+  {
+    id: 17,
+    question: "Which hook is triggered when a component is removed from DOM?",
+    options: [
+      { label: "A", text: "onRemoved", isCorrect: false, note: "onRemoved does not exist." },
+      { label: "B", text: "beforeDestroy", isCorrect: false, note: "beforeDestroy is Vue 2 syntax." },
+      { label: "C", text: "unmounted", isCorrect: true, note: "unmounted is Vue 3 cleanup hook." },
+      { label: "D", text: "destroyed", isCorrect: false, note: "destroyed is Vue 2 syntax." }
+    ]
+  },
+  {
+    id: 18,
+    question: "Which directive binds inline styles?",
+    options: [
+      { label: "A", text: "v-style", isCorrect: false, note: "v-style does not exist." },
+      { label: "B", text: "v-bind:style", isCorrect: true, note: "v-bind:style binds inline styles dynamically." },
+      { label: "C", text: ":css", isCorrect: false, note: ":css does not exist." },
+      { label: "D", text: "style={{}}", isCorrect: false, note: "Not valid Vue syntax." }
+    ]
+  },
+  {
+    id: 19,
+    question: "Which Composition API method watches reactive values?",
+    options: [
+      { label: "A", text: "watch", isCorrect: true, note: "watch observes reactive value changes." },
+      { label: "B", text: "ref", isCorrect: false, note: "ref creates values." },
+      { label: "C", text: "reactive", isCorrect: false, note: "reactive creates objects." },
+      { label: "D", text: "bind", isCorrect: false, note: "bind is not a Vue API." }
+    ]
+  },
+  {
+  id: 20,
+  question: "Which directive is used to bind classes dynamically in Vue?",
+  options: [
+    { label: "A", text: "v-class", isCorrect: false, note: "v-class does not exist." },
+    { label: "B", text: "v-bind:class", isCorrect: true, note: "v-bind:class enables dynamic class binding." },
+    { label: "C", text: "class-bind", isCorrect: false, note: "class-bind is not a Vue directive." },
+    { label: "D", text: "v-style:class", isCorrect: false, note: "v-style is unrelated to classes." }
+  ]
+},
+{
+  id: 21,
+  question: "Which of the following is NOT a valid Vue lifecycle hook in Vue 3?",
+  options: [
+    { label: "A", text: "mounted", isCorrect: false, note: "mounted is a valid hook." },
+    { label: "B", text: "updated", isCorrect: false, note: "updated is a valid hook." },
+    { label: "C", text: "destroyed", isCorrect: true, note: "destroyed is removed in Vue 3." },
+    { label: "D", text: "unmounted", isCorrect: false, note: "unmounted is a valid hook." }
+  ]
+},
+{
+  id: 22,
+  question: "Which method is used to make an object fully reactive in Vue's Composition API?",
+  options: [
+    { label: "A", text: "deepRef()", isCorrect: false, note: "deepRef() does not exist." },
+    { label: "B", text: "reactive()", isCorrect: true, note: "reactive() makes an object reactive." },
+    { label: "C", text: "state()", isCorrect: false, note: "state() is not a Vue method." },
+    { label: "D", text: "observe()", isCorrect: false, note: "observe() is not a Vue API." }
+  ]
+},
+{
+  id: 23,
+  question: "What is the correct syntax for emitting a custom event from a child component?",
+  options: [
+    { label: "A", text: "this.fire('event')", isCorrect: false, note: "fire() is not a Vue API." },
+    { label: "B", text: "emit('event-name')", isCorrect: true, note: "emit() is the standard way to emit events." },
+    { label: "C", text: "this.emitEvent('event')", isCorrect: false, note: "emitEvent() does not exist." },
+    { label: "D", text: "this.$event('event')", isCorrect: false, note: "$event is not a method." }
+  ]
+},
+{
+  id: 24,
+  question: "Which Vue directive is used to prevent event propagation?",
+  options: [
+    { label: "A", text: "v-stop", isCorrect: false, note: "v-stop does not exist." },
+    { label: "B", text: "v-on:click.stop", isCorrect: true, note: ".stop modifier prevents propagation." },
+    { label: "C", text: "v-prevent", isCorrect: false, note: "v-prevent is not a directive." },
+    { label: "D", text: "v-on:stop", isCorrect: false, note: "v-on:stop is invalid." }
+  ]
+},
+{
+  id: 25,
+  question: "Which directive renders raw HTML inside an element?",
+  options: [
+    { label: "A", text: "v-text", isCorrect: false, note: "v-text inserts text, not HTML." },
+    { label: "B", text: "v-model", isCorrect: false, note: "v-model is for forms." },
+    { label: "C", text: "v-html", isCorrect: true, note: "v-html renders raw HTML." },
+    { label: "D", text: "v-inner", isCorrect: false, note: "v-inner does not exist." }
+  ]
+},
+{
+  id: 26,
+  question: "Which Composition API hook replaces the Vue 2 created() hook?",
+  options: [
+    { label: "A", text: "onCreated()", isCorrect: false, note: "onCreated() does not exist." },
+    { label: "B", text: "setup()", isCorrect: true, note: "setup() runs before component is created." },
+    { label: "C", text: "init()", isCorrect: false, note: "init() is not part of Vue." },
+    { label: "D", text: "onInit()", isCorrect: false, note: "onInit() is not a Vue API." }
+  ]
+},
+{
+  id: 27,
+  question: "What is the main use of provide/inject in Vue?",
+  options: [
+    { label: "A", text: "Managing global state", isCorrect: false, note: "Vuex/pinia are used for global state." },
+    { label: "B", text: "Passing data across deeply nested components", isCorrect: true, note: "provide/inject passes data deep without props." },
+    { label: "C", text: "Sending HTTP requests", isCorrect: false, note: "HTTP is handled by libraries like axios." },
+    { label: "D", text: "Creating animations", isCorrect: false, note: "Animations are handled with transition components." }
+  ]
+},
+{
+  id: 28,
+  question: "What is the purpose of the <transition> element in Vue?",
+  options: [
+    { label: "A", text: "To manage conditional rendering", isCorrect: false, note: "v-if handles conditional rendering." },
+    { label: "B", text: "To animate entering and leaving elements", isCorrect: true, note: "<transition> animates changes." },
+    { label: "C", text: "To optimize reactivity", isCorrect: false, note: "Reactivity is handled internally." },
+    { label: "D", text: "To register components", isCorrect: false, note: "Not related to components." }
+  ]
+},
+{
+  id: 29,
+  question: "Which directive is used to ignore Vue compilation inside an element?",
+  options: [
+    { label: "A", text: "v-ignore", isCorrect: false, note: "v-ignore does not exist." },
+    { label: "B", text: "v-pre", isCorrect: true, note: "v-pre tells Vue to skip compilation." },
+    { label: "C", text: "v-stop", isCorrect: false, note: "v-stop does not exist in Vue." },
+    { label: "D", text: "v-no-compile", isCorrect: false, note: "v-no-compile is not valid." }
+  ]
+},
+{
+  id: 30,
+  question: "Which Vue directive listens for keyboard events?",
+  options: [
+    { label: "A", text: "v-key", isCorrect: false, note: "v-key is not a real directive." },
+    { label: "B", text: "v-on:keydown", isCorrect: true, note: "v-on:keydown listens to keyboard input." },
+    { label: "C", text: "v-model:key", isCorrect: false, note: "v-model does not listen to key events." },
+    { label: "D", text: "v-press", isCorrect: false, note: "v-press does not exist." }
+  ]
+},
+{
+  id: 31,
+  question: "Which built-in component is used to render multiple components in the same area conditionally?",
+  options: [
+    { label: "A", text: "router-view", isCorrect: false, note: "router-view is specific to Vue Router." },
+    { label: "B", text: "transition", isCorrect: false, note: "transition animates components." },
+    { label: "C", text: "component", isCorrect: true, note: "<component :is=\"\"> dynamically switches components." },
+    { label: "D", text: "slot", isCorrect: false, note: "slot is for content distribution." }
+  ]
+},
+{
+  id: 32,
+  question: "Which Vue feature allows parent components to send content to child components?",
+  options: [
+    { label: "A", text: "Filters", isCorrect: false, note: "Filters transform text." },
+    { label: "B", text: "Slots", isCorrect: true, note: "Slots allow content distribution." },
+    { label: "C", text: "Props", isCorrect: false, note: "Props send data, not content blocks." },
+    { label: "D", text: "Emit", isCorrect: false, note: "Emit sends events upward." }
+  ]
+},
+{
+  id: 33,
+  question: "Which Vue directive is used for binding events with shorthand syntax?",
+  options: [
+    { label: "A", text: "@", isCorrect: true, note: "@click is shorthand for v-on:click." },
+    { label: "B", text: "#", isCorrect: false, note: "# is not used for events." },
+    { label: "C", text: "$", isCorrect: false, note: "$ is used in Vue instance APIs, not events." },
+    { label: "D", text: "%", isCorrect: false, note: "% has no meaning in Vue." }
+  ]
+},
+{
+  id: 34,
+  question: "Which Vue feature allows two-way binding between parent and child components for custom components?",
+  options: [
+    { label: "A", text: "v-bind.sync", isCorrect: false, note: ".sync was used in Vue 2 but is not the modern pattern." },
+    { label: "B", text: "v-model", isCorrect: true, note: "v-model can be implemented on custom components using modelValue & update:modelValue." },
+    { label: "C", text: "v-two-way", isCorrect: false, note: "v-two-way is not a valid directive." },
+    { label: "D", text: "double-bind", isCorrect: false, note: "double-bind is not a Vue feature." }
+  ]
+},
+{
+  id: 35,
+  question: "Which Vue component wraps multiple children without adding extra DOM nodes?",
+  options: [
+    { label: "A", text: "view", isCorrect: false, note: "view is not a Vue feature." },
+    { label: "B", text: "transition", isCorrect: false, note: "transition adds animations, not structure control." },
+    { label: "C", text: "fragment", isCorrect: false, note: "fragment is not manually used; Vue internally uses fragments." },
+    { label: "D", text: "template", isCorrect: true, note: "<template> groups elements with no extra DOM." }
+  ]
+},
+{
+  id: 36,
+  question: "Which Vue tool is used for handling routes?",
+  options: [
+    { label: "A", text: "Vuex", isCorrect: false, note: "Vuex is for state management." },
+    { label: "B", text: "Pinia", isCorrect: false, note: "Pinia manages global state." },
+    { label: "C", text: "Vue Router", isCorrect: true, note: "Vue Router provides routing." },
+    { label: "D", text: "Axios", isCorrect: false, note: "Axios handles HTTP requests." }
+  ]
+},
+{
+  id: 37,
+  question: "Which directory typically contains Vue single-file components (SFCs)?",
+  options: [
+    { label: "A", text: "public/", isCorrect: false, note: "public/ holds static assets." },
+    { label: "B", text: "components/", isCorrect: true, note: "components/ stores reusable components." },
+    { label: "C", text: "scripts/", isCorrect: false, note: "scripts/ is not a default folder." },
+    { label: "D", text: "views/", isCorrect: false, note: "views/ is usually for route-based pages, not regular components." }
+  ]
+},
+{
+  id: 38,
+  question: "Which Vue directive is used for binding attributes using shorthand syntax?",
+  options: [
+    { label: "A", text: "@", isCorrect: false, note: "@ is for event binding." },
+    { label: "B", text: ":", isCorrect: true, note: ":attr is shorthand for v-bind:attr." },
+    { label: "C", text: "#", isCorrect: false, note: "# is used only for slot naming." },
+    { label: "D", text: "$", isCorrect: false, note: "$ is used inside instance APIs." }
+  ]
+},
+{
+  id: 39,
+  question: "Which of the following is a valid Vue SFC section?",
+  options: [
+    { label: "A", text: "<controller>", isCorrect: false, note: "<controller> is not used in Vue." },
+    { label: "B", text: "<script>", isCorrect: true, note: "<script> is a valid SFC block." },
+    { label: "C", text: "<logic>", isCorrect: false, note: "<logic> does not exist." },
+    { label: "D", text: "<data>", isCorrect: false, note: "<data> is not a valid SFC block." }
+  ]
+},
+{
+  id: 40,
+  question: "Which tool is recommended for global state management in Vue 3?",
+  options: [
+    { label: "A", text: "Vuex 2", isCorrect: false, note: "Vuex 2 is legacy; Vuex 5 is planned, but Pinia is now official." },
+    { label: "B", text: "Pinia", isCorrect: true, note: "Pinia is the official state management library for Vue 3." },
+    { label: "C", text: "Redux", isCorrect: false, note: "Redux is mainly for React." },
+    { label: "D", text: "MobX", isCorrect: false, note: "MobX is not part of Vue ecosystem." }
+  ]
+},
+{
+  id: 41,
+  question: "Which attribute is required when using v-for in combination with keyed templates?",
+  options: [
+    { label: "A", text: "loop", isCorrect: false, note: "loop is not a Vue attribute." },
+    { label: "B", text: "ref", isCorrect: false, note: "ref is unrelated to list identity." },
+    { label: "C", text: "key", isCorrect: true, note: "key helps Vue track list items efficiently." },
+    { label: "D", text: "id", isCorrect: false, note: "id is optional HTML attribute, not required by Vue." }
+  ]
+},
+{
+  id: 42,
+  question: "Which Vue file typically bootstraps the application?",
+  options: [
+    { label: "A", text: "App.vue", isCorrect: false, note: "App.vue is the root component, not the bootstrap file." },
+    { label: "B", text: "index.html", isCorrect: false, note: "index.html contains the mount point." },
+    { label: "C", text: "main.js", isCorrect: true, note: "main.js initializes and mounts the Vue app." },
+    { label: "D", text: "router.js", isCorrect: false, note: "router.js configures routing only." }
+  ]
+},
+{
+  id: 43,
+  question: "Which lifecycle hook is used for performing cleanup tasks like removing event listeners?",
+  options: [
+    { label: "A", text: "onBeforeMount", isCorrect: false, note: "onBeforeMount is not for cleanup." },
+    { label: "B", text: "onUnmounted", isCorrect: true, note: "onUnmounted is used for cleanup logic." },
+    { label: "C", text: "onUpdated", isCorrect: false, note: "onUpdated runs on reactive updates, not for cleanup." },
+    { label: "D", text: "onMounted", isCorrect: false, note: "onMounted runs after mounting." }
+  ]
+},
+{
+  id: 44,
+  question: "Which Vue directive allows rendering a block only once?",
+  options: [
+    { label: "A", text: "v-static", isCorrect: false, note: "v-static does not exist." },
+    { label: "B", text: "v-once", isCorrect: true, note: "v-once renders the element once and skips future updates." },
+    { label: "C", text: "v-final", isCorrect: false, note: "v-final is invalid." },
+    { label: "D", text: "v-one", isCorrect: false, note: "v-one is not a valid directive." }
+  ]
+},
+{
+  id: 45,
+  question: "Which option is NOT part of Vue's reactivity system?",
+  options: [
+    { label: "A", text: "ref()", isCorrect: false, note: "ref is reactive." },
+    { label: "B", text: "reactive()", isCorrect: false, note: "reactive is part of the system." },
+    { label: "C", text: "computed()", isCorrect: false, note: "computed is part of reactivity." },
+    { label: "D", text: "inflate()", isCorrect: true, note: "inflate() does not belong to Vue." }
+  ]
+},
+{
+  id: 46,
+  question: "Which Vue feature allows grouping multiple root elements?",
+  options: [
+    { label: "A", text: "Fragments", isCorrect: true, note: "Vue 3 supports fragments (multiple root nodes)." },
+    { label: "B", text: "Blocks", isCorrect: false, note: "Blocks are not a Vue feature." },
+    { label: "C", text: "Shadow DOM", isCorrect: false, note: "Shadow DOM is unrelated to multi-root support." },
+    { label: "D", text: "Mixins", isCorrect: false, note: "Mixins merge component options, not templates." }
+  ]
+},
+{
+  id: 47,
+  question: "Which method is used to lazy-load Vue components?",
+  options: [
+    { label: "A", text: "defineAsyncComponent()", isCorrect: true, note: "defineAsyncComponent enables lazy loading." },
+    { label: "B", text: "importLater()", isCorrect: false, note: "importLater() does not exist." },
+    { label: "C", text: "lazyComponent()", isCorrect: false, note: "lazyComponent() is not a Vue function." },
+    { label: "D", text: "asyncLoad()", isCorrect: false, note: "asyncLoad() is not part of Vue." }
+  ]
+},
+{
+  id: 48,
+  question: "Which Vue Router mode uses the browser history API?",
+  options: [
+    { label: "A", text: "abstract", isCorrect: false, note: "abstract is used for non-browser environments." },
+    { label: "B", text: "memory", isCorrect: false, note: "memory mode is not a Vue Router mode." },
+    { label: "C", text: "history", isCorrect: true, note: "history mode uses the browser's history API." },
+    { label: "D", text: "hash", isCorrect: false, note: "hash mode uses # in URLs." }
+  ]
+},
+{
+  id: 49,
+  question: "Which Composition API function is used to create a read-only reactive reference?",
+  options: [
+    { label: "A", text: "readonly()", isCorrect: true, note: "Correct: readonly() creates a read-only proxy of a reactive object." },
+    { label: "B", text: "constRef()", isCorrect: false, note: "Wrong: constRef() is not a Vue API function." },
+    { label: "C", text: "fixed()", isCorrect: false, note: "Wrong: fixed() does not exist in Vue Composition API." },
+    { label: "D", text: "static()", isCorrect: false, note: "Wrong: static() is not part of Vue's reactivity system." }
+  ]
+},
+{
+  id: 50,
+  question: "What is the purpose of the <Teleport> component in Vue 3?",
+  options: [
+    { label: "A", text: "To create animated transitions", isCorrect: false, note: "Wrong: <Transition> handles animations, not <Teleport>." },
+    { label: "B", text: "To render component content in a different part of the DOM", isCorrect: true, note: "Correct: <Teleport> allows rendering content outside the component's DOM hierarchy." },
+    { label: "C", text: "To optimize component performance", isCorrect: false, note: "Wrong: While useful, performance optimization is not the primary purpose of <Teleport>." },
+    { label: "D", text: "To handle HTTP requests", isCorrect: false, note: "Wrong: <Teleport> is for DOM manipulation, not network requests." }
+  ]
+}
+],
+
+    get current() {
+      return this.questions[this.index]
+    },
+
+    select(opt) {
+      this.selected = opt.label
+      if (!this.answers[this.index]) {
+        this.answers[this.index] = { label: opt.label, isCorrect: opt.isCorrect }
+        if (opt.isCorrect) this.score++
+      } else {
+        const prev = this.answers[this.index]
+        if (prev.isCorrect && !opt.isCorrect) this.score--
+        if (!prev.isCorrect && opt.isCorrect) this.score++
+        this.answers[this.index] = { label: opt.label, isCorrect: opt.isCorrect }
+      }
+    },
+
+    next() {
+      if (this.index < this.questions.length - 1) {
+        this.index++
+        this.selected = this.answers[this.index]?.label || null
+        console.log(this.index);
+      } else {
+        this.finished = true
+      }
+    },
+
+    prev() {
+      if (this.index > 0) {
+        this.index--
+        this.selected = this.answers[this.index]?.label || null
+      }
+    },
+
+    restart() {
+      this.index = 0
+      this.selected = null
+      this.finished = false
+      this.score = 0
+      this.answers = {}
+      this.reviewMode = false
+    },
+
+    jump(i) {
+      this.index = i
+      this.selected = this.answers[i]?.label || null
+      this.reviewMode = false
+    }
+  }
+}
+</script>
+
+</body>
+</html>
