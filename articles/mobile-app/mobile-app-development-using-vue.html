@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Learn the best methods to build mobile apps using Vue.js with Ionic, Nuxt, and Quasar. Step-by-step guide for Android, iOS, and PWA development." />
+  <title>Mobile App Development Using Vue.js — Complete Guide</title>
+  <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+  <link rel="stylesheet" href="../../../assets/tailwind.css">
+    <link rel="stylesheet" href="../../../assets/style.css">
+</head>
+<body class="bg-gray-50 text-gray-800 leading-relaxed">
+            <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="/" class="logo">UI Dev Docs</a>
+            <div class="nav-links">
+                <a href="/" class="nav-link">Home</a>
+            </div>
+        </div>
+    </nav>
+  <header class="bg-white shadow p-6">
+    <div class="max-w-4xl mx-auto">
+      <h1 class="text-3xl font-bold text-gray-900">Mobile App Development Using Vue.js — The Complete Guide</h1>
+      <p class="text-gray-600 mt-2">Learn how to build Android, iOS, PWA, and desktop apps using Vue, Ionic, Nuxt, and Quasar.</p>
+    </div>
+  </header>
+
+  <main class="max-w-4xl mx-auto p-6">
+
+    <section class="my-10">
+      <h2 class="text-2xl font-bold mb-4">Introduction</h2>
+      <p>
+        Vue.js has evolved beyond traditional web interfaces. With modern frameworks like <strong>Ionic</strong>, <strong>Capacitor</strong>, <strong>Nuxt</strong>, and <strong>Quasar</strong>, you can create fully functional mobile applications using a single Vue-based codebase. Whether you're a freelancer, beginner, or professional developer, Vue provides a highly efficient workflow for multi-platform app development.
+      </p>
+    </section>
+
+    <!-- 1: Ionic + Vue -->
+    <section class="my-10">
+      <h2 class="text-2xl font-bold mb-4">1. Easiest Method: Ionic + Vue</h2>
+      <p><strong>Best for:</strong> Simple apps, client projects, MVPs</p>
+      <p><strong>Output:</strong> Android, iOS, PWA</p>
+
+      <h3 class="text-xl font-semibold mt-4 mb-2">Why Ionic?</h3>
+      <ul class="list-disc ml-6">
+        <li>Comes with mobile-optimized UI components</li>
+        <li>Capacitor allows access to native features (camera, vibration, file system)</li>
+        <li>Easy setup and fastest method for Vue mobile apps</li>
+      </ul>
+
+      <h3 class="text-xl font-semibold mt-4 mb-2">Steps</h3>
+      <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto"><code># Install Ionic
+npm install -g @ionic/cli
+
+# Create App
+ionic start myApp tabs --type vue
+
+# Run App
+ionic serve
+
+# Build for Android / iOS
+ionic build
+npx cap add android
+npx cap open android</code></pre>
+    </section>
+
+    <!-- 2: Nuxt + Capacitor -->
+    <section class="my-10">
+      <h2 class="text-2xl font-bold mb-4">2. Best Nuxt Method: Nuxt + Capacitor</h2>
+      <p><strong>Best for:</strong> Build Website + Mobile App combined</p>
+      <p><strong>Output:</strong> Android, iOS, SEO-friendly website</p>
+
+      <h3 class="text-xl font-semibold mt-4 mb-2">Why Choose Nuxt?</h3>
+      <ul class="list-disc ml-6">
+        <li>One codebase for web + mobile</li>
+        <li>Full SEO benefits using SSR</li>
+        <li>Capacitor converts Nuxt into a mobile app</li>
+      </ul>
+
+      <h3 class="text-xl font-semibold mt-4 mb-2">Steps</h3>
+      <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto"><code># Create Nuxt Project
+npx nuxi init my-nuxt-app
+cd my-nuxt-app
+npm install
+
+# Build the App
+npm run build
+
+# Add Capacitor
+npm install @capacitor/core @capacitor/cli
+npx cap init myapp com.example.myapp
+
+# Copy Nuxt Build
+npx cap copy
+
+# Open Android Studio
+npx cap open android</code></pre>
+    </section>
+
+    <!-- 3: Quasar Framework -->
+    <section class="my-10">
+      <h2 class="text-2xl font-bold mb-4">3. Most Mature Mobile Framework: Quasar</h2>
+      <p><strong>Best for:</strong> Large apps & multi-platform solutions</p>
+      <p><strong>Output:</strong> Android, iOS, Desktop (Electron), PWA, Web</p>
+
+      <h3 class="text-xl font-semibold mt-4 mb-2">Why Choose Quasar?</h3>
+      <ul class="list-disc ml-6">
+        <li>Huge component library</li>
+        <li>Very fast performance</li>
+        <li>Build for all platforms using one command</li>
+      </ul>
+
+      <h3 class="text-xl font-semibold mt-4 mb-2">Steps</h3>
+      <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto"><code># Install Quasar CLI
+npm install -g @quasar/cli
+
+# Create App
+npm init quasar
+
+# Run Dev Server
+quasar dev
+
+# Build Mobile
+quasar dev -m capacitor -T android</code></pre>
+    </section>
+
+    <!-- 4: Vue Native -->
+    <section class="my-10">
+      <h2 class="text-2xl font-bold mb-4">4. Vue Native (Not Recommended)</h2>
+      <p>
+        Vue Native was once used for creating native mobile apps with Vue-like syntax, but the project is no longer maintained. For modern mobile development, rely on Ionic, Nuxt, or Quasar instead.
+      </p>
+    </section>
+
+    <!-- Summary -->
+    <section class="my-10 p-6 bg-white shadow rounded-lg">
+      <h2 class="text-2xl font-bold mb-4">Summary</h2>
+      <table class="w-full border border-gray-300 text-left text-sm">
+        <thead class="bg-gray-200">
+          <tr>
+            <th class="p-3 border">Approach</th>
+            <th class="p-3 border">Best For</th>
+            <th class="p-3 border">Platforms</th>
+            <th class="p-3 border">Highlights</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="p-3 border">Ionic + Vue</td>
+            <td class="p-3 border">MVPs, Small Apps</td>
+            <td class="p-3 border">Android, iOS, PWA</td>
+            <td class="p-3 border">Fastest setup, great UI</td>
+          </tr>
+          <tr>
+            <td class="p-3 border">Nuxt + Capacitor</td>
+            <td class="p-3 border">SEO + App Combo</td>
+            <td class="p-3 border">Android, iOS, Web</td>
+            <td class="p-3 border">SSR + one codebase</td>
+          </tr>
+          <tr>
+            <td class="p-3 border">Quasar</td>
+            <td class="p-3 border">Large/Enterprise Apps</td>
+            <td class="p-3 border">Mobile, Desktop, Web</td>
+            <td class="p-3 border">Most powerful solution</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+  </main>
+
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="container mx-auto px-4">
+            <!-- <div class="grid md:grid-cols-3 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">About This Guide</h3>
+                    <p>This comprehensive guide covers all major Nuxt.js deployment options with detailed step-by-step instructions for each approach.</p>
+                </div>
+            </div> -->
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center">
+                <p>&copy; 2025 https://ui-dev-tech-docs.xyz All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
