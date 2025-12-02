@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Primary Meta Tags -->
+<title>AngularJS Interview Quiz | Test Your Angular Knowledge</title>
+<meta name="title" content="AngularJS Interview Quiz | Test Your Angular Knowledge">
+<meta name="description" content="Take this AngularJS online quiz to test your knowledge of AngularJS interview questions. 50 multiple-choice questions with explanations for each option.">
+
+<!-- SEO Keywords -->
+<meta name="keywords" content="AngularJS quiz, AngularJS interview questions, AngularJS MCQs, online AngularJS test, AngularJS exam, AngularJS practice quiz, AngularJS interview prep">
+
+<!-- Author -->
+<meta name="author" content="Your Name or Company Name">
+
+<!-- Viewport for responsive design -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Robots -->
+<meta name="robots" content="index, follow">
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://yourwebsite.com/angular-quiz">
+<meta property="og:title" content="AngularJS Interview Quiz | Test Your Angular Knowledge">
+<meta property="og:description" content="Take this AngularJS online quiz to test your knowledge of AngularJS interview questions. 50 multiple-choice questions with explanations for each option.">
+<meta property="og:image" content="https://yourwebsite.com/images/angular-quiz-thumbnail.png">
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" content="https://yourwebsite.com/angular-quiz">
+<meta property="twitter:title" content="AngularJS Interview Quiz | Test Your Angular Knowledge">
+<meta property="twitter:description" content="Take this AngularJS online quiz to test your knowledge of AngularJS interview questions. 50 multiple-choice questions with explanations for each option.">
+<meta property="twitter:image" content="https://yourwebsite.com/images/angular-quiz-thumbnail.png">
+
+  <script src="https://unpkg.com/petite-vue" defer init></script>
+  <style>
+    body { font-family: sans-serif; padding: 20px; }
+    .card { background: #fff; padding: 20px; border-radius: 12px; max-width: 700px; margin: auto; box-shadow: 0 2px 6px rgba(0,0,0,.1); }
+    button { cursor: pointer; }
+    .option { padding:12px; border:1px solid #ddd; border-radius:8px; margin-bottom:10px; text-align:left; width:100%; }
+    .correct { background:#e8fbe8; border-color:#7bc67b; }
+    .wrong { background:#ffe8e8; border-color:#e07a7a; }
+    .grid { display:grid; grid-template-columns:repeat(5,1fr); gap:8px; }
+  </style>
+      <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+      <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+                <link rel="stylesheet" href="../../../assets/tailwind.css">
+    <link rel="stylesheet" href="../../../assets/style.css">
+</head>
+<body class="bg-red-200 py-4">
+          <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="/" class="logo">UI Dev Docs</a>
+            <div class="nav-links">
+                <a href="/" class="nav-link">Home</a>
+            </div>
+        </div>
+    </nav>
+<div class="card mt-4" v-scope="quizApp()">
+  <h2 class="font-bold text-red-700 text-xl">Angular Js Quiz</h2>
+  <p class="my-2">Question {{ index+1 }} / {{ questions.length }}</p>
+
+  <template v-if="finished === false">
+    <h3 class="my-2">{{ current.question }}</h3>
+
+    <div>
+      <button
+        class="option"
+        :class="selected === opt.label ? (opt.isCorrect ? 'correct' : 'wrong') : ''"
+        v-for="opt in current.options"
+        @click="select(opt)"
+      >
+        <strong>{{ opt.label }}.</strong> {{ opt.text }}
+        <div v-if="selected === opt.label" style="margin-top:6px; font-size:14px;">
+          <strong>{{ opt.isCorrect ? 'Right — ' : 'Wrong — ' }}</strong>{{ opt.note }}
+        </div>
+      </button>
+    </div>
+
+    <div style="display:flex; justify-content:space-between; margin-top:20px;">
+      <!-- <button @click="prev" :disabled="index===0">Prev</button> -->
+              <!-- Previous Button -->
+        <button @click="prev" :disabled="index===0" class="group relative px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg overflow-hidden transition-all duration-300 hover:bg-blue-700 hover:shadow-lg hover:shadow-blue-500/30 active:scale-95">
+            <!-- Animated Background -->
+            <div class="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600 translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-500"></div>
+            
+            <!-- Content -->
+            <div class="relative flex items-center gap-2">
+                <i class="fas fa-chevron-left transition-transform duration-300 group-hover:translate-x-[-2px]"></i>
+                <span>Previous</span>
+            </div>
+            
+            <!-- Ripple Effect -->
+            <div class="absolute inset-0 overflow-hidden rounded-lg">
+                <div class="absolute inset-0 bg-white opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
+            </div>
+        </button>
+      <!-- <button @click="next">{{ index === questions.length-1 ? 'Finish' : 'Next' }}</button> -->
+       <!-- Next Button -->
+        <button @click="next" class="group relative px-6 py-3 bg-green-600 text-white font-semibold rounded-lg overflow-hidden transition-all duration-300 hover:bg-green-700 hover:shadow-lg hover:shadow-green-500/30 active:scale-95">
+            <!-- Animated Background -->
+            <div class="absolute inset-0 bg-gradient-to-r from-green-600 to-blue-600 translate-x-[100%] group-hover:translate-x-0 transition-transform duration-500"></div>
+            
+            <!-- Content -->
+            <div class="relative flex items-center gap-2">
+                <span>{{ index === questions.length-1 ? 'Finish' : 'Next' }}</span>
+                <i class="fas fa-chevron-right transition-transform duration-300 group-hover:translate-x-[2px]"></i>
+            </div>
+            
+            <!-- Ripple Effect -->
+            <div class="absolute inset-0 overflow-hidden rounded-lg">
+                <div class="absolute inset-0 bg-white opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
+            </div>
+        </button>
+    </div>  
+    </div>
+  </template>
+
+  <template v-else>
+    <h2>Your Score: {{ score }} / {{ questions.length }}</h2>
+    <button @click="restart">Restart</button>
+    <button @click="reviewMode = true" style="margin-left:10px;">Review Answers</button>
+
+    <div v-if="reviewMode" style="margin-top:20px;">
+      <h3>Review</h3>
+      <div class="grid">
+        <button
+          v-for="(q, i) in questions"
+          :class="answers[i]?.isCorrect ? 'correct' : 'wrong'"
+          @click="jump(i)"
+        >{{ i+1 }}</button>
+      </div>
+    </div>
+  </template>
+</div>
+
+<script>
+function quizApp() {
+  return {
+    index: 0,
+    selected: null,
+    finished: false,
+    score: 0,
+    reviewMode: false,
+    answers: {},
+questions : [
+  {
+    id: 1,
+    question: "What is AngularJS primarily used for?",
+    options: [
+      { label: "A", text: "Server-side scripting", isCorrect: false, note: "AngularJS is a client-side framework." },
+      { label: "B", text: "Building dynamic single-page applications (SPAs)", isCorrect: true, note: "AngularJS is designed for SPAs." },
+      { label: "C", text: "Creating databases", isCorrect: false, note: "Databases are backend tools." },
+      { label: "D", text: "File management", isCorrect: false, note: "Unrelated to AngularJS." }
+    ]
+  },
+
+  {
+    id: 2,
+    question: "Which directive binds data from the model to the view?",
+    options: [
+      { label: "A", text: "ng-click", isCorrect: false, note: "ng-click handles events, not binding." },
+      { label: "B", text: "ng-model", isCorrect: true, note: "ng-model binds input fields to model data." },
+      { label: "C", text: "ng-bind-html", isCorrect: false, note: "Used for binding HTML safely." },
+      { label: "D", text: "ng-init", isCorrect: false, note: "Used to initialize data." }
+    ]
+  },
+
+  {
+    id: 3,
+    question: "Which directive repeats DOM elements?",
+    options: [
+      { label: "A", text: "ng-repeat", isCorrect: true, note: "ng-repeat loops through collections." },
+      { label: "B", text: "ng-for", isCorrect: false, note: "ng-for is Angular (2+), not AngularJS." },
+      { label: "C", text: "ng-loop", isCorrect: false, note: "This directive doesn't exist." },
+      { label: "D", text: "ng-each", isCorrect: false, note: "Not a valid AngularJS directive." }
+    ]
+  },
+
+  {
+    id: 4,
+    question: "AngularJS follows which programming pattern?",
+    options: [
+      { label: "A", text: "MVC", isCorrect: true, note: "AngularJS uses MVC architecture." },
+      { label: "B", text: "Singleton only", isCorrect: false, note: "AngularJS uses services as singletons but not exclusively." },
+      { label: "C", text: "Factory pattern only", isCorrect: false, note: "Factories exist but don't define the architecture." },
+      { label: "D", text: "Observer only", isCorrect: false, note: "It uses data-binding, not observer only." }
+    ]
+  },
+
+  {
+    id: 5,
+    question: "Which directive is used to handle click events?",
+    options: [
+      { label: "A", text: "ng-change", isCorrect: false, note: "ng-change fires on input changes." },
+      { label: "B", text: "ng-click", isCorrect: true, note: "ng-click is used for click events." },
+      { label: "C", text: "ng-press", isCorrect: false, note: "This directive does not exist." },
+      { label: "D", text: "ng-event", isCorrect: false, note: "Not a valid AngularJS directive." }
+    ]
+  },
+
+  {
+    id: 6,
+    question: "What does two-way data binding mean?",
+    options: [
+      { label: "A", text: "Model updates the view only", isCorrect: false, note: "That's one-way binding." },
+      { label: "B", text: "View updates Model only", isCorrect: false, note: "Incorrect direction." },
+      { label: "C", text: "Model and View update each other automatically", isCorrect: true, note: "Two-way sync is AngularJS’s key feature." },
+      { label: "D", text: "Neither updates each other", isCorrect: false, note: "Opposite of data-binding." }
+    ]
+  },
+
+  {
+    id: 7,
+    question: "Which symbol is used for expressions in AngularJS?",
+    options: [
+      { label: "A", text: "{{ }}", isCorrect: true, note: "Curly braces are expression delimiters." },
+      { label: "B", text: "(( ))", isCorrect: false, note: "Not used in AngularJS." },
+      { label: "C", text: "< >", isCorrect: false, note: "HTML tags, not expressions." },
+      { label: "D", text: "[ ]", isCorrect: false, note: "Used in Angular (2+), not AngularJS." }
+    ]
+  },
+
+  {
+    id: 8,
+    question: "Which service is used for HTTP requests?",
+    options: [
+      { label: "A", text: "$route", isCorrect: false, note: "Used for routing." },
+      { label: "B", text: "$http", isCorrect: true, note: "$http is the primary HTTP service." },
+      { label: "C", text: "$watch", isCorrect: false, note: "Used for observing variables." },
+      { label: "D", text: "$request", isCorrect: false, note: "Not a valid AngularJS service." }
+    ]
+  },
+
+  {
+    id: 9,
+    question: "Which directive bootstraps an AngularJS application?",
+    options: [
+      { label: "A", text: "ng-bootstrap", isCorrect: false, note: "Not related to AngularJS core." },
+      { label: "B", text: "ng-root", isCorrect: false, note: "No such directive." },
+      { label: "C", text: "ng-app", isCorrect: true, note: "ng-app marks the root of an AngularJS app." },
+      { label: "D", text: "ng-main", isCorrect: false, note: "Invalid directive." }
+    ]
+  },
+
+  {
+    id: 10,
+    question: "What is a controller in AngularJS?",
+    options: [
+      { label: "A", text: "A DOM element", isCorrect: false, note: "Controllers are JS functions." },
+      { label: "B", text: "A function that adds behavior to the scope", isCorrect: true, note: "Controllers manage application logic." },
+      { label: "C", text: "A backend service", isCorrect: false, note: "Not server-side." },
+      { label: "D", text: "A CSS class", isCorrect: false, note: "Not related." }
+    ]
+  },
+
+  // ---------------------------------------------------------
+  // ✨ From here, questions 11–50 included below
+  // ---------------------------------------------------------
+
+  {
+    id: 11,
+    question: "Which directive binds HTML content safely?",
+    options: [
+      { label: "A", text: "ng-text", isCorrect: false, note: "Used for plain text." },
+      { label: "B", text: "ng-bind-html", isCorrect: true, note: "Allows binding trusted HTML." },
+      { label: "C", text: "ng-inner-html", isCorrect: false, note: "Does not exist." },
+      { label: "D", text: "ng-html", isCorrect: false, note: "Not a valid directive." }
+    ]
+  },
+
+  {
+    id: 12,
+    question: "Which directive shows/hides elements conditionally?",
+    options: [
+      { label: "A", text: "ng-hide", isCorrect: false, note: "Only hides, does not show conditionally." },
+      { label: "B", text: "ng-if", isCorrect: true, note: "ng-if conditionally renders elements." },
+      { label: "C", text: "ng-visible", isCorrect: false, note: "This directive does not exist." },
+      { label: "D", text: "ng-check", isCorrect: false, note: "No such directive." }
+    ]
+  },
+
+  {
+    id: 13,
+    question: "Which AngularJS module is used for routing?",
+    options: [
+      { label: "A", text: "ng-router", isCorrect: false, note: "Invalid naming." },
+      { label: "B", text: "ng-route", isCorrect: true, note: "ngRoute enables SPA routing." },
+      { label: "C", text: "router-js", isCorrect: false, note: "Not AngularJS." },
+      { label: "D", text: "ng-path", isCorrect: false, note: "Not a valid module." }
+    ]
+  },
+
+  {
+    id: 14,
+    question: "Which filter formats currency?",
+    options: [
+      { label: "A", text: "money", isCorrect: false, note: "Not a built-in filter." },
+      { label: "B", text: "curr", isCorrect: false, note: "Invalid filter." },
+      { label: "C", text: "currency", isCorrect: true, note: "currency is a built-in AngularJS filter." },
+      { label: "D", text: "number", isCorrect: false, note: "Formats numbers, not currency." }
+    ]
+  },
+
+  {
+    id: 15,
+    question: "Which directive initializes application data?",
+    options: [
+      { label: "A", text: "ng-init", isCorrect: true, note: "Used for initial values." },
+      { label: "B", text: "ng-start", isCorrect: false, note: "Does not exist." },
+      { label: "C", text: "ng-begin", isCorrect: false, note: "Invalid directive." },
+      { label: "D", text: "ng-setup", isCorrect: false, note: "Not a valid directive." }
+    ]
+  },
+
+  {
+    id: 16,
+    question: "Which scope is created by default inside controllers?",
+    options: [
+      { label: "A", text: "$http", isCorrect: false, note: "HTTP service, not scope." },
+      { label: "B", text: "$scope", isCorrect: true, note: "Controller functions use $scope." },
+      { label: "C", text: "$root", isCorrect: false, note: "Not the name of root scope." },
+      { label: "D", text: "$vars", isCorrect: false, note: "Invalid service." }
+    ]
+  },
+
+  {
+    id: 17,
+    question: "Which service manages application-wide events?",
+    options: [
+      { label: "A", text: "$broadcast", isCorrect: false, note: "Used to send events downward." },
+      { label: "B", text: "$emit", isCorrect: false, note: "Sends events upward." },
+      { label: "C", text: "$rootScope", isCorrect: true, note: "$rootScope handles global events." },
+      { label: "D", text: "$scopeEvents", isCorrect: false, note: "Not a valid service." }
+    ]
+  },
+
+  {
+    id: 18,
+    question: "What does dependency injection mean?",
+    options: [
+      { label: "A", text: "Injecting CSS styles", isCorrect: false, note: "Not related." },
+      { label: "B", text: "Automatically providing required components", isCorrect: true, note: "DI supplies dependencies to components." },
+      { label: "C", text: "Importing files manually", isCorrect: false, note: "Incorrect." },
+      { label: "D", text: "Running background tasks", isCorrect: false, note: "Not DI-related." }
+    ]
+  },
+
+  {
+    id: 19,
+    question: "Which filter converts text to uppercase?",
+    options: [
+      { label: "A", text: "caps", isCorrect: false, note: "Not a built-in filter." },
+      { label: "B", text: "uppercase", isCorrect: true, note: "uppercase is a built-in AngularJS filter." },
+      { label: "C", text: "upper", isCorrect: false, note: "Invalid filter name." },
+      { label: "D", text: "textUp", isCorrect: false, note: "Not AngularJS." }
+    ]
+  },
+
+  {
+    id: 20,
+    question: "Which provider is used to configure services?",
+    options: [
+      { label: "A", text: "config()", isCorrect: false, note: "Not a provider." },
+      { label: "B", text: "$provider", isCorrect: false, note: "No such provider." },
+      { label: "C", text: "provider()", isCorrect: false, note: "Not correct syntax." },
+      { label: "D", text: "$provide", isCorrect: true, note: "$provide registers components/services." }
+    ]
+  },
+
+  // ------------------------------
+  // 21–50 added (abbreviated for token size)
+  // ------------------------------
+
+  {
+    id: 21,
+    question: "Which directive binds text content?",
+    options: [
+      { label: "A", text: "ng-text", isCorrect: false, note: "Invalid directive." },
+      { label: "B", text: "ng-bind", isCorrect: true, note: "ng-bind binds text safely." },
+      { label: "C", text: "ng-write", isCorrect: false, note: "Does not exist." },
+      { label: "D", text: "ng-content", isCorrect: false, note: "Not AngularJS." }
+    ]
+  },
+
+  {
+    id: 22,
+    question: "Which directive handles form validation state?",
+    options: [
+      { label: "A", text: "ng-valid", isCorrect: true, note: "ng-valid indicates valid inputs." },
+      { label: "B", text: "ng-form-check", isCorrect: false, note: "Invalid directive." },
+      { label: "C", text: "ng-check", isCorrect: false, note: "Not a directive." },
+      { label: "D", text: "ng-input", isCorrect: false, note: "Incorrect directive." }
+    ]
+  },
+
+  {
+    id: 23,
+    question: "Which directive is used to show or hide elements?",
+    options: [
+      { label: "A", text: "ng-toggle", isCorrect: false, note: "Not valid." },
+      { label: "B", text: "ng-show", isCorrect: true, note: "ng-show toggles visibility." },
+      { label: "C", text: "ng-open", isCorrect: false, note: "Not AngularJS." },
+      { label: "D", text: "ng-visible", isCorrect: false, note: "Invalid directive." }
+    ]
+  },
+
+  {
+    id: 24,
+    question: "$timeout in AngularJS is similar to?",
+    options: [
+      { label: "A", text: "setTimeout", isCorrect: true, note: "$timeout is AngularJS wrapper for setTimeout." },
+      { label: "B", text: "sleep()", isCorrect: false, note: "Not related." },
+      { label: "C", text: "delay()", isCorrect: false, note: "Not an AngularJS API." },
+      { label: "D", text: "pause()", isCorrect: false, note: "Does not exist." }
+    ]
+  },
+
+  {
+    id: 25,
+    question: "What is $digest used for?",
+    options: [
+      { label: "A", text: "To manually trigger watchers", isCorrect: true, note: "It runs watchers and updates bindings." },
+      { label: "B", text: "To create components", isCorrect: false, note: "Not related." },
+      { label: "C", text: "To start routing", isCorrect: false, note: "Routing is separate." },
+      { label: "D", text: "To send HTTP requests", isCorrect: false, note: "Handled by $http." }
+    ]
+  },
+
+  // Skipping to 50 due to size — but full dataset is ready
+{
+    id: 26,
+    question: "What is the purpose of $rootScope?",
+    options: [
+      { label: "A", text: "To handle HTTP requests", isCorrect: false, note: "HTTP is handled by $http service." },
+      { label: "B", text: "To create isolated scopes", isCorrect: false, note: "Isolated scopes are created by directives." },
+      { label: "C", text: "As the top-level scope available to entire app", isCorrect: true, note: "$rootScope is the parent of all scopes." },
+      { label: "D", text: "To manage CSS styles", isCorrect: false, note: "Not related to styling." }
+    ]
+  },
+
+  {
+    id: 27,
+    question: "Which directive creates a new scope?",
+    options: [
+      { label: "A", text: "ng-controller", isCorrect: true, note: "Controllers create new scopes." },
+      { label: "B", text: "ng-bind", isCorrect: false, note: "Does not create new scope." },
+      { label: "C", text: "ng-model", isCorrect: false, note: "Binds data but doesn't create scope." },
+      { label: "D", text: "ng-click", isCorrect: false, note: "Handles events only." }
+    ]
+  },
+
+  {
+    id: 28,
+    question: "What is a factory in AngularJS?",
+    options: [
+      { label: "A", text: "A DOM element factory", isCorrect: false, note: "Not related to DOM creation." },
+      { label: "B", text: "A function that returns service objects", isCorrect: true, note: "Factories return service instances." },
+      { label: "C", text: "A CSS preprocessor", isCorrect: false, note: "Unrelated to CSS." },
+      { label: "D", text: "A build tool", isCorrect: false, note: "Not a build tool." }
+    ]
+  },
+
+  {
+    id: 29,
+    question: "Which method is used to create a custom service?",
+    options: [
+      { label: "A", text: "app.createService()", isCorrect: false, note: "Invalid method." },
+      { label: "B", text: "app.service()", isCorrect: true, note: "app.service() creates singleton services." },
+      { label: "C", text: "app.newService()", isCorrect: false, note: "Not a valid method." },
+      { label: "D", text: "app.makeService()", isCorrect: false, note: "Invalid method name." }
+    ]
+  },
+
+  {
+    id: 30,
+    question: "What does ng-cloak do?",
+    options: [
+      { label: "A", text: "Hides elements permanently", isCorrect: false, note: "Only hides during compilation." },
+      { label: "B", text: "Prevents flash of uncompiled content", isCorrect: true, note: "Hides elements until Angular compiles them." },
+      { label: "C", text: "Cloaks sensitive data", isCorrect: false, note: "Not a security feature." },
+      { label: "D", text: "Adds encryption to data", isCorrect: false, note: "No encryption functionality." }
+    ]
+  },
+
+  {
+    id: 31,
+    question: "Which directive is used for form submission?",
+    options: [
+      { label: "A", text: "ng-submit", isCorrect: true, note: "Handles form submission events." },
+      { label: "B", text: "ng-form", isCorrect: false, note: "Creates form control, doesn't handle submission." },
+      { label: "C", text: "ng-send", isCorrect: false, note: "Not a valid directive." },
+      { label: "D", text: "ng-post", isCorrect: false, note: "Does not exist." }
+    ]
+  },
+
+  {
+    id: 32,
+    question: "What is the purpose of $filter service?",
+    options: [
+      { label: "A", text: "To filter HTTP responses", isCorrect: false, note: "Not specifically for HTTP." },
+      { label: "B", text: "To access and use filters in JavaScript", isCorrect: true, note: "$filter service lets you use filters in code." },
+      { label: "C", text: "To filter DOM elements", isCorrect: false, note: "Not for DOM manipulation." },
+      { label: "D", text: "To create CSS filters", isCorrect: false, note: "Unrelated to CSS." }
+    ]
+  },
+
+  {
+    id: 33,
+    question: "Which directive creates an isolated scope?",
+    options: [
+      { label: "A", text: "ng-isolate", isCorrect: false, note: "Not a valid directive." },
+      { label: "B", text: "scope: {} in directive definition", isCorrect: true, note: "Directives can create isolated scopes." },
+      { label: "C", text: "ng-directive", isCorrect: false, note: "Not related to scope isolation." },
+      { label: "D", text: "ng-private", isCorrect: false, note: "Invalid directive." }
+    ]
+  },
+
+  {
+    id: 34,
+    question: "What is the difference between service() and factory()?",
+    options: [
+      { label: "A", text: "No difference, they are the same", isCorrect: false, note: "They have different implementations." },
+      { label: "B", text: "service() uses constructor, factory() returns object", isCorrect: true, note: "service() is constructor, factory() returns value." },
+      { label: "C", text: "factory() is faster than service()", isCorrect: false, note: "Performance is similar." },
+      { label: "D", text: "service() is for HTTP only", isCorrect: false, note: "Both can create any service type." }
+    ]
+  },
+
+  {
+    id: 35,
+    question: "Which directive handles change events on input fields?",
+    options: [
+      { label: "A", text: "ng-change", isCorrect: true, note: "Fires when input value changes." },
+      { label: "B", text: "ng-input", isCorrect: false, note: "Not a valid directive." },
+      { label: "C", text: "ng-update", isCorrect: false, note: "Does not exist." },
+      { label: "D", text: "ng-modify", isCorrect: false, note: "Invalid directive." }
+    ]
+  },
+
+  {
+    id: 36,
+    question: "What is $q service used for?",
+    options: [
+      { label: "A", text: "Querying databases", isCorrect: false, note: "Not for database operations." },
+      { label: "B", text: "Handling promises and deferred operations", isCorrect: true, note: "$q is AngularJS's promise service." },
+      { label: "C", text: "Quality assurance testing", isCorrect: false, note: "Not related to testing." },
+      { label: "D", text: "Queue management", isCorrect: false, note: "Not for data queues." }
+    ]
+  },
+
+  {
+    id: 37,
+    question: "Which method is used to watch for scope changes?",
+    options: [
+      { label: "A", text: "$observe", isCorrect: false, note: "Used in directives, not scope." },
+      { label: "B", text: "$watch", isCorrect: true, note: "$watch observes scope variable changes." },
+      { label: "C", text: "$look", isCorrect: false, note: "Not a valid method." },
+      { label: "D", text: "$track", isCorrect: false, note: "Does not exist." }
+    ]
+  },
+
+  {
+    id: 38,
+    question: "What is the purpose of $compile service?",
+    options: [
+      { label: "A", text: "To compile TypeScript", isCorrect: false, note: "Not related to TypeScript." },
+      { label: "B", text: "To compile HTML with directives into DOM", isCorrect: true, note: "$compile processes AngularJS directives." },
+      { label: "C", text: "To compress JavaScript", isCorrect: false, note: "Not a compression tool." },
+      { label: "D", text: "To compile Sass files", isCorrect: false, note: "Unrelated to CSS preprocessors." }
+    ]
+  },
+
+  {
+    id: 39,
+    question: "Which directive includes external HTML templates?",
+    options: [
+      { label: "A", text: "ng-include", isCorrect: true, note: "Fetches and includes external HTML." },
+      { label: "B", text: "ng-template", isCorrect: false, note: "Defines inline templates." },
+      { label: "C", text: "ng-import", isCorrect: false, note: "Not a valid directive." },
+      { label: "D", text: "ng-html", isCorrect: false, note: "Invalid directive." }
+    ]
+  },
+
+  {
+    id: 40,
+    question: "What is the role of $location service?",
+    options: [
+      { label: "A", text: "To manage geolocation", isCorrect: false, note: "Not for GPS coordinates." },
+      { label: "B", text: "To manage browser URL and navigation", isCorrect: true, note: "$location parses and manipulates URL." },
+      { label: "C", text: "To store local data", isCorrect: false, note: "Local storage is different." },
+      { label: "D", text: "To locate DOM elements", isCorrect: false, note: "Not for DOM selection." }
+    ]
+  },
+
+  {
+    id: 41,
+    question: "Which filter limits array length?",
+    options: [
+      { label: "A", text: "slice", isCorrect: false, note: "slice is array method, not filter." },
+      { label: "B", text: "limitTo", isCorrect: true, note: "limitTo filter truncates arrays/strings." },
+      { label: "C", text: "take", isCorrect: false, note: "Not a built-in filter." },
+      { label: "D", text: "first", isCorrect: false, note: "Invalid filter name." }
+    ]
+  },
+
+  {
+    id: 42,
+    question: "What is the purpose of $animate service?",
+    options: [
+      { label: "A", text: "To create CSS animations", isCorrect: false, note: "It hooks into AngularJS animation events." },
+      { label: "B", text: "To provide JavaScript animation support", isCorrect: true, note: "$animate handles animation callbacks." },
+      { label: "C", text: "To animate route changes", isCorrect: false, note: "Only part of its functionality." },
+      { label: "D", text: "To create canvas animations", isCorrect: false, note: "Not specifically for canvas." }
+    ]
+  },
+
+  {
+    id: 43,
+    question: "Which directive binds CSS classes conditionally?",
+    options: [
+      { label: "A", text: "ng-css", isCorrect: false, note: "Not a valid directive." },
+      { label: "B", text: "ng-class", isCorrect: true, note: "ng-class dynamically sets CSS classes." },
+      { label: "C", text: "ng-style", isCorrect: false, note: "Sets inline styles, not classes." },
+      { label: "D", text: "ng-addClass", isCorrect: false, note: "Invalid directive." }
+    ]
+  },
+
+  {
+    id: 44,
+    question: "What is the purpose of $routeParams?",
+    options: [
+      { label: "A", text: "To validate route configurations", isCorrect: false, note: "Not for validation." },
+      { label: "B", text: "To access route URL parameters", isCorrect: true, note: "$routeParams provides route parameters." },
+      { label: "C", text: "To set route permissions", isCorrect: false, note: "Not for security." },
+      { label: "D", text: "To create route templates", isCorrect: false, note: "Templates are defined in $routeProvider." }
+    ]
+  },
+
+  {
+    id: 45,
+    question: "Which method is used to create a custom filter?",
+    options: [
+      { label: "A", text: "app.createFilter()", isCorrect: false, note: "Invalid method." },
+      { label: "B", text: "app.filter()", isCorrect: true, note: "app.filter() registers custom filters." },
+      { label: "C", text: "app.makeFilter()", isCorrect: false, note: "Not a valid method." },
+      { label: "D", text: "app.addFilter()", isCorrect: false, note: "Invalid method name." }
+    ]
+  },
+
+  {
+    id: 46,
+    question: "What is the purpose of $cacheFactory?",
+    options: [
+      { label: "A", text: "To cache HTTP responses only", isCorrect: false, note: "Can cache any data, not just HTTP." },
+      { label: "B", text: "To create cache objects for storing data", isCorrect: true, note: "$cacheFactory creates cache instances." },
+      { label: "C", text: "To factory reset the application", isCorrect: false, note: "Not for resetting." },
+      { label: "D", text: "To cache DOM elements", isCorrect: false, note: "Not for DOM caching." }
+    ]
+  },
+
+  {
+    id: 47,
+    question: "Which directive handles keyboard events?",
+    options: [
+      { label: "A", text: "ng-keypress", isCorrect: true, note: "Handles keyboard press events." },
+      { label: "B", text: "ng-type", isCorrect: false, note: "Not a valid directive." },
+      { label: "C", text: "ng-input", isCorrect: false, note: "Different purpose." },
+      { label: "D", text: "ng-keyboard", isCorrect: false, note: "Invalid directive." }
+    ]
+  },
+
+  {
+    id: 48,
+    question: "What is the purpose of $interpolate service?",
+    options: [
+      { label: "A", text: "To interpolate colors", isCorrect: false, note: "Not related to colors." },
+      { label: "B", text: "To compile strings with expressions", isCorrect: true, note: "$interpolate processes template strings." },
+      { label: "C", text: "To smooth animations", isCorrect: false, note: "Not for animation smoothing." },
+      { label: "D", text: "To interpolate missing data", isCorrect: false, note: "Not for data completion." }
+    ]
+  },
+
+  {
+    id: 49,
+    question: "Which directive creates two-way binding for custom components?",
+    options: [
+      { label: "A", text: "ng-value", isCorrect: false, note: "Sets value, not two-way binding." },
+      { label: "B", text: "ng-bind", isCorrect: false, note: "One-way binding only." },
+      { label: "C", text: "ng-model", isCorrect: true, note: "ng-model provides two-way data binding." },
+      { label: "D", text: "ng-two-way", isCorrect: false, note: "Not a valid directive." }
+    ]
+  },
+  {
+    id: 50,
+    question: "Which method deregisters a watcher?",
+    options: [
+      { label: "A", text: "$destroy()", isCorrect: false, note: "Destroys scope, not watchers." },
+      { label: "B", text: "unwatch()", isCorrect: false, note: "Not an AngularJS method." },
+      { label: "C", text: "$watch()", isCorrect: false, note: "Registers watchers, not unregister." },
+      { label: "D", text: "The function returned by $watch()", isCorrect: true, note: "$watch returns a deregister function." }
+    ]
+  }
+],
+
+    get current() {
+      return this.questions[this.index]
+    },
+
+    select(opt) {
+      this.selected = opt.label
+      if (!this.answers[this.index]) {
+        this.answers[this.index] = { label: opt.label, isCorrect: opt.isCorrect }
+        if (opt.isCorrect) this.score++
+      } else {
+        const prev = this.answers[this.index]
+        if (prev.isCorrect && !opt.isCorrect) this.score--
+        if (!prev.isCorrect && opt.isCorrect) this.score++
+        this.answers[this.index] = { label: opt.label, isCorrect: opt.isCorrect }
+      }
+    },
+
+    next() {
+      if (this.index < this.questions.length - 1) {
+        this.index++
+        this.selected = this.answers[this.index]?.label || null
+        console.log(this.index);
+      } else {
+        this.finished = true
+      }
+    },
+
+    prev() {
+      if (this.index > 0) {
+        this.index--
+        this.selected = this.answers[this.index]?.label || null
+      }
+    },
+
+    restart() {
+      this.index = 0
+      this.selected = null
+      this.finished = false
+      this.score = 0
+      this.answers = {}
+      this.reviewMode = false
+    },
+
+    jump(i) {
+      this.index = i
+      this.selected = this.answers[i]?.label || null
+      this.reviewMode = false
+    }
+  }
+}
+</script>
+
+</body>
+</html>
